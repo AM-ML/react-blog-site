@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.cdnfonts.com/css/google-sans');
 
 /*? Alegreya: Article font */
 /*? Lato: Structure font */
@@ -9,6 +10,50 @@
   box-sizing: border-box;
 }
 
-h1 {
-  font-family: "Alegreya";
+.home {
+  font-family: "lato";
+}
+
+
+.text-logo {
+  color: #32546F !important;
+}
+
+.text-serif {
+  font-family: "Times" !important;
+}
+
+.text-bolder {
+  font-weight: 500;
+}
+
+.text-bold {
+  font-weight: bold;
+}
+
+.text-sans {
+  font-family: "Lato";
+}
+
+.text-lg {
+  font-size: 20px;
+}
+
+.nav-link {
+  border-bottom: 3px solid #0000;
+}
+
+.nav-link:hover {
+  transition-duration: 0.3s;
+  transition-property: all;
+  color: rgb(0, 60, 121) !important;
+  border-bottom-color: #18f;
+}
+
+.text-google {
+  font-family: "Google Sans" !important;
+}
+
+.bg-gray {
+  background-color: #eee;
 }

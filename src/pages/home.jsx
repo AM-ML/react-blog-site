@@ -1,11 +1,13 @@
-import "../css/home.css"
+import AnimationWrapper from "../common/page-animation";
+import "../css/home.css";
 
 const Home = () => {
-  return (
-    <>
-      <h1>Hello, world!</h1>
-    </>
-  )
+  return <AnimationWrapper keyValue="home">
+    <div className="container">
+      <div className="row">
+      </div>
+    </div>
+  </AnimationWrapper>
 }
 
 export default Home;
