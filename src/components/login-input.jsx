@@ -21,7 +21,7 @@ const LoginInput = () => {
           <input className="login-password-input mt-0 form-control mb-0" type="password" placeholder="Password" id="login-password"/>
         </div>
 
-        <button className="login-button" style= {{"marginTop": "10%"}}>Sign Up</button>
+        <button className="login-button" style= {{"marginTop": "10%"}}>Sign In</button>
         <button type="button" className="login-with-google-btn" >
           Sign In with Google
         </button>
