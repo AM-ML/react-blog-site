@@ -4,6 +4,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { nanoid } from "nanoid";
 import "dotenv/config";
+import cors from "cors";
 
 // schema
 import User from "./Schema/User.js";
@@ -16,6 +17,8 @@ let passwordRegex = /^(?=.*\d)(?=.*[a-z]).{6,20}$/; // regex for password
 
 // use middleware to enable json data sharing between request and response
 server.use(express.json());
+
+server.use(cors());
 
 // connected to mongoDB project database 
 mongoose.connect(process.env.DB_LOCATION, {
