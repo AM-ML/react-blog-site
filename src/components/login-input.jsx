@@ -5,7 +5,7 @@ import { useRef } from "react";
 
 const LoginInput = ({ func, toast, Toaster }) => {
   const form = useRef();
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -17,15 +17,15 @@ const LoginInput = ({ func, toast, Toaster }) => {
     let formdata = new FormData(form.current);
     let fd = {};
 
-    for(let [key, value] of formdata.entries()) { // for name, value of each input in the form element
+    for (let [key, value] of formdata.entries()) { // for name, value of each input in the form element
       fd[key] = value; // store user data
     }
-    const {email, password} = fd;
+    const { email, password } = fd;
 
     // form validation
     if (!email.length) {
       toast.error("Enter Email");
-    }  if (!emailRegex.test(email)) {
+    } if (!emailRegex.test(email)) {
       toast.error("Invalid Email");
     }
     if (!passwordRegex.test(password)) {
@@ -73,7 +73,12 @@ const LoginInput = ({ func, toast, Toaster }) => {
       <button type="button" className="login-with-google-btn" >
         Sign In with Google
       </button>
-      <p className="mt-3 text-sm">Don't have an account? <Link to="/signup" className="auth-link text-primary">Sign Up</Link></p>
+      <p className="mt-3 text-sm">
+        Don't have an account?
+        <Link to="/signup" className="auth-link text-primary">
+          Sign Up
+        </Link>
+      </p>
     </form>
   </div>
 }

@@ -1,9 +1,13 @@
-import AnimationWrapper from "../common/page-animation";
+import { useContext } from "react";
 import "../css/components/navbar.css";
 import logo from "/new3.png";
 import { Link, Outlet } from "react-router-dom";
+import { UserContext } from "../Router";
 
 const Navbar = () => {
+  let { userAuth: { access_token, profile_img }, setUserAuth } = useContext(UserContext);
+
+
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -36,10 +40,21 @@ const Navbar = () => {
             <form className="d-flex">
               <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
             </form>
-            <div className="btn-group" role="group" aria-label="Basic outlined example">
-              <Link to="/signin" type="button" className="signin-btn btn btn-dark px-3 py-2 ms-0">Sign In</Link>
-              <Link to="/signup" type="button" className="signin-btn bg-gray btn btn-outline-dark px-3 py-2 ms-0">Sign Up</Link>
-            </div>
+            {
+              access_token ?
+                <Link to="/dashboard">
+                  <img
+                    className="profile-dropdown-avatar"
+                    src={profile_img} alt="" width={64}
+                    role="button"
+                  />
+                </Link>
+                :
+                <div className="btn-group" role="group" aria-label="Basic outlined example">
+                  <Link to="/signin" type="button" className="signin-btn btn btn-dark px-3 py-2 ms-0">Sign In</Link>
+                  <Link to="/signup" type="button" className="signin-btn bg-gray btn btn-outline-dark px-3 py-2 ms-0">Sign Up</Link>
+                </div>
+            }
           </div>
         </div>
       </nav>
