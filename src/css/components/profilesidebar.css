@@ -11,19 +11,20 @@
 
 .custom-sidebar {
   position: fixed !important;
-  top: 100px !important;  /* Adjust based on the height of your navbar */
   left: 0 !important;
-  height: calc(100% - 100px) !important;  /* Adjust based on the height of your navbar */
-  width: 78px !important;
-  background: #11101D !important;
+  top: 0;
+  height: calc(100%) !important;  
+  width: 78px;
+  background: #2A2F3D !important;
   padding: 6px 14px !important;
-  z-index: 1 !important;  /* Lower than the navbar */
-  transition: all 0.5s ease !important;
+  z-index: 1 !important; 
+  transition: all 0.2s ease !important;
   overflow-y: auto !important;  
+  position: sticky;
 }
 
 .custom-sidebar::-webkit-scrollbar {
-  display: none; /* Hide scrollbar */
+  display: none !important;
 }
 
 .custom-sidebar.open {
@@ -43,7 +44,7 @@
   font-size: 20px !important;
   font-weight: 600 !important;
   opacity: 0 !important;
-  transition: all 0.5s ease !important;
+  transition: all 0.2s ease !important;
 }
 
 .custom-sidebar.open .custom-logo-details,
@@ -76,9 +77,6 @@
   height: 100% !important;
 }
 
-.some-random-container a {
-  color: red !important;
-}
 .custom-sidebar li {
   position: relative !important;
   margin: 8px 0 !important;
@@ -94,8 +92,8 @@
   width: 100% !important;
   border: none !important;
   border-radius: 12px !important;
-  transition: all 0.5s ease !important;
-  background: #1d1b31 !important;
+  transition: all 0.2s ease !important;
+  background: #2A2F3D !important;
 }
 
 .custom-sidebar.open input {
@@ -109,17 +107,17 @@
   left: 0 !important;
   transform: translateY(-50%) !important;
   font-size: 22px !important;
-  background: #1d1b31 !important;
+  background: #2A2F3D !important;
   color: #fff !important;
 }
 
 .custom-sidebar .bx-search:hover {
   background: #fff !important;
-  color: #11101D !important;
+  color: #2A2F3D !important;
 }
 
 .custom-sidebar.open .bx-search:hover {
-  background: #1d1b31 !important;
+  background: #2A2F3D !important;
   color: #fff !important;
 }
 
@@ -138,8 +136,9 @@
   align-items: center !important;
   text-decoration: none !important;
   transition: all 0.4s ease !important;
-  background: #11101D !important;
+  background: #2A2F3D !important;
 }
+
 
 .custom-sidebar li a:hover {
   background: #fff !important;
@@ -162,7 +161,7 @@
 
 .custom-sidebar li a:hover .custom-links_name,
 .custom-sidebar li a:hover i {
-  transition: all 0.5s ease !important;
+  transition: all 0.2s ease !important;
   color: #11101D !important;
 }
 
@@ -201,8 +200,8 @@
   left: 0 !important;
   bottom: -8px !important;
   padding: 10px 14px !important;
-  background: #1d1b31 !important;
-  transition: all 0.5s ease !important;
+  background: #2A2F3D !important;
+  transition: all 0.2s ease !important;
   overflow: hidden !important;
 }
 
@@ -240,12 +239,14 @@
   position: absolute!important;
   top: 50%!important;
   right: 0!important;
+  border-radius: 0 !important;
   transform: translateY(-50%)!important;
-  background: #1d1b31!important;
   width: 100%!important;
   height: 60px!important;
   line-height: 60px!important;
   transition: all 0.5s ease!important;
+  background: #2A2F3D !important;
+  color: #6B6CE0 !important; 
 }
 
 .custom-sidebar.open .custom-profile #custom-log_out {
@@ -254,23 +255,39 @@
 }
 
 
-.custom-home-section {
+.custom-sidebar.open .custom-profile #custom-log_out:hover {
+  color: white !important;
+  background: #6B6CE0 !important;
+}
+
+.custom-home-section{
   position: relative!important;
-  top: 0!important;
   left: 78px!important;
-  width: calc(100% - 78px)!important;
+  width: calc(100% - 78px) !important;
   transition: all 0.5s ease!important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .custom-sidebar.open~.custom-home-section {
   left: 250px!important;
-  width: calc(100% - 250px)!important;
+  width: calc(100% - 250px) !important;
 }
 
-.custom-home-section .custom-text {
-  display: inline-block!important;
+.custom-panel-container {
   color: #11101D!important;
   font-size: 25px!important;
   font-weight: 500!important;
-  margin: 18px!important;
+  margin: 0 0 0 0!important;
+  padding: 0 !important;
+}
+
+.custom-sidebar-home-link-list .custom-links_name {
+  line-height: 0px !important;
+}
+
+
+.custom-sidebar li:first-child a i,
+  .custom-sidebar li:first-child a span {
+  color: #6B6CE0 !important;
 }

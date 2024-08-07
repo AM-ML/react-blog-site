@@ -1,0 +1,29 @@
+.not-found-container {
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  align-self: center;
+  place-self: center;
+  height: 60vh
+}
+
+.not-found-text-container {
+  padding:0;
+}
+
+.not-found-title {
+  font-size: 4vw;
+  font-family: "lato";
+  margin: 0;
+  border-bottom: 5px solid;
+}
+
+.not-found-description {
+  margin: 0;
+  font-size: 1.5vw;
+  font-family: sans-serif;
+}
+
+.not-found-container div img {
+  margin-top: 15vh;
+}

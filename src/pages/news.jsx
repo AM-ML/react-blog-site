@@ -1,8 +1,17 @@
 import AnimationWrapper from "../common/page-animation";
+import "../css/news.css";
 
 const News = () => {  
   return <AnimationWrapper keyValue={"news"}>
-    <h1 className="text-dark border border-1">News</h1>
+    <div className="container">
+      <div className="row">
+        <div className="col">
+          <h1 className="text-center text-bold text-primary">
+            News
+          </h1>
+        </div>
+      </div>
+    </div>
   </AnimationWrapper>
 }
 

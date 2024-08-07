@@ -1,0 +1,208 @@
+.mp-container {
+  display: grid;
+  min-height: fit-content !important;
+  height: 100vh;
+  width: 100% !important;
+  padding: 1vh 1vw;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 1vw;
+}
+
+.mp-grid-item {
+  padding: 1vh 1vw;
+}
+
+.mp-item-1 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.mp-item-1 .gen-1:last-child {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+.c-id-1 {
+  margin-left: 3%;
+}
+.mp-item-1 .id-1{
+  height: 100px;
+  border-radius: 50%;
+}
+
+.c-id-2 {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-family: "alegreya";
+  margin-left: 4%;
+}
+
+.id-3 {
+  font-family: "google sans";
+  color: #666;
+  font-weight: normal;
+  font-size: 25px;
+  padding: 0;
+  margin: 0;
+  margin-top: -0.7ch;
+}
+
+
+.sections-3-title {
+  border-bottom: 1px solid black;
+}
+
+.mp-section-3-content {
+  height: calc(100% - 50px);
+
+  padding: 0;
+  margin: 0;
+}
+
+.mp-social-row {
+  min-height: 30px;
+  height: 25%;
+  display: flex;
+  align-items: center;
+}
+
+.mp-social-row .social-1 {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.mp-social-row .social-2 a{
+  color: #111;
+  text-decoration: none;
+}
+
+
+.mp-social-instagram {
+  background-color: purple !important;
+}
+
+.mp-social-instagram, .mp-social-instagram a {
+  color: white !important;
+}
+
+.mp-social-instagram:hover,
+.mp-social-instagram:hover a {
+  color: black !important;
+  background-color: white !important;
+}
+
+.mp-social-instagram .social-2 a:hover {
+  color: purple !important;
+}
+
+.mp-social-facebook {
+  background-color: #04f !important;
+}
+
+.mp-social-facebook, .mp-social-facebook a {
+  color: white !important;
+}
+
+.mp-social-facebook:hover,
+.mp-social-facebook:hover a {
+  color: black !important;
+  background-color: white !important;
+}
+
+.mp-social-facebook .social-2 a:hover {
+  color: #04f !important;
+}
+
+.mp-social-twitter {
+  background-color: #18f !important;
+}
+
+.mp-social-twitter, .mp-social-twitter a {
+  color: white !important;
+}
+
+.mp-social-twitter:hover,
+.mp-social-twitter:hover a {
+  color: black !important;
+  background-color: white !important;
+}
+
+.mp-social-twitter .social-2 a:hover {
+  color: #18f !important;
+}
+
+.mp-social-linkedin {
+  background-color: #214180 !important;
+}
+
+.mp-social-linkedin, .mp-social-linkedin a {
+  color: white !important;
+}
+
+.mp-social-linkedin:hover,
+.mp-social-linkedin:hover a {
+  color: black !important;
+  background-color: white !important;
+}
+
+.mp-social-linkedin .social-2 a:hover {
+  color: #214180 !important;
+}
+
+.mp-section-content {
+  min-height: fit-content !important;
+  height: calc(100% - 50px);
+}
+
+.mp-social-row .social-2 a{
+  font-family: "Lato" !important;
+  font-weight: 600;
+}
+
+
+.font-bold {
+  font-weight: 600;
+}
+
+.font-bolder {
+  font-weight: 900;
+}
+.fs-64px {
+  font-size: 32px !important;
+}
+.rspan-1 {
+  grid-row: span 1;
+}
+.rspan-2 {
+  grid-row: span 2;
+}
+.rspan-3 {
+  grid-row: span 3;
+}
+.rspan-4 {
+  grid-row: span 4;
+}
+.rspan-5 {
+  grid-row: span 5;
+}
+.cspan-3 {
+  grid-column: span 3;
+}
+.cspan-4 {
+  grid-column: span 4;
+}
+.cspan-6 {
+  grid-column: span 6;
+}
+.cspan-8 {
+  grid-column: span 8;
+}
+.cspan-10 {
+  grid-column: span 10;
+}
+.cspan-12 {
+  grid-column: span 12;
+}
