@@ -1,10 +1,11 @@
 import logo from "/new3.png"
 import "../css/components/login-input.css";
 import { Link } from "react-router-dom";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const LoginInput = ({ func, toast, Toaster }) => {
   const form = useRef();
+  const [locked, setLocked] = useState(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -69,7 +70,7 @@ const LoginInput = ({ func, toast, Toaster }) => {
           required />
       </div>
 
-      <button className="login-button" style={{ "marginTop": "10%" }}>Sign In</button>
+      <button type="submit" className="login-button" style={{ "marginTop": "10%" }}>Sign In</button>
       <button type="button" className="login-with-google-btn" >
         Sign In with Google
       </button>

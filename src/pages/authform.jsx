@@ -10,12 +10,11 @@ import { Navigate } from "react-router-dom";
 
 const AuthForm = ({ type }) => {
   let { userAuth: { access_token }, setUserAuth } = useContext(UserContext);
-  
   const serverAuth = (serverRoute, dataToSend) => {
     axios.post(import.meta.env.VITE_SERVER_DOMAIN + serverRoute, dataToSend)
     .then (({ data }) => {
       storeInSession("user", JSON.stringify(data));
-
+  
       setUserAuth(data);
       
       toast.success("Signed In!")
@@ -23,8 +22,6 @@ const AuthForm = ({ type }) => {
     .catch(({ response }) => {
       toast.error(response.data.error);
     })
-
-
   }
   return <>
       {access_token ?
