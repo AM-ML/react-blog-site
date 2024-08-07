@@ -44,6 +44,7 @@ const formatDataToSend = (user) => {
     access_token,
     profile_img: user.personal_info.profile_img,
     username: user.personal_info.username,
+    email: user.personal_info.email,
     name: user.personal_info.name
   }
 }
