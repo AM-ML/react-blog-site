@@ -29,9 +29,7 @@ const userSchema = mongoose.Schema({
     },
     profile_img: {
       type: String,
-      default: () => {
-        return `https://api.dicebear.com/6.x/fun-emoji/svg?seed=${profile_imgs_name_list[Math.floor(Math.random() * profile_imgs_name_list.length)]}`
-      }
+      default: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
     },
   },
   social_links: {
