@@ -75,7 +75,7 @@
   left: 10%;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
-  display: none;
+  display: none !important;
   box-sizing: border-box;
 }
 
@@ -145,13 +145,13 @@
     max-width: 100%; /* Ensure it doesn't overflow the viewport width */
   }
   .dropdown-custom-clicked .dropdown-content-custom {
-    display: block;
+    display: block !important;
   }
 }
 
 @media screen and (min-width: 992px) {
   .dropdown-custom:hover .dropdown-content-custom {
-    display: block;
+    display: block !important;
   }
 }
 
@@ -160,7 +160,13 @@
     margin-top: 20px;;
   }
 }
+.dropdown-content-custom {
+  min-height: fit-content !important;
+}
 
+.row-custom {
+  min-height: fit-content !important;
+}
 @media screen and (max-width: 707px) {
   .column-custom {
     min-width: fit-content !important;

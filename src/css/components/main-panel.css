@@ -66,6 +66,7 @@
   min-height: 30px;
   height: 25%;
   display: flex;
+  text-decoration: none;
   align-items: center;
 }
 
@@ -81,7 +82,7 @@
 
 
 .mp-social-instagram {
-  background-color: purple !important;
+  background-color: #7F0CF4 !important;
 }
 
 .mp-social-instagram, .mp-social-instagram a {
@@ -94,8 +95,11 @@
   background-color: white !important;
 }
 
-.mp-social-instagram .social-2 a:hover {
-  color: purple !important;
+.mp-social-instagram .social-2 div:hover {
+  color: #7F0CF4  !important;
+}
+.mp-social-instagram:hover .social-1 {
+  color: #7F0CF4;
 }
 
 .mp-social-facebook {
@@ -106,13 +110,17 @@
   color: white !important;
 }
 
+.mp-social-facebook:hover .social-1 {
+  color: #04f;
+}
+
 .mp-social-facebook:hover,
 .mp-social-facebook:hover a {
   color: black !important;
   background-color: white !important;
 }
 
-.mp-social-facebook .social-2 a:hover {
+.mp-social-facebook .social-2 div:hover {
   color: #04f !important;
 }
 
@@ -130,10 +138,12 @@
   background-color: white !important;
 }
 
-.mp-social-twitter .social-2 a:hover {
+.mp-social-twitter .social-2 div:hover {
   color: #18f !important;
 }
-
+.mp-social-twitter:hover .social-1 {
+  color: #18f;
+}
 .mp-social-linkedin {
   background-color: #214180 !important;
 }
@@ -142,13 +152,17 @@
   color: white !important;
 }
 
+.mp-social-linkedin:hover .social-1 {
+  color: #214180;
+}
+
 .mp-social-linkedin:hover,
 .mp-social-linkedin:hover a {
   color: black !important;
   background-color: white !important;
 }
 
-.mp-social-linkedin .social-2 a:hover {
+.mp-social-linkedin .social-2 div:hover {
   color: #214180 !important;
 }
 
@@ -205,4 +219,44 @@
 }
 .cspan-12 {
   grid-column: span 12;
+}
+
+.h-2-rspans {
+  height: calc(100vh / 5 * 2) !important;
+  grid-template-rows: 1fr;
+}
+
+.h-3-rspans {
+  height: calc(100vh / 5 * 3) !important;
+  grid-template-rows: 1fr;
+}
+
+@media screen and (min-width: 1106px) {
+  .mp-visible-on-large-screens {
+    display: grid;
+  }
+  .mp-visible-on-medium-screens,
+  .mp-visible-on-small-screens {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1105px) {
+  .mp-visible-on-medium-screens {
+    display: grid;
+  }
+  .mp-visible-on-large-screens,
+  .mp-visible-on-small-screens {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .mp-visible-on-small-screens {
+    display: grid;
+  }
+  .mp-visible-on-large-screens,
+  .mp-visible-on-medium-screens {
+    display: none;
+  }
 }
