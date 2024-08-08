@@ -2,11 +2,12 @@ import axios from "axios";
 import AnimationWrapper from "../common/page-animation";
 import LoginInput from "../components/login-input";
 import SignupInput from "../components/signup-input";
-import {Toaster, toast} from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
 import { storeInSession } from "../components/session";
 import { useContext } from "react";
 import { UserContext } from "../Router";
 import { Navigate } from "react-router-dom";
+import { authWithGoogle } from "../common/firebase";
 
 const AuthForm = ({ type }) => {
   let { userAuth: { access_token }, setUserAuth } = useContext(UserContext);
@@ -20,15 +21,35 @@ const AuthForm = ({ type }) => {
       toast.success("Signed In!")
     })
     .catch(({ response }) => {
-      toast.error(response.data.error);
+      const errorMessage = response?.data?.error || "An error occurred"; // Default message if no message is found
+      toast.error(errorMessage);
     })
   }
+
+  const handleGoogleAuth = (e) => {
+    e.preventDefault();
+
+    authWithGoogle().then(user => {
+      const route = "/google-auth";
+      
+      const formData = {
+        access_token: user.accessToken
+      }
+
+      serverAuth(route, formData);
+    })
+    .catch((err) => {
+      toast.error("Error occurred while logging in with google");
+      console.log(err);
+    })
+  }
+
   return <>
       {access_token ?
         <Navigate to="/" />
       :
-      type == "sign-in"? <AnimationWrapper keyValue={type}><LoginInput Toaster={Toaster} toast={toast} func={serverAuth}/></AnimationWrapper> 
-                        : <AnimationWrapper keyValue={type}><SignupInput Toaster={Toaster} toast={toast} func={serverAuth}/></AnimationWrapper>
+      type == "sign-in"? <AnimationWrapper keyValue={type}><LoginInput Toaster={Toaster} toast={toast} func={serverAuth} googleAuthFunc={handleGoogleAuth}/></AnimationWrapper> 
+                        : <AnimationWrapper keyValue={type}><SignupInput Toaster={Toaster} toast={toast} func={serverAuth} googleAuthFunc={handleGoogleAuth}/></AnimationWrapper>
       }
     
   </>

@@ -3,7 +3,7 @@ import "../css/components/signup-input.css";
 import { Link } from "react-router-dom";
 import { useRef } from "react";
 
-const SignupInput = ({ func, toast, Toaster }) => {
+const SignupInput = ({ func, toast, Toaster, googleAuthFunc }) => {
   const form = useRef();
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -81,8 +81,8 @@ const SignupInput = ({ func, toast, Toaster }) => {
       </div>
 
       <button className="signup-button" style={{ "marginTop": "10%" }}>Sign Up</button>
-      <button type="button" className="signup-with-google-btn" >
-        Sign Up with Google
+      <button  onClick={googleAuthFunc} type="button" className="signup-with-google-btn" >
+        Continue with Google
       </button>
       <p className="mt-3 text-sm">Already have an account? <Link to="/signin" className="auth-link text-primary">Sign In</Link></p>
     </form>

@@ -1,11 +1,10 @@
 import logo from "/new3.png"
 import "../css/components/login-input.css";
 import { Link } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 
-const LoginInput = ({ func, toast, Toaster }) => {
+const LoginInput = ({ func, toast, Toaster, googleAuthFunc }) => {
   const form = useRef();
-  const [locked, setLocked] = useState(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -71,11 +70,11 @@ const LoginInput = ({ func, toast, Toaster }) => {
       </div>
 
       <button type="submit" className="login-button" style={{ "marginTop": "10%" }}>Sign In</button>
-      <button type="button" className="login-with-google-btn" >
-        Sign In with Google
+      <button onClick={googleAuthFunc} type="button" className="login-with-google-btn" >
+        Continue with Google
       </button>
       <p className="mt-3 text-sm">
-        Don't have an account?
+        Don't have an account?&nbsp;
         <Link to="/signup" className="auth-link text-primary">
           Sign Up
         </Link>
