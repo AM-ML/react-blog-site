@@ -2,7 +2,6 @@ import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/navbar";
 import Home from "./pages/home";
 import "@flaticon/flaticon-uicons/css/all/all.css";
-import News from "./pages/news";
 import AuthForm from "./pages/authform";
 import { createContext, useEffect, useState } from "react";
 import { lookInSession } from "./components/session";
@@ -10,6 +9,8 @@ import ProfileSidebar from "./components/profilesidebar";
 import Dashboard from "./pages/dashboard";
 import NotFound from "./pages/notfound";
 import AnalyticsDashboard from "./pages/analytics-dashboard";
+import Editor from "./pages/editor";
+import WriterWrapper from "./components/writer-wrapper";
 
 export const UserContext = createContext({});
 
@@ -30,12 +31,14 @@ const Router = () => {
         <Route element={<Home />} index/>
         <Route path="signin" element= {<AuthForm type="sign-in" />}/>
         <Route path="signup" element= {<AuthForm type="sign-up"/>}/>
-        <Route path="news" element= {<News />}/>
         <Route path="*" element={<NotFound />} />
       </Route>
       <Route path="/dashboard" element= {<ProfileSidebar />}>
         <Route element={<Dashboard/>} index/>
         <Route path="/dashboard/analytics" element={<AnalyticsDashboard/>} />
+        <Route path="/dashboard/writer" element={<WriterWrapper />} >
+          <Route path="/dashboard/writer/write" element={<Editor />} />
+        </Route>
       </Route>
     </Routes>
     </UserContext.Provider>
