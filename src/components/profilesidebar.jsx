@@ -54,7 +54,7 @@ const ProfileSidebar = () => {
             <span className="custom-tooltip">Dashboard</span>
           </li>
           <li>
-            <Link to="/blogs/write">
+            <Link to="/dashboard/writer/write">
               <i className='bx bx-edit'></i>
               <span className="custom-links_name">Write Blogs</span>
             </Link>
