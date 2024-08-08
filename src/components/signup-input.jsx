@@ -44,7 +44,6 @@ const SignupInput = ({ func, toast, Toaster, googleAuthFunc }) => {
 
   return <div className="signup-form-container">
     <form ref={form} onSubmit={handleSubmit} className="signup-form">
-      <img src={logo} width={64} />
 
       <h3 className="signup-title text-bold text-google mt-3">
         Sign Up
