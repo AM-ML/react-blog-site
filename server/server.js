@@ -5,12 +5,21 @@ import jwt from "jsonwebtoken";
 import { nanoid } from "nanoid";
 import "dotenv/config";
 import cors from "cors";
+import admin from "firebase-admin";
+import { getAuth } from "firebase-admin/auth";
+
+import serviceAccount from './firebase.json' assert { type: 'json' };
 
 // schema
 import User from "./Schema/User.js";
 
 const server = express();
 let port = 3000;
+
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+})
 
 let emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; // regex for email
 let passwordRegex = /^(?=.*\d)(?=.*[a-z]).{6,20}$/; // regex for password
@@ -108,7 +117,9 @@ server.post("/signin", (req, res) => {
     if(!user) {
       return res.status(403).json({"error": "Email not found"});
     }
-
+    if(user.google_auth) {
+      return res.status(403).json({ "error": "this is a google account, please continue with google instead" })
+    }
     bcrypt.compare(password, user.personal_info.password, (err, result) => {
       if (err) {
         return res.status(403).json({"error": "error occured while login, please try again"})
@@ -116,12 +127,60 @@ server.post("/signin", (req, res) => {
         return res.status(403).json({"error": "password is incorrect"});
       }
 
+      console.log("- user sign in.")
       return res.status(200).json(formatDataToSend(user));
     });
   })
   .catch(err => {
     console.log(err);
     return res.status(500).json({"error": err.message});
+  })
+})
+
+server.post("/google-auth", async (req, res) => {
+  let { access_token } = req.body;
+
+  getAuth()
+  .verifyIdToken(access_token)
+  .then(async (decoded_token) => {
+    let { email, name } = decoded_token;
+
+    let user = await User.findOne({ "personal_info.email": email }).select("personal_info.name personal_info.username personal_info.profile_img google_auth")
+    .then ((u) => {
+      return u || null;
+    })
+    .catch((err) => {
+      return res.status(500).json({ "error": err.message });
+    })
+
+    if(user) { // login
+      if(!user.google_auth) { // if not google_account
+        return res.status(403).json({ "error": "account already exists, please use email & password instead." });
+      }
+    } else { // sign up
+      let username = await generateUsername(email);
+
+      user = new User({
+        personal_info: {
+          name,
+          email,
+          username,
+        },
+        google_auth: true
+      })
+
+      await user.save().then((u) => {
+        user = u;
+      })
+      .catch((err) => {
+        return res.status(500).json({ "error": err.message });
+      });
+
+      return res.status(200).json(formatDataToSend(user)); // use our own access_token
+    }
+  })
+  .catch((err) => {
+    return res.status(500).json({ "error": "Google Authentication failed, please try with another account" });
   })
 })
 
