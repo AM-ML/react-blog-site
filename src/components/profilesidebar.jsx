@@ -101,7 +101,7 @@ const ProfileSidebar = () => {
 
     </AnimationWrapper>
     :
-    <Navigate to="/"/>
+    <Navigate to="/signin" />
   );
 };
 
