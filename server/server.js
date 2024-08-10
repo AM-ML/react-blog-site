@@ -8,6 +8,7 @@ import cors from "cors";
 import admin from "firebase-admin";
 import { getAuth } from "firebase-admin/auth";
 
+import { v2 as cloudinary } from "cloudinary";
 import serviceAccount from './firebase.json' assert { type: 'json' };
 
 // schema
@@ -16,6 +17,12 @@ import User from "./Schema/User.js";
 const server = express();
 let port = 3000;
 
+cloudinary.config({ 
+  secure: true,
+  cloud_name: 'dlhedrwu6', 
+  api_key: process.env.CLOUDINARY_KEY, 
+  api_secret: process.env.CLOUDINARY_SECRET // Click 'View Credentials' below to copy your API secret
+});
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
@@ -25,9 +32,14 @@ let emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; // regex for e
 let passwordRegex = /^(?=.*\d)(?=.*[a-z]).{6,20}$/; // regex for password
 
 // use middleware to enable json data sharing between request and response
-server.use(express.json());
+server.use(express.json({ limit: "25mb" }));
 
 server.use(cors());
+server.use(express.urlencoded({ limit: "25mb" }));
+server.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  next();
+})
 
 // connected to mongoDB project database 
 mongoose.connect(process.env.DB_LOCATION, {
@@ -58,6 +70,12 @@ const formatDataToSend = (user) => {
   }
 }
 
+const generateUploadURL = () => {
+  const date = new Date();
+  const imageName = `${nanoid()}-${date.getTime()}`;
+
+  return imageName;
+}
 // if post request to /signup
 server.post("/signup", (req, res) => {
   let { name, email, password } = req.body;
@@ -127,7 +145,6 @@ server.post("/signin", (req, res) => {
         return res.status(403).json({"error": "password is incorrect"});
       }
 
-      console.log("- user sign in.")
       return res.status(200).json(formatDataToSend(user));
     });
   })
@@ -183,6 +200,37 @@ server.post("/google-auth", async (req, res) => {
     return res.status(500).json({ "error": "Google Authentication failed, please try with another account" });
   })
 })
+
+const uploadImage = async (base64) => {
+  const opts = {
+    public_id: generateUploadURL(),
+    overwrite: true,
+    invalidate: true,
+    resource_type: "image",
+    format: "jpeg",
+    quality: "auto",
+    tags: ["banners"]
+  };
+  
+  try {
+    const result = await cloudinary.uploader
+    .upload(base64, opts);
+    return result.url; // Return the URL directly
+  } catch (err) {
+    throw err; // Throw the error to be handled in the calling function
+  }
+}
+
+server.post("/uploadBanner", async (req, res) => {
+  const { base64 } = req.body;
+  try {
+    const url = await uploadImage(base64);
+    return res.status(200).json({ url });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
+
 
 server.listen(port, () => {
   console.log("listening on port " + port);
