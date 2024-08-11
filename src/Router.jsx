@@ -11,6 +11,7 @@ import NotFound from "./pages/notfound";
 import AnalyticsDashboard from "./pages/analytics-dashboard";
 import Editor from "./pages/editor";
 import WriterWrapper from "./components/writer-wrapper";
+import Preloader from "./common/preloader";
 
 export const UserContext = createContext({});
 
@@ -31,6 +32,7 @@ const Router = () => {
         <Route element={<Home />} index/>
         <Route path="signin" element= {<AuthForm type="sign-in" />}/>
         <Route path="signup" element= {<AuthForm type="sign-up"/>}/>
+        <Route path="loading-page" element={<Preloader loading={true}/>}/>
         <Route path="*" element={<NotFound />} />
       </Route>
       <Route path="/dashboard" element= {<ProfileSidebar />}>

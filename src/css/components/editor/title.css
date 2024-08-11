@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Palanquin:wght@100;200;300;400;500;600;700&display=swap');
+
+.editor-title {
+  width: 100%;
+  font-size: 35px;
+  font-family: "roboto";
+  font-weight: 600;
+  line-height: 1.2;
+  outline: none;
+  border: none;
+  margin: 1em 0;
+  color: #1f1f1f;
+  resize: none;
+}

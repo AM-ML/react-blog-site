@@ -1,0 +1,49 @@
+.ep-banner {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  margin-top: 3vh;
+}
+
+.ep-banner-i {
+  position: relative;
+  background-color: #fff;
+  transition: 0.2s all;
+}
+
+.ep-banner-i img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+
+.ep-banner-text {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  align-content: center;
+  cursor: pointer;
+  background: #0000;
+  font-weight: 400;
+  font-family: "google sans";
+  transition: 0.8s all;
+  color: #fff0;
+  background-position: 0;
+  background-repeat: no-repeat;
+  opacity: 0;
+  background-size: contain;
+  background-image: url("../../../assets/label-bg-2.png");
+}
+
+.ep-banner-text:hover {
+  opacity:0.9;
+  background-color: #000c;
+  color: #fff;
+}
+
+.ep-banner-i img:hover {
+  opacity: 80%;
+}
