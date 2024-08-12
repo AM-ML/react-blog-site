@@ -23,6 +23,7 @@ const Title = ({ cont }) => {
     rows={1}
     onKeyDown={handleTitleKeyDown}
     onChange={handleTitleChange}
+    autoFocus
     ></textarea>
   )
 }

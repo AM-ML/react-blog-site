@@ -1,0 +1,17 @@
+.ep-text-editor {
+  font-size: 16px;
+}
+
+.cdx-marker {
+  background: transparent !important;
+  color: #06f;
+}
+
+
+.ce-header {
+  font-family: "lato";
+}
+
+.ce-block b {
+  font-weight: 800;
+}

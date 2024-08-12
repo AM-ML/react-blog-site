@@ -4,26 +4,25 @@ import axios from "axios";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
+export const convertToBase64 = (file) => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    reader.onload = () => {
+      resolve(reader.result);
+    };
+
+    reader.onerror = (err) => {
+      reject(err);
+    };
+  });
+};
 
 const EditorBanner = ({ cont }) => {
   const [url, setUrl] = useState(defaultBanner);
   let { blog, blog: { title, banner, content, tags, description }, setBlog } = cont;
   
-  const convertToBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-
-      reader.onload = () => {
-        resolve(reader.result);
-      };
-
-      reader.onerror = (err) => {
-        reject(err);
-      };
-    });
-  };
-
   const handleBannerUpload = async (e) => {
     const img = e.target.files[0];
     if (img) {
