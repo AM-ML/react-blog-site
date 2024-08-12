@@ -4,9 +4,9 @@ import Router from './Router.jsx'
 import { BrowserRouter } from 'react-router-dom'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <BrowserRouter>
       <Router />
     </BrowserRouter>
-  </React.StrictMode>,
+  // </React.StrictMode>,
 )
