@@ -15,7 +15,7 @@ import serviceAccount from './firebase.json' assert { type: 'json' };
 import User from "./Schema/User.js";
 
 const server = express();
-let port = 3000;
+const port = 3000;
 
 cloudinary.config({ 
   secure: true,
@@ -26,36 +26,49 @@ cloudinary.config({
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
-})
+});
 
-let emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; // regex for email
-let passwordRegex = /^(?=.*\d)(?=.*[a-z]).{6,20}$/; // regex for password
+// Regex for email and password
+const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+const passwordRegex = /^(?=.*\d)(?=.*[a-z]).{6,20}$/;
 
-// use middleware to enable json data sharing between request and response
+// Middleware to enable JSON data sharing between request and response
 server.use(express.json({ limit: "25mb" }));
-
-server.use(cors());
-server.use(express.urlencoded({ limit: "25mb" }));
 server.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Origin", "*"); // Update as needed
+  res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
+  res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
   next();
-})
+});
+const corsOptions = {
+  origin: '*', // Allow all origins (or specify your front-end URL)
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true, // Allow credentials
+  allowedHeaders: 'Content-Type, Authorization',
+  preflightContinue: false,
+  optionsSuccessStatus: 204
+}; 
 
-// connected to mongoDB project database 
+server.use(cors(corsOptions));
+
+// Connect to MongoDB
 mongoose.connect(process.env.DB_LOCATION, {
   autoIndex: true,
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  serverSelectionTimeoutMS: 50000 // increase timeout to 50 seconds
-});
+  serverSelectionTimeoutMS: 50000 // Increase timeout to 50 seconds
+})
+.then(() => console.log("Connected to MongoDB"))
+.catch(err => console.error("MongoDB connection error:", err));
 
 const generateUsername = async (email) => {
   let username = email.split('@')[0];
-
-  let usernameNotUnique = await User.exists({ "personal_info.username": username }).then((result) => result);
-
-  // nanoid(): random unique id / number
-  return usernameNotUnique ? username += nanoid().substring(0, 5) : username;
+  
+  while (await User.exists({ "personal_info.username": username })) {
+    username += nanoid().substring(0, 5);
+  }
+  
+  return username;
 }
 
 const formatDataToSend = (user) => {
@@ -73,22 +86,18 @@ const formatDataToSend = (user) => {
 const generateUploadURL = () => {
   const date = new Date();
   const imageName = `${nanoid()}-${date.getTime()}`;
-
   return imageName;
 }
-// if post request to /signup
-server.post("/signup", (req, res) => {
+
+// Signup route
+server.post("/signup", async (req, res) => {
   let { name, email, password } = req.body;
 
-  /* data validation process */
-
-  // full name
+  // Data validation process
   if (name.length < 5) {
-    // 403: invalidation code
-    return res.status(403).json({ "error": "Full name must be atleast 5 letters long." });
+    return res.status(403).json({ "error": "Full name must be at least 5 letters long." });
   }
 
-  //email
   if (!email.length) {
     return res.status(403).json({ "error": "Enter Email" });
   }
@@ -96,16 +105,17 @@ server.post("/signup", (req, res) => {
   if (!emailRegex.test(email)) {
     return res.status(403).json({ "error": "Invalid Email" });
   }
+  
   if (!passwordRegex.test(password)) {
-    return res.status(403).json({ "error": "Password must be 6 to 20 characters with a numeric and 1 lowercase letter " })
+    return res.status(403).json({ "error": "Password must be 6 to 20 characters with a numeric and 1 lowercase letter." });
   }
 
-  /* storing process */
-  //.hash(pwd, iterations, callback function)
-  bcrypt.hash(password, 10, async (err, hashed_pwd) => { // encrypting pwd
-    let username = await generateUsername(email); // creating username
+  // Storing process
+  try {
+    const hashed_pwd = await bcrypt.hash(password, 10); // Encrypting pwd
+    const username = await generateUsername(email); // Creating username
 
-    let user = new User({ // creating user object from mongoose userSchema imported from User.js
+    const user = new User({ // Creating user object from mongoose userSchema imported from User.js
       personal_info: {
         name,
         email,
@@ -114,69 +124,59 @@ server.post("/signup", (req, res) => {
       }
     });
 
-    user.save().then((u) => { // storing user object and returning the mongoDB user object
-      return res.status(200).json(formatDataToSend(u));
-    })
-      .catch(err => {
-        if (err.code == 11000) { // 11000: unique object duplicated error
-          return res.status(500).json({ "error": "Email already exists" });
-        }
-
-        return res.status(500).json({ "error": err.message });
-      })
-  })
-})
-
-server.post("/signin", (req, res) => {
-  const {email, password} = req.body;
-
-  User.findOne({ "personal_info.email": email })
-  .then((user) => {
-    if(!user) {
-      return res.status(403).json({"error": "Email not found"});
+    const savedUser = await user.save(); // Storing user object
+    return res.status(200).json(formatDataToSend(savedUser));
+  } catch (err) {
+    if (err.code === 11000) { // 11000: unique object duplicated error
+      return res.status(500).json({ "error": "Email already exists" });
     }
-    if(user.google_auth) {
-      return res.status(403).json({ "error": "this is a google account, please continue with google instead" })
-    }
-    bcrypt.compare(password, user.personal_info.password, (err, result) => {
-      if (err) {
-        return res.status(403).json({"error": "error occured while login, please try again"})
-      } if (!result) {
-        return res.status(403).json({"error": "password is incorrect"});
-      }
+    return res.status(500).json({ "error": err.message });
+  }
+});
 
-      return res.status(200).json(formatDataToSend(user));
-    });
-  })
-  .catch(err => {
+// Signin route
+server.post("/signin", async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await User.findOne({ "personal_info.email": email });
+    
+    if (!user) {
+      return res.status(403).json({ "error": "Email not found" });
+    }
+
+    if (user.google_auth) {
+      return res.status(403).json({ "error": "This is a Google account, please continue with Google instead." });
+    }
+
+    const match = await bcrypt.compare(password, user.personal_info.password);
+    if (!match) {
+      return res.status(403).json({ "error": "Password is incorrect" });
+    }
+
+    return res.status(200).json(formatDataToSend(user));
+  } catch (err) {
     console.log(err);
-    return res.status(500).json({"error": err.message});
-  })
-})
+    return res.status(500).json({ "error": err.message });
+  }
+});
 
+// Google authentication route
 server.post("/google-auth", async (req, res) => {
   let { access_token } = req.body;
 
-  getAuth()
-  .verifyIdToken(access_token)
-  .then(async (decoded_token) => {
+  try {
+    const decoded_token = await getAuth().verifyIdToken(access_token);
     let { email, name } = decoded_token;
 
-    let user = await User.findOne({ "personal_info.email": email }).select("personal_info.name personal_info.username personal_info.profile_img google_auth")
-    .then ((u) => {
-      return u || null;
-    })
-    .catch((err) => {
-      return res.status(500).json({ "error": err.message });
-    })
+    let user = await User.findOne({ "personal_info.email": email }).select("personal_info.name personal_info.username personal_info.profile_img google_auth");
 
-    if(user) { // login
-      if(!user.google_auth) { // if not google_account
-        return res.status(403).json({ "error": "account already exists, please use email & password instead." });
+    if (user) { // Login
+      if (!user.google_auth) { // If not Google account
+        return res.status(403).json({ "error": "Account already exists, please use email & password instead." });
       }
-    } else { // sign up
-      let username = await generateUsername(email);
-
+    } else { // Sign up
+      const username = await generateUsername(email);
       user = new User({
         personal_info: {
           name,
@@ -184,23 +184,39 @@ server.post("/google-auth", async (req, res) => {
           username,
         },
         google_auth: true
-      })
-
-      await user.save().then((u) => {
-        user = u;
-      })
-      .catch((err) => {
-        return res.status(500).json({ "error": err.message });
       });
 
-      return res.status(200).json(formatDataToSend(user)); // use our own access_token
+      await user.save();
     }
-  })
-  .catch((err) => {
-    return res.status(500).json({ "error": "Google Authentication failed, please try with another account" });
-  })
-})
 
+    return res.status(200).json(formatDataToSend(user));
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ "error": "Google Authentication failed, please try with another account." });
+  }
+});
+
+// Upload banner
+const uploadBanner = async (base64) => {
+  const opts = {
+    public_id: generateUploadURL(),
+    overwrite: true,
+    invalidate: true,
+    resource_type: "image",
+    format: "jpeg",
+    quality: "auto",
+    tags: ["banner"]
+  };
+  
+  try {
+    const result = await cloudinary.uploader.upload(base64, opts);
+    return result.url; // Return the URL directly
+  } catch (err) {
+    throw err; // Throw the error to be handled in the calling function
+  }
+}
+
+// Upload image
 const uploadImage = async (base64) => {
   const opts = {
     public_id: generateUploadURL(),
@@ -209,19 +225,30 @@ const uploadImage = async (base64) => {
     resource_type: "image",
     format: "jpeg",
     quality: "auto",
-    tags: ["banners"]
+    tags: ["blog-image", "image"]
   };
   
   try {
-    const result = await cloudinary.uploader
-    .upload(base64, opts);
+    const result = await cloudinary.uploader.upload(base64, opts);
     return result.url; // Return the URL directly
   } catch (err) {
     throw err; // Throw the error to be handled in the calling function
   }
 }
 
+// Upload banner route
 server.post("/uploadBanner", async (req, res) => {
+  const { base64 } = req.body;
+  try {
+    const url = await uploadBanner(base64);
+    return res.status(200).json({ url });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
+
+// Upload image route
+server.post("/uploadImage", async (req, res) => {
   const { base64 } = req.body;
   try {
     const url = await uploadImage(base64);
@@ -231,7 +258,7 @@ server.post("/uploadBanner", async (req, res) => {
   }
 });
 
-
+// Start server
 server.listen(port, () => {
-  console.log("listening on port " + port);
-})    
+  console.log("Listening on port " + port);
+});
