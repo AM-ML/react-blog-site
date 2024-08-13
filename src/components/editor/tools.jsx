@@ -34,7 +34,7 @@ const uploadImgByFile = async (e) => {
   const b64 = await convertToBase64(e);
   
   try {
-    const response = await axios.post(`${import.meta.env.VITE_SERVER_DOMAIN}/uploadBanner`, { base64: b64 });
+    const response = await axios.post(`${import.meta.env.VITE_SERVER_DOMAIN}/uploadImage`, { base64: b64 });
     
     // Check if the response contains the expected data
     const url = response.data.url; // Change to 'url' to match the expected response format
