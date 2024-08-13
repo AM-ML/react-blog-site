@@ -17,10 +17,11 @@ export const EditorContext = createContext({  });
 const Editor = () => {
   const [blog, setBlog] = useState(blogStructure);
   const [editorState, setEditorState] = useState("editor");
+  const [textEditor, setTextEditor] = useState({ isReady: false });
   
   return (
     <AnimationWrapper>
-      <EditorContext.Provider value={{ blog, setBlog, editorState, setEditorState }}>
+      <EditorContext.Provider value={{ blog, setBlog, editorState, setEditorState, textEditor, setTextEditor }}>
         { editorState == "editor" ?
             <EditorPanel />
               :

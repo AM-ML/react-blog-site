@@ -1,7 +1,9 @@
+import { useContext } from "react";
 import "../../css/components/editor/title.css"
+import { EditorContext } from "../../pages/editor";
 
-const Title = ({ cont }) => {
-  let { blog, blog: { title, banner, content, tags, description }, setBlog } = cont;
+const Title = () => {
+  let { blog, blog: { title, banner, content, tags, description }, setBlog } = useContext(EditorContext);
   
   const handleTitleKeyDown = (e) => {
     if(e.keyCode == 13) {
@@ -19,6 +21,7 @@ const Title = ({ cont }) => {
   return (
     <textarea 
     placeholder="Title.." 
+    defaultValue={title}
     className="editor-title"
     rows={1}
     onKeyDown={handleTitleKeyDown}

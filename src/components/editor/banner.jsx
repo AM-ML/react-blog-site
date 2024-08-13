@@ -1,8 +1,9 @@
 import "../../css/components/editor/banner.css";
 import defaultBanner from "../../assets/blog_banner.png";
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import { EditorContext } from "../../pages/editor";
 
 export const convertToBase64 = (file) => {
   return new Promise((resolve, reject) => {
@@ -19,9 +20,8 @@ export const convertToBase64 = (file) => {
   });
 };
 
-const EditorBanner = ({ cont }) => {
-  const [url, setUrl] = useState(defaultBanner);
-  let { blog, blog: { title, banner, content, tags, description }, setBlog } = cont;
+const EditorBanner = () => {
+  let { blog, blog: { title, banner, content, tags, description }, setBlog } = useContext(EditorContext);
   
   const handleBannerUpload = async (e) => {
     const img = e.target.files[0];
@@ -32,7 +32,6 @@ const EditorBanner = ({ cont }) => {
       try {
         const response = await axios.post(`${import.meta.env.VITE_SERVER_DOMAIN}/uploadBanner`, { base64: b64 });
         const urlget = response.data.url; 
-        setUrl(urlget);
         setBlog({...blog, banner: urlget});
         
         toast.remove(toastId);

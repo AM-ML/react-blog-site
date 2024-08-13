@@ -1,10 +1,29 @@
+import { useContext } from "react";
 import "../../css/components/editor/navbar.css";
+import { EditorContext } from "../../pages/editor";
+import defaultBanner from "../../assets/blog_banner.png";
+import { toast } from "react-hot-toast";
 
-const EditorNavBar = ({ cont }) => {
-  let { blog, blog: { title, banner, content, description, tags }, setBlog, setEditorState } = cont;
+const EditorNavBar = () => {
+  let { blog, blog: { title, banner, content, description, tags }, setBlog, setEditorState, textEditor, setTextEditor } = useContext(EditorContext);
   
   const handlePublish = () => {
-    setEditorState("publish");
+    if (banner.length == 0 || banner == defaultBanner) {
+      toast.error("Upload a Banner Image");
+      return;
+    }
+    if (title.length == 0) {
+      toast.error("Enter Title");
+      return;
+    }
+    if (textEditor.isReady) {
+      textEditor.save().then((data) => {
+        if (data.blocks.length) {
+          setBlog({ ...blog, content: data.blocks });
+          setEditorState("publish");
+        }
+      })
+    }
   }
   
   return (

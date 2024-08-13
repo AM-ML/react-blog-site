@@ -1,46 +1,56 @@
-import { useContext, useEffect, useState } from "react";
-import AnimationWrapper from "../common/page-animation";
-import "../css/components/editor-panel.css";
-import "../css/components/editor/text-editor.css";
-import EditorBanner from "./editor/banner";
-import EditorNavBar from "./editor/navbar";
-import Title from "./editor/title";
-import { EditorContext } from "../pages/editor";
-import EditorJS from "@editorjs/editorjs";
-import { tools } from "./editor/tools";
+  import { useContext, useEffect, useState } from "react";
+  import AnimationWrapper from "../common/page-animation";
+  import "../css/components/editor-panel.css";
+  import "../css/components/editor/text-editor.css";
+  import EditorBanner from "./editor/banner";
+  import EditorNavBar from "./editor/navbar";
+  import Title from "./editor/title";
+  import { EditorContext } from "../pages/editor";
+  import EditorJS from "@editorjs/editorjs";
+  import { tools } from "./editor/tools";
 
-const EditorPanel = () => {
-  
-  let blogContext = useContext(EditorContext);
-  let { blog: { title, banner, content, tags, description }, setBlog } = blogContext;
-  const [notRenderTwice, setNotRenderTwice] = useState("");
+  const EditorPanel = () => {
+    
+    let blogContext = useContext(EditorContext);
+    let { blog, blog: { title, banner, content, tags, description }, setBlog, textEditor, setTextEditor } = blogContext;
+    const [notRenderTwice, setNotRenderTwice] = useState("");
 
-  useEffect(() => {
-    let editor = new EditorJS({
-      holderId: "textEditor" + notRenderTwice,
-      data: '',
-      tools: tools,
-      placeholder: 'Write blog content here.'
-    });
-    setNotRenderTwice("randomName");
-  }, []);
-  
-  return (
-    <div className="ep-container">
-      <EditorNavBar cont={blogContext} />
-      <AnimationWrapper>
-        <div className="ep-i ep-banner">
-          <EditorBanner cont={blogContext}/>
-          <Title cont={blogContext}/>
+    useEffect(() => {
+      // Initialize EditorJS with the content
+      const editor = new EditorJS({
+        holderId: "textEditor",
+        data: {blocks: content}, // Ensure content is passed correctly
+        tools: tools,
+        placeholder: 'Write blog content here.',
+      });
 
-          <hr style={{"opacity": "0.1"}} className="my-3 mb-5" />
+      // Save the editor instance to state
+      setTextEditor(editor);
 
-          <div id="textEditor" className="ep-text-editor"></div>
-        </div>
-      </AnimationWrapper>
-    </div>
+      // Cleanup function to destroy the editor instance when the component unmounts or before re-initializing
+      return () => {
+        if (editor) {
+          editor.destroy();
+        }
+      };
+    }, [content]);
+    
+    return (
+      <div className="ep-container">
+        <EditorNavBar />
+        <AnimationWrapper>
+          <div className="ep-i ep-banner">
+            <EditorBanner/>
+            <Title/>
 
-  )
-}
+            <hr style={{"opacity": "0.1"}} className="my-3 mb-5" />
 
-export default EditorPanel;
+            <div id="textEditor" className="ep-text-editor"></div>
+          </div>
+        </AnimationWrapper>
+      </div>
+
+    )
+  }
+
+  export default EditorPanel;
