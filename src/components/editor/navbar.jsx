@@ -33,7 +33,10 @@ const EditorNavBar = () => {
       </div>
       <div className="ep-navbar-i ep-i2 ep-navbar-end">
         <div className="ep-navbar-i2 ep-i3 ep-navbar-publish">
-          <button onClick={handlePublish} className="btn btn-dark ep-navbar-i3 ep-i4 rounded-pill">Publish</button>
+          <button onClick={handlePublish} 
+            className="btn btn-dark ep-navbar-i3 ep-i4 rounded-pill">
+              Publish
+          </button>
         </div>
         <div className="ep-navbar-i2 ep-i3 ep-navbar-draft">
           <button 

@@ -5,9 +5,10 @@ import { Link, Navigate, Outlet } from 'react-router-dom';
 import { UserContext } from "../Router";
 import AnimationWrapper from '../common/page-animation';
 import { removeFromSession } from './session';
+import { TitleCase, removeLastName } from '../common/string';
 
 const ProfileSidebar = () => {
-  let { userAuth: { access_token, username }, setUserAuth } = useContext(UserContext);
+  let { userAuth: { id, is_author, access_token, name, profile_img, username }, setUserAuth } = useContext(UserContext);
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -41,11 +42,6 @@ const ProfileSidebar = () => {
             </Link>
             <span className="custom-tooltip">Home</span>
           </li>
-          <li onClick={handleClickSearch}>
-            <i className='bx bx-search'></i>
-            <input ref={searchRef} type="text" placeholder="Search..." />
-            <span className="custom-tooltip">Search</span>
-          </li>
           <li>
             <Link to="/dashboard">
               <i className='bx bx-grid-alt'></i>
@@ -53,27 +49,27 @@ const ProfileSidebar = () => {
             </Link>
             <span className="custom-tooltip">Dashboard</span>
           </li>
-          <li>
+          {is_author && <li>
             <Link to="/dashboard/writer/write">
               <i className='bx bx-edit'></i>
               <span className="custom-links_name">Write Blogs</span>
             </Link>
             <span className="custom-tooltip">Write Blogs</span>
-          </li>
-          <li>
+          </li>}
+          { is_author && <li>
             <Link to="/dashboard/analytics">
               <i className='bx bx-pie-chart-alt-2'></i>
               <span className="custom-links_name">Analytics</span>
             </Link>
             <span className="custom-tooltip">Analytics</span>
-          </li> 
-          <li>
-            <Link to={`/user/${username}`}>
+          </li> }
+          {is_author && <li>
+            <Link to={`/dashboard/author/${id}`}>
               <i className='bx bx-user'></i>
               <span className="custom-links_name">Profile</span>
             </Link>
             <span className="custom-tooltip">Profile</span>
-          </li>
+          </li>}
           <li>
             <Link to="/dashboard/settings">
               <i className='bx bx-cog'></i>
@@ -83,10 +79,10 @@ const ProfileSidebar = () => {
           </li>
           <li className="custom-profile">
             <div className="custom-profile-details">
-              <img src="https://api.dicebear.com/6.x/fun-emoji/svg?seed=Mia" alt="Profile" />
+              <img src={profile_img} alt="Profile" />
               <div className="custom-name_job">
-                <div className="custom-name">Ali M. Moumneh</div>
-                <div className="custom-job">@user-asij2oi3fi2n</div>
+                <div className="custom-name text-clamp">{TitleCase(removeLastName(name))}</div>
+                <div className="custom-job">@{username}</div>
               </div>
             </div>
             <i role="button" onClick={handleLogOut} className='bx bx-log-out' id="custom-log_out"></i>

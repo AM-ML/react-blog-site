@@ -26,7 +26,8 @@
   font-weight: bold;
 }
 .ep-navbar-end {
-  margin: 0 0 0 auto;
+  margin-left: auto !important;
+  min-width: 230px;
 }
 
 
@@ -53,5 +54,8 @@
 @media screen and (max-width: 320px) {
   .ep-navbar-end .ep-navbar-i2 {
     margin: 0;
+  }
+  .ep-navbar-end {
+    min-width: unset;
   }
 }

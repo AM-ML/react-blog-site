@@ -75,11 +75,13 @@ const formatDataToSend = (user) => {
   const access_token = jwt.sign({ id: user._id }, process.env.SECRET_ACCESS_KEY);
   
   return {
+    id: user._id,
     access_token,
     profile_img: user.personal_info.profile_img,
     username: user.personal_info.username,
     email: user.personal_info.email,
-    name: user.personal_info.name
+    name: user.personal_info.name,
+    is_author: user.isAuthor
   }
 }
 
@@ -255,6 +257,36 @@ server.post("/uploadImage", async (req, res) => {
     return res.status(200).json({ url });
   } catch (err) {
     return res.status(500).json({ error: err.message });
+  }
+});
+
+server.post("/get-author", async (req, res) => {
+  let { id } = req.body;
+
+  let author = await User.findOne({"_id": id});
+  if (!author.isAuthor) return res.status(403).json({"error": "account is not an author"});
+  else {
+    return res.status(200).json({...formatDataToSend(author), blogs: author.blogs});
+  }
+})
+
+server.post("/make-author", async (req, res) => {
+  const { id } = req.body;
+
+  try {
+    const user = await User.findByIdAndUpdate(
+      id,
+      { $set: { isAuthor: true } },
+      { new: true } // Return the updated document
+    );
+
+    if (!user) {
+      return res.status(404).json({ "error": "User not found" });
+    }
+
+    return res.status(200).json({ message: "User is now an author", user });
+  } catch (err) {
+    return res.status(500).json({ "error": err.message });
   }
 });
 

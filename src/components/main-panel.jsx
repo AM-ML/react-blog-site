@@ -15,7 +15,7 @@ const MainPanel = () => {
             <img className="id-1" src={profile_img} />
           </div>
           <div className="gen-1 c-id-2">
-            <h1 className="id-2">{TitleCase(name)}</h1>
+            <h1 className="id-2" style={{"fontWeight": "600"}}>{TitleCase(name)}</h1>
             <h1 className="id-3">@{username}</h1>
           </div>
           <div className="gen-1"></div>
@@ -44,7 +44,7 @@ const MainPanel = () => {
               Social Links
             </h3>
           </div>
-          <div className="mp-section-3-content border-end border-dark">
+          <div className="mp-socials-gradient mp-section-3-content border-end border-dark">
             <a href="https://x.com/ali-moumneh_2" target="_blank" className="mp-social-row mp-social-twitter">
               <div className="social-1">
                 <i className="fa-brands fa-twitter fs-64px"></i>
@@ -106,7 +106,7 @@ const MainPanel = () => {
               Social Links
             </h3>
           </div>
-          <div className="mp-section-3-content border-end border-dark h-100">
+          <div className="mp-socials-gradient mp-section-3-content border-end border-dark h-100">
             <a href="https://x.com/ali-moumneh_2" target="_blank" className="mp-social-row mp-social-twitter">
               <div className="social-1">
                 <i className="fa-brands fa-twitter fs-64px"></i>
@@ -165,7 +165,7 @@ const MainPanel = () => {
           </div>
         </div>
       </div>
-      <div className="mp-container bg m-0 p-0 mp-visible-on-small-screens h-2-rspans">
+      <div className="mp-socials-gradient mp-container bg m-0 p-0 mp-visible-on-small-screens h-2-rspans">
         <div className="m-0 p-0 mb-3 mp-grid-item mp-item-4 bg cspan-12 rspan-5 mp-r2-item">
           <div className="sections-3-title">
             <h3 className="font-bolder">

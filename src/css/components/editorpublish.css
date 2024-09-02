@@ -10,7 +10,72 @@
   align-items: center;
 }
 
-.epf-r1 .epf-i1 {
+.epf-r1 .epf-i1 .epf-close{
+  cursor: pointer;
+  text-align: center;
+}
+
+.epf-banner-img {
+  overflow: hidden;
+  text-align: center;
+}
+
+.epf-article {
+  max-width: 800px;
   margin-left: auto;
+  margin-right: auto;
+}
+
+.epf-i2 {
+  margin-right: auto;
+  font-weight: 800;
+}
+
+.epp-preview {
+  margin-top: 2rem;
+  font-weight: bold;
+  font-family: "lato";
+  color: #999;
+}
+
+.epp-desc-ta {
+  min-height: max-content;
+  height: 16.5ch;
+  text-align: justify;
+  resize: none;
+  padding: 15px;
+  font-family: "lato";
+  font-size: 17px;
+  width: 500px;
+  outline: none;
+  background: #f9f9f9;
+  margin-top: 10px;
+  margin-left: 20px;
+  border-radius: 7px; 
+  scrollbar-width: 0;
+  scroll-behavior: smooth;
+}
+
+.epp-title {
+  width: 100%;
+  font-size: 35px;
+  font-family: "roboto";
+  font-weight: 600;
+  line-height: 1.2;
+  outline: none;
+  border: none;
+  margin: .5em 0;
+  color: #1f1f1f;
+  resize: none;
+}
+
+.epp-section {
+  margin-left: 20px;
+}
+.epp-desc-label {
+  font-size: 18px;
+}
+
+.epp-tags-container .bx-plus {
   cursor: pointer;
 }

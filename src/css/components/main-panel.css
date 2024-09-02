@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
 .mp-container {
   display: grid;
   min-height: fit-content !important;
@@ -36,7 +38,8 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  font-family: "alegreya";
+  font-family: "Rubik";
+  color: #32546F;
   margin-left: 4%;
 }
 
@@ -50,9 +53,14 @@
   margin-top: -0.7ch;
 }
 
+.mp-socials-gradient {
+  background: rgb(62,84,110);
+  background: linear-gradient(0deg, rgba(62,84,110,1) 0%, rgba(63,103,225,1) 100%);
+}
 
 .sections-3-title {
   border-bottom: 1px solid black;
+  font-family: "Rubik";
 }
 
 .mp-section-3-content {
@@ -62,12 +70,14 @@
   margin: 0;
 }
 
+.mp-social-row *,
 .mp-social-row {
   min-height: 30px;
   height: 25%;
   display: flex;
   text-decoration: none;
   align-items: center;
+  transition: all 0.09s;
 }
 
 .mp-social-row .social-1 {
@@ -80,9 +90,13 @@
   text-decoration: none;
 }
 
+.mp-social-row *{
+  font-family: "Nunito Sans" !important;
+}
+
 
 .mp-social-instagram {
-  background-color: #7F0CF4 !important;
+  background-color: #3729EC44 !important;
 }
 
 .mp-social-instagram, .mp-social-instagram a {
@@ -103,7 +117,7 @@
 }
 
 .mp-social-facebook {
-  background-color: #04f !important;
+  background-color: #04f4 !important;
 }
 
 .mp-social-facebook, .mp-social-facebook a {
@@ -125,7 +139,7 @@
 }
 
 .mp-social-twitter {
-  background-color: #18f !important;
+  background-color: #18f4 !important;
 }
 
 .mp-social-twitter, .mp-social-twitter a {
@@ -145,7 +159,7 @@
   color: #18f;
 }
 .mp-social-linkedin {
-  background-color: #214180 !important;
+  background-color: #21418044 !important;
 }
 
 .mp-social-linkedin, .mp-social-linkedin a {
@@ -172,7 +186,7 @@
 }
 
 .mp-social-row .social-2 a{
-  font-family: "Lato" !important;
+  font-family: "Nunito Sans" !important;
   font-weight: 600;
 }
 
@@ -182,7 +196,7 @@
 }
 
 .font-bolder {
-  font-weight: 900;
+  font-weight: 600;
 }
 .fs-64px {
   font-size: 32px !important;

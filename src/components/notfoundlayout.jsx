@@ -1,8 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import asset from "../assets/floating_astronaut.png";
 import "../css/components/notfoundlayout.css";
 
 const NotFoundLayout = () => {
+
+  const navigate = useNavigate();
+
+  const goBack = () => { navigate(-1) };
+  
   return <div className="row mx-0 not-found-container">
     <div className="col text-end not-found-text-container">
       <div className="d-inline-block">
@@ -20,7 +25,7 @@ const NotFoundLayout = () => {
         </div>
         <div className="row text-center pt-5">
           <div className="col">
-            <Link to="/" className="w-100 btn btn-lg btn-outline-dark py-3 not-found-button">Go Back</Link>
+            <button onClick={goBack} className="w-100 btn btn-lg btn-outline-dark py-3 not-found-button">Go Back</button>
           </div>
         </div>
       </div>

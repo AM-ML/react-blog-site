@@ -229,6 +229,7 @@
   font-weight: 400 !important;
   color: #fff !important;
   white-space: nowrap!important;
+  max-width: calc(100%-200px) !important;
 }
 
 .custom-sidebar li.custom-profile .custom-job {

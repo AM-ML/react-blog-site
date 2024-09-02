@@ -206,7 +206,7 @@ const Navbar = () => {
   return (
     <AnimationWrapper key={"navbar"}>
       <div className="np-header">
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-light">
           <div className="container-fluid">
             <Link className="navbar-brand" to="/">
               <img src={logo} width={64} alt="Logo" />
@@ -215,7 +215,7 @@ const Navbar = () => {
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
             </button>
-            <div className="collapse navbar-collapse border-bottom pb-3 pt-3" id="navbarSupportedContent">
+            <div className="collapse navbar-collapse pb-3 pt-3" id="navbarSupportedContent">
               <ul className="navbar-nav me-auto mb-2 mb-lg-0 ms-5">
                 <li className={`nav-item pe-4 dropdown-custom ${servicesClicked ? 'dropdown-custom-clicked' : ''}`}>
                   <Link role="button"

@@ -1,0 +1,72 @@
+.ac-container {
+  padding: 1vh 1vw;
+}
+
+.ac-header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  font-family: "roboto";
+  justify-content: center;
+}
+
+.ac-header .ac-img-container {
+  margin-right: 20px;
+}
+
+.ac-header .ac-img-container .ac-img {
+  border-radius: 50%;
+}
+
+.ac-header .ac-name-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  text-align: center;
+}
+
+.ac-header .ac-name-container .ac-name {
+  font-weight: 700;
+  font-size: 30px;
+  color: #3E546E;
+}
+
+.ac-header .ac-name-container .ac-username {
+  margin-top: -1ch;
+  font-weight: 400;
+  font-size: 23px;
+  text-align: start;
+  color: grey;
+}
+
+.ac-header .ac-author-badge {
+  position: relative;
+  margin-left: 50px;
+  font-weight: 600;
+  font-family: "roboto";
+  padding: 40px 70px;
+  background-color: #3E546E;
+}
+
+.ac-header .ac-author-badge .badge{
+  scale: 1.2;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.ac-container .hr {
+  width: 70%;
+  background: #3E546E;
+  height: 4px;
+}
+
+.ac-header .ac-author-badge:hover,
+.ac-header .ac-author-badge:active {
+}
+
+.ac-container,
+.ac-container * {
+  /* border: 1px solid black; */
+}
