@@ -14,6 +14,7 @@ import WriterWrapper from "./components/writer-wrapper";
 import Preloader from "./common/preloader";
 import Author from "./pages/author";
 import Settings from "./pages/settings";
+import Dropdown from "./components/navbar-dropdown";
 
 export const UserContext = createContext({});
 
@@ -35,8 +36,9 @@ const Router = () => {
         <Route path="signin" element= {<AuthForm type="sign-in" />}/>
         <Route path="signup" element= {<AuthForm type="sign-up"/>}/>
         <Route path="loading-page" element={<Preloader loading={true}/>}/>
-        <Route path="*" element={<NotFound />} />
         <Route path="author/:id" element={<Author />} />
+        <Route path="blogs" element={<Dropdown/>}/>
+        <Route path="*" element={<NotFound />} />
       </Route>
       <Route path="/dashboard" element= {<ProfileSidebar />}>
         <Route element={<Dashboard/>} index/>

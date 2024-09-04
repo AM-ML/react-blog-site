@@ -31,7 +31,7 @@ const ProfileSidebar = () => {
     <AnimationWrapper transition={{duration:0.5}}>
       <div className={`custom-sidebar ${isOpen ? 'open' : ''}`}>
         <div className="custom-logo-details">
-          <div className="custom-logo_name">Dashboard</div>
+          <div className="custom-logo_name">Account</div>
           <i className={`bx ${isOpen ? 'bx-menu-alt-right' : 'bx-menu'}`} id="custom-btn" onClick={toggleSidebar}></i>
         </div>
         <ul className="custom-nav-list">
@@ -45,9 +45,9 @@ const ProfileSidebar = () => {
           <li>
             <Link to="/dashboard">
               <i className='bx bx-grid-alt'></i>
-              <span className="custom-links_name">Dashboard</span>
+              <span className="custom-links_name">Account</span>
             </Link>
-            <span className="custom-tooltip">Dashboard</span>
+            <span className="custom-tooltip">Account</span>
           </li>
           {is_author && <li>
             <Link to="/dashboard/writer/write">
@@ -66,9 +66,9 @@ const ProfileSidebar = () => {
           {is_author && <li>
             <Link to={`/dashboard/author/${id}`}>
               <i className='bx bx-user'></i>
-              <span className="custom-links_name">Profile</span>
+              <span className="custom-links_name">View Profile</span>
             </Link>
-            <span className="custom-tooltip">Profile</span>
+            <span className="custom-tooltip">View Profile</span>
           </li>}
           <li>
             <Link to="/dashboard/settings">

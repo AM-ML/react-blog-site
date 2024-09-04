@@ -1,0 +1,62 @@
+.dp {
+  float: left;
+  overflow: hidden;
+  margin-left: 20px;;
+}
+
+.dp-content {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 200px;
+  min-height: 250px;
+  max-height: max-content;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  color: black;
+  line-height: 1.3;
+  font-size: smaller;
+}
+
+.col {
+  overflow: hidden;
+}
+
+.dp:hover .dp-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-rows: repeat(auto-fit, 125px);
+  text-align: start;
+  max-width: 700px;
+  width: 90%;
+  padding: 20px;
+}
+.dp-col * {
+  text-decoration: none;
+  display: block;
+  margin: 0 !important;
+}
+
+.dp-title {
+  font-size: large;
+  color: black !important;
+  margin-bottom: 8px !important;
+}
+
+.dp-text, .dp-text:hover {
+  color:#444;
+}
+.dp-col *:hover {
+  text-decoration: underline;
+}
+
+.dp-btn {
+  transition-duration: 0.3s;
+  transition-property: unset;
+  border-bottom: 3px solid #2886ca00 !important;
+}
+
+.dp:hover .dp-btn, .dp-btn:hover {
+  color: rgb(9, 106, 202) !important;
+  border-bottom-color: rgb(9, 106, 202) !important;
+}

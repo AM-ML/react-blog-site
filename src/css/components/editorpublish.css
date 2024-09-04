@@ -38,6 +38,19 @@
   color: #999;
 }
 
+.epp-desc-span {
+  display: inline;
+  position: absolute;
+  right: 0;
+  top: -2ch;
+  font-size: smaller;
+}
+
+.epp-desc {
+  position: relative;
+  width: max-content;
+}
+
 .epp-desc-ta {
   min-height: max-content;
   height: 16.5ch;
@@ -51,7 +64,7 @@
   background: #f9f9f9;
   margin-top: 10px;
   margin-left: 20px;
-  border-radius: 7px; 
+  border-radius: 7px;
   scrollbar-width: 0;
   scroll-behavior: smooth;
 }
@@ -78,4 +91,52 @@
 
 .epp-tags-container .bx-plus {
   cursor: pointer;
+}
+
+.epp-nt-container {
+  margin-top: 10px;
+}
+
+.epp-nt-container .epp-nt-input {
+  padding: 10px;
+  font-size: 18px;
+  outline: none;
+  border: 2.5px solid transparent;
+  transition; 0.6s ease-in-out;
+}
+
+.epp-nt-container .epp-nt-input:focus {
+  border-color: #18f;
+}
+
+.epp-tags-flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.epp-tag-item {
+  display: flex;
+  align-items: center;
+  background-color: #18f;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.epp-tag-text {
+  margin-right: 10px;
+}
+
+.epp-tag-close-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+}
+.epp-tags-left {
+  color: #666;
+  font-weight: 900;
 }
