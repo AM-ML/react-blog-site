@@ -5,11 +5,19 @@ import Info from "../common/info-tooltip.jsx";
 import AnimationWrapper from "../common/page-animation";
 import Content from "../common/content";
 import toast, {Toaster} from "react-hot-toast";
+import axios from "axios";
+import {UserContext} from "../Router";
+import {useNavigate} from "react-router-dom";
 
 const EditorPublishForm = () => {
+
+  let navigate = useNavigate();
+  const {userAuth: { access_token }} = useContext(UserContext);
+
   const [newTagElement, setNewTagElement] = useState(false);
   const newTagElementRef = useRef(null);
   const [newTag, setNewTag] = useState("");
+  const [blogId, setBlogId] = useState("");
   const {
     blog,
     blog: { title, banner, content, tags, description },
@@ -22,14 +30,6 @@ const EditorPublishForm = () => {
       newTagElementRef.current.focus();
     }
   }, [newTagElement]);
-
-  useEffect(() => {
-    console.log(blog);
-  }, [blog]);
-
-  const logData = () => {
-    console.log(...blog);
-  };
 
   const editState = () => {
     setEditorState("editor");
@@ -55,7 +55,7 @@ const EditorPublishForm = () => {
 
   const handleTagChange = (e) => {
     let input = e.target;
-    let filteredValue = input.value.replace(/[^A-Za-z]/g, '');
+    let filteredValue = input.value.replace(/[^A-Za-z-]/g, '');
     input.value = filteredValue;
     setNewTag(filteredValue);
   };
@@ -64,14 +64,29 @@ const EditorPublishForm = () => {
     if (e.keyCode === 13) {
       e.preventDefault();
       if (newTag.trim() !== '') {
-        if(tags.length >= 10) {toast.error("Tag Limit Reached!"); return;}
+        if (tags.length >= 10) {
+          toast.error("Tag Limit Reached!");
+          return;
+        }
+
+        // Check if the tag already exists
+        if (tags.includes(newTag)) {
+          toast.error("Tag already exists!");
+          return;
+        }
+
+        if(newTag.length < 3) {
+          toast.error("Tag is too short.");
+          return;
+        }
+
+        // Add new tag if it's unique
         setBlog({ ...blog, tags: [...tags, newTag] });
         setNewTag('');
         setNewTagElement(false);
       }
     }
   };
-
   const handleTagClose = (index) => {
     setBlog({
       ...blog,
@@ -79,10 +94,82 @@ const EditorPublishForm = () => {
     });
   };
 
+  const handlePublish = async (e) => {
+
+    if (e.target.className.includes("disable")) {
+      return;
+    }
+
+    if (!title.length) {
+      return toast.error("Must provide a blog title");
+    }
+    if (!description.length || description.length > 200) {
+      return toast.error("Must provide a description under 200 characters");
+    }
+    if (!banner.length || banner[0] == "/") {
+      return toast.error("Must provide a blog banner");
+    }
+    if (!tags.length || tags.length > 10) {
+      return toast.error("Must provide tags with maximum of 10 tags");
+    }
+    if (!content.blocks.length) {
+      return toast.error("Must provide a body to the blog");
+    }
+
+    let loadingToast = toast.loading("Publishing Blog...");
+    e.target.classList.add('disable');
+
+    const config = {
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + access_token
+      }
+    };
+
+    let blogObj = {
+      tags,
+      title,
+      content,
+      banner,
+      description,
+      draft: false
+    }
+
+    await axios.post(import.meta.env.VITE_SERVER_DOMAIN + "/new-blog", blogObj, config)
+    .then((data) => {
+      e.target.classList.remove('disable');
+      toast.dismiss(loadingToast);
+      toast.success("Blog Published");
+      setTimeout(() => {
+
+        navigate("/blog/" + data.data.id);
+      }, 500);
+    })
+    .catch(({ response }) => {
+      e.target.classList.remove('disable');
+      toast.dismiss(loadingToast);
+
+      const errorMessage = typeof response.data.error === 'string'
+        ? response.data.error
+        : 'An error occurred.';
+
+      return toast.error(errorMessage);
+    });
+  }
+
+  useEffect(() => {
+    console.log(blog);
+  }, [blog]);
+
   return (
     <AnimationWrapper>
       <div className="epf-container">
         <Toaster />
+        <div className="please_bigger_screen_container">
+          <div className="please_bigger_screen">
+            Please Use a Bigger Screen
+          </div>
+        </div>
         <div className="epf-gi epf-r1">
           <div className="epf-gi-i epf-i2 epf-title text-clamp">{title}</div>
           <div className="epf-gi-i epf-i1 epf-close" onClick={editState}>
@@ -96,14 +183,14 @@ const EditorPublishForm = () => {
           </div>
           <div className="epp-desc mb-3">
             <span className="epp-desc-span">
-              {300 - description.length} characters left
+              {200 - description.length} characters left
             </span>
             <textarea
               id="articleDescription"
               className="epp-desc-ta shadow-sm"
               placeholder="Description..."
               defaultValue={description}
-              maxLength={300}
+              maxLength={200}
               onChange={handleDescriptionChange}
               onKeyDown={handleDescriptionKeyDown}
             ></textarea>
@@ -153,7 +240,9 @@ const EditorPublishForm = () => {
           </div>
 
           <div className="epp-publish">
-            <button className="btn btn-dark btn-lg ms-auto d-block me-3 epp-publish-btn">
+            <button
+              onClick = {handlePublish}
+              className="btn btn-dark btn-lg ms-auto d-block me-3 epp-publish-btn">
               Publish
             </button>
           </div>
@@ -165,7 +254,6 @@ const EditorPublishForm = () => {
             <img src={banner} className="epf-banner-img" alt="Banner" />
           </div>
           <div className="epp-title">{title}</div>
-          <Content content={content} />
         </div>
       </div>
     </AnimationWrapper>
@@ -173,4 +261,5 @@ const EditorPublishForm = () => {
 };
 
 export default EditorPublishForm;
+
 

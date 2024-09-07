@@ -54,3 +54,8 @@
 .bg-gray {
   background-color: #eee;
 }
+
+.disable {
+  pointer-events: none;
+  filter: brightness(0.8);
+}

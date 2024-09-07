@@ -1,18 +1,17 @@
-import { useState } from "react";
+import { useContext } from "react";
 import { Outlet } from "react-router-dom"
-import NotWriterComponent from "./notwritercomponent";
+import {UserContext} from "../Router";
 
 const WriterWrapper = () => {
-  let [isWriter, setIsWriter] = useState(true); // set to false
-  //! TODO: validate account blog-writer position.
+  let { userAuth: {is_author} } = useContext(UserContext);
 
   return (
-    isWriter?
-    <div className="ww-container">
-      <Outlet />
-    </div>
-    :
-    <NotWriterComponent />
+    is_author?
+      <div className="ww-container">
+        <Outlet />
+      </div>
+      :
+      navigate("/")
   )
 }
 

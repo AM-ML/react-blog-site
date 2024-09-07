@@ -3,10 +3,13 @@ import "../../css/components/editor/navbar.css";
 import { EditorContext } from "../../pages/editor";
 import defaultBanner from "../../assets/blog_banner.png";
 import { toast } from "react-hot-toast";
+import {UserContext} from "../../Router";
+import axios from "axios";
 
 const EditorNavBar = () => {
   let { blog, blog: { title, banner, content, description, tags }, setBlog, setEditorState, textEditor, setTextEditor } = useContext(EditorContext);
-  
+  let { userAuth: { access_token } } = useContext(UserContext);
+
   const handlePublish = () => {
     if (banner.length == 0 || banner == defaultBanner) {
       toast.error("Upload a Banner Image");
@@ -19,13 +22,78 @@ const EditorNavBar = () => {
     if (textEditor.isReady) {
       textEditor.save().then((data) => {
         if (data.blocks.length) {
-          setBlog({ ...blog, content: data.blocks });
+          setBlog({ ...blog, content: data });
           setEditorState("publish");
         }
       })
     }
   }
-  
+
+  const handleSaveDraft = (e) => {
+
+    if (e.target.className.includes("disable")) {
+      return;
+    }
+
+    if (!title.length) {
+      return toast.error("Draft must have a title");
+    }
+
+
+    e.target.classList.add("disable");
+    let loadingToast = toast.loading("Saving Draft");
+    if (textEditor.isReady && textEditor.save) {
+      textEditor.save().then(async (data) => {
+        if (data.blocks.length) {
+          setBlog({ ...blog, content: data });
+          const config = {
+            "headers": {
+              "Content-Type": "application/json",
+              "Authorization": "Bearer " + access_token
+            }
+          };
+
+          let blogObj = {
+            tags,
+            title,
+            content,
+            banner,
+            description,
+            draft: true
+          }
+
+          await axios.post(import.meta.env.VITE_SERVER_DOMAIN + "/new-blog", blogObj, config)
+          .then((data) => {
+            e.target.classList.remove('disable');
+            toast.dismiss(loadingToast);
+            toast.success("Blog Draft Saved");
+            // data.data.id
+            console.log(data.data.id);
+          })
+          .catch(({ response }) => {
+            e.target.classList.remove('disable');
+            toast.dismiss(loadingToast);
+
+            const errorMessage = typeof response.data.error === 'string'
+              ? response.data.error
+              : 'An error occurred.';
+
+            return toast.error(errorMessage);
+          });
+
+        }
+      })
+      .catch((err) => {
+          e.target.classList.remove('disable');
+          toast.dismiss(loadingToast);
+          console.log(err);
+          return toast.error("an error occurred while saving draft");
+      });
+    }
+
+  }
+
+
   return (
     <div className="ep-i ep-navbar">
       <div className="ep-navbar-i ep-i2 ep-navbar-title-container text-clamp">
@@ -33,14 +101,16 @@ const EditorNavBar = () => {
       </div>
       <div className="ep-navbar-i ep-i2 ep-navbar-end">
         <div className="ep-navbar-i2 ep-i3 ep-navbar-publish">
-          <button onClick={handlePublish} 
+          <button onClick={handlePublish}
             className="btn btn-dark ep-navbar-i3 ep-i4 rounded-pill">
-              Publish
+            Publish
           </button>
         </div>
         <div className="ep-navbar-i2 ep-i3 ep-navbar-draft">
-          <button 
-           className="btn btn-secondary ep-navbar-i3 ep-i4 rounded-pill">
+          <button
+            className="btn btn-secondary ep-navbar-i3 ep-i4 rounded-pill"
+            onClick={handleSaveDraft}
+          >
             Save Draft
           </button>
         </div>

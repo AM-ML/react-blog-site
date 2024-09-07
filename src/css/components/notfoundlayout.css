@@ -12,7 +12,7 @@
 }
 
 .not-found-title {
-  font-size: 4vw;
+  font-size: 50px;
   font-family: "lato";
   margin: 0;
   border-bottom: 5px solid;
@@ -20,10 +20,24 @@
 
 .not-found-description {
   margin: 0;
-  font-size: 1.5vw;
+  font-size: 15px;
   font-family: sans-serif;
 }
 
 .not-found-container div img {
-  margin-top: 15vh;
+  margin-top: 4vh;
+  width: 300px;
+}
+
+@media screen and (max-width: 510px) {
+  .not-found-description {
+    font-size: 12px;
+  }
+  .not-found-title {
+    font-size: 35px;
+  }
+  .not-found-container img {
+    width: 200px !important;
+    margin-top: 0vh !important;
+  }
 }

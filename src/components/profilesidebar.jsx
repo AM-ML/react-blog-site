@@ -49,6 +49,13 @@ const ProfileSidebar = () => {
             </Link>
             <span className="custom-tooltip">Account</span>
           </li>
+            { is_author && <li>
+            <Link to="/dashboard/writer/drafts">
+              <i className='bx bx-file'></i>
+              <span className="custom-links_name">Drafts</span>
+            </Link>
+            <span className="custom-tooltip">Drafts</span>
+          </li> }
           {is_author && <li>
             <Link to="/dashboard/writer/write">
               <i className='bx bx-edit'></i>
@@ -56,13 +63,7 @@ const ProfileSidebar = () => {
             </Link>
             <span className="custom-tooltip">Write Blogs</span>
           </li>}
-          { is_author && <li>
-            <Link to="/dashboard/analytics">
-              <i className='bx bx-pie-chart-alt-2'></i>
-              <span className="custom-links_name">Analytics</span>
-            </Link>
-            <span className="custom-tooltip">Analytics</span>
-          </li> }
+
           {is_author && <li>
             <Link to={`/dashboard/author/${id}`}>
               <i className='bx bx-user'></i>

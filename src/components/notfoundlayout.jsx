@@ -7,7 +7,7 @@ const NotFoundLayout = () => {
   const navigate = useNavigate();
 
   const goBack = () => { navigate(-1) };
-  
+
   return <div className="row mx-0 not-found-container">
     <div className="col text-end not-found-text-container">
       <div className="d-inline-block">
@@ -31,7 +31,7 @@ const NotFoundLayout = () => {
       </div>
     </div>
     <div className="col">
-      <img src={asset} style={{"width": "30vw"}} />
+      <img src={asset} />
     </div>
   </div>
 }

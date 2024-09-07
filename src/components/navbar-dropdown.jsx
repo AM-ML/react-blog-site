@@ -40,6 +40,22 @@ export const DropdownContent = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const dpElement = dpContentRef.current.parentElement;
+    const handleC = () => {
+      dpContentRef.current.style.display = "none";
+
+    }
+    const handleML = () => {
+      dpElement.addEventListener("click",  handleC);
+    }
+    const handleME = () => {
+      dpElement.removeEventListener("click", handleC);
+    }
+    dpElement.addEventListener("mouseover", handleML);
+    dpElement.addEventListener("mouseleave", handleME);
+  }, []);
+
   return (
     <div className="dp-content" ref={dpContentRef}>
       <div className="dp-col">
@@ -76,32 +92,3 @@ export const DropdownContent = () => {
   );
 };
 
-export default function Dropdown() {
-  return (
-    <div className="container">
-
-      <div className="row bg-dark w-100 text-white">
-        <div className="col text-center">
-          <div className="dp w-min d-inline">
-            <a className="dp-btn btn btn-dark btn-lg">Dropdown</a>
-            <DropdownContent />
-          </div>
-        </div>
-      </div>
-      <div className="row">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#NavbarSearchModal">
-          Launch demo modal
-        </button>
-
-      </div>
-
-      <div className="row">
-        <div className="col">
-          <div className="col-item">
-            <h3 className="title"></h3>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}

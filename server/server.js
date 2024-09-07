@@ -13,14 +13,15 @@ import serviceAccount from './firebase.json' assert { type: 'json' };
 
 // schema
 import User from "./Schema/User.js";
+import Blog from "./Schema/Blog.js";
 
 const server = express();
 const port = 3000;
 
-cloudinary.config({ 
+cloudinary.config({
   secure: true,
-  cloud_name: 'dlhedrwu6', 
-  api_key: process.env.CLOUDINARY_KEY, 
+  cloud_name: 'dlhedrwu6',
+  api_key: process.env.CLOUDINARY_KEY,
   api_secret: process.env.CLOUDINARY_SECRET // Click 'View Credentials' below to copy your API secret
 });
 
@@ -47,7 +48,7 @@ const corsOptions = {
   allowedHeaders: 'Content-Type, Authorization',
   preflightContinue: false,
   optionsSuccessStatus: 204
-}; 
+};
 
 server.use(cors(corsOptions));
 
@@ -63,17 +64,17 @@ mongoose.connect(process.env.DB_LOCATION, {
 
 const generateUsername = async (email) => {
   let username = email.split('@')[0];
-  
+
   while (await User.exists({ "personal_info.username": username })) {
     username += nanoid().substring(0, 5);
   }
-  
+
   return username;
 }
 
 const formatDataToSend = (user) => {
   const access_token = jwt.sign({ id: user._id }, process.env.SECRET_ACCESS_KEY);
-  
+
   return {
     id: user._id,
     access_token,
@@ -90,6 +91,39 @@ const generateUploadURL = () => {
   const imageName = `${nanoid()}-${date.getTime()}`;
   return imageName;
 }
+const verifyJWT = async (req, res, next) => {
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
+
+  if (token == null) {
+    return res.status(403).json({ "error": "Request not authorized" });
+  }
+
+  jwt.verify(token, process.env.SECRET_ACCESS_KEY, async (err, payload) => {
+    if (err) {
+      return res.status(403).json({ "error": "Invalid access token" });
+    }
+
+    // Retrieve user from the database
+    try {
+      const user = await User.findById(payload.id);
+
+      if (!user) {
+        return res.status(403).json({ "error": "User not found" });
+      }
+
+      if (!user.isAuthor) {
+        return res.status(403).json({ "error": "Account does not have author privileges" });
+      }
+
+      req.user = user._id; // Set the user ID to request object
+      next();
+    } catch (dbErr) {
+      return res.status(500).json({ "error": "Database error: " + dbErr.message });
+    }
+  });
+}
+
 
 // Signup route
 server.post("/signup", async (req, res) => {
@@ -107,7 +141,7 @@ server.post("/signup", async (req, res) => {
   if (!emailRegex.test(email)) {
     return res.status(403).json({ "error": "Invalid Email" });
   }
-  
+
   if (!passwordRegex.test(password)) {
     return res.status(403).json({ "error": "Password must be 6 to 20 characters with a numeric and 1 lowercase letter." });
   }
@@ -142,7 +176,7 @@ server.post("/signin", async (req, res) => {
 
   try {
     const user = await User.findOne({ "personal_info.email": email });
-    
+
     if (!user) {
       return res.status(403).json({ "error": "Email not found" });
     }
@@ -209,7 +243,7 @@ const uploadBanner = async (base64) => {
     quality: "auto",
     tags: ["banner"]
   };
-  
+
   try {
     const result = await cloudinary.uploader.upload(base64, opts);
     return result.url; // Return the URL directly
@@ -229,7 +263,7 @@ const uploadImage = async (base64) => {
     quality: "auto",
     tags: ["blog-image", "image"]
   };
-  
+
   try {
     const result = await cloudinary.uploader.upload(base64, opts);
     return result.url; // Return the URL directly
@@ -238,7 +272,7 @@ const uploadImage = async (base64) => {
   }
 }
 
-// Upload banner route
+  // Upload banner route
 server.post("/uploadBanner", async (req, res) => {
   const { base64 } = req.body;
   try {
@@ -288,6 +322,58 @@ server.post("/make-author", async (req, res) => {
   } catch (err) {
     return res.status(500).json({ "error": err.message });
   }
+});
+
+server.post("/new-blog", verifyJWT,(req, res) => {
+  let authorId  = req.user;
+
+  let { title, description, banner, tags, content, draft } = req.body;
+
+  if (!title.length) {
+    return res.status(403).json({"error": "no title provided"});
+  }
+  if(!draft) {
+    if (description.length > 200 || !description.length) {
+      return res.status(403).json({"error": "must provide description under 200 characters"});
+    }
+    if (banner[0] == "/" || !banner.length) {
+      return res.status(403).json({"error": "no banner provided"});
+    }
+    if (!tags.length || tags.length > 10) {
+      return res.status(403).json({"error": "must provide tags with maximum of 10 tags"});
+    }
+    if (!content.blocks.length) {
+      return res.status(403).json({"error": "blog lacks a body"});
+    }
+  }
+
+  tags = tags.map(tag => tag.toLowerCase());
+
+  let blogId = title.replace(/[^a-zA-Z0-9]/g, ' ').replace(/\s+/g, '-').trim() + nanoid();
+
+  let blog = new Blog({
+    title, description, content, tags, banner,
+    author: authorId,
+    blog_id: blogId,
+    draft: Boolean(draft)
+  });
+
+  blog.save().then(blog => {
+    let incrementVal = draft? 0 : 1;
+    User.findOneAndUpdate({ _id: authorId }, {
+      $inc: { "account_info.total_posts": incrementVal },
+      $push: { "blogs": blog._id }
+    })
+    .then(user => {
+      return res.status(200).json({ id: blog.blog_id });
+    })
+    .catch (err => {
+      return res.status(500).json({ "error": "Failed to increment total_posts" });
+    })
+  })
+  .catch((err) => {
+    return res.status(500).json({ "error": err.message });
+  });
 });
 
 // Start server

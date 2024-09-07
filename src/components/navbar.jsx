@@ -13,10 +13,10 @@ const Navbar = () => {
   return (
     <AnimationWrapper key={"navbar"}>
       <div className="np-header">
-        <div class="modal fade " id="NavbarSearchModal" tabindex="-1" aria-labelledby="NavbarSearchModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content border-none bg-transparent ">
-              <div class="modal-header border-none">
+        <div className="modal fade " id="NavbarSearchModal" tabIndex="-1" aria-labelledby="NavbarSearchModalLabel" aria-hidden="true">
+          <div className="modal-dialog modal-fullscreen">
+            <div className="modal-content border-none bg-transparent ">
+              <div className="modal-header border-none">
                 <div className="nb-search-container">
                   <input
                    type="text"
@@ -25,7 +25,7 @@ const Navbar = () => {
                    autoFocus
                   />
                 </div>
-                <button type="button" class="mb-5 bx bx-x" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" className="mb-5 bx bx-x" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
             </div>
           </div>
