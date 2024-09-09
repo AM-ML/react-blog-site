@@ -7,7 +7,7 @@ const InPageNavigation = ({ routes, defaultHidden = [ ], defaultActiveIndex = 0,
   const [activePageIndex, setActivePageIndex] = useState(defaultActiveIndex);
   const hrRef = useRef(null);
   const activeTabRef = useRef(null);
-  let {filterVals, setFilterVals} = useContext(FilterContext);
+  let {blogs, setBlogs, trendings, setTrendings, originalBlogs, originalTrendings} = useContext(FilterContext);
 
 
   const changePageState = (btn, i) => {
@@ -25,10 +25,29 @@ const InPageNavigation = ({ routes, defaultHidden = [ ], defaultActiveIndex = 0,
   }, []);
 
 
-  const handleFilter = ({tags, date}) => {
-    setFilterVals({ tagsVal: tags, dateVal: date.toString()});
-  }
+  const handleFilter = ({ tags, date }) => {
+    // Ensure date is a Date object or properly parsed
+    const inputDate = new Date(date);
 
+    // Convert tags to lowercase for consistent comparison
+    const normalizedTags = tags.map(tag => tag.toLowerCase());
+
+    // Filter based on date
+    const filteredByDateBlogs = originalBlogs.filter(blog => {
+      const blogDate = new Date(blog.publishedAt);
+      return blogDate > inputDate;
+    });
+
+    // Set filtered blogs
+    setBlogs(filteredByDateBlogs.filter(blog =>
+      normalizedTags.every(tag => blog.tags.map(t => t.toLowerCase()).includes(tag))
+    ));
+
+    // Set filtered trendings
+    setTrendings(originalTrendings.filter(blog =>
+      normalizedTags.every(tag => blog.tags.map(t => t.toLowerCase()).includes(tag))
+    ));
+}
   return (
     <>
       <div className="ipn-container">

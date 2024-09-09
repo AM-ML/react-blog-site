@@ -12,12 +12,15 @@ const BlogsComponent = () => {
   const [filterVals, setFilterVals] = useState({tagsVal: [], dateVal: null});
 
   const [blogs, setBlogs] = useState(null);
+  const [originalBlogs, setOriginalBlogs] = useState(null);
+  const [originalTrendings, setOriginalTrendings] = useState(null);
   const [trendings, setTrendings] = useState(null);
 
   const getLatestBlogs = () => {
     axios.get(import.meta.env.VITE_SERVER_DOMAIN + "/latest-blogs")
     .then ( (data) => {
       setBlogs(data.data.blogs);
+      setOriginalBlogs(data.data.blogs);
     })
     .catch(err => {
       console.log(err);
@@ -33,6 +36,7 @@ const BlogsComponent = () => {
     axios.get(import.meta.env.VITE_SERVER_DOMAIN + "/trending-blogs")
     .then ( (data) => {
       setTrendings(data.data.blogs);
+      setOriginalTrendings(data.data.blogs);
     })
     .catch(err => {
       console.log(err);
@@ -48,7 +52,7 @@ const BlogsComponent = () => {
 
 
   return (
-    <FilterContext.Provider value={{ filterVals, setFilterVals }}>
+    <FilterContext.Provider value={{ originalBlogs, originalTrendings, blogs, setBlogs, trendings, setTrendings }}>
     <div className="bc-container mx-5 mt-3">
       <div className="bc-latest">
 
