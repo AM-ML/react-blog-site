@@ -21,13 +21,11 @@ export const convertToBase64 = (file) => {
 };
 
 const EditorBanner = () => {
-  let { blog, blog: { title, banner, content, tags, description }, setBlog } = useContext(EditorContext);
+  const { blog, blog: { banner }, setBlog } = useContext(EditorContext);
 
-
-  const handleBannerUpload = async (e) => {
-    const img = e.target.files[0];
-    if (img) {
-      const b64 = await convertToBase64(img);
+  const handleBannerUpload = async (file) => {
+    if (file) {
+      const b64 = await convertToBase64(file);
 
       let toastId = toast.loading("Uploading Image...");
       try {
@@ -46,19 +44,40 @@ const EditorBanner = () => {
 
   const handleBannerError = () => {
     setBlog({ ...blog, banner: defaultBanner });
-  }
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const file = e.dataTransfer.files[0];
+    handleBannerUpload(file);
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
+  const handleFileSelect = (e) => {
+    const file = e.target.files[0];
+    handleBannerUpload(file);
+  };
 
   return (
     <>
       <Toaster />
-      <div className="ep-banner-i aspect-video border border-2">
+      <div
+        className="ep-banner-i aspect-video border border-2"
+        onDrop={handleDrop}
+        onDragOver={handleDragOver}
+      >
         <label htmlFor="ep-banner-input">
           <img src={banner} alt="" onError={handleBannerError} />
           <input
             type="file"
             accept=".png, .jpg, .jpeg"
             id="ep-banner-input"
-            onChange={handleBannerUpload}
+            onChange={handleFileSelect}
             hidden
           />
           <div className="ep-banner-text"></div>
@@ -69,3 +88,4 @@ const EditorBanner = () => {
 };
 
 export default EditorBanner;
+

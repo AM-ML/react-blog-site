@@ -5,6 +5,7 @@ import { Link, Outlet } from "react-router-dom";
 import { UserContext } from "../Router";
 import AnimationWrapper from "../common/page-animation";
 import { DropdownContent } from "./navbar-dropdown";
+import Footer from "./footer";
 
 const Navbar = () => {
   const { userAuth: { access_token, profile_img, name }, setUserAuth } = useContext(UserContext);
@@ -33,18 +34,17 @@ const Navbar = () => {
         <nav className="navbar navbar-light">
           <div className="container-fluid">
             <Link className="navbar-brand" to="/">
-              <img src={logo} width={64} alt="Logo" />
-              <span style={{ "marginLeft": "-0.8rem" }} className="text-logo text-serif text-bolder">BOFFO</span>
+              <span className="text-logo text-serif text-bolder">BOFFO</span>
             </Link>
 
             <div className=" pb-3 pt-3" style={{"width": "calc(100% - 150px)"}} id="navbarSupportedContent">
-              <ul className="navbar-nav gap-lg-3 gap-md-0 gap-sm-0 ps-lg-5 mb-lg-0 w-100">
+              <ul className="navbar-nav w-100">
                 <li className="nav-item pe-4 dp">
                   <Link role="button"
                     className="dp-btn nav-link active text-sans text-bold text-lg"
                     style={{ "alignItems": "center", "display": "flex" }}>
-                    Services
-                    <i className="bx bx-chevron-down bx-md"></i>
+                   Industries
+                    <i className="bx bx-chevron-down"></i>
                   </Link>
                   <DropdownContent/>
                 </li>
@@ -69,7 +69,7 @@ const Navbar = () => {
                 <li className="nav-item pe-4">
                   <Link role="button"
                     className="nav-link active text-sans text-bold text-lg"
-                    style={{ "alignItems": "center", "display": "flex" }} to="/blogs">
+                    style={{ "alignItems": "center", "display": "flex"}} to="/blogs">
                     Blogs
                   </Link>
                 </li>
@@ -94,7 +94,11 @@ const Navbar = () => {
           </div>
         </nav>
       </div>
-      <Outlet />
+      <div style={{"minHeight": "100vh"}}>
+        <Outlet />
+      </div>
+
+      <Footer />
     </AnimationWrapper>
   );
 };

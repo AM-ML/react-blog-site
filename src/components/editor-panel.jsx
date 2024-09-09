@@ -14,10 +14,6 @@ const EditorPanel = () => {
   const { blog, setBlog, textEditor, setTextEditor } = blogContext;
 
   useEffect(() => {
-    console.log(blog);
-  }, [blog]);
-
-  useEffect(() => {
     // Initialize EditorJS
     const editor = new EditorJS({
       holderId: "textEditor",

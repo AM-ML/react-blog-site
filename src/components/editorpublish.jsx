@@ -55,7 +55,7 @@ const EditorPublishForm = () => {
 
   const handleTagChange = (e) => {
     let input = e.target;
-    let filteredValue = input.value.replace(/[^A-Za-z-]/g, '');
+    let filteredValue = input.value.replace(/[^A-Za-z-\s]/g, '');
     input.value = filteredValue;
     setNewTag(filteredValue);
   };
@@ -156,10 +156,6 @@ const EditorPublishForm = () => {
       return toast.error(errorMessage);
     });
   }
-
-  useEffect(() => {
-    console.log(blog);
-  }, [blog]);
 
   return (
     <AnimationWrapper>

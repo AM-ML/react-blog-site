@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+
+.bgcd-container * {
+  margin: 0;
+}
+.bgcd-container-container:hover {
+  color: black !important;
+}
+
+.bgcd-container-container {
+  color: black;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  border-bottom: 1px solid #555;
+  padding-bottom: 1.7rem;
+
+  text-decoration: none;
+  width: 100%;
+  transition: box-shadow 0.3s ease;
+}
+.bgcd-container:hover {
+  color: black;
+}
+.bgcd-title {
+  font-size: 24px !important;
+  max-width: calc(100vw - 130px);
+  font-family: "Merriweather";
+}
+
+.bgcd-header {
+  width:100%;
+  display:flex;
+  flex-wrap:nowrap;
+  flex-direction: row;
+  align-items:center;
+  height: 30px;
+  margin-bottom: 1em;
+}
+
+.bgcd-author-image{
+  border-radius:50%;
+}
+
+.bgcd-author-name{
+  margin:0;
+  font-weight: 500;
+  font-family: "roboto";
+  margin-left: 12px;
+}
+
+.bgcd-header-date {
+  margin-left: 12px;
+  color: #444;
+  min-width: fit-content;
+}
+
+.bgcd-description {
+  margin: 1rem 0;
+  line-height: 1.75rem;
+  font-size: 16px;
+  max-width: 100%;
+}
+
+
+@media screen and (min-width: 768px) and (max-width: 1100px){
+  .md-mdxl-hidden {
+    display: none !important;
+  }
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.5; /* Adjust as needed */
+  max-height: 3em; /* 2 lines * line-height */
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2; /* Adjust as needed */
+  max-height: 3.6em; /* 2 lines * line-height */
+}
+
+
+
+
+.bgcd-tags {
+  margin-top: 1em;
+  display:flex;
+  flex-direction:row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5em;
+}
+.bgcd-tag {
+  background: #eee;
+  font-family: "Roboto";
+  font-weight: 500;
+  color: black;
+}
+
+
+.bgcd-banner-container {
+  height: 10rem;
+  width: 20rem;
+  background: #ccc;
+  /* TODO: maintain square dimensions */
+  margin-left: auto;
+}
+
+
+.bgcd-banner {
+  object-fit: cover;
+  width: 100%;
+  max-width: 20rem;
+  height: 100%;
+  max-height: 10rem;
+  /* TODO: take up whole banner container to be a square image*/
+}
+
+.bgcd-container-container:hover .bgcd-title {
+  text-decoration: underline;
+}

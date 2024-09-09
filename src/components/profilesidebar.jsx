@@ -10,6 +10,7 @@ import { TitleCase, removeLastName } from '../common/string';
 const ProfileSidebar = () => {
   let { userAuth: { id, is_author, access_token, name, profile_img, username }, setUserAuth } = useContext(UserContext);
   const [isOpen, setIsOpen] = useState(false);
+  const [whatOpened, setWhatOpened] = useState("Account");
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -26,12 +27,18 @@ const ProfileSidebar = () => {
     setUserAuth({access_token: null});
   }
 
+  const accOpened = () => {setWhatOpened("Account")};
+  const draftsOpened = () => {setWhatOpened("Drafts")};
+  const writeOpened = () => {setWhatOpened("Write")};
+  const profileOpened = () => {setWhatOpened("Profile")};
+  const settingsOpened = () => {setWhatOpened("Settings")};
+
   return (
     access_token?
     <AnimationWrapper transition={{duration:0.5}}>
       <div className={`custom-sidebar ${isOpen ? 'open' : ''}`}>
         <div className="custom-logo-details">
-          <div className="custom-logo_name">Account</div>
+          <div className="custom-logo_name">{whatOpened}</div>
           <i className={`bx ${isOpen ? 'bx-menu-alt-right' : 'bx-menu'}`} id="custom-btn" onClick={toggleSidebar}></i>
         </div>
         <ul className="custom-nav-list">
@@ -43,21 +50,21 @@ const ProfileSidebar = () => {
             <span className="custom-tooltip">Home</span>
           </li>
           <li>
-            <Link to="/dashboard">
+            <Link to="/dashboard" onClick={accOpened}>
               <i className='bx bx-grid-alt'></i>
               <span className="custom-links_name">Account</span>
             </Link>
             <span className="custom-tooltip">Account</span>
           </li>
             { is_author && <li>
-            <Link to="/dashboard/writer/drafts">
+            <Link to="/dashboard/writer/drafts" onClick={draftsOpened}>
               <i className='bx bx-file'></i>
               <span className="custom-links_name">Drafts</span>
             </Link>
             <span className="custom-tooltip">Drafts</span>
           </li> }
           {is_author && <li>
-            <Link to="/dashboard/writer/write">
+            <Link to="/dashboard/writer/write" onClick={writeOpened}>
               <i className='bx bx-edit'></i>
               <span className="custom-links_name">Write Blogs</span>
             </Link>
@@ -65,14 +72,14 @@ const ProfileSidebar = () => {
           </li>}
 
           {is_author && <li>
-            <Link to={`/dashboard/author/${id}`}>
+            <Link to={`/dashboard/author/${id}`} onClick={profileOpened}>
               <i className='bx bx-user'></i>
               <span className="custom-links_name">View Profile</span>
             </Link>
             <span className="custom-tooltip">View Profile</span>
           </li>}
           <li>
-            <Link to="/dashboard/settings">
+            <Link to="/dashboard/settings" onClick={settingsOpened}>
               <i className='bx bx-cog'></i>
               <span className="custom-links_name">Settings</span>
             </Link>

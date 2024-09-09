@@ -32,7 +32,7 @@ const MainPanel = () => {
         </div>
         <div className="mb-3 mp-grid-item mp-item-3 bg cspan-4 rspan-3 mp-r2-item">
           <div className="sections-3-title">
-            <h3 className="font-bolder">Favorite Articles</h3>
+            <h3 className="font-bolder">Favorite Blogs</h3>
           </div>
           <div className="mp-section-content border-end border-dark">
 
@@ -93,7 +93,7 @@ const MainPanel = () => {
         </div>
         <div className="mb-3 mp-grid-item mp-item-3 bg cspan-6 rspan-5 mp-r2-item">
           <div className="sections-3-title">
-            <h3 className="font-bolder">Favorite Articles</h3>
+            <h3 className="font-bolder">Favorite Blogs</h3>
           </div>
           <div className="mp-section-content border-end border-dark">
           </div>
@@ -153,13 +153,13 @@ const MainPanel = () => {
           <div className="mp-section-content border-end border-dark">
 
           </div>
-        </div> 
+        </div>
       </div>
 
       <div className="mp-container bg m-0 p-0 mp-visible-on-small-screens h-2-rspans">
         <div className="mb-3 mp-grid-item mp-item-3 bg cspan-12 rspan-5 mp-r2-item">
           <div className="sections-3-title">
-            <h3 className="font-bolder">Favorite Articles</h3>
+            <h3 className="font-bolder">Favorite Blogs</h3>
           </div>
           <div className="mp-section-content border-end border-dark">
           </div>

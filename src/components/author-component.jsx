@@ -41,7 +41,7 @@ export default function AuthComponent() {
         </div>
 
         <div className="ac-author-badge btn-lg text-white">
-          Author Blogs <span class="badge">52</span>
+          Published Blogs <span class="badge">52</span>
         </div>
       </div>
       <div className="hr mt-5 m-auto"></div>

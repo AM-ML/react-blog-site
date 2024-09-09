@@ -13,13 +13,13 @@
   position: fixed !important;
   left: 0 !important;
   top: 0;
-  height: calc(100%) !important;  
+  height: calc(100%) !important;
   width: 78px;
-  background: #2A2F3D !important;
+  background: #34417C !important;
   padding: 6px 14px !important;
-  z-index: 1 !important; 
+  z-index: 1 !important;
   transition: all 0.2s ease !important;
-  overflow-y: auto !important;  
+  overflow-y: auto !important;
   position: sticky;
 }
 
@@ -93,7 +93,7 @@
   border: none !important;
   border-radius: 12px !important;
   transition: all 0.2s ease !important;
-  background: #2A2F3D !important;
+  background: #34417C !important;
 }
 
 .custom-sidebar.open input {
@@ -107,7 +107,7 @@
   left: 0 !important;
   transform: translateY(-50%) !important;
   font-size: 22px !important;
-  background: #2A2F3D !important;
+  background: #34417C !important;
   color: #fff !important;
 }
 
@@ -117,7 +117,7 @@
 }
 
 .custom-sidebar.open .bx-search:hover {
-  background: #2A2F3D !important;
+  background: #34417C !important;
   color: #fff !important;
 }
 
@@ -136,7 +136,7 @@
   align-items: center !important;
   text-decoration: none !important;
   transition: all 0.4s ease !important;
-  background: #2A2F3D !important;
+  background: #34417C !important;
 }
 
 
@@ -247,7 +247,7 @@
   line-height: 60px!important;
   transition: all 0.5s ease!important;
   background: #2A2F3D !important;
-  color: #6B6CE0 !important; 
+  color: #6B6CE0 !important;
 }
 
 .custom-sidebar.open .custom-profile #custom-log_out {

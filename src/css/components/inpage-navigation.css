@@ -1,0 +1,43 @@
+.ipn-container {
+  display:flex;
+  flex-wrap: nowrap;
+
+  position: relative;
+  margin-bottom: 8px;
+
+  background: white;
+
+  overflow-x: auto;
+  margin-bottom: 1em;
+}
+
+.ipn-route-btn {
+  padding: 1rem 1.3rem;
+  text-transform: capitalize;
+
+  outline: none;
+  border: none;
+  background: transparent;
+
+  color: #444;
+}
+
+.ipn-route-btn.active {
+  color: black;
+}
+
+.ipn-routes-hr {
+  display: block;
+  position: absolute;
+  transition: 0.3s all;
+  bottom: -1rem;
+  padding: 1px;
+  opacity: 1;
+  color: #666;
+}
+
+@media screen and (min-width: 768px) {
+  .md-hidden {
+    display: none;
+  }
+}

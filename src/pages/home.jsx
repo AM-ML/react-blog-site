@@ -1,12 +1,10 @@
 import AnimationWrapper from "../common/page-animation";
+import HomeComponent from "../components/home-component";
 import "../css/home.css";
 
-const Home = () => {  
+const Home = () => {
   return <AnimationWrapper keyValue="home">
-    <div className="container">
-      <div className="row">
-      </div>
-    </div>
+    <HomeComponent />
   </AnimationWrapper>
 }
 

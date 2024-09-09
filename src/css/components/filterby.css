@@ -1,0 +1,160 @@
+/* Modal Styling */
+.modal-content {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.modal-header .bx {
+  font-size: 24px;
+  cursor: pointer;
+  color: #fff !important;
+  margin-left: auto;
+}
+
+.modal-body {
+  background: white;
+  padding: 20px;
+}
+
+.filter-section {
+  transition: all 0.5s ease;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.filter-section.hidden {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+h4 {
+  font-family: "Roboto", sans-serif;
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.date-filter,
+.tags-filter {
+  margin-bottom: 20px;
+}
+
+.tags-filter {
+  margin-bottom: 120px;
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.fby-tag {
+  padding: 10px 15px;
+  border: 1px solid black;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.fby-tag.selected {
+  background-color: #34417C;
+  color: white;
+  border-color:#34417C;
+}
+
+.fby-tag:hover {
+  background-color: #5663af;
+  color: white;
+  border-color:#34417C;
+}
+
+/* Apply Filter Button */
+.apply-filters-btn {
+  padding: 10px 20px;
+  background-color:#fff;
+  color: black;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.apply-filters-btn:hover {
+  background-color: #333;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Filter Modal Entrance Animation */
+.modal-dialog {
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: modal-fade-in 0.4s forwards ease-in-out;
+}
+
+@keyframes modal-fade-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Close Button */
+.modal-header .bx-x {
+  font-size: 30px;
+  margin-top: 35px;
+  color: #555;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.modal-header .bx-x:hover {
+  color: #000 !important;
+}
+
+.modal-header {
+  background: #34417C;
+  height: 100px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .modal-dialog {
+    margin: 30px auto;
+  }
+
+  .modal-body {
+    padding: 15px;
+  }
+
+  .fby-tag {
+    font-size: 12px;
+  }
+
+  .apply-filters-btn {
+    font-size: 14px;
+  }
+}
+
+
+.modal-body p {
+  display:inline-block ;
+  margin-right: 20px;
+}
+
+.date-filter input {
+  padding: 10px;
+  outline: none;
+}
+
+.fby-tag {
+  margin-right: 7px;
+}

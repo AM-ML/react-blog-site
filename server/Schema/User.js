@@ -1,7 +1,5 @@
 import mongoose, { Schema } from "mongoose";
 
-let profile_imgs_name_list = ["Loki", "Angel", "Bob", "Mia", "Bear"];
-
 const userSchema = mongoose.Schema({
   personal_info: {
     name: {
@@ -80,6 +78,14 @@ const userSchema = mongoose.Schema({
     type: [Schema.Types.ObjectId],
     ref: 'blogs',
     default: [],
+  },
+  favorite_blogs: {
+    type: [Schema.Types.ObjectId],
+    ref: 'blogs',
+    default: [],
+  },
+  interests: {
+    type: [String]
   }
 
 },

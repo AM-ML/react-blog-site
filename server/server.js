@@ -324,6 +324,64 @@ server.post("/make-author", async (req, res) => {
   }
 });
 
+server.get("/latest-blogs", (req, res) => {
+  let maxLimit = 5;
+
+  Blog.find({ draft: false })
+  .populate("author", "personal_info.profile_img personal_info.username personal_info.name -_id")
+  .sort({ "publishedAt": -1 })
+  .select("blog_id title description banner activity tags publishedAt -_id")
+  .limit(maxLimit)
+  .then((blogs) => {
+    return res.status(200).json({ blogs });
+  })
+  .catch((err) => {
+    return res.status(500).json({ "error": err.message });
+  });
+});
+
+server.get("/trending-blogs", async (req, res) => {
+  const maxLimit = 10;
+  let blogs = [];
+  let monthCounter = 0; // Tracks how many months back we're fetching from
+
+  try {
+    while (blogs.length < maxLimit) {
+      // Get the current date and subtract 'monthCounter' months
+      let dateFrom = new Date();
+      dateFrom.setMonth(dateFrom.getMonth() - monthCounter);
+
+      // Get the start and end of the month for this iteration
+      let startOfMonth = new Date(dateFrom.getFullYear(), dateFrom.getMonth(), 1);
+      let endOfMonth = new Date(dateFrom.getFullYear(), dateFrom.getMonth() + 1, 0);
+
+      // Find blogs published within this month, sorted by total_reads
+      const monthlyBlogs = await Blog.find({
+        draft: false,
+        publishedAt: { $gte: startOfMonth, $lte: endOfMonth }
+      })
+        .populate("author", "personal_info.profile_img personal_info.username personal_info.name -_id")
+        .sort({ "activity.total_reads": -1 })
+        .select("blog_id title description banner activity tags publishedAt -_id")
+        .limit(maxLimit - blogs.length); // Fetch only the remaining number of blogs
+
+      // Add the fetched blogs to the main list
+      blogs = blogs.concat(monthlyBlogs);
+
+      // If there are no more blogs to fetch from previous months, break
+      if (monthlyBlogs.length === 0) {
+        break;
+      }
+
+      monthCounter++; // Move to the previous month
+    }
+
+    // Return the accumulated blogs
+    return res.status(200).json({ blogs });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
 server.post("/new-blog", verifyJWT,(req, res) => {
   let authorId  = req.user;
 

@@ -11,11 +11,6 @@
   font-family: "lato";
 }
 
-
-.text-logo {
-  color: #32546F !important;
-}
-
 .text-serif {
   font-family: "Times" !important;
 }
@@ -40,11 +35,12 @@
   border-bottom: 3px solid #0000;
 }
 
-.nav-link:hover {
+.nav-link:hover,
+.dp-btn.nav-link.active.text-sans:hover {
   transition-duration: 0.3s;
   transition-property: all;
-  color: rgb(0, 60, 121) !important;
   border-bottom-color: #18f;
+  color: cyan !important;
 }
 
 .text-google {
@@ -58,4 +54,10 @@
 .disable {
   pointer-events: none;
   filter: brightness(0.8);
+}
+
+@media screen and (max-width: 767px) {
+  .sm-hidden {
+    display: none !important;
+  }
 }
