@@ -1,5 +1,6 @@
 .ac-container {
   padding: 1vh 1vw;
+  margin-top: 30px;
 }
 
 .ac-header {
@@ -60,13 +61,4 @@
   width: 70%;
   background: #3E546E;
   height: 4px;
-}
-
-.ac-header .ac-author-badge:hover,
-.ac-header .ac-author-badge:active {
-}
-
-.ac-container,
-.ac-container * {
-  /* border: 1px solid black; */
 }

@@ -1,14 +1,32 @@
 import React, { useState, useContext, useRef } from "react";
 import "../css/components/navbar.css";
-import logo from "/new3.png";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { UserContext } from "../Router";
 import AnimationWrapper from "../common/page-animation";
 import { DropdownContent } from "./navbar-dropdown";
 import Footer from "./footer";
 
 const Navbar = () => {
-  const { userAuth: { access_token, profile_img, name }, setUserAuth } = useContext(UserContext);
+  const { userAuth: { access_token, profile_img } } = useContext(UserContext);
+  const searchModalCloseBtn = useRef(null);
+  const [search, setSearch] = useState(null);
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+    navigate("/search/" + search);
+    searchModalCloseBtn.current.click();
+  }
+
+  const handleSearchKeyDown = (e) => {
+    if( e.keyCode == 13)
+      handleSearch();
+  }
+
+  const handleSearchChange = (e) => {
+    let elemS = e.target;
+
+    setSearch(elemS.value);
+  }
 
 
   return (
@@ -23,10 +41,12 @@ const Navbar = () => {
                    type="text"
                    className="text-input input nb-search shadow-lg form-control"
                    placeholder="Search..."
+                   onKeyDown={handleSearchKeyDown}
+                   onChange={handleSearchChange}
                    autoFocus
                   />
                 </div>
-                <button type="button" className="mb-5 bx bx-x" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button ref={searchModalCloseBtn} type="button" className="mb-5 bx bx-x" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
             </div>
           </div>
@@ -94,7 +114,7 @@ const Navbar = () => {
           </div>
         </nav>
       </div>
-      <div style={{"minHeight": "100vh"}}>
+      <div style={{"minHeight": "100vh", "overflowY": "overlay"}}>
         <Outlet />
       </div>
 

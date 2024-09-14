@@ -72,7 +72,7 @@ const ProfileSidebar = () => {
           </li>}
 
           {is_author && <li>
-            <Link to={`/dashboard/author/${id}`} onClick={profileOpened}>
+            <Link to={`/dashboard/author/${username}`} onClick={profileOpened}>
               <i className='bx bx-user'></i>
               <span className="custom-links_name">View Profile</span>
             </Link>

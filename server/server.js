@@ -295,12 +295,25 @@ server.post("/uploadImage", async (req, res) => {
 });
 
 server.post("/get-author", async (req, res) => {
-  let { id } = req.body;
+  let { username } = req.body;
 
-  let author = await User.findOne({"_id": id});
+  let author = await User.findOne({"personal_info.username": username});
+  if (!author) return res.status(403).json({"error": "account not found"});
   if (!author.isAuthor) return res.status(403).json({"error": "account is not an author"});
   else {
-    return res.status(200).json({...formatDataToSend(author), blogs: author.blogs});
+    // return res.status(200).json({...formatDataToSend(author), blogs: author.blogs});
+      let blogs = author.blogs.filter(blog => blog.draft != true);
+    return res.status(200).json({
+        total_posts: author.account_info.total_posts,
+        blogs: blogs,
+        is_author: author.isAuthor,
+        name: author.personal_info.name,
+        username: author.personal_info.username,
+        profile_img: author.personal_info.profile_img,
+        email: author.personal_info.email,
+        bio: author.personal_info.bio,
+        social_links: author.social_links,
+      });
   }
 })
 
@@ -324,13 +337,15 @@ server.post("/make-author", async (req, res) => {
   }
 });
 
-server.get("/latest-blogs", (req, res) => {
-  let maxLimit = 5;
+server.post("/latest-blogs", (req, res) => {
+  const { page } = req.body;
+  let maxLimit = 10;
 
   Blog.find({ draft: false })
   .populate("author", "personal_info.profile_img personal_info.username personal_info.name -_id")
   .sort({ "publishedAt": -1 })
   .select("blog_id title description banner activity tags publishedAt -_id")
+  .skip((page - 1) * maxLimit)
   .limit(maxLimit)
   .then((blogs) => {
     return res.status(200).json({ blogs });
@@ -340,6 +355,106 @@ server.get("/latest-blogs", (req, res) => {
   });
 });
 
+server.post("/latest-blogs-counter", (req, res) => {
+  Blog.countDocuments({ draft: false })
+    .then((count) => {
+      return res.status(200).json({ "totalDocs": count });
+    })
+    .catch(err => {
+      console.log(err);
+      return res.status(500).json({ "error": err.message });
+    });
+});
+
+server.post("/search-blogs", async (req, res) => {
+  const { tags = [], date = null, page = 1, query = null } = req.body;
+  let maxLimit = 10;
+
+  // Create a base query object
+  let searchQuery = { draft: false };
+
+  // Add date filter if provided
+  if (date) {
+    const dateFilter = new Date(date);
+    searchQuery.publishedAt = { $gte: dateFilter };
+  }
+
+  // Add tags filter if provided
+  if (tags.length > 0) {
+    searchQuery.tags = { $in: tags.map(tag => tag.toLowerCase()) };
+  }
+
+  // Add search query filter if provided
+  if (query) {
+    searchQuery.$or = [
+      { title: { $regex: query, $options: "i" } }, // case-insensitive search in title
+      { description: { $regex: query, $options: "i" } }, // case-insensitive search in description
+      { tags: { $regex: query, $options: "i" } }
+    ];
+  }
+
+  console.log("\n\nNew Request: ", searchQuery);
+  console.log("vars: ", tags, date, page, query);
+
+  try {
+    const blogs = await Blog.find(searchQuery)
+      .populate("author", "personal_info.profile_img personal_info.username personal_info.name -_id")
+      .sort({ "publishedAt": -1 })
+      .select("blog_id title description banner activity tags publishedAt -_id")
+      .skip((page - 1) * maxLimit)
+      .limit(maxLimit);
+
+    const totalDocs = await Blog.countDocuments(searchQuery);
+    console.log("data, length:", totalDocs);
+    return res.status(200).json({ blogs, totalDocs });
+  } catch (err) {
+    return res.status(500).json({ "error": err.message });
+  }
+});
+
+server.post("/search-authors", async (req, res) => {
+  const { query = null, page = 1 } = req.body;
+  let maxLimit = 50;
+
+  // Create a base query object
+  let searchQuery = { isAuthor: true }; // Only search for users who are authors
+
+  // Add search query filter if provided
+  if (query) {
+    if (query.startsWith("@")) {
+      // Search only by username if query starts with "@"
+      searchQuery["personal_info.username"] = { $regex: query.slice(1), $options: "i" };
+    } else {
+      searchQuery.$or = [
+        { "personal_info.name": { $regex: query, $options: "i" } }, // case-insensitive search in name
+        { "personal_info.username": { $regex: query, $options: "i" } } // case-insensitive search in username
+      ];
+    }
+  }
+
+  console.log("\n\nNew Request: ", searchQuery);
+  console.log("vars: ", query, page);
+
+  try {
+    const authors = await User.find(searchQuery)
+      .select("personal_info.name personal_info.username personal_info.profile_img")
+      .skip((page - 1) * maxLimit)
+      .limit(maxLimit);
+
+    const formattedAuthors = authors.map(author => ({
+      name: author.personal_info.name,
+      username: author.personal_info.username,
+      profile_img: author.personal_info.profile_img
+    }));
+
+    const totalDocs = await User.countDocuments(searchQuery);
+    console.log("data, length:", totalDocs);
+
+    return res.status(200).json({ authors: formattedAuthors, totalDocs });
+  } catch (err) {
+    return res.status(500).json({ "error": err.message });
+  }
+});
 server.get("/trending-blogs", async (req, res) => {
   const maxLimit = 10;
   let blogs = [];

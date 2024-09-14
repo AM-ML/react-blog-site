@@ -16,9 +16,13 @@
   display: block;
 }
 
+.ltbgs * {
+  overflow-x: hidden;
+}
 .ltbgs {
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
   flex-wrap: wrap;
   gap: 1.3rem;
 }

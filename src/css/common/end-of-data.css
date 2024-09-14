@@ -1,0 +1,27 @@
+.eod-container {
+  width: 100%;
+  text-align: center;
+  height: 50px;
+}
+
+.eod-text {
+  font-size: 16px;
+  border-top: 1px solid #555;
+  display: inline-block;
+  padding: 5px 60px;
+  color: #333;
+  font-family: "Merriweather";
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.eod-icon {
+  font-size: 28px;
+  padding: 0;
+  margin-left: 10px;
+}

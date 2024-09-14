@@ -5,7 +5,7 @@ import {TitleCase} from "../common/string";
 import {formatDate} from "../common/functions";
 import AnimationWrapper from "../common/page-animation";
 
-const BlogCard = ({ blog }) => {
+const BlogCard = ({ blog, addBorder = true }) => {
   const {
     blog_id,
     banner,
@@ -16,6 +16,7 @@ const BlogCard = ({ blog }) => {
     author: {
       personal_info: {
         name,
+        username,
         profile_img
       }
     },
@@ -23,11 +24,15 @@ const BlogCard = ({ blog }) => {
   } = blog;
 
   return (
-    <Link to={"/blog/" + blog_id} className="bgcd-container-container">
+    <Link to={"/blog/" + blog_id} className={`bgcd-container-container ${!addBorder && "no-border"}`}>
       <div className="bgcd-container me-2">
         <div className="bgcd-header">
           <img src={profile_img} width={30} alt="" className="bgcd-author-image" />
-          <p className="bgcd-author-name text-clamp">{TitleCase(name)}</p>
+          <Link
+            to = { "/author/" + username }
+            className="bgcd-author-name text-clamp">
+            {TitleCase(name)}
+          </Link>
           <p className="bgcd-header-date">@ { formatDate(publishedAt) }</p>
         </div>
         <h1 className="bgcd-title line-clamp-3">{title}</h1>

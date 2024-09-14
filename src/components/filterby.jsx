@@ -1,14 +1,39 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../css/components/filterby.css";
 
-const FilterBy = ({ availableTags, onFilter }) => {
+const FilterBy = ({ blogs, onFilter }) => {
   const [isOpen, setIsOpen] = useState(false); // Manage filter section visibility
   const [selectedTags, setSelectedTags] = useState([]); // Manage selected tags
   const [selectedDate, setSelectedDate] = useState(null); // Manage selected date
+  const [availableTags, setAvailableTags] = useState([]);
 
+  useEffect(() => {
+    if (blogs?.results.length && !availableTags.length) {
+      function getMostPopularTags() {
+        const latestBlogs = blogs.results.slice(-30);
+        const tagCount = {};
+
+        latestBlogs.forEach(blog => {
+          blog.tags.forEach(tag => {
+            const lowerTag = tag.toLowerCase();
+            tagCount[lowerTag] = (tagCount[lowerTag] || 0) + 1;
+          });
+        });
+
+        return Object.entries(tagCount)
+          .sort(([, countA], [, countB]) => countB - countA)
+          .slice(0, 10)
+          .map(([tag]) => tag);
+      }
+
+      setAvailableTags(getMostPopularTags());
+    }
+  }, [blogs]); // Add blogs as a dependency
   // Toggle the filter section visibility
+
+
   const toggleFilterSection = () => {
     setIsOpen(!isOpen);
   };
@@ -66,7 +91,8 @@ const FilterBy = ({ availableTags, onFilter }) => {
                 </div>
 
                 {/* Apply Filter Button */}
-                <button data-bs-dismiss="modal" aria-label="Close" onClick={applyFilters} className="apply-filters-btn btn btn-outline-dark">
+                <button data-bs-dismiss="modal" aria-label="Close" onClick={applyFilters}
+                  className="apply-filters-btn btn btn-outline-dark">
                   Apply Filters
                 </button>
               </div>
@@ -77,7 +103,7 @@ const FilterBy = ({ availableTags, onFilter }) => {
       </div>
 
       <button data-bs-toggle="modal" data-bs-target="#BlogsFilterByComponent" className="ipn-route-btn ms-auto" onClick={toggleFilterSection}>
-        <i className="bx bxs-filter-alt"></i> Open Filters
+        <i className="bx bxs-filter-alt"></i> Filter Blogs
       </button>
 
     </div>

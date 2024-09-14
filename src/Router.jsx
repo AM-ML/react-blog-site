@@ -16,6 +16,9 @@ import Settings from "./pages/settings";
 import Blogs from "./pages/blogs";
 import Blog from "./pages/blog";
 import DraftsPanel from "./components/drafts-panel";
+import ScrollToTop from "./common/scroll";
+import Search from "./pages/search";
+import Redirect from "./common/redirect";
 
 export const UserContext = createContext({});
 
@@ -31,15 +34,19 @@ const Router = () => {
 
   return (
     <UserContext.Provider value={{userAuth, setUserAuth}}>
+      <ScrollToTop />
     <Routes>
       <Route path="/" element= {<Navbar />}>
         <Route element={<Home />} index/>
         <Route path="signin" element= {<AuthForm type="sign-in" />}/>
         <Route path="signup" element= {<AuthForm type="sign-up"/>}/>
         <Route path="loading-page" element={<Preloader loading={true}/>}/>
-        <Route path="author/:id" element={<Author />} />
+        <Route path="author/:username" element={<Author />} />
         <Route path="blogs" element={<Blogs />}/>
         <Route path="blog/:id" element={<Blog/>}/>
+        <Route path="search/:query" element={<Search />} />
+        <Route path="search/null" element={<Redirect route="/blogs" />} />
+        <Route path="search/" element={<Redirect route="/blogs" />} />
         <Route path="*" element={<NotFound />} />
       </Route>
       <Route path="/dashboard" element= {<ProfileSidebar />}>
@@ -48,7 +55,7 @@ const Router = () => {
           <Route path="/dashboard/writer/write" element={<Editor />} />
           <Route path="/dashboard/writer/drafts" element={<DraftsPanel />} />
         </Route>
-        <Route path="/dashboard/author/:id" element={<Author />} />
+        <Route path="/dashboard/author/:username" element={<Author />} />
         <Route path="/dashboard/settings" element={<Settings/>} />
       </Route>
     </Routes>

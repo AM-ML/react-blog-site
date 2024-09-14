@@ -1,0 +1,54 @@
+.ndt-container {
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  min-height: 40vh;
+  align-items: center;
+  font-family: "Lato";
+  justify-content: center;
+}
+
+
+
+.ndt-text-container {
+  cursor: default;
+}
+
+.ndt-container * {
+  transform: translateY(0) ;
+  transition: transform 0.3s ease;
+}
+.ndt-container *:hover {
+  transform: translateY(-2px);
+}
+
+
+.ndt-text-container {
+  align-self: start;
+  margin-top: 10vh;
+}
+
+.ndt-text-container .ndt-title-container .ndt-title {
+  font-size: 60px;
+  border-bottom: 5px solid black;
+  width: 100%;
+}
+.ndt-text-container .ndt-desc-container {
+  text-align: center;
+  color: #555;
+  margin-top: -0.8ch;
+}
+
+.ndt-btn {
+  transition: all 0.3s ease;
+}
+
+.ndt-btn:hover {
+  background: none;
+  color: #007bff;
+  border-color: #007bff;
+}
+
+.ndt-img {
+  width: 30vw;
+}

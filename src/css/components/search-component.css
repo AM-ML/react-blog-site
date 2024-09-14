@@ -1,0 +1,38 @@
+.scc-container {
+  padding: 1vh 1vw;
+  display: flex;
+  gap: 1rem;
+  min-height: 100vh;
+}
+
+.scc-results-container {
+  width: 100%;
+}
+
+.scc-auths-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: auto;
+  gap: 1.3rem;
+  justify-content: center;
+}
+
+.scc-results-container .ipn-content {
+  display: flex;
+  flex-direction: row;
+}
+
+.scc-no-data {
+  display: inline-block;
+  text-align: center;
+  margin: auto;
+  width: 100%;
+  justify-self: center;
+}
+
+
+.scc-results-container .ltbgs-container {
+  width: 100%;
+}

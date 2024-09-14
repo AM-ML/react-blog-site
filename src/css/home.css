@@ -6,6 +6,22 @@
   padding: 0;
   box-sizing: border-box;
 }
+body {
+  scrollbar-gutter: stable;
+}
+html::-webkit-scrollbar {
+  width: 15px;
+}
+
+html::-webkit-scrollbar-track {
+  border: 5px solid #34417C;
+	background-color: #b2bec3;
+}
+
+html::-webkit-scrollbar-thumb {
+  background-color: #34417c;
+	border-radius: 10px;
+}
 
 .home {
   font-family: "lato";
