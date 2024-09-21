@@ -66,7 +66,6 @@ const BlogsComponent = () => {
 
   useEffect(() => {
       getLatestBlogs(1, true);
-    console.log(blogs);
   }, [uDate, uTags]);
 
   const loadMore = () => {

@@ -313,6 +313,7 @@ server.post("/get-author", async (req, res) => {
         profile_img: author.personal_info.profile_img,
         email: author.personal_info.email,
         bio: author.personal_info.bio,
+        joinedAt: author.joinedAt,
         social_links: {
           instagram: author.social_links.instagram,
           facebook: author.social_links.facebook,
@@ -322,6 +323,28 @@ server.post("/get-author", async (req, res) => {
       });
   }
 })
+
+server.post("/get-blog", (req, res) => {
+  const { blog_id } = req.body;
+
+  let incrementVal = 1;
+
+  Blog.findOneAndUpdate({ blog_id }, { $inc : { "activity.total_reads": incrementVal} })
+  .populate("author", "personal_info.name personal_info.username personal_info.profile_img")
+  .select("title description content banner activity publishedAt blog_id tags")
+  .then(blog => {
+
+      User.findOneAndUpdate({ "personal_info.username": blog.author.username },
+        { $inc: { "account_info.total_reads": incrementVal } }
+      )
+      .catch(err => { return res.status(500).json({ "error": err.message }) });
+
+      return res.status(200).json({ blog });
+    })
+  .catch(err => {
+      return res.status(500).json({ "error": err.message });
+  });
+});
 
 server.post("/make-author", async (req, res) => {
   const { id } = req.body;
@@ -373,8 +396,8 @@ server.post("/latest-blogs-counter", (req, res) => {
 });
 
 server.post("/search-blogs", async (req, res) => {
-  const { tags = [], date = null, page = 1, query = null, author_id = null } = req.body;
-  let maxLimit = 10;
+  const { limit = null, tags = [], date = null, page = 1, query = null, author_id = null } = req.body;
+  let maxLimit = limit? limit : 10;
 
   // Create a base query object
   let searchQuery = { draft: false };

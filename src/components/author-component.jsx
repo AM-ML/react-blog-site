@@ -20,13 +20,8 @@ export default function AuthComponent() {
   const [errMsg, setErrMsg] = useState("");
   const navigate = useNavigate();
 
-  const goHome = () => {
-    navigate("/");
-  }
-
-  const goBack = () => {
-    navigate(-1);
-  }
+  const goHome = () => navigate("/");
+  const goBack = () => navigate(-1);
 
   useEffect(() => {
     const getAuthor = async () => {
@@ -38,7 +33,7 @@ export default function AuthComponent() {
         setAuthor(response.data);
         if (response.data.id) {
           setBlogLoading(true);
-          getBlogs({ page: 1, user_id: response.data.id, doCreate: true });
+          await getBlogs({ page: 1, user_id: response.data.id, doCreate: true });
           setBlogLoading(false);
         }
       } catch ({ response: { data: { error } } }) {
@@ -61,7 +56,6 @@ export default function AuthComponent() {
         if (doCreate || !prev || !prev.results) {
           return { results: data.blogs, totalDocs: data.totalDocs, user_id: author.id, page };
         }
-        // Append new blogs if doCreate is false
         return {
           results: [...prev.results, ...data.blogs],
           totalDocs: data.totalDocs,
@@ -76,24 +70,22 @@ export default function AuthComponent() {
 
   const loadMore = () => {
     if (blogs && blogs.results.length < blogs.totalDocs) {
-      // Increment the page number and fetch more blogs
       setMoreLoading(true);
       getBlogs({ page: blogs.page + 1, user_id: author.id, doCreate: false });
     }
   }
 
-  let date = "Sep. 2018";
-  const bio = "Chess is my go-to hobby—it's fun, keeps my mind sharp, and fights off the brain fog in today's world. Programming is my other passion, one I hope to turn into a full-fledged career someday.";
-  const social_links = {
-    linkedin: "https://linkedin.com",
-    facebook: "https://linkedin.com",
-    twitter: "https://linkedin.com",
-    instagram: "https://linkedin.com",
-  };
+  // Format the joinedAt date if author exists
+  let formattedDate = '';
+  if (author.joinedAt) {
+    const date = new Date(author.joinedAt);
+    formattedDate = date.toLocaleString('en-US', { year: 'numeric', month: 'short' }).replace(',', '.');
+  }
 
   if (loading) return <Preloader />;
   if (errMsg) return <NoData msg={errMsg} btnMsg="Go Home" onClick={goHome} />;
 
+  author.bio = author.bio.length? "\"" + author.bio + "\"": author.bio;
   return (
     <div className="ac-container">
       <div className="ac-blogs-container">
@@ -106,7 +98,6 @@ export default function AuthComponent() {
                   blogs.results.map((blog, i) => {
                     const isLastPage = (i + 1) / 10 === blogs.page;
                     const isLastDoc = i + 1 === blogs.totalDocs;
-
                     const addBorder = !(isLastDoc !== isLastPage);
 
                     return (
@@ -139,14 +130,14 @@ export default function AuthComponent() {
           <img src={author.profile_img} className="ac-profile-img" alt="Profile" />
           <h1 className="ac-profile-name">{TitleCase(author.name)}</h1>
           <span className="ac-profile-email">{author.email}</span>
-          <span className="ac-profile-blogs-count">{author.total_posts} Blogs - Joined At {date}</span>
+          <span className="ac-profile-blogs-count">{author.total_posts} Blogs - Joined At {formattedDate}</span>
           <div className="ac-profile-socials">
-            {social_links.linkedin && <a target="_blank" href={social_links.linkedin} className="bx bxl-linkedin-square"></a>}
-            {social_links.facebook && <a target="_blank" href={social_links.facebook} className="bx bxl-facebook-square"></a>}
-            {social_links.instagram && <a target="_blank" href={social_links.instagram} className="bx bxl-instagram-alt"></a>}
-            {social_links.twitter && <a target="_blank" href={social_links.twitter} className="bx bxl-twitter"></a>}
+            {author.social_links && author.social_links.linkedin && <a target="_blank" href={author.social_links.linkedin} className="bx bxl-linkedin-square"></a>}
+            {author.social_links && author.social_links.facebook && <a target="_blank" href={author.social_links.facebook} className="bx bxl-facebook-square"></a>}
+            {author.social_links && author.social_links.instagram && <a target="_blank" href={author.social_links.instagram} className="bx bxl-instagram-alt"></a>}
+            {author.social_links && author.social_links.twitter && <a target="_blank" href={author.social_links.twitter} className="bx bxl-twitter"></a>}
           </div>
-          <span className="ac-profile-bio">{bio.length ? bio : "No Bio."}</span>
+          <span className="ac-profile-bio">{author.bio.length ? author.bio : "No Bio."}</span>
         </div>
       </div>
     </div>
