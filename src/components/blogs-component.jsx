@@ -105,7 +105,7 @@ const BlogsComponent = () => {
                 {!blogs ? <Preloader /> : blogs.results.length ? <>
                   {
                     blogs.results.map((blog, i) => {
-                      return <AnimationWrapper transition={{ duration: 1, delay: i * 0.08 }} key={i}>
+                      return <AnimationWrapper transition={{ duration: 1, delay: (i%10) * 0.08 }} key={i}>
                         <div className="blog-card-container">
                           <BlogCard blog={blog} addBorder={i + 1 != blogs.results.length} />
                         </div>

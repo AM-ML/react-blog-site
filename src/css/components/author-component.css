@@ -1,64 +1,93 @@
 .ac-container {
   padding: 1vh 1vw;
-  margin-top: 30px;
-}
-
-.ac-header {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: center;
-  font-family: "roboto";
-  justify-content: center;
+  margin-top: 40px;
+  font-weight: 400;
 }
 
-.ac-header .ac-img-container {
-  margin-right: 20px;
+.ac-profile-container {
+  margin-left: auto;
+  justify-self: end;
+  padding-right: 60px;
+  max-width: 300px;
 }
 
-.ac-header .ac-img-container .ac-img {
-  border-radius: 50%;
-}
-
-.ac-header .ac-name-container {
+.ac-profile {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  text-align: center;
+  margin-left: 10px;
+
 }
 
-.ac-header .ac-name-container .ac-name {
+.ac-profile .ac-profile-img {
+  width: 100px;
+  border-radius: 50%;
+  margin: auto;
+  margin-bottom: 30px;
+}
+
+.ac-profile .ac-profile-name {
+  font-family: "Merriweather";
+  font-size: 20px;
   font-weight: 700;
-  font-size: 30px;
-  color: #3E546E;
 }
 
-.ac-header .ac-name-container .ac-username {
-  margin-top: -1ch;
+.ac-profile .ac-profile-email {
+  margin-top: -0.4em;
+  margin-bottom: 0.8em;
+}
+
+.ac-profile .ac-profile-blogs-count {
+  font-family: "Rubik";
   font-weight: 400;
-  font-size: 23px;
-  text-align: start;
-  color: grey;
+  color: #666;
+  font-size: 16px;
 }
 
-.ac-header .ac-author-badge {
-  position: relative;
-  margin-left: 50px;
-  font-weight: 600;
-  font-family: "roboto";
-  padding: 40px 70px;
-  background-color: #3E546E;
+.ac-profile .ac-profile-bio {
+  font-style: italic;
+  margin: auto;
+  margin-left: 4px;
+  width: 100%;
+  margin-top: 3em;
+  font-size: 16px;
 }
 
-.ac-header .ac-author-badge .badge{
-  scale: 1.2;
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
+.ac-profile .ac-profile-socials {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 0.2em;
+  gap: 0.3em;
 }
 
-.ac-container .hr {
-  width: 70%;
-  background: #3E546E;
-  height: 4px;
+.ac-profile .ac-profile-socials a {
+  color: black;
+  text-decoration: none;
+  font-size: 32px;
+}
+
+
+.ac-blogs-container {
+  width: calc(100% - 300px);
+  border-right: 1px solid #88a;
+  display: inline-block;
+}
+
+.ac-blogs {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  font-size: 16px;
+
+  gap: 1em;
+}
+
+@media screen and (max-width: 1520px) {
+  .ac-blogs .bgcd-description {
+    display: none !important;
+  }
 }

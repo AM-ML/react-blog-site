@@ -31,10 +31,6 @@ const userSchema = mongoose.Schema({
     },
   },
   social_links: {
-    youtube: {
-      type: String,
-      default: "",
-    },
     instagram: {
       type: String,
       default: "",
@@ -47,24 +43,17 @@ const userSchema = mongoose.Schema({
       type: String,
       default: "",
     },
-    github: {
+    linkedin: {
       type: String,
       default: "",
     },
-    website: {
-      type: String,
-      default: "",
-    }
+
   },
   account_info: {
     total_posts: {
       type: Number,
       default: 0
-    },
-    total_reads: {
-      type: Number,
-      default: 0
-    },
+    }
   },
   google_auth: {
     type: Boolean,

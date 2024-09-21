@@ -27,9 +27,12 @@
 }
 
 .epf-i2 {
+  font-family: "Merriweather";
   margin-right: auto;
-  font-weight: 800;
+  font-weight: 900;
 }
+
+
 
 .epp-preview {
   margin-top: 2rem;
@@ -61,7 +64,6 @@
   font-size: 17px;
   width: 500px;
   outline: none;
-  //background: #f9f9f9;
   margin-top: 10px;
   margin-left: 20px;
   border-radius: 7px;
@@ -72,8 +74,8 @@
 .epp-title {
   width: 100%;
   font-size: 35px;
-  font-family: "roboto";
-  font-weight: 600;
+  font-family: "Open Sans";
+  font-weight: 700;
   line-height: 1.2;
   outline: none;
   border: none;
@@ -102,7 +104,7 @@
   font-size: 18px;
   outline: none;
   border: 2.5px solid transparent;
-  transition; 0.6s ease-in-out;
+  transition: 0.3s ease;
 }
 
 .epp-nt-container .epp-nt-input:focus {
@@ -139,7 +141,7 @@
 }
 .epp-tags-left {
   color: #666;
-  font-weight: 900;
+  font-weight: 700;
 }
 
 #epf-tags-info {

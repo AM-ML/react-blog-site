@@ -3,7 +3,6 @@ import "../css/components/editorpublish.css";
 import { EditorContext } from "../pages/editor";
 import Info from "../common/info-tooltip.jsx";
 import AnimationWrapper from "../common/page-animation";
-import Content from "../common/content";
 import toast, {Toaster} from "react-hot-toast";
 import axios from "axios";
 import {UserContext} from "../Router";
@@ -17,7 +16,6 @@ const EditorPublishForm = () => {
   const [newTagElement, setNewTagElement] = useState(false);
   const newTagElementRef = useRef(null);
   const [newTag, setNewTag] = useState("");
-  const [blogId, setBlogId] = useState("");
   const {
     blog,
     blog: { title, banner, content, tags, description },
@@ -246,7 +244,7 @@ const EditorPublishForm = () => {
 
         <div className="epf-gi epf-article">
           <div className="epp-preview mb-2">Preview</div>
-          <div className="epf-banner aspect-video shadow-lg">
+          <div className="epf-banner aspect-video shadow">
             <img src={banner} className="epf-banner-img" alt="Banner" />
           </div>
           <div className="epp-title">{title}</div>

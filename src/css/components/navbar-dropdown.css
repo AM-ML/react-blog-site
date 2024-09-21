@@ -60,3 +60,94 @@
   color: cyan !important;
   border-bottom-color: cyan !important;
 }
+
+
+.dp-content.dp-careers {
+  flex-direction: column !important;
+  flex-wrap: nowrap !important;
+  max-width: 300px !important;
+  padding: 0 !important;
+  box-shadow: 0 2px 10px #444;
+  min-width: 200px !important;
+  height: min-content !important;
+  min-height: min-content !important;
+}
+
+.dp-content.dp-careers .dp-col {
+  color: black !important;
+  padding: 1.5rem !important;
+  background: #fff;
+  cursor: pointer !important;
+  border-bottom: 1px solid white !important;
+  text-decoration: none;
+}
+
+.dp-content.dp-careers .dp-col:last-of-type {
+  border-bottom: none !important;
+}
+
+.dp-content.dp-careers .dp-col:hover,
+.dp-content.dp-careers .dp-col:hover * {
+  background: #484F90;
+  color: white !important;
+}
+
+
+.dp-content.dp-careers .dp-col:hover .dp-title {
+  text-decoration: underline;
+}
+
+.dp-content.dp-careers * {
+  color: black !important;
+  font-weight: 700;
+  font-family: "Merriweather";
+}
+
+.dp:hover .dp-content.dp-careers {
+  display: flex !important;
+}
+
+.dp-content.dp-about{
+  flex-direction: column !important;
+  flex-wrap: nowrap !important;
+  max-width: 300px !important;
+  padding: 0 !important;
+  box-shadow: 0 2px 10px #444;
+  min-width: 200px !important;
+  height: min-content !important;
+  min-height: min-content !important;
+}
+
+.dp-content.dp-about .dp-col {
+  color: black !important;
+  padding: 1.2rem !important;
+  background: #fff;
+  cursor: pointer !important;
+  border-bottom: 1px solid white !important;
+  text-decoration: none;
+}
+
+.dp-content.dp-about.dp-col:last-of-type {
+  border-bottom: none !important;
+}
+
+.dp-content.dp-about .dp-col:hover,
+.dp-content.dp-about .dp-col:hover * {
+  background: #484F90;
+  color: white !important;
+}
+
+
+.dp-content.dp-about .dp-col:hover .dp-title {
+  text-decoration: underline;
+}
+
+.dp-content.dp-about * {
+  color: black !important;
+  font-weight: 700;
+  font-family: "Merriweather";
+}
+
+.dp:hover .dp-content.dp-about {
+  display: flex !important;
+}

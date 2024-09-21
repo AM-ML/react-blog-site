@@ -61,11 +61,13 @@ h4 {
   border: 1px solid black;
   background-color: white;
   color: black;
-  margin-bottom: 5px;
+  margin-bottom: 7px;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
   font-size: 14px;
-  font-weight: bold;
+  letter-spacing: 0.1px;
+  font-weight: 500;
+  font-family: "roboto";
 }
 
 .fby-tag.selected {

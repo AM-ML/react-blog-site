@@ -304,6 +304,7 @@ server.post("/get-author", async (req, res) => {
     // return res.status(200).json({...formatDataToSend(author), blogs: author.blogs});
       let blogs = author.blogs.filter(blog => blog.draft != true);
     return res.status(200).json({
+        id: author._id,
         total_posts: author.account_info.total_posts,
         blogs: blogs,
         is_author: author.isAuthor,
@@ -312,7 +313,12 @@ server.post("/get-author", async (req, res) => {
         profile_img: author.personal_info.profile_img,
         email: author.personal_info.email,
         bio: author.personal_info.bio,
-        social_links: author.social_links,
+        social_links: {
+          instagram: author.social_links.instagram,
+          facebook: author.social_links.facebook,
+          twitter: author.social_links.twitter,
+          linkedin: author.social_links.linkedin
+        }
       });
   }
 })
@@ -367,7 +373,7 @@ server.post("/latest-blogs-counter", (req, res) => {
 });
 
 server.post("/search-blogs", async (req, res) => {
-  const { tags = [], date = null, page = 1, query = null } = req.body;
+  const { tags = [], date = null, page = 1, query = null, author_id = null } = req.body;
   let maxLimit = 10;
 
   // Create a base query object
@@ -393,8 +399,14 @@ server.post("/search-blogs", async (req, res) => {
     ];
   }
 
+  // Add author filter if provided
+  if (author_id) {
+    console.log("Filtering by author_id:", author_id);
+    searchQuery.author = author_id; // Ensure this is the correct field
+  }
+
   console.log("\n\nNew Request: ", searchQuery);
-  console.log("vars: ", tags, date, page, query);
+  console.log("vars: ", tags, date, page, query, author_id);
 
   try {
     const blogs = await Blog.find(searchQuery)
@@ -550,6 +562,6 @@ server.post("/new-blog", verifyJWT,(req, res) => {
 });
 
 // Start server
-server.listen(port, () => {
+server.listen(port, '0.0.0.0', () => {
   console.log("Listening on port " + port);
 });

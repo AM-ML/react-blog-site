@@ -1,8 +1,5 @@
-@import url('https://fonts.cdnfonts.com/css/google-sans');
-@import url("../../fonts/bower.css");
-
 .signin-btn {
-  font-family: "Google Sans" !important;
+  font-family: "Open Sans" !important;
 }
 .signin-btn {
   background: transparent;
@@ -101,7 +98,7 @@
   padding: 26px 14px;
 
   font-size: larger;
-  font-family: "roboto";
+  font-family: "open sans";
 
   border-radius: 7px;
   border: 2px solid #ccc;
