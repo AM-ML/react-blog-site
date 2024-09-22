@@ -1,13 +1,19 @@
 .ep-text-editor {
-  font-size: 17px;
-  font-family: "Lato", sans-serif;
-  font-weight: normal;
+  font-family: "Times New Roman" !important;
+  font-size: 23px;
+  line-height: 32.7px;
+  font-weight: 400;
+  color: #222;
+  text-align: start;
+
 
 }
 
 .cdx-marker {
   background: transparent !important;
   color: #06f;
+  font-family: "Times New Roman";
+  font-size: inherit !important;
 }
 
 
@@ -17,4 +23,5 @@
 
 .ce-block b {
   font-weight: 800;
+  font-size: inherit;
 }

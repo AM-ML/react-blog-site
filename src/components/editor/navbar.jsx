@@ -46,13 +46,13 @@ const EditorNavBar = () => {
       textEditor.save().then(async (data) => {
         if (data.blocks.length) {
           setBlog({ ...blog, content: data });
-          const config = {
-            "headers": {
-              "Content-Type": "application/json",
-              "Authorization": "Bearer " + access_token
-            }
-          };
-
+        }
+        const config = {
+          "headers": {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + access_token
+          }
+        };
           let blogObj = {
             tags,
             title,
@@ -80,8 +80,6 @@ const EditorNavBar = () => {
 
             return toast.error(errorMessage);
           });
-
-        }
       })
       .catch((err) => {
           e.target.classList.remove('disable');

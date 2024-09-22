@@ -58,35 +58,22 @@ const DropdownContent = () => {
 
   return (
     <div className="dp-content" ref={dpContentRef}>
-      <div className="dp-col">
-        <Link to="/dadv" className="dp-title d-block">Financial Advisory</Link>
-        <Link to="/dadv" className="dp-text">Financial Analysis</Link>
-        <Link to="/dadv" className="dp-text">Feasibility Study</Link>
-        <Link to="/dadv" className="dp-text">Business Plans</Link>
-      </div>
-      <div className="dp-col">
-        <Link to="/dadv" className="dp-title">Design Advisory</Link>
-        <Link to="/dadv" className="dp-text">Interior / Exterior Design</Link>
-        <Link to="/dadv" className="dp-text">Architecture Drawing</Link>
-        <Link to="/dadv" className="dp-text">Graphic Design</Link>
-      </div>
-      <div className="dp-col">
-        <Link to="/dadv" className="dp-title">Brick Advisory</Link>
-        <Link to="/dadv" className="dp-text">Civil Engineering</Link>
-        <Link to="/dadv" className="dp-text">Construction</Link>
-        <Link to="/dadv" className="dp-text">Procurement</Link>
-      </div>
-      <div className="dp-col">
-        <Link to="/dadv" className="dp-title">Management Handling</Link>
-        <Link to="/dadv" className="dp-text">Project Management</Link>
-        <Link to="/dadv" className="dp-text">Waste Management</Link>
-        <Link to="/dadv" className="dp-text">Alternative</Link>
-      </div>
-      <div className="dp-col">
-        <Link to="/dadv" className="dp-title">Sustainability</Link>
-        <Link to="/dadv" className="dp-text"></Link>
-        <Link to="/dadv" className="dp-text"></Link>
-        <Link to="/dadv" className="dp-text"></Link>
+      <div className="dp-content-container">
+        <Link to="/dadv" className="dp-title d-block">Civil Engineering</Link>
+        <Link to="/dadv" className="dp-title">Electrical Engineering</Link>
+        <Link to="/dadv" className="dp-title">Architecture</Link>
+        <Link to="/dadv" className="dp-title">Interior Design</Link>
+        <Link to="/dadv" className="dp-title">Solar Systems</Link>
+        <Link to="/dadv" className="dp-title">Off-Grid Water Systems</Link>
+        <Link to="/dadv" className="dp-title">Water Pumps</Link>
+        <Link to="/dadv" className="dp-title">Project Management</Link>
+        <Link to="/dadv" className="dp-title">Networking {"&"} IT</Link>
+        <Link to="/dadv" className="dp-title">Feasibility Study</Link>
+        <Link to="/dadv" className="dp-title">Innovative Solutions</Link>
+        <Link to="/dadv" className="dp-title">Financial Analysis {"&"} Risk Management</Link>
+        <Link to="/dadv" className="dp-title">Programming</Link>
+        <Link to="/dadv" className="dp-title">Business Plans {"&"} Investment Opportunities</Link>
+        <Link to="/dadv" className="dp-title">Sustainability Management</Link>
       </div>
     </div>
   );

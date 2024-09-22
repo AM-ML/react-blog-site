@@ -1,0 +1,80 @@
+/**/
+.ctb-paragraph {
+  font-family: "Times New Roman";
+  font-size: 23px;
+  line-height: 32.7px;
+  font-weight: 400;
+  color: #222;
+  text-align: start;
+}
+/**/
+
+/**/
+.ctb-header {
+  font-family: "Domine";
+  margin-top: 1em;
+}
+
+.ctb-header.level-3 {
+  font-size: 22px;
+  font-weight: 600;
+}
+.ctb-header.level-2 {
+  font-size: 28px;
+  font-weight: 600;
+}
+/**/
+
+/**/
+.ctb-image {
+  text-align: center;
+  margin-bottom: 2.4rem ;
+}
+
+.ctb-image img {
+  max-width: 600px;
+  width: 100%;
+}
+.ctb-image.stretched img {
+  max-width: 900px;
+}
+.ctb-image.border img {
+  box-shadow: 0 4px 8px #ccc;
+  border: 1px solid #ccc;
+}
+.ctb-image.background img {
+  padding: 2px calc( 100% - 900px / 2);
+  background: #f1f1f1;
+}
+
+
+.ctb-image .ctb-image-caption {
+  max-width: 450px;
+  color: #666;
+  line-height: 1.2;
+  margin: auto;
+  margin-top: 0.5em;
+  font-family: "Open Sans";
+  font-style: italic;
+  font-weight: 400;
+  display: block;
+}
+/**/
+
+
+/**/
+.ctb-element.ctb-list {
+  margin: 0;
+  margin-bottom: 2em;
+}
+
+.ctb-element.ctb-list *{
+  font-size: 22px;
+  font-family: "Times New Roman";
+}
+.ctb-element.ctb-list.ctb-ul {
+
+}
+
+/**/
+

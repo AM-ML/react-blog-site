@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 import { formatDate } from "../common/functions";
 import BlogCard from "./blog-card";
 import LoadMoreBtn from "../common/load-more";
+import toast, { Toaster } from "react-hot-toast";
+import ContentBlock from "../common/content-block";
 
 
 const BlogComponent = ({ blogId }) => {
@@ -49,8 +51,6 @@ const BlogComponent = ({ blogId }) => {
       axios.post(import.meta.env.VITE_SERVER_DOMAIN + "/get-blog", { blog_id: blogId })
       .then(({ data }) => {
           setBlog(data.blog);
-          console.log(data.blog);  // Changed to log the fetched blog data
-          console.log(data.blog.content);  // Changed to log the fetched blog data
           getRelatedBlogsData({ tags: data.blog.tags, blogId: data.blog.blog_id });
         })
       .catch(err => {
@@ -66,13 +66,11 @@ const BlogComponent = ({ blogId }) => {
   }, [blogId]);
 
 
-  useEffect(() => {console.log(relatedBlogs)}, [relatedBlogs]);
-
 
   const loadMoreRelatedBlogs = () => {
     setFetchLoading(true);
 
-    axios.post(import.meta.env.VITE_SERVER_DOMAIN + "/search-blogs", { tags, limit: 5 })
+    axios.post(import.meta.env.VITE_SERVER_DOMAIN + "/search-blogs", { tags, limit: 5, page: relatedBlogs.page + 1 })
     .then(({ data }) => {
         data.blogs = data.blogs.filter(dBlog => dBlog.blog_id != blogId);
         setRelatedBlogs({results: [...relatedBlogs.results, ...data.blogs], totalDocs: data.totalDocs - 1, page: relatedBlogs.page + 1});
@@ -83,19 +81,22 @@ const BlogComponent = ({ blogId }) => {
     .finally(() => {setFetchLoading(false)});
   }
 
+  const copyLink = () => {
+    toast.success("Copied Blog Link!");
+  }
+
   return (
     <AnimationWrapper>
       {loading ? <Loading height="70vh" /> :
         <>
+          <Toaster />
           <div className="bbc-container">
 
-            <div className="bbc-bc aspect-video">
-              <img src={banner} alt="" className="bbc-bc-img" />
-            </div>
 
             <div className="bbc-title-container">
               <h2 className="bbc-title">{ TitleCase(title) }</h2>
             </div>
+
 
             <div className="bbc-fb">
               <div className="bbc-author">
@@ -108,7 +109,27 @@ const BlogComponent = ({ blogId }) => {
                 </p>
               </div>
 
-              <p className="bbc-date">Published On {formatDate(publishedAt)}</p>
+              <div className="bbc-fb-end">
+                <i role="button" onClick={copyLink} className="bx bxs-share-alt"></i>
+                <p className="bbc-date">Published On {formatDate(publishedAt)}</p>
+              </div>
+            </div>
+
+            <div className="bbc-bc aspect-video shadow">
+              <img src={banner} alt="" className="bbc-bc-img" />
+            </div>
+
+            <div className="bbc-ctbs-container">
+
+              {
+                blog.content[0].blocks.map((block, i) => {
+                  return <>
+                    <div className="bbc-ctb-wrapper" key={i}>
+                      <ContentBlock block={block} />
+                    </div>
+                  </>
+                })
+              }
 
             </div>
 

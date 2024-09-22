@@ -9,7 +9,7 @@
 }
 
 .bbc-title-container .bbc-title {
-  font-family: "Merriweather";
+  font-family: "Domine";
   font-size: 30px;
   color: #111;
   font-weight: 500;
@@ -60,6 +60,21 @@
   font-weight: normal;
 }
 
+.bbc-fb-end {
+  text-align: end;
+  align-items: center;
+  display: flex;
+  position:relative;
+}
+.bbc-fb-end .bx {
+  font-size: 28px;
+  margin-left: auto;
+  position: absolute;
+  right: 1rem;
+  top: -1.5em;
+  text-align: end;
+  justify-content: end;
+}
 
 .bbc-date {
   margin:0;
@@ -129,5 +144,21 @@
 
   .bbc-date {
     margin-top: 2rem;
+  }
+}
+
+.bbc-ctbs-container {
+  margin-top: 5em;
+}
+.bbc-ctb-wrapper {
+  /* tailwind 1 unit = 0.25rem
+  *  => my-4 = 1rem
+  * */
+  margin: 1rem 0;
+}
+
+@media screen and (max-width: 800px) {
+  .bbc-ctb-wrapper {
+    margin: 2rem 0;
   }
 }
