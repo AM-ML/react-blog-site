@@ -1,4 +1,5 @@
-.ep-text-editor {
+.ep-text-editor,
+.ep-text-editor *{
   font-family: "Times New Roman" !important;
   font-size: 23px;
   line-height: 32.7px;

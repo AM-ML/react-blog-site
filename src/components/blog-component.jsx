@@ -150,7 +150,10 @@ const BlogComponent = ({ blogId }) => {
                       return <AnimationWrapper key={i}
                         transition={{ duration: 1, delay: (i%10) * 0.07 }}
                       >
-                        <BlogCard addBorder={true} blog={rBlog} />
+                        <BlogCard
+                            addBorder={i+1 != relatedBlogs.results.length}
+                            blog={rBlog}
+                          />
                       </AnimationWrapper>
                     })
                   }

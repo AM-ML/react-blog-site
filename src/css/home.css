@@ -16,6 +16,18 @@
 }
 body {
   scrollbar-gutter: stable;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 100%;
+}
+.modal-open::-webkit-scrollbar {
+  display: none;
+}
+.modal {
+  overflow-y: hidden;
+}
+html {
+  overflow-x: hidden;
 }
 html::-webkit-scrollbar {
   width: 15px;

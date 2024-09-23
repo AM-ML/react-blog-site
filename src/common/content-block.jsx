@@ -29,9 +29,33 @@ const ContentBlock = ({ block }) => {
                                             + (data.withBackground && " background")}
     >
       <img src={data.file.url} alt="" />
-      <span className="ctb-image-caption">{ data.caption }</span>
+      <span className="ctb-image-caption"
+        dangerouslySetInnerHTML={{ __html: data.caption }}
+      >
+      </span>
     </div>
   )
+  if (type == "quote") return (
+    <div className={"ctb-element ctb-quote " + (data.alignment) }>
+      <div
+        className="ctb-quote-text"
+        dangerouslySetInnerHTML={{ __html: data.text }}
+      >
+      </div>
+      <span
+        className="ctb-quote-caption"
+        dangerouslySetInnerHTML={{ __html: data.caption }}
+      >
+      </span>
+    </div>
+  )
+  if (type == "link") return (
+    <div href={data.link} className="ctb element ctb-link"
+      dangerouslySetInnerHTML={{ __html: data.link }}
+    >
+    </div>
+  )
+
   if (type == "list") {
     if (data.style == "ordered") {
       return (
@@ -69,7 +93,7 @@ const ContentBlock = ({ block }) => {
       return <div className="ctb-container"
         key = {id}
       >
-        this is a block
+      <br/ >
       </div>
     }
 }
