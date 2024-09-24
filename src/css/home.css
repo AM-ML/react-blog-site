@@ -20,8 +20,18 @@ body {
   margin: 0 !important;
   width: 100%;
 }
-.modal-open::-webkit-scrollbar {
+
+body.modal-open .navbar-light {
+  width: calc( 100% + 15px ) !important;
+}
+
+body.modal-open .navbar-light,
+body.modal-open .np-header{
+  padding-right: 15px !important;
+}
+body.modal-open::-webkit-scrollbar {
   display: none;
+  visibility: hidden;
 }
 .modal {
   overflow-y: hidden;
@@ -96,4 +106,8 @@ html::-webkit-scrollbar-thumb {
   .sm-hidden {
     display: none !important;
   }
+}
+
+.selected {
+  background: #008bff;
 }
