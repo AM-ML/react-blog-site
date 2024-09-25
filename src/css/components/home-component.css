@@ -5,8 +5,9 @@
   color: white;
   padding-top: 30px;
   background: linear-gradient(to top, #0000ff00 55%, #2D417Eaa 83%, #2D417Eff 97%), linear-gradient(to left, #2D417Eff 12%, #2D417Eaa 44%, #0000ff00 74%), linear-gradient(to top, #3729ECff 0%, #3729ECff 100%);
-  height: 600px;
+  height: fit-content;
   min-height: 92vh
+
 }
 
 .hmc-header {
@@ -73,3 +74,15 @@
   max-width: 100%;
 }
 
+@media screen and (max-width: 900px) {
+  .hmc-header-text,
+  .hmc-header-images {
+    width: 100% !important;
+  }
+
+  .hmc-header-images{
+    display: none !important;
+    max-width: 300px;
+    margin: auto;
+  }
+}

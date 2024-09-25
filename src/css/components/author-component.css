@@ -85,6 +85,7 @@
   font-size: 16px;
 
   gap: 1em;
+  margin-bottom: 8em;
 }
 
 @media screen and (max-width: 800px) {

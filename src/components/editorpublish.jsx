@@ -7,6 +7,7 @@ import toast, {Toaster} from "react-hot-toast";
 import axios from "axios";
 import {UserContext} from "../Router";
 import {useNavigate} from "react-router-dom";
+import BlogPreview from "../common/blogPreview.jsx";
 
 const EditorPublishForm = () => {
 
@@ -242,12 +243,9 @@ const EditorPublishForm = () => {
           </div>
         </div>
 
-        <div className="epf-gi epf-article">
-          <div className="epp-preview mb-2">Preview</div>
-          <div className="epf-banner aspect-video shadow">
-            <img src={banner} className="epf-banner-img" alt="Banner" />
-          </div>
-          <div className="epp-title">{title}</div>
+        <div className="epf-gi epf-bp-container">
+          { console.log(blog) }
+          <BlogPreview blog={blog} />
         </div>
       </div>
     </AnimationWrapper>

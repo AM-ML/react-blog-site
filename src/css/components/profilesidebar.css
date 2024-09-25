@@ -13,7 +13,7 @@
   top: 0;
   height: calc(100%) !important;
   width: 78px;
-  background: #34417C !important;
+  background: #2D417E !important;
   padding: 6px 14px !important;
   z-index: 1 !important;
   transition: all 0.2s ease !important;
@@ -134,12 +134,13 @@
   align-items: center !important;
   text-decoration: none !important;
   transition: all 0.4s ease !important;
-  background: #34417C !important;
+  background: #2D417E !important;
 }
 
 
 .custom-sidebar li a:hover {
   background: #fff !important;
+  color: #2A2F3D !important;
 }
 
 .custom-sidebar li a .custom-links_name {
@@ -245,7 +246,7 @@
   line-height: 60px!important;
   transition: all 0.5s ease!important;
   background: #2A2F3D !important;
-  color: #6B6CE0 !important;
+  color: cyan !important;
 }
 
 .custom-sidebar.open .custom-profile #custom-log_out {
@@ -287,6 +288,11 @@
 
 
 .custom-sidebar li:first-child a i,
-  .custom-sidebar li:first-child a span {
-  color: #6B6CE0 !important;
+.custom-sidebar li:first-child a span {
+  color: cyan !important;
+}
+
+.custom-sidebar li:first-child a:hover i,
+.custom-sidebar li:first-child a:hover span {
+  color: #2A2F3D !important;
 }

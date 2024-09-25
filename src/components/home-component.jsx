@@ -11,7 +11,7 @@ const HomeComponent = () => {
         <div className="ms-auto hmc-col hmc-header-text">
 
           <p className="hmc-header-title">
-            Transformative Solutions for the Modern Marketplace
+            Innovative Solutions for the Modern Marketplace
           </p>
           <p className="hmc-header-paragraph">
             In an ever-evolving marketplace, staying ahead requires more than just keeping up.
