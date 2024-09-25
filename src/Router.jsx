@@ -19,6 +19,7 @@ import DraftsPanel from "./components/drafts-panel";
 import ScrollToTop from "./common/scroll";
 import Search from "./pages/search";
 import Redirect from "./common/redirect";
+import SideMenu from "./components/sidemenu";
 
 export const UserContext = createContext({});
 
@@ -47,6 +48,7 @@ const Router = () => {
         <Route path="search/:query" element={<Search />} />
         <Route path="search/null" element={<Redirect route="/blogs" />} />
         <Route path="search/" element={<Redirect route="/blogs" />} />
+        <Route path="sidemenu" element={<SideMenu />} />
         <Route path="*" element={<NotFound />} />
       </Route>
       <Route path="/dashboard" element= {<ProfileSidebar />}>

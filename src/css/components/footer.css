@@ -34,6 +34,11 @@
   transition: 0.1s ease-out;
 }
 
+
+.ftr-container * * {
+  background: #2D417E;
+}
+
 .ftr-container a:hover {
   color: #4cf;
   font-weight: 600;
@@ -57,6 +62,10 @@ footer.ftr {
   height: 100%;
   color: #fff;
   margin: 0 !important;
+}
+footer.ftr {
+  background-color: #2D417E;
+  width: 100vw;
 }
 
 .footer-wave-svg {
@@ -348,7 +357,7 @@ footer.ftr {
 
 }
 
-
+.max-760-visible { display : none ; }
 
 
 @media (min-width: 760px) {
@@ -379,4 +388,7 @@ footer.ftr {
   footer.ftr {
     height: 700px;
   }
+
+  .max-760-hidden { display : none ; }
+  .max-760-visible { display : block ; }
 }

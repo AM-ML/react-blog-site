@@ -82,7 +82,13 @@ const BlogComponent = ({ blogId }) => {
   }
 
   const copyLink = () => {
-    toast.success("Copied Blog Link!");
+    navigator.clipboard.writeText("https://boffoconsulting.net/blog/" + blogId)
+    .then(() => {
+        toast.success("Copied Blog Link!");
+      })
+    .catch(err => {
+        toast.error("Error While Copying Blog Link: "+ err);
+      })
   }
 
   return (
@@ -94,7 +100,7 @@ const BlogComponent = ({ blogId }) => {
 
 
             <div className="bbc-title-container">
-              <h2 className="bbc-title">{ TitleCase(title) }</h2>
+              <h2 className="bbc-title">{ TitleCase(title, false) }</h2>
             </div>
 
 

@@ -19,10 +19,21 @@
 
 
 .ce-header {
-  font-family: "work sans";
+  font-family: "Domine";
+  margin-top: 1em;
 }
 
 .ce-block b {
   font-weight: 800;
   font-size: inherit;
+}
+
+h3.ce-header {
+  font-size: 25px;
+  font-weight: 600;
+}
+
+h2.ce-header {
+  font-size: 28px;
+  font-weight: 600;
 }

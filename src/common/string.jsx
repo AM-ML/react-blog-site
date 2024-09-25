@@ -1,6 +1,6 @@
-function TitleCase(str) {
+function TitleCase(str, allToLower = true) {
+  str = allToLower? str.toLowerCase() : str;
   return str
-      .toLowerCase()
       .split(' ')
       .map(word => word.charAt(0).toUpperCase() + word.slice(1))
       .join(' ');
@@ -9,7 +9,7 @@ function TitleCase(str) {
 function removeLastName(fullName) {
   // Split the full name into an array of words
   const nameParts = fullName.trim().split(" ");
-  
+
   // If there's only one part, return it as is
   if (nameParts.length <= 1) {
     return fullName;

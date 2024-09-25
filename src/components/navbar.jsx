@@ -5,11 +5,19 @@ import { UserContext } from "../Router";
 import AnimationWrapper from "../common/page-animation";
 import { DropdownContent, CareersDropdown, AboutDropdown } from "./navbar-dropdown";
 import Footer from "./footer";
+import SideMenu from "./sidemenu";
 
 const Navbar = () => {
   const { userAuth: { access_token, profile_img } } = useContext(UserContext);
   const searchModalCloseBtn = useRef(null);
   const [search, setSearch] = useState(null);
+  const [appearSide, setAppearSide] = useState(false);
+
+  const toggleSideMenu = () => {
+    setAppearSide(!appearSide);
+    console.log(appearSide);
+  }
+
   const navigate = useNavigate();
 
   const handleSearch = () => {
@@ -53,11 +61,20 @@ const Navbar = () => {
         </div>
         <nav className="navbar navbar-light">
           <div className="container-fluid">
-            <Link className="navbar-brand" to="/">
+            <div className="navbar-sdm-btn-container"
+              onClick={toggleSideMenu}
+              role="button"
+            >
+              <i
+                className="navbar-sdm-btn fa-solid fa-bars"></i>
+            </div>
+            <Link className="navbar-brand" to="/"
+              onClick={() => {setAppearSide(false)}}
+            >
               <span className="text-logo text-serif text-bolder">BOFFO</span>
             </Link>
 
-            <div className=" pb-3 pt-3" style={{"width": "calc(100% - 150px)"}} id="navbarSupportedContent">
+            <div className=" pb-3 pt-3" style={{"width": "calc(100% - 185px)"}} id="navbarSupportedContent">
               <ul className="navbar-nav w-100">
                 <li className="nav-item pe-4 dp">
                   <Link role="button"
@@ -95,16 +112,16 @@ const Navbar = () => {
                 </li>
                 <li className="nav-item nb-end-md ms-auto">
                   <div>
-                    <i role="button" data-bs-toggle="modal" data-bs-target="#NavbarSearchModal" className="bx bx-search bx-md"></i>
+                    <i role="button" onClick={() => {setAppearSide(false)}} data-bs-toggle="modal" data-bs-target="#NavbarSearchModal" className="bx bx-search bx-md"></i>
                   </div>
                   <div>
                   {access_token?
-                    <Link to="/dashboard">
+                    <Link to="/dashboard" onClick={() => {setAppearSide(false)}}>
                       <img src={profile_img} width={40} />
                     </Link>
                     :
                     <div className="btn-group navbar-special-btn" role="group" aria-label="Basic outlined example">
-                      <Link to="/signin" type="button" className="signin-btn btn btn-dark px-3 py-2 ms-0">Sign In</Link>
+                      <Link to="/signin" onClick={() => {setAppearSide(false)}} type="button" className="signin-btn btn btn-dark px-3 py-2 ms-0">Sign In</Link>
                     </div>
                   }
                   </div>
@@ -115,6 +132,7 @@ const Navbar = () => {
         </nav>
       </div>
       <div style={{"minHeight": "100vh", "overflowY": "overlay"}}>
+        {appearSide && <SideMenu appearSide={appearSide} setAppearSide={setAppearSide}/>}
         <Outlet />
       </div>
 

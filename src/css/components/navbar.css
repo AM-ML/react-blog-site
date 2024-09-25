@@ -19,6 +19,7 @@
   top: 0 !important;
   left: 0 !important;
   z-index: 10 !important;
+  max-height: 100px !important;
   min-height: 100px !important;
   position: sticky;
   background-color: #2D417E;
@@ -68,6 +69,10 @@
 .nb-end-md i:active {
   scale: 1.15;
   transition: 200ms ease-out;
+}
+
+.nb-end-md i:hover {
+  color: cyan !important;
 }
 
 .nb-end-md img:hover {
@@ -155,6 +160,10 @@
   margin: 0 !important;
 }
 
+.text-logo {
+  font-size: 32px;
+}
+
 .nav-item .bx.bx-chevron-down {
   font-size: 30px !important;
 }
@@ -164,7 +173,22 @@
 }
 
 
-/* switch navbar nav items into sidebar when max-width less 840px */
+@media screen and (max-width: 900px) {
+  .navbar.navbar-light .navbar-nav .nav-item {
+    display:none;
+  }
+}
 
-/* @media screen and (max-width: 840px) { */
-/* } */
+.navbar-sdm-btn-container {
+  margin-right: 1rem;
+}
+.navbar-sdm-btn {
+  font-size: 32px;
+  margin-top: 2px;
+  cursor: pointer;
+  color: white;
+}
+
+body:has(.sdm-container) .navbar.navbar-light .navbar-nav .nav-item {
+  display: none;
+}

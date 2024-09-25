@@ -30,6 +30,14 @@ const Footer = () => {
                   target="_self">(+961) 71 55 33 22</a></p>
           </div>
 
+
+            <div className="footer-call-to-action max-760-visible">
+            <h2 className="footer-call-to-action-title">Email</h2>
+            <p className="footer-call-to-action-description"> For more info</p>
+            <a className="footer-call-to-action-button button" href="mailto:info@boffoconsulting.net" target="_self"> Email Us </a>
+          </div>
+
+
         </div>
         <div className="footer-content-column">
           <div className="footer-menu">
@@ -101,7 +109,7 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        <div className="footer-content-column">
+        <div className="footer-content-column max-760-hidden">
           <div className="footer-call-to-action">
             <h2 className="footer-call-to-action-title">Email</h2>
             <p className="footer-call-to-action-description"> For more info</p>

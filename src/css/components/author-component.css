@@ -38,6 +38,7 @@
 .ac-profile .ac-profile-email {
   margin-top: -0.4em;
   margin-bottom: 0.8em;
+  font-size: 16px;
 }
 
 .ac-profile .ac-profile-blogs-count {
@@ -86,8 +87,74 @@
   gap: 1em;
 }
 
-@media screen and (max-width: 1520px) {
-  .ac-blogs .bgcd-description {
-    display: none !important;
+@media screen and (max-width: 800px) {
+  .ac-container {
+    flex-direction: column;
+  }
+  .ac-blogs {
+    width: 100%;
+  }
+  .ac-profile-container {
+    max-width: 100%;
+    padding: 0 !important;
+  }
+  .ac-profile .ac-profile-img {
+    margin: 10px;
+  }
+  .ac-blogs-container {
+    width: 100%;
+  }
+  .ac-profile .ac-profile-bio {
+    margin: 20px 0;
+    padding-bottom: 20px;
+  }
+}
+
+.ac-profile-row {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+}
+.ac-profile-col {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  justify-self: center;
+}
+.ac-profile-col * {
+  padding: 0;
+  margin: 0 !important;
+}
+
+.ac-profile-container.max-800-visible .ac-profile .ac-profile-bio {
+  padding: 0 5vw;
+  margin-bottom: 0;
+}
+.ac-profile-container.max-800-visible .ac-profile .ac-profile-socials {
+  margin-left: 120px;
+  margin-top: -20px;
+}
+.max-800-visible {
+  display: none;
+}
+
+.sm-hr {
+  display: inline-block;
+  width: 70vw;
+  background-color: #000;
+  height: 1px;
+  margin: 2em auto ;
+}
+
+@media screen and (max-width: 800px) {
+  .max-800-visible {
+    display: block;
+  }
+
+  .max-800-hidden {
+    display: none;
   }
 }

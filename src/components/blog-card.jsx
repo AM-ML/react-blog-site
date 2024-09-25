@@ -35,7 +35,7 @@ const BlogCard = ({ blog, addBorder = true }) => {
           </Link>
           <p className="bgcd-header-date">@ { formatDate(publishedAt) }</p>
         </div>
-        <h1 className="bgcd-title line-clamp-3">{title}</h1>
+        <h1 className="bgcd-title line-clamp-3">{TitleCase(title, false)}</h1>
         <p className="bgcd-description sm-hidden md-mdxl-hidden line-clamp-2">{description}</p>
 
         <div className="bgcd-tags">

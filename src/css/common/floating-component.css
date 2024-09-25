@@ -1,0 +1,43 @@
+.ftgc-element {
+  position: fixed;
+  z-index: 9;
+  width: 100vw;
+  height: calc( 100vh - 100px );
+  max-height: calc( 100vh - 100px );
+
+  top: 100px;
+  left: 0;
+  background-color: #fff;
+
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  overflow-x: hidden ;
+}
+
+.ftgc-element.ftgc-no-nav {
+  height: 100vh;
+  max-height: 100vh;
+  top: 0;
+}
+.ftgc-element::-webkit-scrollbar {
+  width: 15px;
+}
+.ftgc-element::-webkit-scrollbar-track {
+  border: 5px solid #34417C;
+	background-color: #b2bec3;
+}
+.ftgc-element::-webkit-scrollbar-thumb {
+  background-color: #34417c;
+	border-radius: 10px;
+}
+
+body:has(.ftgc-element)::-webkit-scrollbar{
+  display: none !important;
+}
+
+body:has(.ftgc-element) {
+  max-height: 100vh;
+  overflow-y: hidden !important;
+  overflow-x: hidden !important;
+}
+

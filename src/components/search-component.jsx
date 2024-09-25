@@ -124,7 +124,7 @@ const SearchComponent = ({ query } ) => {
             ) : (
                 <>
                   {blogs && blogs.results.map((blog, i) => (
-                    <AnimationWrapper transition={{ duration: 1, delay: i * 0.08 }} key={i}>
+                    <AnimationWrapper transition={{ duration: 1, delay: (i%10) * 0.08 }} key={i}>
                       <div className="blog-card-container">
                         <BlogCard blog={blog} addBorder={i + 1 !== blogs.results.length} />
                       </div>

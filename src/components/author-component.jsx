@@ -88,6 +88,30 @@ export default function AuthComponent() {
   author.bio = author.bio.length? "\"" + author.bio + "\"": author.bio;
   return (
     <div className="ac-container">
+      <div className="ac-profile-container max-800-visible">
+        <div className="ac-profile">
+
+          <div className="ac-profile-row">
+            <img src={author.profile_img} className="ac-profile-img" alt="Profile" />
+
+            <div className="ac-profile-col">
+              <h1 className="ac-profile-name">{TitleCase(author.name)}</h1>
+              <span className="ac-profile-email">{author.email}</span>
+              <span className="ac-profile-blogs-count">{author.total_posts} Blogs - Joined At {formattedDate}</span>
+            </div>
+          </div>
+
+          <div className="ac-profile-socials">
+            {author.social_links && author.social_links.linkedin && <a target="_blank" href={author.social_links.linkedin} className="bx bxl-linkedin-square"></a>}
+            {author.social_links && author.social_links.facebook && <a target="_blank" href={author.social_links.facebook} className="bx bxl-facebook-square"></a>}
+            {author.social_links && author.social_links.instagram && <a target="_blank" href={author.social_links.instagram} className="bx bxl-instagram-alt"></a>}
+            {author.social_links && author.social_links.twitter && <a target="_blank" href={author.social_links.twitter} className="bx bxl-twitter"></a>}
+          </div>
+          <span className="ac-profile-bio">{author.bio.length ? author.bio : "No Bio."}</span>
+          <div className="sm-hr"></div>
+        </div>
+      </div>
+
       <div className="ac-blogs-container">
         <div className="ac-blogs me-2">
           {blogLoading ? (
@@ -108,12 +132,12 @@ export default function AuthComponent() {
                   })
                 ) : (
                     !blogs ? <Loading height="70vh" />:
-                    <NoData
-                      msg={blogs && blogs.results.length === 0 ? "No Blogs Found." : "Loading..."}
-                      addBtn={true}
-                      btnMsg={"Go Back"}
-                      onClick={goBack}
-                    />
+                      <NoData
+                        msg={blogs && blogs.results.length === 0 ? "No Blogs Found." : "Loading..."}
+                        addBtn={true}
+                        btnMsg={"Go Back"}
+                        onClick={goBack}
+                      />
                   )}
                 {blogs && blogs.results && blogs.results.length < blogs.totalDocs && (
                   <div className="ac-lm-container">
@@ -125,7 +149,7 @@ export default function AuthComponent() {
         </div>
       </div>
 
-      <div className="ac-profile-container">
+      <div className="ac-profile-container max-800-hidden">
         <div className="ac-profile">
           <img src={author.profile_img} className="ac-profile-img" alt="Profile" />
           <h1 className="ac-profile-name">{TitleCase(author.name)}</h1>
