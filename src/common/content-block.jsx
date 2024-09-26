@@ -50,7 +50,7 @@ const ContentBlock = ({ block }) => {
     </div>
   )
   if (type == "link") return (
-    <div href={data.link} className="ctb element ctb-link"
+    <div href={data.link} className="ctb-element ctb-link"
       dangerouslySetInnerHTML={{ __html: data.link }}
     >
     </div>

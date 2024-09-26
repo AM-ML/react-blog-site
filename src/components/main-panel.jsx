@@ -3,212 +3,136 @@ import "../css/components/main-panel.css";
 import { useContext, useEffect } from "react";
 import { UserContext } from "../Router";
 import { TitleCase } from "../common/string";
+import AnimationWrapper from "../common/page-animation";
 
 const MainPanel = () => {
-  let { userAuth: { access_token, name, username, email, profile_img } } = useContext(UserContext);
+  let { userAuth, userAuth: { name, username, email, profile_img, social_links, interests, favorite_blogs } } = useContext(UserContext);
+  name = TitleCase(name);
+
+  console.log(name)
 
   return (
-    <>
-      <div className="mp-container bg h-2-rspans">
-        <div className="mt-3 mp-grid-item mp-item-1 bg cspan-12 rspan-2 mp-r1-item">
-          <div className="gen-1 c-id-1">
-            <img className="id-1" src={profile_img} />
-          </div>
-          <div className="gen-1 c-id-2">
-            <h1 className="id-2" style={{"fontWeight": "600"}}>{TitleCase(name)}</h1>
-            <h1 className="id-3">@{username}</h1>
-          </div>
-          <div className="gen-1"></div>
-        </div>
+    <div className="mp-container">
+      <div className="mp-submit-bc">
+        <h1 className="mp-submit-bc-page-title">Edit Account</h1>
+        <button className="btn btn-lg mp-submit-btn">Save Changes</button>
       </div>
-      <div className="mp-container bg h-3-rspans mp-visible-on-large-screens">
-        <div className="mb-3 mp-grid-item mp-item-2 bg cspan-4 rspan-3 mp-r2-item">
-          <div className="sections-3-title">
-            <h3 className="font-bolder">Interests</h3>
-          </div>
-          <div className="mp-section-content border-end border-dark">
+      <div className="mp-input-container">
 
-          </div>
+        <div className="mp-profile-img-ic">
+          <img src={profile_img} alt="" className="mp-profile-img" />
         </div>
-        <div className="mb-3 mp-grid-item mp-item-3 bg cspan-4 rspan-3 mp-r2-item">
-          <div className="sections-3-title">
-            <h3 className="font-bolder">Favorite Blogs</h3>
-          </div>
-          <div className="mp-section-content border-end border-dark">
 
-          </div>
+        <div className="mp-name-ic">
+          <input defaultValue={TitleCase(name)} type="text"
+            spellCheck="false"
+            className="mp-name" />
         </div>
-        <div className="mb-3 mp-grid-item mp-item-4 bg cspan-4 rspan-3 mp-r2-item">
-          <div className="sections-3-title">
-            <h3 className="font-bolder">
-              Social Links
-            </h3>
-          </div>
-          <div className="mp-socials-gradient mp-section-3-content border-end border-dark">
-            <a href="https://x.com/ali-moumneh_2" target="_blank" className="mp-social-row mp-social-twitter">
-              <div className="social-1">
-                <i className="fa-brands fa-twitter fs-64px"></i>
-              </div>
-              <div className="social-2">
-                <div>Twitter</div>
-              </div>
-            </a>
-            <a href="https://facebook.com/ali-moumneh" target="_blank" className="mp-social-row mp-social-facebook">
-              <div className="social-1">
-                <i className="fa-brands fa-facebook fs-64px"></i>
-              </div>
-              <div className="social-2">
-                <div>Facebook</div>
-              </div>
-            </a>
-            <a href="https://instagram.com/ali-moumneh" target="_blank" className="mp-social-row mp-social-instagram">
-              <div className="social-1">
-                <i className="fa-brands fa-instagram fs-64px"></i>
-              </div>
-              <div className="social-2">
-                <div>Instagram</div>
-              </div>
-            </a>
-            <a href="https://linkedin.com/ali-moumneh" target="_blank" className="mp-social-row mp-social-linkedin">
-              <div className="social-1">
-                <i className="fa-brands fa-linkedin fs-64px"></i>
-              </div>
-              <div className="social-2">
-                <div>LinkedIn</div>
-              </div>
-            </a>
-          </div>
+
+        <div className="mp-email-ic">
+          <input type="text" defaultValue={email} className="mp-email"
+            spellCheck="false"
+          />
         </div>
 
       </div>
 
-      <div className="mp-container bg m-0 p-0 mp-visible-on-medium-screens h-3-rspans">
-        <div className="mb-3 mp-grid-item mp-item-2 bg cspan-6 rspan-5 mp-r2-item">
-          <div className="sections-3-title">
-            <h3 className="font-bolder">Interests</h3>
-          </div>
-          <div className="mp-section-content border-end border-dark">
+      <div className="mp-info-container">
 
+        <div className="mp-info-ic mp-interests-ic">
+          <h1 className="mp-interests-title mp-info-title">Interests</h1>
+
+          <div className="mp-interests">
+            <div className="mp-add-container">
+              <i className="bx bx-plus mp-add-icon"></i>
+            </div>
+            {interests? <>
+            </> :
+              <div className="mp-no-data">
+                <div className="mp-no-data-msg">
+                  No Interests Selected.
+                </div>
+              </div>
+            }
           </div>
         </div>
-        <div className="mb-3 mp-grid-item mp-item-3 bg cspan-6 rspan-5 mp-r2-item">
-          <div className="sections-3-title">
-            <h3 className="font-bolder">Favorite Blogs</h3>
-          </div>
-          <div className="mp-section-content border-end border-dark">
+
+        <div className="mp-info-ic mp-fav-ic">
+          <h1 className="mp-fav-title mp-info-title">Favorite Blogs</h1>
+
+          <div className="mp-add-container">
+              <i className="bx bx-plus mp-add-icon"></i>
+            </div>
+
+
+          {favorite_blogs? <>
+            </> :
+              <div className="mp-no-data">
+                <div className="mp-no-data-msg">
+                  No Blogs Selected.
+                </div>
+              </div>
+            }
+        </div>
+
+        <div className="mp-info-ic mp-socials-ic ">
+          <h1 className="mp-socials-title mp-info-title">Socials</h1>
+
+          <div className="mp-socials">
+            {
+              social_links.instagram && <AnimationWrapper
+                transition={{ duration: 0.3 }}
+              >
+                <div className="mp-social-link">
+                  <i className="mp-social-icon instagram-icon bx bxl-instagram-alt"></i>
+                  <input
+                    spellCheck="false"
+                    defaultValue={social_links.instagram} type="text" className="mp-social-url mp-instagram-url text-clamp" />
+                </div>
+              </AnimationWrapper>
+            }
+            {
+              social_links.linkedin && <AnimationWrapper
+                transition={{ duration: 0.3 }}
+              >
+                <div className="mp-social-link">
+                  <i className="mp-social-icon linkedin-icon bx bxl-linkedin-square"></i>
+                  <input
+                    spellCheck="false"
+                    defaultValue={social_links.linkedin} type="text" className="mp-social-url mp-linkedin-url text-clamp" />
+                </div>
+              </AnimationWrapper>
+            }
+            {
+              social_links.facebook && <AnimationWrapper
+                transition={{ duration: 0.3 }}
+              >
+                <div className="mp-social-link">
+                  <i className="mp-social-icon facebook-icon bx bxl-facebook-square"></i>
+                  <input
+                    spellCheck="false"
+                    defaultValue={social_links.facebook} type="text" className="mp-social-url mp-facebook-url text-clamp" />
+                </div>
+              </AnimationWrapper>
+            }
+            {
+              social_links.twitter && <AnimationWrapper
+                transition={{ duration: 0.3 }}
+              >
+                <div className="mp-social-link">
+                  <i className="mp-social-icon twitter-icon bx bxl-twitter"></i>
+                  <input
+                    spellCheck="false"
+                    defaultValue={social_links.twitter} type="text" className="mp-social-url mp-twitter-url text-clamp" />
+                </div>
+              </AnimationWrapper>
+            }
           </div>
         </div>
+
       </div>
-      <div className="mp-container bg m-0 p-0 mp-visible-on-medium-screens h-2-rspans">
-        <div className="m-0 p-0 mb-3 mp-grid-item mp-item-4 bg cspan-12 rspan-5 mp-r2-item">
-          <div className="sections-3-title">
-            <h3 className="font-bolder">
-              Social Links
-            </h3>
-          </div>
-          <div className="mp-socials-gradient mp-section-3-content border-end border-dark h-100">
-            <a href="https://x.com/ali-moumneh_2" target="_blank" className="mp-social-row mp-social-twitter">
-              <div className="social-1">
-                <i className="fa-brands fa-twitter fs-64px"></i>
-              </div>
-              <div className="social-2">
-                <div>Twitter</div>
-              </div>
-            </a>
-            <a href="https://facebook.com/ali-moumneh" target="_blank" className="mp-social-row mp-social-facebook">
-              <div className="social-1">
-                <i className="fa-brands fa-facebook fs-64px"></i>
-              </div>
-              <div className="social-2">
-                <div>Facebook</div>
-              </div>
-            </a>
-            <a href="https://instagram.com/ali-moumneh" target="_blank" className="mp-social-row mp-social-instagram">
-              <div className="social-1">
-                <i className="fa-brands fa-instagram fs-64px"></i>
-              </div>
-              <div className="social-2">
-                <div>Instagram</div>
-              </div>
-            </a>
-            <a href="https://linkedin.com/ali-moumneh" target="_blank" className="mp-social-row mp-social-linkedin">
-              <div className="social-1">
-                <i className="fa-brands fa-linkedin fs-64px"></i>
-              </div>
-              <div className="social-2">
-                <div>LinkedIn</div>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
 
-
-
-      <div className="mp-container bg m-0 p-0 mp-visible-on-small-screens h-2-rspans">
-        <div className="mb-3 mp-grid-item mp-item-2 bg cspan-12 rspan-5 mp-r2-item">
-          <div className="sections-3-title">
-            <h3 className="font-bolder">Interests</h3>
-          </div>
-          <div className="mp-section-content border-end border-dark">
-
-          </div>
-        </div>
-      </div>
-
-      <div className="mp-container bg m-0 p-0 mp-visible-on-small-screens h-2-rspans">
-        <div className="mb-3 mp-grid-item mp-item-3 bg cspan-12 rspan-5 mp-r2-item">
-          <div className="sections-3-title">
-            <h3 className="font-bolder">Favorite Blogs</h3>
-          </div>
-          <div className="mp-section-content border-end border-dark">
-          </div>
-        </div>
-      </div>
-      <div className="mp-socials-gradient mp-container bg m-0 p-0 mp-visible-on-small-screens h-2-rspans">
-        <div className="m-0 p-0 mb-3 mp-grid-item mp-item-4 bg cspan-12 rspan-5 mp-r2-item">
-          <div className="sections-3-title">
-            <h3 className="font-bolder">
-              Social Links
-            </h3>
-          </div>
-          <div className="mp-section-3-content border-end border-dark h-100">
-            <a href="https://x.com/ali-moumneh_2" target="_blank" className="mp-social-row mp-social-twitter">
-              <div className="social-1">
-                <i className="fa-brands fa-twitter fs-64px"></i>
-              </div>
-              <div className="social-2">
-                <div>Twitter</div>
-              </div>
-            </a>
-            <a href="https://facebook.com/ali-moumneh" target="_blank" className="mp-social-row mp-social-facebook">
-              <div className="social-1">
-                <i className="fa-brands fa-facebook fs-64px"></i>
-              </div>
-              <div className="social-2">
-                <div>Facebook</div>
-              </div>
-            </a>
-            <a href="https://instagram.com/ali-moumneh" target="_blank" className="mp-social-row mp-social-instagram">
-              <div className="social-1">
-                <i className="fa-brands fa-instagram fs-64px"></i>
-              </div>
-              <div className="social-2">
-                <div>Instagram</div>
-              </div>
-            </a>
-            <a href="https://linkedin.com/ali-moumneh" target="_blank" className="mp-social-row mp-social-linkedin">
-              <div className="social-1">
-                <i className="fa-brands fa-linkedin fs-64px"></i>
-              </div>
-              <div className="social-2">
-                <div>LinkedIn</div>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-    </>
+    </div>
   )
 }
 

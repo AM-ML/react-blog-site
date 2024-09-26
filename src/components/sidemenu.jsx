@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 
 const SideMenu = ({ appearSide, setAppearSide }) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const linkDuration = 0.3;
+  const delayFactor = 0.005;
 
   const closeSideMenu = () => {
     setAppearSide(false);
@@ -57,11 +59,15 @@ const SideMenu = ({ appearSide, setAppearSide }) => {
           industries.map((industry, i) => {
             const {name, span} = industry;
             return (
-              <Link to="/dadv" className={"sdm-ir-item span-" + span}
+                <Link to="/dadv" className={"sdm-ir-item span-" + span}
                 onClick={closeSideMenu}
                 key={i}>
-                {name}
-              </Link>
+                <AnimationWrapper
+                  transition={{ duration: linkDuration, delay: i * delayFactor}}
+                >
+                  {name}
+                </AnimationWrapper>
+                </Link>
             )
           })
         }
@@ -89,7 +95,12 @@ const SideMenu = ({ appearSide, setAppearSide }) => {
               <Link to={link} key={i}
                 onClick={closeSideMenu}
                 className={"sdm-ir-item sdm-cr-item span-" + span}>
-                {name}
+                <AnimationWrapper
+                  transition={{ duration: linkDuration, delay: i * delayFactor}}
+                >
+                  {name}
+                </AnimationWrapper>
+
               </Link>
             )
           })
@@ -119,7 +130,11 @@ const SideMenu = ({ appearSide, setAppearSide }) => {
               <Link to={link} key={i}
                 onClick={closeSideMenu}
                 className={"sdm-ai-item sdm-ir-item span-"+span}>
-                {name}
+                <AnimationWrapper
+                  transition={{ duration: linkDuration, delay: i * delayFactor}}
+                >
+                  {name}
+                </AnimationWrapper>
               </Link>
             )
           })

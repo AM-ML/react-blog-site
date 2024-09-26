@@ -82,6 +82,7 @@ const formatDataToSend = (user) => {
     username: user.personal_info.username,
     email: user.personal_info.email,
     name: user.personal_info.name,
+    social_links: user.social_links,
     is_author: user.isAuthor
   }
 }

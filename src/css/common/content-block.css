@@ -1,9 +1,9 @@
 /**/
 .ctb-paragraph * {
-  font-family: "Times New Roman";
+  font-family: "Times New Roman", "Times", serif;
 }
 .ctb-paragraph {
-  font-family: "Times New Roman";
+  font-family: "Times New Roman", "Times", serif;
   font-size: 23px;
   line-height: 32.7px;
   font-weight: 400;
@@ -15,7 +15,7 @@
 
 /**/
 .ctb-header {
-  font-family: "Domine";
+  font-family: "Domine", "Times New Roman", "Times", serif;
   margin-top: 1em;
 }
 
@@ -61,7 +61,7 @@
   line-height: 1.2;
   margin: auto;
   margin-top: 0.5em;
-  font-family: "Open Sans";
+  font-family: "Open Sans", sans-serif;
   font-style: italic;
   font-size: 16px;
   font-weight: 400;
@@ -78,21 +78,21 @@
 
 .ctb-element.ctb-list *{
   font-size: 22px;
-  font-family: "Times New Roman";
+  font-family: "Times New Roman", "Times", serif;
 }
 /**/
 
 
 /**/
 .ctb-element.ctb-quote *{
-  font-family: "Times New Roman";
+  font-family: "Times New Roman", "Times", serif;
 }
 
 .ctb-element.ctb-quote {
   font-size: 23px;
   width:100%;
   margin:50px auto;
-  font-family: "Times New Roman";
+  font-family: "Times", "Times", serif;
   font-style:italic;
   color: #333;
   padding:1.2em 60px 1.2em 75px;
@@ -107,7 +107,7 @@
 }
 
 .ctb-element.ctb-quote::before{
-  font-family:Arial;
+  font-family:Arial, sans-serif;
   content: "\201C";
   color:#333;
   font-size:4em;
@@ -123,7 +123,7 @@
 .ctb-element.ctb-quote span {
   display:block;
   color:#333333;
-  font-family: "Merriweather";
+  font-family: sans-serif, "Domine", serif;
   font-weight: 650;
   margin-top:1em;
   font-style: normal !important;
@@ -140,17 +140,13 @@
 .ctb-element.ctb-link {
   overflow-y: visible;
 }
+
+.ctb-element.ctb-link * {
+  font-family: "Times New Roman", "Times", serif;
+}
+
 .ctb-element.ctb-link iframe {
-  height: 600px !important;
+  min-height: max-content !important;
+  height: 500px;
 }
 /**/
-
-
-
-
-
-
-
-
-
-

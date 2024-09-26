@@ -93,9 +93,14 @@ button.sdm-item {
 }
 
 .sdm-ir-item:hover {
+  /* transition: scale 500ms ease; */
+  /* transition: box-shadow 500ms ease; */
   text-decoration: underline;
   text-underline-offset: 5px;
   color: #0059aa;
+  /* box-shadow: 0 2px 8px #333; */
+  /* border-radius: 6px; */
+  /* scale: 1.02; */
 
 }
 
