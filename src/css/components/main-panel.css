@@ -207,3 +207,8 @@
 .mp-container:has(.mp-input-container:hover) .mp-submit-bc {
   border-bottom-color: blue;
 }
+
+
+.mp-fav-ic .mp-no-data {
+  margin-top: 4.4em;
+}

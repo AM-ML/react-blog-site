@@ -149,4 +149,14 @@
   min-height: max-content !important;
   height: 500px;
 }
+
+.ctb-element.ctb-link table td {
+  font-size: 18px;
+  text-align: center;
+}
+.ctb-element.ctb-link table th {
+  font-size: 21px;
+  vertical-align: center;
+  text-align: center;
+}
 /**/

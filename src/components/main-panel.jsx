@@ -60,11 +60,6 @@ const MainPanel = () => {
         <div className="mp-info-ic mp-fav-ic">
           <h1 className="mp-fav-title mp-info-title">Favorite Blogs</h1>
 
-          <div className="mp-add-container">
-              <i className="bx bx-plus mp-add-icon"></i>
-            </div>
-
-
           {favorite_blogs? <>
             </> :
               <div className="mp-no-data">
@@ -80,7 +75,7 @@ const MainPanel = () => {
 
           <div className="mp-socials">
             {
-              social_links.instagram && <AnimationWrapper
+              <AnimationWrapper
                 transition={{ duration: 0.3 }}
               >
                 <div className="mp-social-link">
@@ -92,7 +87,7 @@ const MainPanel = () => {
               </AnimationWrapper>
             }
             {
-              social_links.linkedin && <AnimationWrapper
+              <AnimationWrapper
                 transition={{ duration: 0.3 }}
               >
                 <div className="mp-social-link">
@@ -104,7 +99,7 @@ const MainPanel = () => {
               </AnimationWrapper>
             }
             {
-              social_links.facebook && <AnimationWrapper
+              <AnimationWrapper
                 transition={{ duration: 0.3 }}
               >
                 <div className="mp-social-link">
@@ -116,7 +111,7 @@ const MainPanel = () => {
               </AnimationWrapper>
             }
             {
-              social_links.twitter && <AnimationWrapper
+              <AnimationWrapper
                 transition={{ duration: 0.3 }}
               >
                 <div className="mp-social-link">

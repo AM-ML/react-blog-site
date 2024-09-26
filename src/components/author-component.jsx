@@ -85,7 +85,7 @@ export default function AuthComponent() {
   if (loading) return <Preloader />;
   if (errMsg) return <NoData msg={errMsg} btnMsg="Go Home" onClick={goHome} />;
 
-  author.bio = author.bio.length? "\"" + author.bio + "\"": author.bio;
+
   return (
     <div className="ac-container">
       <div className="ac-profile-container max-800-visible">
@@ -107,7 +107,7 @@ export default function AuthComponent() {
             {author.social_links && author.social_links.instagram && <a target="_blank" href={author.social_links.instagram} className="bx bxl-instagram-alt"></a>}
             {author.social_links && author.social_links.twitter && <a target="_blank" href={author.social_links.twitter} className="bx bxl-twitter"></a>}
           </div>
-          <span className="ac-profile-bio">{author.bio.length ? author.bio : "No Bio."}</span>
+          <span className="ac-profile-bio">{author.bio.length ? `"${author.bio}"` : "No Bio."}</span>
           <div className="sm-hr"></div>
         </div>
       </div>
@@ -161,7 +161,7 @@ export default function AuthComponent() {
             {author.social_links && author.social_links.instagram && <a target="_blank" href={author.social_links.instagram} className="bx bxl-instagram-alt"></a>}
             {author.social_links && author.social_links.twitter && <a target="_blank" href={author.social_links.twitter} className="bx bxl-twitter"></a>}
           </div>
-          <span className="ac-profile-bio">{author.bio.length ? author.bio : "No Bio."}</span>
+          <span className="ac-profile-bio">{author.bio.length ? `"${author.bio}"` : "No Bio."}</span>
         </div>
       </div>
     </div>
