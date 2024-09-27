@@ -21,7 +21,6 @@
 
 .mp-profile-img-ic .mp-profile-img {
   width: 150px;
-  margin-right: 2rem;
   border-radius: 50%;
 }
 
@@ -103,6 +102,8 @@
 
 .mp-social-link .mp-social-url {
   font-size: 18px;
+  font-weight: 300;
+  color: #222;
   max-width: 100%;
   flex-grow: 1;
   background: #fff;
@@ -210,5 +211,51 @@
 
 
 .mp-fav-ic .mp-no-data {
-  margin-top: 4.4em;
+  margin-top: 2em;
+}
+
+
+.mp-profile-img-ic {
+  position: relative;
+  margin-right: 2rem;
+}
+
+.mp-img-overlay {
+
+  opacity: 0;
+  transition: opacity 500ms ease;
+
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  background: #222d;
+
+  cursor: pointer;
+}
+
+.mp-img-overlay .mp-overlay-text {
+  color: white;
+  margin-top: 6px;
+  font-size: 14px;
+  font-weight: 400;
+  font-family: "open sans";
+}
+
+.mp-img-overlay:hover {
+  opacity: 1;
+}
+
+.mp-img-overlay .mp-overlay-img {
+  display: block;
+  width: 40px;
+}
+
+#mp-profile-img-input {
+  display: none;
 }

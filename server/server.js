@@ -83,7 +83,10 @@ const formatDataToSend = (user) => {
     email: user.personal_info.email,
     name: user.personal_info.name,
     social_links: user.social_links,
-    is_author: user.isAuthor
+    interests: user.interests,
+    favorite_blogs: user.favorite_blogs,
+    is_author: user.isAuthor,
+    fullUser: user
   }
 }
 
@@ -533,6 +536,43 @@ server.get("/trending-blogs", async (req, res) => {
     return res.status(500).json({ error: err.message });
   }
 });
+
+
+// Update account route
+server.post("/update-account", verifyJWT, async (req, res) => {
+  const { id: userId, personal_info, social_links, account_info, favorite_blogs, interests } = req.body;
+
+  try {
+    // Find the user by ID
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ "error": "User not found" });
+    }
+
+    // Create an object to hold updates
+    const updates = {};
+
+    // Only add properties to updates if they are provided
+    if (personal_info) updates.personal_info = { ...user.personal_info, ...personal_info };
+    if (social_links) updates.social_links = { ...user.social_links, ...social_links };
+    if (account_info) updates.account_info = { ...user.account_info, ...account_info };
+    if (favorite_blogs) updates.favorite_blogs = favorite_blogs; // Assuming this is a direct replace
+    if (interests) updates.interests = interests; // Assuming this is a direct replace
+
+    // Update the user document
+    Object.assign(user, updates);
+
+    // Save the updated user data
+    const updatedUser = await user.save();
+
+    return res.status(200).json(formatDataToSend(updatedUser));
+  } catch (err) {
+    return res.status(500).json({ "error": err.message });
+  }
+});
+
+
 server.post("/new-blog", verifyJWT,(req, res) => {
   let authorId  = req.user;
 
