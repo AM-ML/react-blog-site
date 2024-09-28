@@ -59,21 +59,21 @@ const DropdownContent = () => {
   return (
     <div className="dp-content" ref={dpContentRef}>
       <div className="dp-content-container">
-        <Link to="/dadv" className="dp-title d-block">Civil Engineering</Link>
-        <Link to="/dadv" className="dp-title">Electrical Engineering</Link>
-        <Link to="/dadv" className="dp-title">Architecture</Link>
-        <Link to="/dadv" className="dp-title">Interior Design</Link>
-        <Link to="/dadv" className="dp-title">Solar Systems</Link>
-        <Link to="/dadv" className="dp-title">Off-Grid Water Systems</Link>
-        <Link to="/dadv" className="dp-title">Water Pumps</Link>
-        <Link to="/dadv" className="dp-title">Project Management</Link>
-        <Link to="/dadv" className="dp-title">Networking {"&"} IT</Link>
-        <Link to="/dadv" className="dp-title">Feasibility Study</Link>
-        <Link to="/dadv" className="dp-title">Innovative Solutions</Link>
-        <Link to="/dadv" className="dp-title">Financial Analysis {"&"} Risk Management</Link>
-        <Link to="/dadv" className="dp-title">Programming</Link>
-        <Link to="/dadv" className="dp-title">Business Plans {"&"} Investment Opportunities</Link>
-        <Link to="/dadv" className="dp-title">Sustainability Management</Link>
+        <Link to="/services/civil-engineering" className="dp-title d-block">Civil Engineering</Link>
+        <Link to="/services/electrical-engineering" className="dp-title">Electrical Engineering</Link>
+        <Link to="/services/architecture" className="dp-title">Architecture</Link>
+        <Link to="/services/interior-design" className="dp-title">Interior Design</Link>
+        <Link to="/services/solar-systems" className="dp-title">Solar Systems</Link>
+        <Link to="/services/water-systems" className="dp-title">Off-Grid Water Systems</Link>
+        <Link to="/services/water-pumps" className="dp-title">Water Pumps</Link>
+        <Link to="/services/project-management" className="dp-title">Project Management</Link>
+        <Link to="/services/networking" className="dp-title">Networking {"&"} IT</Link>
+        <Link to="/services/feasibility-study" className="dp-title">Feasibility Study</Link>
+        <Link to="/services/innovative-solutions" className="dp-title">Innovative Solutions</Link>
+        <Link to="/services/financial-analysis" className="dp-title">Financial Analysis {"&"} Risk Management</Link>
+        <Link to="/services/programming" className="dp-title">Programming</Link>
+        <Link to="/services/business-plans" className="dp-title">Business Plans {"&"} Investment Opportunities</Link>
+        <Link to="/services/sustainability-management" className="dp-title">Sustainability Management</Link>
       </div>
     </div>
   );

@@ -1,0 +1,50 @@
+.srv-container.ece .srv-main {
+  background-image: url("../../assets/obj/circuit_board.jpg");
+  object-fit: cover;
+}
+.srv-container.ece .srv-main::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Darkens the background */
+}
+
+.srv-container.ece .srv-main .srv-img-c {
+  display: none;
+}
+
+.srv-container.ece .srv-main .srv-text *{
+  color: white;
+text-shadow:
+    1px 1px 0 black,
+   -1px 1px 0 black,
+    1px -1px 0 black,
+   -1px -1px 0 black;
+}
+
+.srv-container.ece .srv-main .srv-text .srv-slogan {
+  font-size: 20px;
+  color: cyan;
+  text-shadow:
+    1px 1px 0 black,
+   -1px 1px 0 black,
+    1px -1px 0 black,
+   -1px -1px 0 black;
+}
+
+.srv-container.ece .srv-main .srv-text {
+  z-index: 9;
+  justify-content: space-evenly;
+}
+
+.srv-container.ece .scroll-down-icon {
+  color: white;
+  margin-bottom: 2rem;
+}
+
+.srv-container.ece .ece-electric-img {
+  width: 600px;
+}

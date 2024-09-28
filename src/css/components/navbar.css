@@ -53,7 +53,6 @@
 }
 .nb-end-md img {
   border-radius: 50%;
-  border: 0px solid #666;
 }
 
 .nb-end-md i {
@@ -65,6 +64,11 @@
   margin-top: 5px;
 }
 
+.nb-end-md .nb-end-profile-ic {
+  border-radius: 50%;
+  border: 2px solid #fff;
+  padding: 2px;
+}
 
 .nb-end-md i:active {
   scale: 1.15;
@@ -75,8 +79,8 @@
   color: cyan !important;
 }
 
-.nb-end-md img:hover {
-  border: 1px solid #6666;
+.nb-end-md .nb-end-profile-ic:hover {
+  border: 2px solid #34417c;
   transition-duration: 100ms;
   transition-property: all;
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 71, 0.2);

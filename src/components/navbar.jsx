@@ -114,10 +114,10 @@ const Navbar = () => {
                   <div>
                     <i role="button" onClick={() => {setAppearSide(false)}} data-bs-toggle="modal" data-bs-target="#NavbarSearchModal" className="bx bx-search bx-md"></i>
                   </div>
-                  <div>
+                  <div className="nb-end-profile-ic" >
                   {access_token?
                     <Link to="/dashboard" onClick={() => {setAppearSide(false)}}>
-                      <img src={profile_img} width={40} />
+                      <img className="nb-end-profile" src={profile_img} width={40} />
                     </Link>
                     :
                     <div className="btn-group navbar-special-btn" role="group" aria-label="Basic outlined example">

@@ -133,8 +133,7 @@ const MainPanel = () => {
       <div className="mp-input-container">
         <div className="mp-profile-img-ic">
           <label htmlFor="mp-profile-img-input" className="mp-img-overlay">
-            <img src={cloud_img} alt="" width={60} className="mp-overlay-img" />
-            <div className="mp-overlay-text">Upload Image</div>
+            <img src={cloud_img} alt="" className="mp-overlay-img" />
 
             <input
               type="file"

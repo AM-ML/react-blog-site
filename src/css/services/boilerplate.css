@@ -1,0 +1,97 @@
+.srv-container, .srv-container * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  overflow-x: hidden;
+}
+
+.srv-container {
+  min-height: 100vh;
+  width: 100%;
+}
+
+.srv-main {
+  margin: 0 !important;
+
+  width: 100vw;
+  height: calc( 100vh - 100px );
+  min-height: fit-content;
+
+
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.srv-main .srv-text{
+  color: black;
+
+  display: flex;
+  flex-direction: column;
+  padding-top: 4rem;
+}
+
+.srv-main .srv-img-c {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.srv-main .srv-img-c .srv-img {
+  max-width: 700px;
+}
+
+
+.srv-main .srv-text .srv-name {
+  font-family: "Merriweather", "Domine", serif;
+  font-weight: 600;
+  font-size: 55px;
+}
+
+.srv-main .srv-text .srv-slogan {
+  margin-top: 1rem;
+  text-align: center;
+  font-family: "Open Sans", "Roboto", sans-serif;
+  font-weight: normal;
+  color: black;
+}
+
+.srv-main .scroll-down-icon {
+  position: absolute;
+  bottom: 0;
+  right: 50%;
+  font-size: 22px;
+}
+
+.srv-container .srv-text-sm {
+  display: none;
+
+  margin: 2rem;
+  color: black;
+}
+.srv-container .srv-text-sm .srv-name {
+  font-family: "Domine";
+  font-size: 55px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.srv-container .srv-description {
+  margin: 4rem;
+  color: black;
+  font-family: "Open Sans", "Roboto", sans-serif;
+  font-size: 23px;
+}
+
+@media screen and (max-width: 1220px) {
+  .srv-container.cve-container .srv-text {
+    display: none;
+  }
+  .srv-container .srv-text-sm {
+    display: block;
+  }
+}
+
