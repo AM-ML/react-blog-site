@@ -1,6 +1,6 @@
 .ftgc-element {
   position: fixed;
-  z-index: 9;
+  z-index: 999;
   width: 100vw;
   height: calc( 100vh - 100px );
   max-height: calc( 100vh - 100px );

@@ -73,6 +73,8 @@
 
   width: calc( calc( 100% - 12vw ) / 3 );
   min-width: 300px;
+
+  padding-right: 5vw;
 }
 
 .mp-info-container .mp-info-ic .mp-info-title {

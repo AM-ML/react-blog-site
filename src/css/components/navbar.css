@@ -64,7 +64,7 @@
   margin-top: 5px;
 }
 
-.nb-end-md .nb-end-profile-ic {
+.nb-end-md .nb-end-profile-ic:has(.nb-end-profile) {
   border-radius: 50%;
   border: 2px solid #fff;
   padding: 2px;
@@ -79,7 +79,7 @@
   color: cyan !important;
 }
 
-.nb-end-md .nb-end-profile-ic:hover {
+.nb-end-md .nb-end-profile-ic:has(.nb-end-profile):hover {
   border: 2px solid #34417c;
   transition-duration: 100ms;
   transition-property: all;

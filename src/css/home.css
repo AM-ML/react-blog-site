@@ -111,3 +111,8 @@ html::-webkit-scrollbar-thumb {
 .selected {
   background: #008bff;
 }
+
+button.no-default-design {
+  background: none;
+  border: none;
+}

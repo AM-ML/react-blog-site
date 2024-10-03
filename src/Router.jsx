@@ -21,6 +21,12 @@ import Search from "./pages/search";
 import Redirect from "./common/redirect";
 import CivilEngineering from "./services/civil-engineering";
 import ElectricalEngineering from "./services/electrical-engineering";
+import Architecture from "./services/architecture";
+import InteriorDesign from "./services/interior-design";
+import SolarSystems from "./services/solar-systems";
+import WaterSystems from "./services/water-systems";
+import WaterPumps from "./services/water-pumps";
+import Test from "./pages/test";
 
 export const UserContext = createContext({});
 
@@ -49,8 +55,14 @@ const Router = () => {
         <Route path="search/:query" element={<Search />} />
         <Route path="search/null" element={<Redirect route="/blogs" />} />
         <Route path="search/" element={<Redirect route="/blogs" />} />
+        <Route path="test" element={<Test />} />
         <Route path="services/civil-engineering" element={<CivilEngineering />} />
         <Route path="services/electrical-engineering" element={<ElectricalEngineering />} />
+        <Route path="services/architecture" element={<Architecture />} />
+        <Route path="services/interior-design" element={<InteriorDesign />} />
+        <Route path="services/solar-systems" element={<SolarSystems />} />
+        <Route path="services/water-systems" element={<WaterSystems />} />
+        <Route path="services/water-pumps" element={<WaterPumps />} />
         <Route path="*" element={<NotFound />} />
       </Route>
       <Route path="/dashboard" element= {<ProfileSidebar />}>

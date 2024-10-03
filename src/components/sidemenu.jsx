@@ -44,12 +44,91 @@ const SideMenu = ({ appearSide, setAppearSide }) => {
 
   const Industries = () => {
     const industries = [
-      {name: "Civil Engineering", span: 1}, {name: "Electrical Engineering", span: 1}, {name: "Architecture", span: 1},
-      {name: "Interior Design", span: 1}, {name: "Solar Systems", span: 1}, {name: "Off-Grid Water Systems", span: 1},
-      {name: "Water Pumps", span: 1}, {name: "Project Management", span: 1}, {name: "Networking & IT", span: 1},
-      {name: "Feasibility Study", span: 1}, {name: "Innovative Solutions", span: 1}, {name: "Sustainability Management", span: 1},
-      {name: "Financial Analysis &", span: 1}, {name: "Risk Management", span: 1},
-      {name: "Programming", span: 1}, {name: "Business Plans &", span: 1}, {name: "Investment Opportunities", span: 1},
+      {
+        name: "Civil Engineering",
+        link: "/services/civil-engineering",
+        span: 1
+      },
+      {
+        name: "Electrical Engineering",
+        link: "/services/electrical-engineering",
+        span: 1
+      },
+      {
+        name: "Architecture",
+        link: "/services/architecture",
+        span: 1
+      },
+      {
+        name: "Interior Design",
+        link: "/services/interior-design",
+        span: 1
+      },
+      {
+        name: "Solar Systems",
+        link: "/services/solar-systems",
+        span: 1
+      },
+      {
+        name: "Off-Grid Water Systems",
+        link: "/services/water-systems",
+        span: 1
+      },
+      {
+        name: "Water Pumps",
+        link: "/services/water-pumps",
+        span: 1
+      },
+      {
+        name: "Project Management",
+        link: "/services/project-management",
+        span: 1
+      },
+      {
+        name: "Networking & IT",
+        link: "/services/networking-and-IT",
+        span: 1
+      },
+      {
+        name: "Feasibility Study",
+        link: "/services/feasibility-study",
+        span: 1
+      },
+      {
+        name: "Innovative Solutions",
+        link: "/services/innovative-solutions",
+        span: 1
+      },
+      {
+        name: "Sustainability Management",
+        link: "/services/sustainability-management",
+        span: 1
+      },
+      {
+        name: "Financial Analysis &",
+        link: "/services/financial-analysis-and-risk-management",
+        span: 1
+      },
+      {
+        name: "Risk Management",
+        link: "/services/financial-analysis-and-risk-management",
+        span: 1
+      },
+      {
+        name: "Programming",
+        link: "/services/programming",
+        span: 1
+      },
+      {
+        name: "Business Plans &",
+        link: "/services/business-plans-and-investment-oppurtunities",
+        span: 1
+      },
+      {
+        name: "Investment Opportunities",
+        link: "/services/business-plans-and-investment-oppurtunities",
+        span: 1
+      },
 
     ]
     return (
@@ -57,9 +136,9 @@ const SideMenu = ({ appearSide, setAppearSide }) => {
         <div className="sdm-ir-title">Industries</div>
         {
           industries.map((industry, i) => {
-            const {name, span} = industry;
+            const {name, span, link="/dadv" } = industry;
             return (
-                <Link to="/dadv" className={"sdm-ir-item span-" + span}
+                <Link to={link} className={"sdm-ir-item span-" + span}
                 onClick={closeSideMenu}
                 key={i}>
                 <AnimationWrapper

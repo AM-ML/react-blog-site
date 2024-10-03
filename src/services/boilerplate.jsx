@@ -1,7 +1,14 @@
+import { useState } from "react";
+import { scrollDown } from "../common/functions";
 import "../css/services/boilerplate.css";
-const Service = ({ name, img, description, children, className, slogan, imgBg=false }) => {
+const Service = ({ name, img, description, children, className, slogan="" }) => {
+
+  const [scrollIcon, setScrollIcon] = useState(true);
+  const scroll = () => {
+    scrollDown(window.innerHeight);
+  }
   return (
-  <div className={ "srv-container " + className } >
+  <div className={ "srv-container " + className } onScroll={() => {setScrollIcon(false)}}>
       <div className="srv-main">
 
         <div className="srv-img-c">
@@ -18,7 +25,9 @@ const Service = ({ name, img, description, children, className, slogan, imgBg=fa
           </div>
         </div>
 
-        <i className="scroll-down-icon fa fa-chevron-down"></i>
+        {scrollIcon && <button className="scroll-down-icon no-default-design" onClick={scroll}>
+          <i className="fa fa-chevron-down"></i>
+        </button>}
       </div>
 
       <div className="srv-text-sm">

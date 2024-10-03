@@ -1,0 +1,40 @@
+.srv-container.intd-container .srv-main {
+  background-image: url("../../assets/obj/interior.jpg")
+}
+
+.srv-container.intd-container .srv-main .srv-img-c {
+  display: none;
+}
+
+.srv-container.intd-container .srv-main .srv-text {
+  /* display: none; */
+  color: white;
+  z-index: 2;
+}
+
+.srv-container.intd-container .srv-main .srv-text .srv-slogan {
+  color: white;
+  /* display: none; */
+}
+.srv-container.intd-container .srv-text-sm {
+  display: block;
+}
+
+.srv-container.intd-container .srv-main::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* Darkens the background */
+}
+
+.srv-container.intd-container .scroll-down-icon {
+  color: white;
+}
+
+/* architecture service code */
+.srv-container.arc-container .srv-main {
+  overflow-y: hidden;
+}

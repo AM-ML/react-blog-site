@@ -64,6 +64,9 @@
   bottom: 0;
   right: 50%;
   font-size: 22px;
+  pointer-events:all;
+  cursor: pointer;
+  z-index: 9
 }
 
 .srv-container .srv-text-sm {
@@ -86,9 +89,13 @@
   font-size: 23px;
 }
 
+.srv-img {
+  max-height: 100%;
+}
+
 @media screen and (max-width: 1220px) {
   .srv-container.cve-container .srv-text {
-    display: none;
+    display: none !important;
   }
   .srv-container .srv-text-sm {
     display: block;
