@@ -9,7 +9,19 @@ import admin from "firebase-admin";
 import { getAuth } from "firebase-admin/auth";
 
 import { v2 as cloudinary } from "cloudinary";
-import serviceAccount from './firebase.json' assert { type: 'json' };
+
+const serviceAccount = {
+  type: process.env.FIREBASE_TYPE,
+  project_id: process.env.FIREBASE_PROJ_ID,
+  private_key_id: process.env.FIREBASE_PK_ID,
+  private_key: process.env.FIREBASE_PK.replace(/\\n/g, '\n'),
+  client_email: process.env.FIREBASE_CE,
+  client_id: process.env.FIREBASE_CI,
+  auth_uri: process.env.FIREBASE_AUTH_URI,
+  token_uri: process.env.FIREBASE_TOKEN_URI,
+  auth_provider_x509_cert_url: process.env.FIREBASE_APCU,
+  client_x509_cert_url: process.env.FIREBASE_CCU
+};
 
 // schema
 import User from "./Schema/User.js";
