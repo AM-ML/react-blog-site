@@ -9,11 +9,11 @@ import admin from "firebase-admin";
 import { getAuth } from "firebase-admin/auth";
 
 import { v2 as cloudinary } from "cloudinary";
-import serviceAccount from './firebase.json' assert { type: 'json' };
+import serviceAccount from '../firebase.json' assert { type: 'json' };
 
 // schema
-import User from "./Schema/User.js";
-import Blog from "./Schema/Blog.js";
+import User from "../Schema/User.js";
+import Blog from "../Schema/Blog.js";
 
 const server = express();
 const port = 3000;
@@ -625,9 +625,11 @@ server.post("/new-blog", verifyJWT,(req, res) => {
   });
 });
 
-// Start server
-server.listen(port, '0.0.0.0', () => {
-  console.log("Listening on port " + port);
-});
+server.get("/", (req, res) => res.send("Express on Vercel"));
 
-module.exports = server;
+// Start server
+// server.listen(port, '0.0.0.0', () => {
+//   console.log("Listening on port " + port);
+// });
+
+export default server;
