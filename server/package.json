@@ -1,13 +1,13 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "main": "api/server.js",
+  "main": "server.js",
   "description": "",
   "main": "server.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon api/server.js"
+    "start": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",
