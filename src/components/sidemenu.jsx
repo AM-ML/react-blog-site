@@ -12,7 +12,6 @@ const SideMenu = ({ appearSide, setAppearSide }) => {
 
   const closeSideMenu = () => {
     setAppearSide(false);
-    console.log('closing');
   }
 
   const routes = [
@@ -39,8 +38,8 @@ const SideMenu = ({ appearSide, setAppearSide }) => {
   }
 
   useEffect(() => {
-
-  }, [activeIndex])
+    console.log(window.innerWidth <= 650);
+  }, [])
 
   const Industries = () => {
     const industries = [
@@ -226,7 +225,7 @@ const SideMenu = ({ appearSide, setAppearSide }) => {
 
   return (
     <AnimationWrapper>
-      <FloatingComponent className={!appearSide? " d-none": ''} style={{"display": "flex", "flexDirection": "row", "flexWrap": "nowrap"}}>
+      <FloatingComponent className={!appearSide? " d-none": ' sdm-ft'} style={{"display": "flex", "flexDirection": "row", "flexWrap": "nowrap"}}>
         <div className="sdm-container">
           {routes.map((route, i) => {
             if (! route.toEnd) {return <Route data={{...route, index:i}} active={i == activeIndex} key={i} /> }

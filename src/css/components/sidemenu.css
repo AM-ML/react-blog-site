@@ -1,5 +1,5 @@
 .sdm-container {
-  height: calc( 100vh - 100px ) ;
+  height: calc( 100% ) ;
   background-color: #2D417E;
   scrollbar-gutter: stable;
   min-width: 350px !important;
@@ -126,3 +126,30 @@ button.sdm-item {
 
 .sdm-cr-container {
 }
+
+.sdm-ir-container {
+  max-height: 100%;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+}
+
+.sdm-ir-container::-webkit-scrollbar {
+  width: 15px;
+}
+
+.sdm-ir-container::-webkit-scrollbar-track {
+  border: 5px solid #34417C;
+	background-color: #b2bec3;
+}
+
+.sdm-ir-container::-webkit-scrollbar-thumb {
+  background-color: #34417c;
+	border-radius: 10px;
+  margin: 0;
+}
+
+.ftgc-element.sdm-ft {
+  padding: 0;
+}
+
+

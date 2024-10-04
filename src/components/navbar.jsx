@@ -15,7 +15,6 @@ const Navbar = () => {
 
   const toggleSideMenu = () => {
     setAppearSide(!appearSide);
-    console.log(appearSide);
   }
 
   const navigate = useNavigate();

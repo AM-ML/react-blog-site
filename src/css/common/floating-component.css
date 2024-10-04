@@ -41,3 +41,8 @@ body:has(.ftgc-element) {
   overflow-x: hidden !important;
 }
 
+
+.ftgc-element.sdm-ft {
+  max-height: 100vh !important;
+}
+
