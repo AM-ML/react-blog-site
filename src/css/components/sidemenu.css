@@ -1,23 +1,25 @@
 .sdm-container {
-  height: calc( 100% ) ;
+  height: calc(100vh - 100px);
   background-color: #2D417E;
   scrollbar-gutter: stable;
   min-width: 350px !important;
   max-width: 350px !important;
   border-top: 1px solid white;
 
-
   padding: 0 15px;
   padding-top: 3em;
 
-  display:flex;
+  display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
 
   overflow-y: auto;
+  padding-bottom: 70px;
 
+  /* Sticky property */
+  position: sticky;
+  top: 0; /* Adjust this value as needed */
 }
-
 .sdm-item {
   display: block;
 
@@ -78,7 +80,7 @@ button.sdm-item {
   width: calc( 100% + 15px );
   flex-direction: row;
   flex-wrap: wrap;
-  padding: 1rem;
+  padding: 0 1rem;
 }
 
 .sdm-ir-item {
@@ -106,7 +108,7 @@ button.sdm-item {
 
 .sdm-ir-title {
   width: 100%;
-  padding: 1rem 0rem;
+  padding: 0 0 1rem 0;
   margin: 0 2rem 2rem 2rem;
   font-size: 22px;
   font-family: "Domine";
@@ -131,13 +133,7 @@ button.sdm-item {
 }
 
 
-
-
-.sdm-cr-container {
-}
-
 .sdm-ir-container {
-  max-height: 100%;
   overflow-y: auto;
   scrollbar-gutter: stable;
 }
@@ -161,4 +157,23 @@ button.sdm-item {
   padding: 0;
 }
 
+@media screen and (max-width: 550px) {
+  .sdm-container {
+    min-width: 100vw !important;
+  }
+}
 
+
+.sdm-menu-bc {
+  display: inline-block;
+  margin: 1rem;
+}
+
+.sdm-menu-bc .sdm-menu-btn {
+  background: none;
+  border: none;
+}
+
+.sdm-menu-bc .sdm-menu-btn i {
+  font-size: 40px;
+}

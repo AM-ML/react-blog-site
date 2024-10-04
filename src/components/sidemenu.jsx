@@ -7,8 +7,15 @@ import { useEffect, useState } from "react";
 
 const SideMenu = ({ appearSide, setAppearSide }) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [displayMenu, setDisplayMenu] = useState(true);
   const linkDuration = 0.3;
   const delayFactor = 0.005;
+
+  useEffect(() => {
+    if (window.innerWidth <= 550) {
+      setDisplayMenu(false);
+    }
+  }, [])
 
   const closeSideMenu = () => {
     setAppearSide(false);
@@ -25,21 +32,18 @@ const SideMenu = ({ appearSide, setAppearSide }) => {
   const Route = ({ data, active }) => {
     const { type, name, index } = data;
     if (type == "dropdown") return (
-      <button className={"sdm-item " + (active && "sdm-active")} onClick={() => {setActiveIndex(index)}}>
+      <button className={"sdm-item " + (active && "sdm-active")} onClick={() => {setActiveIndex(index); if (window.innerWidth <= 550) { setDisplayMenu(false) } }}>
         { name }
         <i className="fa-solid fa-chevron-right"></i>
       </button>
     )
     if (type == "Link") return (
-      <Link to={ data.to } onClick={closeSideMenu}  className="sdm-item">
+      <Link to={ data.to } onClick={() => { closeSideMenu(); }}  className="sdm-item">
         { name }
       </Link>
     )
   }
 
-  useEffect(() => {
-    console.log(window.innerWidth <= 650);
-  }, [])
 
   const Industries = () => {
     const industries = [
@@ -226,7 +230,7 @@ const SideMenu = ({ appearSide, setAppearSide }) => {
   return (
     <AnimationWrapper>
       <FloatingComponent className={!appearSide? " d-none": ' sdm-ft'} style={{"display": "flex", "flexDirection": "row", "flexWrap": "nowrap"}}>
-        <div className="sdm-container">
+        <div className={ displayMenu? "sdm-container " : "d-none" }>
           {routes.map((route, i) => {
             if (! route.toEnd) {return <Route data={{...route, index:i}} active={i == activeIndex} key={i} /> }
           })}
@@ -237,6 +241,15 @@ const SideMenu = ({ appearSide, setAppearSide }) => {
           </div>
         </div>
         <div className="sdm-second-container">
+          <div className="sdm-menu-bc">
+            <button
+              onClick={() => {setDisplayMenu(!displayMenu)}}
+              className="sdm-menu-btn"
+            >
+              <i
+                className={ displayMenu? "bx bx-chevron-left" : "bx bx-chevron-right" }></i>
+            </button>
+          </div>
           {children[activeIndex]}
         </div>
       </FloatingComponent>

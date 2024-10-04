@@ -36,7 +36,6 @@ const MainPanel = () => {
 
         let url = response.data.url;
 
-        console.log({ id, personal_info: { profile_img }});
         axios.post(import.meta.env.VITE_SERVER_DOMAIN + "/update-account", { id, personal_info: { profile_img: url }}, config )
         .then((resp) => resp)
         .catch(err => { throw new Error("Couldn't update account successfully") });
@@ -117,9 +116,6 @@ const MainPanel = () => {
       });
   };
 
-  useEffect(() => {
-    console.log({ id, access_token, personal_info: { profile_img } });
-  }, [])
 
   return (
     <div className="mp-container">
