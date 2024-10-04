@@ -96,7 +96,7 @@ const BlogsComponent = () => {
 
   return (
     <FilterContext.Provider value={{ filterFunc: handleFilter, originalBlogs, originalTrendings, blogs, setBlogs, trendings, setTrendings }}>
-      <div className="bc-container mx-5 mt-3">
+      <div className="bc-container  mt-3">
         <div className="bc-latest">
           <InPageNavigation blogs={originalBlogs} filterFunc={handleFilter} routes={["home", "trending"]}>
             <div className="ltbgs-container">

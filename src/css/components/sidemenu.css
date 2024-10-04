@@ -123,6 +123,15 @@ button.sdm-item {
   }
 }
 
+@media screen and (max-width: 600px){
+  .sdm-container {
+    min-width: 200px !important;
+    max-width: 200px !important;
+  }
+}
+
+
+
 
 .sdm-cr-container {
 }

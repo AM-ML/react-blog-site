@@ -1,4 +1,5 @@
 import express from "express";
+import NodeCache from 'node-cache';
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -513,43 +514,32 @@ server.post("/search-authors", async (req, res) => {
     return res.status(500).json({ "error": err.message });
   }
 });
+
+
+// Create a cache instance (in-memory caching)
+const trendingBlogsCache = new NodeCache({ stdTTL: 3600 }); // Cache for 1 hour
+
 server.get("/trending-blogs", async (req, res) => {
   const maxLimit = 10;
-  let blogs = [];
-  let monthCounter = 0; // Tracks how many months back we're fetching from
+
+  // Check if cached blogs are available
+  const cachedBlogs = trendingBlogsCache.get("trendingBlogs");
+  if (cachedBlogs) {
+    return res.status(200).json({ blogs: cachedBlogs });
+  }
 
   try {
-    while (blogs.length < maxLimit) {
-      // Get the current date and subtract 'monthCounter' months
-      let dateFrom = new Date();
-      dateFrom.setMonth(dateFrom.getMonth() - monthCounter);
+    // Fetch top trending blogs based on total_reads, filtering out drafts
+    const blogs = await Blog.find({ draft: false })
+      .populate("author", "personal_info.profile_img personal_info.username personal_info.name -_id")
+      .sort({ "activity.total_reads": -1, publishedAt: -1 }) // Sort by total reads, then recent publications
+      .select("blog_id title description banner activity tags publishedAt -_id")
+      .limit(maxLimit); // Limit to top 10 blogs
 
-      // Get the start and end of the month for this iteration
-      let startOfMonth = new Date(dateFrom.getFullYear(), dateFrom.getMonth(), 1);
-      let endOfMonth = new Date(dateFrom.getFullYear(), dateFrom.getMonth() + 1, 0);
+    // Cache the result for 1 hour
+    trendingBlogsCache.set("trendingBlogs", blogs);
 
-      // Find blogs published within this month, sorted by total_reads
-      const monthlyBlogs = await Blog.find({
-        draft: false,
-        publishedAt: { $gte: startOfMonth, $lte: endOfMonth }
-      })
-        .populate("author", "personal_info.profile_img personal_info.username personal_info.name -_id")
-        .sort({ "activity.total_reads": -1 })
-        .select("blog_id title description banner activity tags publishedAt -_id")
-        .limit(maxLimit - blogs.length); // Fetch only the remaining number of blogs
-
-      // Add the fetched blogs to the main list
-      blogs = blogs.concat(monthlyBlogs);
-
-      // If there are no more blogs to fetch from previous months, break
-      if (monthlyBlogs.length === 0) {
-        break;
-      }
-
-      monthCounter++; // Move to the previous month
-    }
-
-    // Return the accumulated blogs
+    // Return the trending blogs
     return res.status(200).json({ blogs });
   } catch (err) {
     return res.status(500).json({ error: err.message });
