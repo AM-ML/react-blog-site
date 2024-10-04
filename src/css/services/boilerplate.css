@@ -83,7 +83,7 @@
 }
 
 .srv-container .srv-description {
-  margin: 4rem;
+  margin: 30px;
   color: black;
   font-family: "Open Sans", "Roboto", sans-serif;
   font-size: 23px;
@@ -91,6 +91,8 @@
 
 .srv-img {
   max-height: 100%;
+  margin-right: calc( 5px + 15px );
+  margin-left: 5px;
 }
 
 @media screen and (max-width: 1220px) {
@@ -102,3 +104,31 @@
   }
 }
 
+@media screen and (max-width: 450px) {
+  .srv-main .srv-text .srv-name,
+  .srv-container .srv-text-sm .srv-name {
+    font-size: 35px !important;
+  }
+
+  .srv-container .srv-description {
+    font-size: 20px;
+    padding: 0 2vw;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .srv-main {
+    object-fit: cover;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .srv-container.wtrs-container .srv-main .srv-text,
+  .srv-container.intd-container .srv-main .srv-text {
+    display: none;
+  }
+}
+
+.srv-container.wtrs-container .srv-main .srv-text {
+  display: none;
+}

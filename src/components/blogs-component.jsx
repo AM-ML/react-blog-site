@@ -111,10 +111,10 @@ const BlogsComponent = () => {
                       </AnimationWrapper>
                     })
                   }
-                </> : <NoData msg="No Matching Blogs Found." addBtn={false} />}
+                </> : <p className="scc-no-data">No Blogs Found.</p>}
               </div>
               {!loading ? blogs && blogs.totalDocs > blogs.results.length?
-                <LoadMoreBtn onClick={loadMore} />: <EndOfData />
+                <LoadMoreBtn onClick={loadMore} />: ""
                 :
                 <Loading height="40vh" />}
             </div>
@@ -130,7 +130,8 @@ const BlogsComponent = () => {
                       </AnimationWrapper>
                     })
                   }
-                </> : <NoData addBtn={false} msg="No Matching Blogs Found." />}
+                </> : <p className="scc-no-data">No Blogs Found.</p>}
+
               </div>
             </div>
           </InPageNavigation>

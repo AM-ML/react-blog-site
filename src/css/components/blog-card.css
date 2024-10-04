@@ -51,7 +51,7 @@
   flex-wrap:nowrap;
   flex-direction: row;
   align-items:center;
-  height: 30px;
+  height: max-content;
   margin-bottom: 1em;
 }
 

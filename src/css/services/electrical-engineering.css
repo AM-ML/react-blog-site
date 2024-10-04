@@ -47,7 +47,8 @@ text-shadow:
 }
 
 .srv-container.ece .ece-electric-img {
-  width: 600px;
+  width: 100%;
+  max-width: 600px;
 }
 
 .srv-container.ece .srv-text-sm {
