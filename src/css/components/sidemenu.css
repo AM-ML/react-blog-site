@@ -75,7 +75,7 @@ button.sdm-item {
 
 .sdm-ir-container {
   display: flex;
-  width: 100%;
+  width: calc( 100% + 15px );
   flex-direction: row;
   flex-wrap: wrap;
   padding: 1rem;
