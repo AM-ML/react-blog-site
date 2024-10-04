@@ -144,6 +144,11 @@
   margin-left: auto;
 }
 
+@media screen and (max-width: 768px) {
+  .bgcd-container-container {
+    zoom: 70%;
+  }
+}
 
 .bgcd-banner {
   object-fit: cover;

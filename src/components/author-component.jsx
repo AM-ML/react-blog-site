@@ -98,15 +98,16 @@ export default function AuthComponent() {
               <h1 className="ac-profile-name">{TitleCase(author.name)}</h1>
               <span className="ac-profile-email">{author.email}</span>
               <span className="ac-profile-blogs-count">{author.total_posts} Blogs - Joined At {formattedDate}</span>
-            </div>
-          </div>
-
-          <div className="ac-profile-socials">
+              <div className="ac-profile-socials">
             {author.social_links && author.social_links.linkedin && <a target="_blank" href={author.social_links.linkedin} className="bx bxl-linkedin-square"></a>}
             {author.social_links && author.social_links.facebook && <a target="_blank" href={author.social_links.facebook} className="bx bxl-facebook-square"></a>}
             {author.social_links && author.social_links.instagram && <a target="_blank" href={author.social_links.instagram} className="bx bxl-instagram-alt"></a>}
             {author.social_links && author.social_links.twitter && <a target="_blank" href={author.social_links.twitter} className="bx bxl-twitter"></a>}
           </div>
+            </div>
+          </div>
+
+
           <span className="ac-profile-bio">{author.bio.length ? `"${author.bio}"` : "No Bio."}</span>
           <div className="sm-hr"></div>
         </div>

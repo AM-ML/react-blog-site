@@ -96,6 +96,7 @@
 }
 
 @media screen and (max-width: 1220px) {
+  .srv-container.arc-container .srv-text,
   .srv-container.cve-container .srv-text {
     display: none !important;
   }
@@ -125,10 +126,10 @@
 @media screen and (max-width: 480px) {
   .srv-container.wtrs-container .srv-main .srv-text,
   .srv-container.intd-container .srv-main .srv-text {
-    display: none;
+    display: none !important;
   }
 }
 
 .srv-container.wtrs-container .srv-main .srv-text {
-  display: none;
+  display: none !important;
 }

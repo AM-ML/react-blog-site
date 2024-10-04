@@ -52,7 +52,7 @@ const BlogCard = ({ blog, addBorder = true }) => {
 
       <div className="bgcd-banner-container aspect-square">
 
-        <img src={banner} className="w-100 h-100 bgcd-banner"/>
+        <img src={banner} className="bgcd-banner"/>
       </div>
     </Link>
   )
