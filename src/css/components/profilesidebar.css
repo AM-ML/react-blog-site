@@ -296,3 +296,20 @@
 .custom-sidebar li:first-child a:hover span {
   color: #2A2F3D !important;
 }
+
+@media screen and (max-width: 768px) {
+  .custom-sidebar li.custom-profile {
+    width: 58px !important;
+  }
+
+  .custom-home-section {
+    left: 58px !important;
+    width: calc(100% - 58px) !important;
+  }
+
+
+  .custom-sidebar {
+    width: 58px;
+    padding: 6px 4px !important;
+  }
+}

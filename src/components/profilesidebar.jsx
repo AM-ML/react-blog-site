@@ -1,5 +1,5 @@
 // Sidebar.js
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import '../css/components/profilesidebar.css';
 import { Link, Navigate, Outlet } from 'react-router-dom';
 import { UserContext } from "../Router";
@@ -15,12 +15,6 @@ const ProfileSidebar = () => {
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
-  const searchRef = useRef();
-
-  const handleClickSearch = () => {
-    if(!isOpen) toggleSidebar();
-    searchRef.current.focus();
-  }
 
   const handleLogOut = () => {
     removeFromSession("user");
