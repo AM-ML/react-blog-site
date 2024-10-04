@@ -196,3 +196,12 @@
 body:has(.sdm-container) .navbar.navbar-light .navbar-nav .nav-item {
   display: none;
 }
+
+
+.nb-end-md {
+  align-items: center;
+  padding: 0;
+}
+.nb-end-md * {
+  margin: 0;
+}

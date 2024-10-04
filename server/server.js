@@ -50,7 +50,7 @@ const passwordRegex = /^(?=.*\d)(?=.*[a-z]).{6,20}$/;
 // Middleware to enable JSON data sharing between request and response
 server.use(express.json({ limit: "25mb" }));
 server.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "https://boffo-frontend-five.vercel.app"); // Replace with your frontend URL
+  res.setHeader("Access-Control-Allow-Origin", "*"); // Replace with your frontend URL
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
   res.setHeader("Access-Control-Allow-Credentials", "true"); // If cookies are used
