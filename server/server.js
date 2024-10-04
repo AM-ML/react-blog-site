@@ -23,8 +23,6 @@ const serviceAccount = {
   client_x509_cert_url: process.env.FIREBASE_CCU
 };
 
-console.log(process.env.FIREBASE_PK);
-
 // schema
 import User from "./Schema/User.js";
 import Blog from "./Schema/Blog.js";
