@@ -4,7 +4,6 @@ import InPageNavigation from "./inpage-navigation";
 import axios from "axios";
 import BlogCard from "./blog-card.jsx";
 import Loading from "../common/loading.jsx";
-import NoData from "../common/nodata.jsx";
 import EndOfData from "../common/end-of-data.jsx";
 import {useEffect, useState} from "react";
 import LoadMoreBtn from "../common/load-more";
@@ -23,9 +22,6 @@ const SearchComponent = ({ query } ) => {
   const [uTags, setuTags] = useState([]);
   const navigate = useNavigate();
 
-  const goHome = () => {
-    navigate("/");
-  }
 
   const getLatestBlogs = (page = 1, doCreate = false, bigLoad=false) => {
     if (blogs != null) (bigLoad? setBigLoading(true) : setLoading(true));
@@ -112,7 +108,7 @@ const SearchComponent = ({ query } ) => {
       {(bigLoading || !blogs || !originalBlogs || !authors) && <Preloader />}
       <div className="scc-results-container">
         <InPageNavigation
-          routes={[`Search Results for - "${query}"`, "Authors"]}
+          routes={[`Search Results${ window.innerWidth >= 768 ? "for - ${query}": ''}`, "Authors"]}
           filterFunc={handleFilter}
           blogs = {originalBlogs}
         >
