@@ -193,7 +193,7 @@
   color: white;
 }
 
-body:has(.sdm-container) .navbar.navbar-light .navbar-nav .nav-item {
+body:has(.ftgc-element.sdm-ft) .navbar.navbar-light .navbar-nav .nav-item {
   display: none;
 }
 
