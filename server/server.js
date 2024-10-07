@@ -277,26 +277,54 @@ const uploadBanner = async (base64) => {
 }
 
 // Upload image
-const uploadImage = async (base64) => {
-  const opts = {
-    public_id: generateUploadURL(),
-    overwrite: true,
-    invalidate: true,
-    resource_type: "image",
-    format: "jpeg",
-    quality: "auto",
-    tags: ["blog-image", "image"]
-  };
+const uploadImage = async (base64, is_profile_img=false) => {
+  if(!is_profile_img) {
+    const opts = {
+      public_id: generateUploadURL(),
+      overwrite: true,
+      invalidate: true,
+      resource_type: "image",
+      format: "jpeg",
+      quality: "auto",
+      tags: ["blog-image", "image"]
+    };
 
-  try {
-    const result = await cloudinary.uploader.upload(base64, opts);
-    return result.url; // Return the URL directly
-  } catch (err) {
-    throw err; // Throw the error to be handled in the calling function
+    try {
+      const result = await cloudinary.uploader.upload(base64, opts);
+      return result.url; // Return the URL directly
+    } catch (err) {
+      throw err; // Throw the error to be handled in the calling function
+    }
+  }
+  else {
+    const opts = {
+      public_id: generateUploadURL(),
+      overwrite: true,
+      invalidate: true,
+      resource_type: "image",
+      format: "jpeg",
+      quality: "auto",
+      transformation: [
+        {
+          width: 120,
+          height: 120,
+          crop: "thumb",
+          gravity: "north"
+        }
+      ],
+      tags: ["blog-image", "image"]
+    };
+
+    try {
+      const result = await cloudinary.uploader.upload(base64, opts);
+      return result.url; // Return the URL directly
+    } catch (err) {
+      throw err; // Throw the error to be handled in the calling function
+    }
   }
 }
 
-  // Upload banner route
+// Upload banner route
 server.post("/uploadBanner", async (req, res) => {
   const { base64 } = req.body;
   try {
@@ -309,9 +337,9 @@ server.post("/uploadBanner", async (req, res) => {
 
 // Upload image route
 server.post("/uploadImage", async (req, res) => {
-  const { base64 } = req.body;
+  const { base64, is_profile_img=false } = req.body;
   try {
-    const url = await uploadImage(base64);
+    const url = await uploadImage(base64, is_profile_img);
     return res.status(200).json({ url });
   } catch (err) {
     return res.status(500).json({ error: err.message });

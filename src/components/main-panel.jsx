@@ -32,7 +32,7 @@ const MainPanel = () => {
       let toastId = toast.loading("Uploading Image...");
 
       try {
-        const response = await axios.post(import.meta.env.VITE_SERVER_DOMAIN + "/uploadImage", { base64: b64 });
+        const response = await axios.post(import.meta.env.VITE_SERVER_DOMAIN + "/uploadImage", { base64: b64, is_profile_img: true });
 
         let url = response.data.url;
 

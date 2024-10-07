@@ -108,7 +108,7 @@ const SearchComponent = ({ query } ) => {
       {(bigLoading || !blogs || !originalBlogs || !authors) && <Preloader />}
       <div className="scc-results-container">
         <InPageNavigation
-          routes={[`${ window.innerWidth >= 768 ? "Search Results for - ${query}": 'Results'}`, "Authors"]}
+          routes={[`${ window.innerWidth >= 768 ? `Search Results for - ${query}`: 'Results'}`, "Authors"]}
           filterFunc={handleFilter}
           blogs = {originalBlogs}
         >
