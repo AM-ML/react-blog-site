@@ -306,8 +306,8 @@ const uploadImage = async (base64, is_profile_img=false) => {
       quality: "auto",
       transformation: [
         {
-          width: 120,
-          height: 120,
+          width: 200,
+          height: 200,
           crop: "thumb",
           gravity: "north"
         }
