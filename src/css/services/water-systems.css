@@ -30,7 +30,9 @@
    -0.5px -0.5px 0 white;
 }
 .srv-container.wtrs-container .srv-text-sm {
-  display: block;
+  display: inline-block;
+  width: 100%;
+  max-width: 1260px;
 }
 
 .srv-container.wtrs-container .srv-main::before {

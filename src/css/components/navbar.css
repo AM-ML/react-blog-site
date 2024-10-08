@@ -109,6 +109,7 @@
   height: 100%;
 
   padding: 36px 20px;
+  padding-right: 85px;
 
   font-size: larger;
   font-family: "open sans";
@@ -143,7 +144,7 @@
 }
 .custom-navbar-modal .bx.bx-x.mb-5{
   color: white !important;
-  background: black;
+  background: #2D417e;
   border: none;
   font-size: 73px;
   font-weight: 100;
