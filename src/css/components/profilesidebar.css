@@ -17,7 +17,7 @@
   padding: 6px 14px !important;
   z-index: 1 !important;
   transition: all 0.2s ease !important;
-  overflow-y: auto !important;
+  overflow-y: hidden !important;
   position: sticky;
 }
 
