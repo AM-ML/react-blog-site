@@ -91,9 +91,13 @@
 }
 
 .nb-search-container {
-  width: calc(100% - 10rem);
-  margin: auto;
-  height: 50px;
+  position: absolute;
+  top: 7px;
+  width: calc( 100vw - 1px * 2 );
+  height: 75px;
+  padding: 0;
+  left: 1px;
+  right: 1px;
 }
 
 .nb-search-container .nb-search::placeholder {
@@ -102,8 +106,6 @@
 .nb-search-container .nb-search {
   width: 100%;
   height: 100%;
-
-  margin-left: 20px !important;
 
   padding: 36px 20px;
 
@@ -134,14 +136,18 @@
 }
 
 .custom-navbar-modal .bx.bx-x.mb-5{
-  color: #ddd;
-  background: none;
+  color: white !important;
+  background: black;
   border: none;
-  font-size: calc( 72px + 1.2em );
-  margin-bottom: 8rem;
-  margin-top:  0.7em;
-  margin-right: 1rem;
+  font-size: 73px;
   font-weight: 100;
+  position: absolute;
+  right: 0;
+  top: 8px;
+  right: 2px;
+  border-left: 1px solid cyan;
+  padding: 0 !important;
+  margin: 0;
 }
 
 .custom-navbar-modal .bx.bx-x.mb-5:hover {

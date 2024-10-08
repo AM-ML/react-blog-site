@@ -13,7 +13,8 @@ const SideMenu = ({ appearSide, setAppearSide }) => {
 
   useEffect(() => {
     if (window.innerWidth <= 550) {
-      setDisplayMenu(false);
+      setDisplayMenu(true);
+      setActiveIndex(-1);
     }
   }, [])
 
@@ -250,7 +251,7 @@ const SideMenu = ({ appearSide, setAppearSide }) => {
                 className={ displayMenu? "bx bx-chevron-left" : "bx bx-chevron-right" }></i>
             </button>
           </div>
-          {children[activeIndex]}
+          {activeIndex == -1? '': children[activeIndex]}
         </div>
       </FloatingComponent>
     </AnimationWrapper>

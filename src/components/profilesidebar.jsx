@@ -21,11 +21,32 @@ const ProfileSidebar = () => {
     setUserAuth({access_token: null});
   }
 
-  const accOpened = () => {setWhatOpened("Account")};
-  const draftsOpened = () => {setWhatOpened("Drafts")};
-  const writeOpened = () => {setWhatOpened("Write")};
-  const profileOpened = () => {setWhatOpened("Profile")};
-  const settingsOpened = () => {setWhatOpened("Settings")};
+  const handleLClick = () => {
+    if (window.innerWidth <= 675) {
+      setIsOpen(false);
+    }
+  }
+
+  const accOpened = () => {
+    handleLClick();
+    setWhatOpened("Account")
+  };
+  const draftsOpened = () => {
+    handleLClick();
+    setWhatOpened("Drafts")
+  };
+  const writeOpened = () => {
+    handleLClick();
+    setWhatOpened("Write")
+  };
+  const profileOpened = () => {
+    handleLClick();
+    setWhatOpened("Profile")
+  };
+  const settingsOpened = () => {
+    handleLClick();
+    setWhatOpened("Settings")
+  };
 
   return (
     access_token?

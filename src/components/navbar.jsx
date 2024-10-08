@@ -39,6 +39,7 @@ const Navbar = () => {
   return (
     <AnimationWrapper key={"navbar"}>
       <div className="np-header">
+
         <div className="custom-navbar-modal modal fade " id="NavbarSearchModal" tabIndex="-1" aria-labelledby="NavbarSearchModalLabel" aria-hidden="true">
           <div className="modal-dialog modal-fullscreen">
             <div className="modal-content border-none bg-transparent ">
@@ -58,6 +59,7 @@ const Navbar = () => {
             </div>
           </div>
         </div>
+
         <nav className="navbar navbar-light">
           <div className="container-fluid">
             <div className="navbar-sdm-btn-container"

@@ -121,9 +121,9 @@ const MainPanel = () => {
     <div className="mp-container">
       <Toaster />
       <div className="mp-submit-bc">
-        <h1 className="mp-submit-bc-page-title">Edit Account</h1>
+        <h1 className="mp-submit-bc-page-title">Edit</h1>
         <button className="btn btn-lg mp-submit-btn" onClick={handleSaveChanges}>
-          Save Changes
+          Save
         </button>
       </div>
       <div className="mp-input-container">
