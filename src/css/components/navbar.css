@@ -90,9 +90,10 @@
   border: none;
 }
 
+
 .nb-search-container {
   position: absolute;
-  top: 7px;
+  top: 0px;
   width: calc( 100vw - 1px * 2 );
   height: 75px;
   padding: 0;
@@ -135,6 +136,11 @@
   color: cyan !important;
 }
 
+.custom-navbar-modal .modal-dialog,
+.custom-navbar-modal .modal-header {
+  padding: 0 !important;
+  margin: 0 !important;
+}
 .custom-navbar-modal .bx.bx-x.mb-5{
   color: white !important;
   background: black;
@@ -143,7 +149,7 @@
   font-weight: 100;
   position: absolute;
   right: 0;
-  top: 8px;
+  top: 1px;
   right: 2px;
   border-left: 1px solid cyan;
   padding: 0 !important;

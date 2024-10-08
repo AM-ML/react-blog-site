@@ -20,18 +20,15 @@ body {
   width: 100%;
 }
 
-body.modal-open .navbar-light {
-  width: calc( 100% + 15px ) !important;
+html:has(.modal-open)::-webkit-scrollbar {
+  display: none;
+  overflow-y: hidden !important;
+}
+body.modal-open {
+  overflow-y: hidden;
+  max-height: 100vh;
 }
 
-body.modal-open .navbar-light,
-body.modal-open .np-header{
-  padding-right: 15px !important;
-}
-body.modal-open::-webkit-scrollbar {
-  display: none;
-  visibility: hidden;
-}
 .modal {
   overflow-y: hidden;
 }

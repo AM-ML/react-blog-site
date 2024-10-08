@@ -6,7 +6,7 @@
   padding-top: 30px;
   background: linear-gradient(to top, #0000ff00 55%, #2D417Eaa 83%, #2D417Eff 97%), linear-gradient(to left, #2D417Eff 12%, #2D417Eaa 44%, #0000ff00 74%), linear-gradient(to top, #3729ECff 0%, #3729ECff 100%);
   height: fit-content;
-  min-height: 92vh
+  min-height: calc( 100vh - 100px );
 
 }
 
