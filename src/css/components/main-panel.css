@@ -261,3 +261,18 @@
 #mp-profile-img-input {
   display: none;
 }
+
+.mp-text-ic {
+  margin: 0; padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1em;
+}
+
+@media screen and (max-width: 735px) {
+  .mp-info-container {
+    justify-content: center;
+  }
+}

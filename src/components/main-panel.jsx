@@ -142,26 +142,29 @@ const MainPanel = () => {
           <img src={profile_img} onError={handleProfileImgError} alt="" className="mp-profile-img" />
         </div>
 
-        <div className="mp-name-ic">
-          <input
-            name="name"
-            value={updatedAccount.name}
-            onChange={handleInputChange}
-            type="text"
-            spellCheck="false"
-            className="mp-name"
-          />
-        </div>
+        <div className="mp-text-ic">
+          <div className="mp-name-ic">
+            <input
+              name="name"
+              value={updatedAccount.name}
+              onChange={handleInputChange}
+              type="text"
+              spellCheck="false"
+              className="mp-name"
+            />
+          </div>
 
-        <div className="mp-email-ic">
-          <input
-            name="email"
-            type="text"
-            value={updatedAccount.email}
-            onChange={handleInputChange}
-            className="mp-email"
-            spellCheck="false"
-          />
+          <div className="mp-email-ic">
+            <input
+              name="email"
+              type="text"
+              value={updatedAccount.email}
+              onChange={handleInputChange}
+              className="mp-email"
+              spellCheck="false"
+            />
+          </div>
+
         </div>
       </div>
 
