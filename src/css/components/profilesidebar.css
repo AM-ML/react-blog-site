@@ -313,3 +313,14 @@
     padding: 6px 4px !important;
   }
 }
+
+@media screen and (max-width: 675px) {
+  .custom-sidebar.open {
+    width: 100% !important;
+  }
+
+  body:has(.custom-sidebar.open),
+  body:has(.custom-sidebar.open) *{
+    overflow: hidden !important;
+  }
+}
