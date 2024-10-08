@@ -4,7 +4,7 @@ import Home from "./pages/home";
 import "@flaticon/flaticon-uicons/css/all/all.css";
 import AuthForm from "./pages/authform";
 import { createContext, useEffect, useState } from "react";
-import { lookInSession } from "./components/session";
+import { lookInSession, clearSession } from "./components/session";
 import ProfileSidebar from "./components/profilesidebar";
 import Dashboard from "./pages/dashboard";
 import NotFound from "./pages/notfound";
@@ -36,47 +36,47 @@ const Router = () => {
   useEffect(() => {
     let userInSession = lookInSession("user");
 
-    userInSession? setUserAuth(JSON.parse(userInSession)) : setUserAuth({ access_token: null });
-
+    userInSession ? setUserAuth(JSON.parse(userInSession)) : setUserAuth({ access_token: null });
   }, []);
 
   return (
-    <UserContext.Provider value={{userAuth, setUserAuth}}>
+    <UserContext.Provider value={{ userAuth, setUserAuth }}>
       <ScrollToTop />
-    <Routes>
-      <Route path="/" element= {<Navbar />}>
-        <Route element={<Home />} index/>
-        <Route path="signin" element= {<AuthForm type="sign-in" />}/>
-        <Route path="signup" element= {<AuthForm type="sign-up"/>}/>
-        <Route path="loading-page" element={<Preloader loading={true}/>}/>
-        <Route path="author/:username" element={<Author />} />
-        <Route path="blogs" element={<Blogs />}/>
-        <Route path="blog/:id" element={<Blog/>}/>
-        <Route path="search/:query" element={<Search />} />
-        <Route path="search/null" element={<Redirect route="/blogs" />} />
-        <Route path="search/" element={<Redirect route="/blogs" />} />
-        <Route path="test" element={<Test />} />
-        <Route path="services/civil-engineering" element={<CivilEngineering />} />
-        <Route path="services/electrical-engineering" element={<ElectricalEngineering />} />
-        <Route path="services/architecture" element={<Architecture />} />
-        <Route path="services/interior-design" element={<InteriorDesign />} />
-        <Route path="services/solar-systems" element={<SolarSystems />} />
-        <Route path="services/water-systems" element={<WaterSystems />} />
-        <Route path="services/water-pumps" element={<WaterPumps />} />
-        <Route path="*" element={<NotFound />} />
-      </Route>
-      <Route path="/dashboard" element= {<ProfileSidebar />}>
-        <Route element={<Dashboard/>} index/>
-        <Route path="/dashboard/writer" element={<WriterWrapper />} >
-          <Route path="/dashboard/writer/write" element={<Editor />} />
-          <Route path="/dashboard/writer/drafts" element={<DraftsPanel />} />
+      <Routes>
+        <Route path="/" element={<Navbar />}>
+          <Route element={<Home />} index />
+          <Route path="signin" element={<AuthForm type="sign-in" />} />
+          <Route path="signup" element={<AuthForm type="sign-up" />} />
+          <Route path="loading-page" element={<Preloader loading={true} />} />
+          <Route path="author/:username" element={<Author />} />
+          <Route path="blogs" element={<Blogs />} />
+          <Route path="blog/:id" element={<Blog />} />
+          <Route path="search/:query" element={<Search />} />
+          <Route path="search/null" element={<Redirect route="/blogs" />} />
+          <Route path="search/" element={<Redirect route="/blogs" />} />
+          <Route path="test" element={<Test />} />
+          <Route path="services/civil-engineering" element={<CivilEngineering />} />
+          <Route path="services/electrical-engineering" element={<ElectricalEngineering />} />
+          <Route path="services/architecture" element={<Architecture />} />
+          <Route path="services/interior-design" element={<InteriorDesign />} />
+          <Route path="services/solar-systems" element={<SolarSystems />} />
+          <Route path="services/water-systems" element={<WaterSystems />} />
+          <Route path="services/water-pumps" element={<WaterPumps />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
-        <Route path="/dashboard/author/:username" element={<Author />} />
-        <Route path="/dashboard/settings" element={<Settings/>} />
-      </Route>
-    </Routes>
+        <Route path="/dashboard" element={<ProfileSidebar />}>
+          <Route element={<Dashboard />} index />
+          <Route path="/dashboard/writer" element={<WriterWrapper />}>
+            <Route path="/dashboard/writer/write" element={<Editor />} />
+            <Route path="/dashboard/writer/drafts" element={<DraftsPanel />} />
+          </Route>
+          <Route path="/dashboard/author/:username" element={<Author />} />
+          <Route path="/dashboard/settings" element={<Settings />} />
+        </Route>
+      </Routes>
     </UserContext.Provider>
-  )
-}
+  );
+};
 
 export default Router;
+

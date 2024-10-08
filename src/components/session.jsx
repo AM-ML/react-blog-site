@@ -1,17 +1,24 @@
-const storeInSession = (key, value) => {
-  return sessionStorage.setItem(key, value);
-}
+import Cookies from 'js-cookie';
 
-const lookInSession = (key) => {
-  return sessionStorage.getItem(key);
-}
+// Store user data in cookies instead of sessionStorage
+export const storeInSession = (key, value) => {
+    Cookies.set(key, value, { expires: 7, secure: true, sameSite: 'strict' }); // expires in 7 days
+};
 
-const removeFromSession = (key) => {
-  return sessionStorage.removeItem(key);
-}
+// Retrieve user data from cookies instead of sessionStorage
+export const lookInSession = (key) => {
+    return Cookies.get(key);
+};
 
-const logOutUser = () => {
+// Clear the cookie if needed
+export const clearSession = (key) => {
+    Cookies.remove(key);
+};
+
+export const removeFromSession = (key) => {
+    Cookies.remove(key);
+};
+export const logOutUser = () => {
   return sessionStorage.clear();
 }
 
-export {storeInSession, lookInSession, removeFromSession, logOutUser};
