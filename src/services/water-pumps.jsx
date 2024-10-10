@@ -1,4 +1,4 @@
-import IMAGE from "../assets/obj/water-pump.jpg";
+import IMAGE from "../assets/obj/pump_sketch.jpg";
 import AnimationWrapper from "../common/page-animation";
 import Service from "./boilerplate";
 

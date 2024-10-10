@@ -1,5 +1,5 @@
 import "../css/services/water-systems.css";
-import IMAGE from "../assets/obj/water.jpg";
+import IMAGE from "../assets/obj/water-systems.jpg";
 import AnimationWrapper from "../common/page-animation";
 import Service from "./boilerplate";
 
@@ -12,7 +12,7 @@ const WaterSystems = () => {
       <Service
         name="Off-Grid Water Systems"
         description={description}
-        className=" wtrs-container"
+        className=" wtr-container"
         slogan="Something Very Important We Offer?"
         img={IMAGE}
       />

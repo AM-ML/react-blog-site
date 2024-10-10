@@ -4,7 +4,6 @@
   box-sizing: border-box;
 
   overflow-x: hidden;
-  margin: auto;
 }
 
 .srv-container {
@@ -67,7 +66,10 @@
 
 .srv-container .scroll-down-icon {
   position: absolute;
-  top: calc( 100vh - 100px ) !important;
+  top: calc( 100vh - 50px );
+  /* top: 800px; */
+  bottom: 0;
+  height: max-content;
   right: 50%;
   font-size: 22px;
   pointer-events:all;
@@ -81,6 +83,7 @@
   max-width: 1260%;
   margin: 0;
   color: black;
+  padding-bottom: 0 !important;
 }
 .srv-container .srv-text-sm .srv-name {
   font-family: "Domine";
@@ -150,7 +153,8 @@
 
 
 @media screen and (min-height: 800px) {
-  .scroll-down-icon {
-    top: 800px !important;
+  .srv-container .scroll-down-icon {
+    top: 780px !important;
+    bottom: initial;
   }
 }

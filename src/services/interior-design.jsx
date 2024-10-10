@@ -1,7 +1,7 @@
 import "../css/services/interior-design.css";
 import IMAGE from "../assets/obj/interior.jpg";
 import AnimationWrapper from "../common/page-animation";
-import Service from "./boilerplate";
+import ServiceFull from "./servicefull";
 
 const InteriorDesign = () => {
 
@@ -9,12 +9,13 @@ const InteriorDesign = () => {
 
   return (
     <AnimationWrapper>
-      <Service
+      <ServiceFull
         name="Interior Design"
         description={description}
-        className=" intd-container"
+        className=" int"
         slogan="Something Very Important We Offer?"
         img={IMAGE}
+        cover={true}
       />
     </AnimationWrapper>
   )

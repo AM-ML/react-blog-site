@@ -108,7 +108,16 @@ html::-webkit-scrollbar-thumb {
   background: #008bff;
 }
 
+button.no-design,
 button.no-default-design {
   background: none;
   border: none;
 }
+
+a.no-design {
+  color: black;
+  background: none;
+  border: none;
+  text-decoration: none;
+}
+

@@ -27,6 +27,7 @@ import SolarSystems from "./services/solar-systems";
 import WaterSystems from "./services/water-systems";
 import WaterPumps from "./services/water-pumps";
 import Test from "./pages/test";
+import ProjectManagement from "./services/project-management";
 
 export const UserContext = createContext({});
 
@@ -62,6 +63,7 @@ const Router = () => {
           <Route path="services/solar-systems" element={<SolarSystems />} />
           <Route path="services/water-systems" element={<WaterSystems />} />
           <Route path="services/water-pumps" element={<WaterPumps />} />
+          <Route path="services/project-management" element={<ProjectManagement />} />
           <Route path="*" element={<NotFound />} />
         </Route>
         <Route path="/dashboard" element={<ProfileSidebar />}>
