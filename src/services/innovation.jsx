@@ -7,7 +7,7 @@ const Innovation = () => {
   return (
     <AnimationWrapper key="innovative-solutions">
       <ServiceFull
-        name="Innovation"
+        name="Innovative Solutions"
         img={IMAGE}
         slogan="Something Important We Offer?"
         description={desc}
