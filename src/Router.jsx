@@ -28,6 +28,13 @@ import WaterSystems from "./services/water-systems";
 import WaterPumps from "./services/water-pumps";
 import Test from "./pages/test";
 import ProjectManagement from "./services/project-management";
+import Networking from "./services/networking";
+import FeasibilityStudy from "./services/feasibility-study";
+import Innovation from "./services/innovation";
+import FinancialAnalysis from "./services/financial-analysis";
+import Programming from "./services/programming";
+import BusinessPlans from "./services/business-plans";
+import Sustainability from "./services/sustainability";
 
 export const UserContext = createContext({});
 
@@ -64,6 +71,13 @@ const Router = () => {
           <Route path="services/water-systems" element={<WaterSystems />} />
           <Route path="services/water-pumps" element={<WaterPumps />} />
           <Route path="services/project-management" element={<ProjectManagement />} />
+          <Route path="services/networking" element={<Networking />} />
+          <Route path="services/innovative-solutions" element={<Innovation />} />
+          <Route path="services/feasibility-study" element={<FeasibilityStudy />} />
+          <Route path="services/financial-analysis" element={<FinancialAnalysis />} />
+          <Route path="services/programming" element={<Programming />} />
+          <Route path="services/business-plans" element={<BusinessPlans />} />
+          <Route path="services/sustainability-management" element={<Sustainability />} />
           <Route path="*" element={<NotFound />} />
         </Route>
         <Route path="/dashboard" element={<ProfileSidebar />}>

@@ -1,6 +1,6 @@
 import "../css/services/electrical-engineering.css";
 import AnimationWrapper from "../common/page-animation";
-import IMG from "../assets/obj/circuit_current.jpg";
+import IMG from "../assets/obj/eleceng.jpg";
 import ServiceFull from "./servicefull";
 
 const ElectricalEngineering = () => {
