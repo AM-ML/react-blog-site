@@ -125,12 +125,12 @@ const SideMenu = ({ appearSide, setAppearSide }) => {
       },
       {
         name: "Business Plans &",
-        link: "/services/business-plans-and-investment-oppurtunities",
+        link: "/services/business-plans-and-investment-opportunities",
         span: 1
       },
       {
         name: "Investment Opportunities",
-        link: "/services/business-plans-and-investment-oppurtunities",
+        link: "/services/business-plans-and-investment-opportunities",
         span: 1
       },
 

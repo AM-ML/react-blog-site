@@ -72,11 +72,14 @@ const Router = () => {
           <Route path="services/water-pumps" element={<WaterPumps />} />
           <Route path="services/project-management" element={<ProjectManagement />} />
           <Route path="services/networking" element={<Networking />} />
+          <Route path="services/networking-and-IT" element={<Networking />} />
           <Route path="services/innovative-solutions" element={<Innovation />} />
           <Route path="services/feasibility-study" element={<FeasibilityStudy />} />
           <Route path="services/financial-analysis" element={<FinancialAnalysis />} />
+          <Route path="services/financial-analysis-and-risk-management" element={<FinancialAnalysis />} />
           <Route path="services/programming" element={<Programming />} />
           <Route path="services/business-plans" element={<BusinessPlans />} />
+          <Route path="services/business-plans-and-investment-opportunities" element={<BusinessPlans />} />
           <Route path="services/sustainability-management" element={<Sustainability />} />
           <Route path="*" element={<NotFound />} />
         </Route>
