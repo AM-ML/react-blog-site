@@ -8,7 +8,7 @@ const Networking = () => {
   return (
     <AnimationWrapper>
       <ServiceFull
-        name="Networking"
+        name="Networking & IT"
         className=" ece"
         description={description}
         slogan={"something important we offer?"}
