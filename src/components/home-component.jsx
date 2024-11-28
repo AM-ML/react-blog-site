@@ -1,7 +1,54 @@
+import { useState, useEffect } from "react";
 import "../css/components/home-component.css";
 import image from "../assets/home/stock_2.png";
+import AnimationWrapper from "../common/page-animation.jsx";
+import BlogCard from "../common/blogPreviewLG.jsx";
+import axios from "axios";
+import Preloader from "../common/preloader";
+import Loading from "../common/loading";
 
 const HomeComponent = () => {
+  const [blogsData, setBlogsData] = useState([]); // State to hold the blog data
+  const [loading, setLoading] = useState(true);
+  const blogs = [
+    "9-Iconic-Chess-Photoss9bBVseJ3A2vW-8yV0eb7",
+    "AI-for-small-businesses-Tools-StrategiesaW8yawlV8Rl92EvqtD_c0",
+    "Before-Vishy-Vs-The-World-There-Was-Kasparov-Vs-The-WorldSiNIDHlpMRx_sbFK2Dqxz",
+  ]; // Your blog IDs
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      setLoading(true);
+      try {
+        const fetchedBlogs = await Promise.all(
+          blogs.map((blog_id) =>
+            axios
+              .post(import.meta.env.VITE_SERVER_DOMAIN + "/get-blog", {
+                blog_id,
+                incrementVal: 0,
+              })
+              .then(({ data: { blog } }) => blog)
+              .catch((err) => {
+                console.error("Error fetching blog:", err);
+                return null; // Return null or handle error if necessary
+              })
+          )
+        );
+        // Filter out any failed responses (null values)
+        const validBlogs = fetchedBlogs.filter((blog) => blog !== null);
+        setBlogsData(validBlogs); // Set state only once after all blogs are fetched
+        setLoading(false);
+      } catch (err) {
+        setLoading(false);
+        console.log("Error fetching blogs:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBlogs();
+  }, []); // Run only once when the component mounts
+
   return (
     <div className="hmc-container">
       <div className="hmc-header row">
@@ -9,14 +56,14 @@ const HomeComponent = () => {
           <img src={image} alt="" />
         </div>
         <div className="ms-auto hmc-col hmc-header-text">
-
           <p className="hmc-header-title">
             Innovative Solutions for the Modern Marketplace
           </p>
           <p className="hmc-header-paragraph">
-            In an ever-evolving marketplace, staying ahead requires more than just keeping up.
-            We provide cutting-edge solutions tailored to your unique business challenges,
-            harnessing deep industry insights and advanced analytics.
+            In an ever-evolving marketplace, staying ahead requires more than
+            just keeping up. We provide cutting-edge solutions tailored to your
+            unique business challenges, harnessing deep industry insights and
+            advanced analytics.
           </p>
           <div className="hmc-header-button-container row">
             <div className="col">
@@ -28,8 +75,30 @@ const HomeComponent = () => {
           </div>
         </div>
       </div>
+
+      <div className="hmc-main">
+        {loading == true ? (
+          <Loading />
+        ) : (
+          <div className="hmc-bps">
+            {blogsData.map((blog, i) => (
+              <AnimationWrapper
+                transition={{ duration: 1, delay: i * 0.01 }}
+                key={i}
+              >
+                <div className="hmc-bp-container">
+                  <BlogCard
+                    blog={blog}
+                    aligned={(i + 1) % 2 == 0 ? "right" : "left"}
+                  />
+                </div>
+              </AnimationWrapper>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
-  )
-}
+  );
+};
 
 export default HomeComponent;

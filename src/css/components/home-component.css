@@ -96,3 +96,15 @@
   }
 }
 
+
+
+
+.hmc-bp-container {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.hmc-bps {
+  margin: 4vh 0;
+}
