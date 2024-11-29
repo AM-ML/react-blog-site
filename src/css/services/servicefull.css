@@ -71,3 +71,24 @@
   left: calc( 50% - 1em ) ;
   font-size: 32px;
 }
+
+@media screen and (max-width: 540px) {
+  .srf-container .srf-name {
+    font-size: 35px !important;
+  }
+  .srf-container .srf-desc {
+    font-size: 20px;
+
+  }
+}
+
+
+@media screen and (max-width: 400px) {
+  .srf-container .srf-name {
+    font-size: 27px !important;
+  }
+  .srf-container .srf-desc {
+    font-size: 18px;
+
+  }
+}

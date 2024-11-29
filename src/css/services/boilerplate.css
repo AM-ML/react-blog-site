@@ -67,6 +67,10 @@
 .srv-container .scroll-down-icon {
   position: absolute;
   top: calc( 100vh - 50px );
+  background: rgba(255, 255, 255, 0.5);;
+  padding: 0 5px;
+  border-radius: 7px;
+  border: 1px solid black;
   /* top: 800px; */
   bottom: 0;
   height: max-content;
@@ -74,7 +78,18 @@
   font-size: 22px;
   pointer-events:all;
   cursor: pointer;
+  transition: background ease 0.5s;
   z-index: 9
+}
+
+.srv-container .scroll-down-icon:hover {
+  background: white;
+}
+
+@media screen and (max-width: 580px) {
+  .srv-container .scroll-down-icon {
+    top: calc(100vh - 80px) !important;
+  }
 }
 
 .srv-container .srv-text-sm {
@@ -121,7 +136,7 @@
   }
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 540px) {
   .srv-main .srv-text .srv-name,
   .srv-container .srv-text-sm .srv-name {
     font-size: 35px !important;
@@ -129,6 +144,19 @@
 
   .srv-container .srv-description {
     font-size: 20px;
+    padding: 0 2vw;
+  }
+}
+
+
+@media screen and (max-width: 400px) {
+  .srv-main .srv-text .srv-name,
+  .srv-container .srv-text-sm .srv-name {
+    font-size: 27px !important;
+  }
+
+  .srv-container .srv-description {
+    font-size: 18px;
     padding: 0 2vw;
   }
 }

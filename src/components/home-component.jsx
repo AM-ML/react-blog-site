@@ -4,8 +4,8 @@ import image from "../assets/home/stock_2.png";
 import AnimationWrapper from "../common/page-animation.jsx";
 import BlogCard from "../common/blogPreviewLG.jsx";
 import axios from "axios";
-import Preloader from "../common/preloader";
 import Loading from "../common/loading";
+import SliderC from "./slider-component";
 
 const HomeComponent = () => {
   const [blogsData, setBlogsData] = useState([]); // State to hold the blog data
@@ -15,6 +15,12 @@ const HomeComponent = () => {
     "AI-for-small-businesses-Tools-StrategiesaW8yawlV8Rl92EvqtD_c0",
     "Before-Vishy-Vs-The-World-There-Was-Kasparov-Vs-The-WorldSiNIDHlpMRx_sbFK2Dqxz",
   ]; // Your blog IDs
+
+  const sliderImgs = [
+    "http://res.cloudinary.com/dlhedrwu6/image/upload/v1725794281/AZcIILKcSBGEEyEU2VmZ5-1725794280568.jpg",
+    "http://res.cloudinary.com/dlhedrwu6/image/upload/v1727176762/EHhtN-R2K9E8jkwBSWiSx-1727176756606.jpg",
+    "http://res.cloudinary.com/dlhedrwu6/image/upload/v1725794637/aJJCNv1eaX0YVagrYGTrm-1725794636652.jpg",
+  ];
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -76,11 +82,16 @@ const HomeComponent = () => {
         </div>
       </div>
 
-      <div className="hmc-main">
-        {loading == true ? (
-          <Loading />
-        ) : (
-          <div className="hmc-bps">
+      {loading == true ? (
+        <Loading />
+      ) : (
+        <div className="hmc-main">
+          <div className="hmc-slider-container shadow-lg">
+            <h3 className="hmc-slider-title">Recent Projects 2024</h3>
+            <SliderC imgs={sliderImgs} />
+          </div>
+
+          <div className="hmc-bps mt-5">
             {blogsData.map((blog, i) => (
               <AnimationWrapper
                 transition={{ duration: 1, delay: i * 0.01 }}
@@ -95,8 +106,8 @@ const HomeComponent = () => {
               </AnimationWrapper>
             ))}
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -105,6 +105,21 @@
   width: 100%;
 }
 
+.hmc-main {
+  margin-top: 3rem;
+}
+
 .hmc-bps {
   margin: 4vh 0;
+}
+
+.hmc-slider-container .hmc-slider-title {
+  margin: 10px 20px 0 20px;
+  font-weight: 500;
+  font-family: "Domine";
+  font-size: 32px;
+}
+
+.hmc-slider-container {
+  padding: 20px;
 }
