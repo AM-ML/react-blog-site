@@ -10,6 +10,10 @@
 }
 
 .cnt-container iframe {
+  width: 100%;
+  min-width: 320px;
+  max-width: 100%;
+
   min-height: 450px;
   max-height: 900px;
   height: 100%;
