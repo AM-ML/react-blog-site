@@ -3,10 +3,16 @@
   gap: 30px;
 
   width: 100%;
-  min-height: calc(100vh - 100px);
+  height: calc(100vh - 100px);
 
   display: flex;
   flex-direction: row;
+}
+
+.cnt-container iframe {
+  min-height: 450px;
+  max-height: 900px;
+  height: 100%;
 }
 
 .cnt-container .cnt-col {
@@ -26,6 +32,7 @@
   flex-direction: column;
 
   gap: 20px;
+  max-height: 600px;
 }
 
 .cnt-info .cnt-row {
