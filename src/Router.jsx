@@ -35,6 +35,7 @@ import FinancialAnalysis from "./services/financial-analysis";
 import Programming from "./services/programming";
 import BusinessPlans from "./services/business-plans";
 import Sustainability from "./services/sustainability";
+import ContactUs from "./pages/contact-us";
 
 export const UserContext = createContext({});
 
@@ -44,7 +45,9 @@ const Router = () => {
   useEffect(() => {
     let userInSession = lookInSession("user");
 
-    userInSession ? setUserAuth(JSON.parse(userInSession)) : setUserAuth({ access_token: null });
+    userInSession
+      ? setUserAuth(JSON.parse(userInSession))
+      : setUserAuth({ access_token: null });
   }, []);
 
   return (
@@ -59,28 +62,56 @@ const Router = () => {
           <Route path="author/:username" element={<Author />} />
           <Route path="blogs" element={<Blogs />} />
           <Route path="blog/:id" element={<Blog />} />
+          <Route path="contact-us" element={<ContactUs />} />
           <Route path="search/:query" element={<Search />} />
           <Route path="search/null" element={<Redirect route="/blogs" />} />
           <Route path="search/" element={<Redirect route="/blogs" />} />
           <Route path="test" element={<Test />} />
-          <Route path="services/civil-engineering" element={<CivilEngineering />} />
-          <Route path="services/electrical-engineering" element={<ElectricalEngineering />} />
+          <Route
+            path="services/civil-engineering"
+            element={<CivilEngineering />}
+          />
+          <Route
+            path="services/electrical-engineering"
+            element={<ElectricalEngineering />}
+          />
           <Route path="services/architecture" element={<Architecture />} />
           <Route path="services/interior-design" element={<InteriorDesign />} />
           <Route path="services/solar-systems" element={<SolarSystems />} />
           <Route path="services/water-systems" element={<WaterSystems />} />
           <Route path="services/water-pumps" element={<WaterPumps />} />
-          <Route path="services/project-management" element={<ProjectManagement />} />
+          <Route
+            path="services/project-management"
+            element={<ProjectManagement />}
+          />
           <Route path="services/networking" element={<Networking />} />
           <Route path="services/networking-and-IT" element={<Networking />} />
-          <Route path="services/innovative-solutions" element={<Innovation />} />
-          <Route path="services/feasibility-study" element={<FeasibilityStudy />} />
-          <Route path="services/financial-analysis" element={<FinancialAnalysis />} />
-          <Route path="services/financial-analysis-and-risk-management" element={<FinancialAnalysis />} />
+          <Route
+            path="services/innovative-solutions"
+            element={<Innovation />}
+          />
+          <Route
+            path="services/feasibility-study"
+            element={<FeasibilityStudy />}
+          />
+          <Route
+            path="services/financial-analysis"
+            element={<FinancialAnalysis />}
+          />
+          <Route
+            path="services/financial-analysis-and-risk-management"
+            element={<FinancialAnalysis />}
+          />
           <Route path="services/programming" element={<Programming />} />
           <Route path="services/business-plans" element={<BusinessPlans />} />
-          <Route path="services/business-plans-and-investment-opportunities" element={<BusinessPlans />} />
-          <Route path="services/sustainability-management" element={<Sustainability />} />
+          <Route
+            path="services/business-plans-and-investment-opportunities"
+            element={<BusinessPlans />}
+          />
+          <Route
+            path="services/sustainability-management"
+            element={<Sustainability />}
+          />
           <Route path="*" element={<NotFound />} />
         </Route>
         <Route path="/dashboard" element={<ProfileSidebar />}>
@@ -98,4 +129,3 @@ const Router = () => {
 };
 
 export default Router;
-

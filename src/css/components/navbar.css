@@ -33,9 +33,6 @@
     margin-top: 15px;
   }
 
-  .navbar-nav *{
-    font-size: 2.5vw !important;
-  }
 
   .nb-on-md-hidden {
     display: none;
@@ -191,7 +188,7 @@
 }
 
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 955px) {
   .navbar.navbar-light .navbar-nav .nav-item {
     display:none;
   }
