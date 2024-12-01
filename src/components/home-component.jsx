@@ -6,6 +6,7 @@ import BlogCard from "../common/blogPreviewLG.jsx";
 import axios from "axios";
 import Loading from "../common/loading";
 import SliderC from "./slider-component";
+import Slideshow from "./slideshow";
 
 const HomeComponent = () => {
   const [blogsData, setBlogsData] = useState([]); // State to hold the blog data
@@ -86,9 +87,9 @@ const HomeComponent = () => {
         <Loading />
       ) : (
         <div className="hmc-main">
-          <div className="hmc-slider-container shadow">
-            <h3 className="hmc-slider-title">Recent Projects 2024</h3>
-            <SliderC imgs={sliderImgs} />
+          <div className="hmc-slider-container">
+            <h3 className="hmc-slider-title">BOFFO Projects</h3>
+            <Slideshow />
           </div>
 
           <div className="hmc-bps mt-5">

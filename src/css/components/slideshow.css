@@ -1,0 +1,113 @@
+.slideshow-container {
+  width: 100%;
+  height: 100vh;
+  background-color: #2c302e;
+  display: flex;
+  position: relative;
+}
+
+.slideshow-left-col {
+  width: 100%;
+  height: calc(100% - 4rem);
+  margin: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.slideshow-slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover !important;
+  background-position: left top !important;
+  background-repeat: no-repeat;
+  transition: 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  z-index: -1;
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+.slideshow-slide.current {
+  z-index: 2;
+  opacity: 1;
+  transform: translateY(0) scale(1.25);
+}
+
+.slideshow-slide.next {
+  z-index: 3;
+  opacity: 1;
+  transform: translateY(-100%);
+}
+
+.slideshow-slide.previous {
+  z-index: 1;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slideshow-caption {
+  position: absolute;
+  top: 50%;
+  left: 8rem;
+  z-index: 9;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: 0.5s ease opacity, 0.5s ease transform;
+}
+
+.slideshow-caption.current-caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slideshow-caption-heading h1 {
+  font-size: 4rem;
+  font-weight: 300;
+}
+
+.slideshow-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.slideshow-nav a {
+  font-size: 3rem;
+  text-decoration: none;
+}
+
+
+/* Add styles for navigation buttons */
+.slideshow-nav a {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 3rem;
+  color: white;
+  text-decoration: none;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.slideshow-slide-up a {
+  left: 1rem;
+}
+
+.slideshow-slide-down a {
+  right: 1rem;
+}
+
+/* Ensure title and description have proper colors */
+.slideshow-caption-heading h1 {
+  color: #ffffff;
+  font-size: 4rem;
+  font-weight: 300;
+}
+
+.slideshow-caption-subhead span {
+  color: #d1d1d1;
+  font-size: 1.5rem;
+}
+
