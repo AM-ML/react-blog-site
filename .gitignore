@@ -20,6 +20,7 @@ pids
 lib-cov
 
 firebase.json
+count.sh
 
 # Coverage directory used by tools like istanbul
 coverage
