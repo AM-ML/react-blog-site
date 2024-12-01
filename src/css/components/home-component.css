@@ -15,7 +15,7 @@
 }
 
 .hmc-header .hmc-header-title {
-  font-size: 4vw;
+  font-size: 50px;
   line-height: 1.2;
   font-weight: 600;
   font-family: "Merriweather", "Domine", serif;
@@ -26,7 +26,7 @@
   font-weight: 300 !important;
   font-family: "roboto";
   margin-right: 4vw;
-  font-size: 2.2vw;
+  font-size: 22px;
   margin-bottom: 30px;
 }
 
@@ -87,16 +87,27 @@
 }
 
 @media screen and (min-width: 1000px) {
-  .hmc-header-paragraph {
-    font-size: 1.3333vw;
-  }
   .hmc-header-button {
     height: 12vh;
     font-size: 1.1vw;
   }
 }
 
+@media screen and (max-width: 1120px) {
+  .hmc-header-title {
+    font-size: 40px !important;
+  }
 
+  .hmc-header-paragraph {
+    font-size: 16px !important;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .hmc-header-title {
+    font-size: 32px !important;
+  }
+}
 
 
 .hmc-bp-container {

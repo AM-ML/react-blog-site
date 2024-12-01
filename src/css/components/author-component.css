@@ -86,6 +86,8 @@
 
   gap: 1em;
   margin-bottom: 8em;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 @media screen and (max-width: 800px) {

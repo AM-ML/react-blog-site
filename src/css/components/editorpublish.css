@@ -165,7 +165,7 @@
   position:relative;
 }
 
-@media screen and (max-width: 630px) {
+@media screen and (max-width: 570px) {
   .please_bigger_screen_container {
     display: block !important;
   }

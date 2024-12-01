@@ -88,7 +88,7 @@
 
 @media screen and (max-width: 580px) {
   .srv-container .scroll-down-icon {
-    top: calc(100vh - 80px) !important;
+    top: calc(100vh - 100px) !important;
   }
 }
 

@@ -16,7 +16,7 @@ const BlogCard = ({ blog, aligned = "left" }) => {
   } = blog;
 
   return (
-    <div className="bpl-container shadow-lg my-3">
+    <div className="bpl-container shadow-sm my-3">
       <div
         className={`bpl-p1 ${
           aligned === "right" && window.innerWidth >= 785 ? "bpl-p1-right" : ""

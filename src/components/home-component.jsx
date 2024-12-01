@@ -86,7 +86,7 @@ const HomeComponent = () => {
         <Loading />
       ) : (
         <div className="hmc-main">
-          <div className="hmc-slider-container shadow-lg">
+          <div className="hmc-slider-container shadow">
             <h3 className="hmc-slider-title">Recent Projects 2024</h3>
             <SliderC imgs={sliderImgs} />
           </div>

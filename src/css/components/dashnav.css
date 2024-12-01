@@ -1,0 +1,57 @@
+.dsn-container {
+  display: flex;
+  flex-direction: row;
+
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-evenly;
+
+  background: #2a2f3d;
+  padding: 7px 2px;
+
+
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.dsn-container .dsn-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+
+  background: #2a2f3d;
+  border-radius: 15px;
+  padding: 15px;
+
+  transition: all 0.5s ease;
+}
+
+.dsn-container .dsn-item i.bx {
+  font-size: 20px;
+  font-weight: 500;
+  color: white;
+
+  transition: all 0.3s ease;
+}
+
+.dsn-container .dsn-item:hover {
+  background: white;
+}
+
+.dsn-container .dsn-item:hover i.bx {
+  color: black;
+}
+
+
+.dsn-container .dsn-item i.bx-log-out,
+.dsn-container .dsn-item i.bx-home {
+  color: cyan;
+}
+
+
+@media screen and (max-width: 400px) {
+  .dsn-container .dsn-item i.bx {
+    font-size: 15px;
+  }
+}
