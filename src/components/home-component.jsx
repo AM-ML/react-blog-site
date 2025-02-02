@@ -1,60 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "../css/components/home-component.css";
 import image from "../assets/home/stock_2.png";
+import robot_img from "../assets/projects/home1.jpg";
 import AnimationWrapper from "../common/page-animation.jsx";
 import BlogCard from "../common/blogPreviewLG.jsx";
-import axios from "axios";
 import Loading from "../common/loading";
-import SliderC from "./slider-component";
 import Slideshow from "./slideshow";
+import blogsData from "./json/home-component-blogs-data.json"; // Importing pre-fetched blog data
 
 const HomeComponent = () => {
-  const [blogsData, setBlogsData] = useState([]); // State to hold the blog data
-  const [loading, setLoading] = useState(true);
-  const blogs = [
-    "9-Iconic-Chess-Photoss9bBVseJ3A2vW-8yV0eb7",
-    "AI-for-small-businesses-Tools-StrategiesaW8yawlV8Rl92EvqtD_c0",
-    "Before-Vishy-Vs-The-World-There-Was-Kasparov-Vs-The-WorldSiNIDHlpMRx_sbFK2Dqxz",
-  ]; // Your blog IDs
-
-  const sliderImgs = [
-    "http://res.cloudinary.com/dlhedrwu6/image/upload/v1725794281/AZcIILKcSBGEEyEU2VmZ5-1725794280568.jpg",
-    "http://res.cloudinary.com/dlhedrwu6/image/upload/v1727176762/EHhtN-R2K9E8jkwBSWiSx-1727176756606.jpg",
-    "http://res.cloudinary.com/dlhedrwu6/image/upload/v1725794637/aJJCNv1eaX0YVagrYGTrm-1725794636652.jpg",
-  ];
-
-  useEffect(() => {
-    const fetchBlogs = async () => {
-      setLoading(true);
-      try {
-        const fetchedBlogs = await Promise.all(
-          blogs.map((blog_id) =>
-            axios
-              .post(import.meta.env.VITE_SERVER_DOMAIN + "/get-blog", {
-                blog_id,
-                incrementVal: 0,
-              })
-              .then(({ data: { blog } }) => blog)
-              .catch((err) => {
-                console.error("Error fetching blog:", err);
-                return null; // Return null or handle error if necessary
-              })
-          )
-        );
-        // Filter out any failed responses (null values)
-        const validBlogs = fetchedBlogs.filter((blog) => blog !== null);
-        setBlogsData(validBlogs); // Set state only once after all blogs are fetched
-        setLoading(false);
-      } catch (err) {
-        setLoading(false);
-        console.log("Error fetching blogs:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchBlogs();
-  }, []); // Run only once when the component mounts
+  const [loading, setLoading] = useState(false);
 
   return (
     <div className="hmc-container">
@@ -83,13 +38,43 @@ const HomeComponent = () => {
         </div>
       </div>
 
-      {loading == true ? (
+      {loading ? (
         <Loading />
       ) : (
         <div className="hmc-main">
-          <div className="hmc-slider-container">
-            <h3 className="hmc-slider-title">BOFFO Projects</h3>
-            <Slideshow />
+          <div className="hmc-sns-container">
+            <div className="hmc-slider-container">
+              <h3 className="hmc-slider-title">BOFFO Projects</h3>
+              <Slideshow />
+            </div>
+            <div className="hmc-stat-container">
+              <h4 className="hmc-stat-item text-capitalize">
+                Trusted by 100+ Businesses
+              </h4>
+              <h4 className="hmc-stat-item text-capitalize">
+                98% Client Satisfaction Rate
+              </h4>
+              <h4 className="hmc-stat-item text-capitalize">
+                50+ Successful Projects Delivered
+              </h4>
+              <h4 className="hmc-stat-item text-capitalize">
+                15+ Years of Industry Experience
+              </h4>
+            </div>
+          </div>
+
+          <div className="hmc-cts-container">
+            <div className="hmc-img-container">
+              <img src={robot_img} alt="" className="hmc-img" />
+            </div>
+            <div className="hmc-cts-text-container">
+              <div className="hmc-cts-title">
+                Let's Build Something Great Together!
+              </div>
+              <div className="hmc-cts-desc">
+                <u>Contact us.</u> Your success is our foundation.
+              </div>
+            </div>
           </div>
 
           <div className="hmc-bps mt-5">
@@ -101,7 +86,7 @@ const HomeComponent = () => {
                 <div className="hmc-bp-container">
                   <BlogCard
                     blog={blog}
-                    aligned={(i + 1) % 2 == 0 ? "right" : "left"}
+                    aligned={(i + 1) % 2 === 0 ? "right" : "left"}
                   />
                 </div>
               </AnimationWrapper>
