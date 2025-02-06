@@ -139,7 +139,7 @@ const EditorPublishForm = () => {
     await axios
       .post(
         import.meta.env.VITE_SERVER_DOMAIN + "/new-blog",
-        { ...blogObj },
+        { ...blogObj, id: blog_id },
         config
       )
       .then((data) => {
@@ -254,7 +254,6 @@ const EditorPublishForm = () => {
         </div>
 
         <div className="epf-gi epf-bp-container">
-          {console.log(blog)}
           <BlogPreview blog={blog} />
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import "../../css/components/editor/navbar.css";
 import { EditorContext } from "../../pages/editor";
 import defaultBanner from "../../assets/blog_banner.png";
@@ -9,6 +9,9 @@ import { useParams } from "react-router-dom";
 
 const EditorNavBar = () => {
   const { blog_id } = useParams();
+  useEffect(() => {
+    console.log(blog_id);
+  }, []);
   let {
     blog,
     blog: { title, banner, content, description, tags },
@@ -72,6 +75,8 @@ const EditorNavBar = () => {
             draft: true,
           };
 
+          console.log({ ...blogObj, blog_id });
+
           await axios
             .post(
               import.meta.env.VITE_SERVER_DOMAIN + "/new-blog",
@@ -79,12 +84,9 @@ const EditorNavBar = () => {
               config
             )
             .then((data) => {
-              console.log(blog_id);
               e.target.classList.remove("disable");
               toast.dismiss(loadingToast);
               toast.success("Blog Draft Saved");
-              // data.data.id
-              console.log(data.data.id);
             })
             .catch(({ response }) => {
               e.target.classList.remove("disable");

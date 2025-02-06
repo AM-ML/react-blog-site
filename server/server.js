@@ -710,7 +710,7 @@ server.post("/new-blog", verifyJWT, (req, res) => {
 
   if (id) {
     Blog.findOneAndUpdate(
-      { blog_id },
+      { blog_id: blogId },
       {
         title,
         description,
@@ -721,12 +721,10 @@ server.post("/new-blog", verifyJWT, (req, res) => {
       }
     )
       .then((blog) => {
-        return res.status(200).json({ id: blog_id });
+        return res.status(200).json({ id: blogId });
       })
       .catch((err) => {
-        return res
-          .status(500)
-          .json({ error: "Failed to update total post number" });
+        return res.status(500).json({ error: err.message });
       });
   } else {
     let blog = new Blog({
@@ -769,8 +767,8 @@ server.post("/new-blog", verifyJWT, (req, res) => {
 server.get("/", (req, res) => res.send("Express on Vercel"));
 
 // Start server
-// server.listen(port, "0.0.0.0", () => {
-//   console.log("Listening on port " + port);
-// });
+server.listen(port, "0.0.0.0", () => {
+  console.log("Listening on port " + port);
+});
 
 export default server;
