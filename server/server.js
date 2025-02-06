@@ -767,8 +767,8 @@ server.post("/new-blog", verifyJWT, (req, res) => {
 server.get("/", (req, res) => res.send("Express on Vercel"));
 
 // Start server
-server.listen(port, "0.0.0.0", () => {
-  console.log("Listening on port " + port);
-});
+// server.listen(port, "0.0.0.0", () => {
+// console.log("Listening on port " + port);
+// });
 
 export default server;
