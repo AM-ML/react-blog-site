@@ -3,16 +3,19 @@ import "../css/components/editorpublish.css";
 import { EditorContext } from "../pages/editor";
 import Info from "../common/info-tooltip.jsx";
 import AnimationWrapper from "../common/page-animation";
-import toast, {Toaster} from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
-import {UserContext} from "../Router";
-import {useNavigate} from "react-router-dom";
+import { UserContext } from "../Router";
+import { useNavigate, useParams } from "react-router-dom";
 import BlogPreview from "../common/blogPreview.jsx";
 
 const EditorPublishForm = () => {
+  const { blog_id } = useParams();
 
   let navigate = useNavigate();
-  const {userAuth: { access_token }} = useContext(UserContext);
+  const {
+    userAuth: { access_token },
+  } = useContext(UserContext);
 
   const [newTagElement, setNewTagElement] = useState(false);
   const newTagElementRef = useRef(null);
@@ -21,7 +24,7 @@ const EditorPublishForm = () => {
     blog,
     blog: { title, banner, content, tags, description },
     setBlog,
-    setEditorState
+    setEditorState,
   } = useContext(EditorContext);
 
   useEffect(() => {
@@ -54,7 +57,7 @@ const EditorPublishForm = () => {
 
   const handleTagChange = (e) => {
     let input = e.target;
-    let filteredValue = input.value.replace(/[^A-Za-z-\s]/g, '');
+    let filteredValue = input.value.replace(/[^A-Za-z-\s]/g, "");
     input.value = filteredValue;
     setNewTag(filteredValue);
   };
@@ -62,7 +65,7 @@ const EditorPublishForm = () => {
   const handleTagKeyDown = (e) => {
     if (e.keyCode === 13) {
       e.preventDefault();
-      if (newTag.trim() !== '') {
+      if (newTag.trim() !== "") {
         if (tags.length >= 10) {
           toast.error("Tag Limit Reached!");
           return;
@@ -74,14 +77,14 @@ const EditorPublishForm = () => {
           return;
         }
 
-        if(newTag.length < 3) {
+        if (newTag.length < 3) {
           toast.error("Tag is too short.");
           return;
         }
 
         // Add new tag if it's unique
         setBlog({ ...blog, tags: [...tags, newTag] });
-        setNewTag('');
+        setNewTag("");
         setNewTagElement(false);
       }
     }
@@ -89,12 +92,11 @@ const EditorPublishForm = () => {
   const handleTagClose = (index) => {
     setBlog({
       ...blog,
-      tags: tags.filter((_, i) => i !== index)
+      tags: tags.filter((_, i) => i !== index),
     });
   };
 
   const handlePublish = async (e) => {
-
     if (e.target.className.includes("disable")) {
       return;
     }
@@ -116,13 +118,13 @@ const EditorPublishForm = () => {
     }
 
     let loadingToast = toast.loading("Publishing Blog...");
-    e.target.classList.add('disable');
+    e.target.classList.add("disable");
 
     const config = {
-      "headers": {
+      headers: {
         "Content-Type": "application/json",
-        "Authorization": "Bearer " + access_token
-      }
+        Authorization: "Bearer " + access_token,
+      },
     };
 
     let blogObj = {
@@ -131,39 +133,42 @@ const EditorPublishForm = () => {
       content,
       banner,
       description,
-      draft: false
-    }
+      draft: false,
+    };
 
-    await axios.post(import.meta.env.VITE_SERVER_DOMAIN + "/new-blog", blogObj, config)
-    .then((data) => {
-      e.target.classList.remove('disable');
-      toast.dismiss(loadingToast);
-      toast.success("Blog Published");
-      setTimeout(() => {
+    await axios
+      .post(
+        import.meta.env.VITE_SERVER_DOMAIN + "/new-blog",
+        { ...blogObj },
+        config
+      )
+      .then((data) => {
+        e.target.classList.remove("disable");
+        toast.dismiss(loadingToast);
+        toast.success("Blog Published");
+        setTimeout(() => {
+          navigate("/blog/" + data.data.id);
+        }, 500);
+      })
+      .catch(({ response }) => {
+        e.target.classList.remove("disable");
+        toast.dismiss(loadingToast);
 
-        navigate("/blog/" + data.data.id);
-      }, 500);
-    })
-    .catch(({ response }) => {
-      e.target.classList.remove('disable');
-      toast.dismiss(loadingToast);
+        const errorMessage =
+          typeof response.data.error === "string"
+            ? response.data.error
+            : "An error occurred.";
 
-      const errorMessage = typeof response.data.error === 'string'
-        ? response.data.error
-        : 'An error occurred.';
-
-      return toast.error(errorMessage);
-    });
-  }
+        return toast.error(errorMessage);
+      });
+  };
 
   return (
     <AnimationWrapper>
       <div className="epf-container">
         <Toaster />
         <div className="please_bigger_screen_container">
-          <div className="please_bigger_screen">
-            Please Use a Bigger Screen
-          </div>
+          <div className="please_bigger_screen">Please Use a Bigger Screen</div>
         </div>
         <div className="epf-gi epf-r1">
           <div className="epf-gi-i epf-i2 epf-title text-clamp">{title}</div>
@@ -199,7 +204,9 @@ const EditorPublishForm = () => {
                 id="epf-tags-info"
                 place="bottom"
               />
-              <span className="epp-tags-left ms-5">{10 - tags.length} Tags Left</span>
+              <span className="epp-tags-left ms-5">
+                {10 - tags.length} Tags Left
+              </span>
             </label>
           </div>
           <div className="epp-tags-container ms-3">
@@ -217,7 +224,9 @@ const EditorPublishForm = () => {
                 />
               </div>
             )}
-            {!newTagElement && <i onClick={handleNewTagClick} className="bx bx-plus"></i>}
+            {!newTagElement && (
+              <i onClick={handleNewTagClick} className="bx bx-plus"></i>
+            )}
           </div>
 
           <div className="epp-tags-flex-container mt-3 ms-3">
@@ -236,15 +245,16 @@ const EditorPublishForm = () => {
 
           <div className="epp-publish">
             <button
-              onClick = {handlePublish}
-              className="btn btn-dark btn-lg ms-auto d-block me-3 epp-publish-btn">
+              onClick={handlePublish}
+              className="btn btn-dark btn-lg ms-auto d-block me-3 epp-publish-btn"
+            >
               Publish
             </button>
           </div>
         </div>
 
         <div className="epf-gi epf-bp-container">
-          { console.log(blog) }
+          {console.log(blog)}
           <BlogPreview blog={blog} />
         </div>
       </div>
@@ -253,5 +263,3 @@ const EditorPublishForm = () => {
 };
 
 export default EditorPublishForm;
-
-

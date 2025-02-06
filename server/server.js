@@ -675,7 +675,7 @@ server.post("/update-account", verifyJWT, async (req, res) => {
 server.post("/new-blog", verifyJWT, (req, res) => {
   let authorId = req.user;
 
-  let { title, description, banner, tags, content, draft } = req.body;
+  let { title, description, banner, tags, content, draft, id = "" } = req.body;
 
   if (!title.length) {
     return res.status(403).json({ error: "no title provided" });
@@ -702,45 +702,68 @@ server.post("/new-blog", verifyJWT, (req, res) => {
   tags = tags.map((tag) => tag.toLowerCase());
 
   let blogId =
+    id ||
     title
       .replace(/[^a-zA-Z0-9]/g, " ")
       .replace(/\s+/g, "-")
       .trim() + nanoid();
 
-  let blog = new Blog({
-    title,
-    description,
-    content,
-    tags,
-    banner,
-    author: authorId,
-    blog_id: blogId,
-    draft: Boolean(draft),
-  });
-
-  blog
-    .save()
-    .then((blog) => {
-      let incrementVal = draft ? 0 : 1;
-      User.findOneAndUpdate(
-        { _id: authorId },
-        {
-          $inc: { "account_info.total_posts": incrementVal },
-          $push: { blogs: blog._id },
-        }
-      )
-        .then((user) => {
-          return res.status(200).json({ id: blog.blog_id });
-        })
-        .catch((err) => {
-          return res
-            .status(500)
-            .json({ error: "Failed to increment total_posts" });
-        });
-    })
-    .catch((err) => {
-      return res.status(500).json({ error: err.message });
+  if (id) {
+    Blog.findOneAndUpdate(
+      { blog_id },
+      {
+        title,
+        description,
+        banner,
+        content,
+        tags,
+        draft: draft ? draft : false,
+      }
+    )
+      .then((blog) => {
+        return res.status(200).json({ id: blog_id });
+      })
+      .catch((err) => {
+        return res
+          .status(500)
+          .json({ error: "Failed to update total post number" });
+      });
+  } else {
+    let blog = new Blog({
+      title,
+      description,
+      content,
+      tags,
+      banner,
+      author: authorId,
+      blog_id: blogId,
+      draft: Boolean(draft),
     });
+
+    blog
+      .save()
+      .then((blog) => {
+        let incrementVal = draft ? 0 : 1;
+        User.findOneAndUpdate(
+          { _id: authorId },
+          {
+            $inc: { "account_info.total_posts": incrementVal },
+            $push: { blogs: blog._id },
+          }
+        )
+          .then((user) => {
+            return res.status(200).json({ id: blog.blog_id });
+          })
+          .catch((err) => {
+            return res
+              .status(500)
+              .json({ error: "Failed to increment total_posts" });
+          });
+      })
+      .catch((err) => {
+        return res.status(500).json({ error: err.message });
+      });
+  }
 });
 
 server.get("/", (req, res) => res.send("Express on Vercel"));
