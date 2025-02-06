@@ -118,6 +118,10 @@ const Router = () => {
           <Route element={<Dashboard />} index />
           <Route path="/dashboard/writer" element={<WriterWrapper />}>
             <Route path="/dashboard/writer/write" element={<Editor />} />
+            <Route
+              path="/dashboard/writer/write/:blog_id"
+              element={<Editor />}
+            />
             <Route path="/dashboard/writer/drafts" element={<DraftsPanel />} />
           </Route>
           <Route path="/dashboard/author/:username" element={<Author />} />

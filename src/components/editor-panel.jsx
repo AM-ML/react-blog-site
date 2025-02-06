@@ -11,47 +11,48 @@ import { tools } from "./editor/tools";
 
 const EditorPanel = () => {
   const blogContext = useContext(EditorContext);
-  const { blog, setBlog, textEditor, setTextEditor } = blogContext;
+  const {
+    blog: { content },
+    setBlog,
+    textEditor,
+    setTextEditor,
+  } = blogContext;
 
   useEffect(() => {
     // Initialize EditorJS
     const editor = new EditorJS({
       holderId: "textEditor",
-      data: { blocks: blog.content.blocks || [] }, // Use default if content is undefined
+      data: Array.isArray(content) ? content[0] : content, // Use default if content is undefined
       tools: tools,
-      placeholder: 'Write blog content here.',
+      placeholder: "Write blog content here.",
     });
 
     setTextEditor(editor);
 
     // Cleanup function
     return () => {
-      editor.destroy? editor.destroy() : "";
-    }
+      editor.destroy ? editor.destroy() : "";
+    };
   }, [setTextEditor]);
 
-
-return (
-  <div className="ep-container">
-    <div className="please_bigger_screen_container">
-      <div className="please_bigger_screen">
-        Please Use a Bigger Screen
+  return (
+    <div className="ep-container">
+      <div className="please_bigger_screen_container">
+        <div className="please_bigger_screen">Please Use a Bigger Screen</div>
       </div>
+      <EditorNavBar />
+      <AnimationWrapper>
+        <div className="ep-i ep-banner">
+          <EditorBanner />
+          <Title />
+
+          <hr style={{ opacity: "0.1" }} className="my-3 mb-5" />
+
+          <div id="textEditor" className="ep-text-editor"></div>
+        </div>
+      </AnimationWrapper>
     </div>
-    <EditorNavBar />
-    <AnimationWrapper>
-      <div className="ep-i ep-banner">
-        <EditorBanner />
-        <Title />
-
-        <hr style={{ opacity: "0.1" }} className="my-3 mb-5" />
-
-        <div id="textEditor" className="ep-text-editor"></div>
-      </div>
-    </AnimationWrapper>
-  </div>
-);
+  );
 };
 
 export default EditorPanel;
-

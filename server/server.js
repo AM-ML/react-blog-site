@@ -405,7 +405,12 @@ server.post("/get-author", async (req, res) => {
 });
 
 server.post("/get-blog", (req, res) => {
-  const { blog_id, incrementVal = 1 } = req.body;
+  const {
+    blog_id,
+    draft = false,
+    mode = "view",
+    incrementVal = mode != "edit" ? 1 : 0,
+  } = req.body;
 
   Blog.findOneAndUpdate(
     { blog_id },
@@ -425,6 +430,10 @@ server.post("/get-blog", (req, res) => {
       ).catch((err) => {
         return res.status(500).json({ error: err.message });
       });
+
+      if (blog.draft && !draft) {
+        return res.status(500).json({ error: "you cannot access draft blogs" });
+      }
 
       return res.status(200).json({ blog });
     })
@@ -600,30 +609,19 @@ server.post("/search-authors", async (req, res) => {
 // Create a cache instance (in-memory caching)
 const trendingBlogsCache = new NodeCache({ stdTTL: 3600 }); // Cache for 1 hour
 
-server.get("/trending-blogs", async (req, res) => {
-  const maxLimit = 10;
-
-  // Check if cached blogs are available
-  const cachedBlogs = trendingBlogsCache.get("trendingBlogs");
-  if (cachedBlogs) {
-    return res.status(200).json({ blogs: cachedBlogs });
-  }
-
+server.post("/trending-blogs", async (req, res) => {
   try {
-    // Fetch top trending blogs based on total_reads, filtering out drafts
     const blogs = await Blog.find({ draft: false })
       .populate(
         "author",
         "personal_info.profile_img personal_info.username personal_info.name -_id"
       )
-      .sort({ "activity.total_reads": -1, publishedAt: -1 }) // Sort by total reads, then recent publications
-      .select("blog_id title description banner activity tags publishedAt -_id")
-      .limit(maxLimit); // Limit to top 10 blogs
+      .sort({ "activity.total_reads": -1 })
+      .limit(10)
+      .select(
+        "blog_id title description banner activity tags publishedAt -_id"
+      );
 
-    // Cache the result for 1 hour
-    trendingBlogsCache.set("trendingBlogs", blogs);
-
-    // Return the trending blogs
     return res.status(200).json({ blogs });
   } catch (err) {
     return res.status(500).json({ error: err.message });
