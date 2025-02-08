@@ -1,5 +1,38 @@
 .srv-container.wtr-container .srv-main {
-  overflow: hidden !important;
+  margin: 0 auto !important;
+}
+
+.srv-container.wtr-container .srv-main {
+  display: flex;
+  flex-direction: row !important;
+}
+
+.srv-container.wtr-container .srv-main .srv-img-c {
+  width: 200px !important;
+  flex-grow: 1;
+  max-width: 630px;
 }
 
 
+.srv-container.wtr-container .srv-main .srv-text {
+  width: max-content !important;
+}
+
+@media screen and (max-width: 1220px) {
+  .srv-container.wtr-container .srv-main .srv-text {
+    display: none !important;
+  }
+}
+
+
+@media screen and (max-width: 820px) {
+  .srv-container.wtr-container .srv-text-sm .srv-name {
+    font-size: 40px !important;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .srv-container.wtr-container .srv-text-sm .srv-name {
+    font-size: 25px !important;
+  }
+}

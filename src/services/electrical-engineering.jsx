@@ -4,7 +4,8 @@ import IMG from "../assets/obj/eleceng.jpg";
 import ServiceFull from "./servicefull";
 
 const ElectricalEngineering = () => {
-  const description = "At BOFFO, we integrate cutting-edge technology and forward-thinking design to create energy-efficient and reliable electrical systems. Our electrical engineering services include power distribution, lighting systems, and energy optimization solutions, all designed to meet the needs of modern infrastructure. We are experts in renewable energy integration, including solar power systems, making sustainability a core aspect of our work.";
+  const description =
+    "At BOFFO, we integrate cutting-edge technology and forward-thinking design to create energy-efficient and reliable electrical systems. Our electrical engineering services include power distribution, lighting systems, and energy optimization solutions, all designed to meet the needs of modern infrastructure. We are experts in renewable energy integration, including solar power systems, making sustainability a core aspect of our work.";
 
   return (
     <AnimationWrapper>
@@ -12,12 +13,12 @@ const ElectricalEngineering = () => {
         name="Electrical Engineering"
         className=" ece"
         description={description}
-        slogan={"something important we offer?"}
+        slogan={"Powering Innovation, Energizing the Future."}
         img={IMG}
         cover={true}
       />
     </AnimationWrapper>
-  )
-}
+  );
+};
 
 export default ElectricalEngineering;
