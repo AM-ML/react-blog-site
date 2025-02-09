@@ -24,8 +24,15 @@
   height: 0;
   padding-bottom: 70%; /* Maintain a square aspect ratio */
   position: relative;
-  border-radius: 20px;
   overflow: hidden;
+  transition: scale 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.bpl-banner-container:hover {
+  scale: 1.03;
+  box-shadow: 0px 0px 10px 1px black;
+  border-radius: 20px;
 }
 
 .bpl-banner {
@@ -98,13 +105,14 @@
   text-align: center;
   margin-top: auto;
   margin: auto;
-  border: 2px solid #333;
+  border: 2px solid #000;
+  border-radius: 0;
   background-color: transparent;
   cursor: pointer;
 }
 
 .bpl-view-btn:hover {
-  background-color: #333;
+  background-color: #000;
   color: white;
 }
 
