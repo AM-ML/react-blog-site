@@ -1,16 +1,12 @@
-import { useState } from "react";
 import "../css/components/home-component.css";
-import image from "../assets/home/stock_2.png";
+import image from "../assets/home/stock_4_GPT.png";
 import robot_img from "../assets/projects/home1.jpg";
 import AnimationWrapper from "../common/page-animation.jsx";
 import BlogCard from "../common/blogPreviewLG.jsx";
-import Loading from "../common/loading";
 import Slideshow from "./slideshow";
 import blogsData from "./json/home-component-blogs-data.json"; // Importing pre-fetched blog data
 
 const HomeComponent = () => {
-  const [loading, setLoading] = useState(false);
-
   return (
     <div className="hmc-container">
       <div className="hmc-header row">
@@ -38,62 +34,58 @@ const HomeComponent = () => {
         </div>
       </div>
 
-      {loading ? (
-        <Loading />
-      ) : (
-        <div className="hmc-main">
-          <div className="hmc-sns-container">
-            <div className="hmc-slider-container">
-              <h3 className="hmc-slider-title">BOFFO Projects</h3>
-              <Slideshow />
-            </div>
-            <div className="hmc-stat-container">
-              <h4 className="hmc-stat-item text-capitalize">
-                Trusted by 100+ Businesses
-              </h4>
-              <h4 className="hmc-stat-item text-capitalize">
-                98% Client Satisfaction Rate
-              </h4>
-              <h4 className="hmc-stat-item text-capitalize">
-                50+ Successful Projects Delivered
-              </h4>
-              <h4 className="hmc-stat-item text-capitalize">
-                15+ Years of Industry Experience
-              </h4>
-            </div>
+      <div className="hmc-main">
+        <div className="hmc-sns-container">
+          <div className="hmc-slider-container">
+            <h3 className="hmc-slider-title">BOFFO Projects</h3>
+            <Slideshow />
           </div>
-
-          <div className="hmc-cts-container">
-            <div className="hmc-img-container">
-              <img src={robot_img} alt="" className="hmc-img" />
-            </div>
-            <div className="hmc-cts-text-container">
-              <div className="hmc-cts-title">
-                Let's Build Something Great Together!
-              </div>
-              <div className="hmc-cts-desc">
-                <u>Contact us.</u> Your success is our foundation.
-              </div>
-            </div>
-          </div>
-
-          <div className="hmc-bps mt-5">
-            {blogsData.map((blog, i) => (
-              <AnimationWrapper
-                transition={{ duration: 1, delay: i * 0.01 }}
-                key={i}
-              >
-                <div className="hmc-bp-container">
-                  <BlogCard
-                    blog={blog}
-                    aligned={(i + 1) % 2 === 0 ? "right" : "left"}
-                  />
-                </div>
-              </AnimationWrapper>
-            ))}
+          <div className="hmc-stat-container">
+            <h4 className="hmc-stat-item text-capitalize">
+              Trusted by 100+ Businesses
+            </h4>
+            <h4 className="hmc-stat-item text-capitalize">
+              98% Client Satisfaction Rate
+            </h4>
+            <h4 className="hmc-stat-item text-capitalize">
+              50+ Successful Projects Delivered
+            </h4>
+            <h4 className="hmc-stat-item text-capitalize">
+              15+ Years of Industry Experience
+            </h4>
           </div>
         </div>
-      )}
+
+        <div className="hmc-cts-container">
+          <div className="hmc-img-container">
+            <img src={robot_img} alt="" className="hmc-img" />
+          </div>
+          <div className="hmc-cts-text-container">
+            <div className="hmc-cts-title">
+              Let's Build Something Great Together!
+            </div>
+            <div className="hmc-cts-desc">
+              <u>Contact us.</u> Your success is our foundation.
+            </div>
+          </div>
+        </div>
+
+        <div className="hmc-bps mt-5">
+          {blogsData.map((blog, i) => (
+            <AnimationWrapper
+              transition={{ duration: 1, delay: i * 0.01 }}
+              key={i}
+            >
+              <div className="hmc-bp-container">
+                <BlogCard
+                  blog={blog}
+                  aligned={(i + 1) % 2 === 0 ? "right" : "left"}
+                />
+              </div>
+            </AnimationWrapper>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

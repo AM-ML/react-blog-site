@@ -40,6 +40,17 @@
   border-color: blue;
 }
 
+.mp-email-ic .mp-email.disabled {
+  filter: brightness(0.8) !important;
+  cursor:not-allowed !important;
+  background: white;
+}
+
+.mp-name-ic .mp-name.disabled {
+  filter: brightness(0.8) !important;
+  cursor: not-allowed !important;
+  background: white;
+}
 
 .mp-no-data {
  text-align: center;

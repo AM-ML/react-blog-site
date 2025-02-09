@@ -21,7 +21,14 @@ const MainPanel = () => {
     social_links,
     interests,
     favorite_blogs,
+    fullUser,
+    google_auth,
   } = userAuth;
+
+  useEffect(() => {
+    console.log(fullUser);
+    console.log(google_auth);
+  }, [fullUser]);
 
   const [backupImg, setBackupImg] = useState(profile_img);
 
@@ -34,26 +41,27 @@ const MainPanel = () => {
   const updateAccount = (id, access_token, info) => {
     let loadId = toast.loading("Updating Account...");
 
-    // Structure the payload according to the backend schema
-    const payload = {
-      id,
-      personal_info: {
-        name: info.name,
-        email: info.email,
-        profile_img: info.profile_img ? info.profile_img : profile_img,
-      },
-      social_links: info.social_links,
-    };
+    // Prevent modifying email if it's a Google account
+    const updatedInfo = { ...info };
+    if (userAuth.isGoogleAccount) {
+      delete updatedInfo.email; // Ensure backend doesn’t attempt to change it
+    }
 
     axios
       .post(
         import.meta.env.VITE_SERVER_DOMAIN + "/update-account",
-        payload,
+        {
+          id,
+          personal_info: {
+            name: updatedInfo.name,
+            profile_img: updatedInfo.profile_img || profile_img,
+          },
+          social_links: updatedInfo.social_links,
+        },
         config
       )
       .then(({ data }) => {
         setUserAuth((prev) => ({ ...prev, ...data }));
-
         toast.dismiss(loadId);
         toast.success("Account updated successfully!");
       })
@@ -63,7 +71,6 @@ const MainPanel = () => {
         toast.error("Failed to update account. Please try again.");
       });
   };
-
   const handleFileSelect = async (e) => {
     const file = e.target.files[0];
     setBackupImg(profile_img);
@@ -178,7 +185,8 @@ const MainPanel = () => {
               onChange={handleInputChange}
               type="text"
               spellCheck="false"
-              className="mp-name"
+              className={"mp-name " + (google_auth ? "disabled" : "")}
+              disabled={google_auth}
             />
           </div>
 
@@ -188,8 +196,9 @@ const MainPanel = () => {
               type="text"
               value={updatedAccount.email}
               onChange={handleInputChange}
-              className="mp-email"
+              className={"mp-email " + (google_auth ? "disabled" : "")}
               spellCheck="false"
+              disabled={google_auth}
             />
           </div>
         </div>

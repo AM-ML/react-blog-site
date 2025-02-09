@@ -114,6 +114,7 @@ const formatDataToSend = (user) => {
     favorite_blogs: user.favorite_blogs,
     is_author: user.isAuthor,
     fullUser: user,
+    google_auth: user.google_auth,
   };
 };
 
