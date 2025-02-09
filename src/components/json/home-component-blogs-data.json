@@ -1,337 +1,64 @@
-[{"activity": {
-            "total_likes": 0,
-            "total_comments": 0,
-            "total_reads": 122,
-            "total_parent_comments": 0
+[
+{
+        "activity": {
+            "total_reads": 2
         },
-        "_id": "66dd88cc219aefc2ccc35a3b",
-        "blog_id": "9-Iconic-Chess-Photoss9bBVseJ3A2vW-8yV0eb7",
-        "title": "9 Iconic Chess Photos",
-        "banner": "http://res.cloudinary.com/dlhedrwu6/image/upload/v1725794281/AZcIILKcSBGEEyEU2VmZ5-1725794280568.jpg",
-        "description": "What makes a photo \"iconic\" and not simply interesting or even outstanding? If you find that a difficult question to answer, you are not alone.",
+        "_id": "67a86c890e17a292d575df9b",
+        "blog_id": "Women-In-Labor-Why-Are-Women-Peripheral-In-The-Lebanese-Market-What-are-The-Solutions-iHaowEGjrMQRhZRosL1wP",
+        "title": "Women In Labor: Why Are Women Peripheral In The Lebanese Market? What are The Solutions?",
+        "banner": "http://res.cloudinary.com/dlhedrwu6/image/upload/v1739090882/l_lD285PgASdNJWRZ4hzP-1739090881956.jpg",
+        "description": "The Lebanese women suffer from many problems in the Lebanese labor market, displayed by many means, but caused by one root basically: the Lebanese regime, and any misdiagnosis of the real root of ...",
         "content": [
             {
-                "time": 1725794473739,
+                "time": 1739090979632,
                 "blocks": [
                     {
-                        "id": "7yxs27wdOU",
+                        "id": "Vj1ZRPEh9P",
                         "type": "paragraph",
                         "data": {
-                            "text": "What makes a photo \"iconic\" and not simply interesting or even outstanding? If you find that a difficult question to answer, you are not alone. The two leading dictionaries in the world can't exactly agree either.&nbsp;"
+                            "text": "he Lebanese women suffer from many problems in the Lebanese labor market, displayed by many means, but caused by one root basically: the Lebanese regime, and any misdiagnosis of the real root of this problem misleads this major topic without any solution. Despite the fact that the vast majority of women are sophisticated and educated, having at least a bachelor college degree, the Lebanese labor market constitutes of only 25% of females, and unfortunately, this 25% doesn't include any majors superior jobs that possesses power but most of females work in small companies and associations that are family-based."
                         }
                     },
                     {
-                        "id": "guNumNy2Oc",
+                        "id": "fISuVEih3K",
                         "type": "paragraph",
                         "data": {
-                            "text": "Merriam-Webster: iconic, adj., Widely recognized and well-established; widely known and acknowledged especially for distinctive excellence"
+                            "text": "This issue can be explained by going deeper into the structure of the Lebanese families. The Lebanese house-holds expenditure constitutes of 68 % spent for clothing, food, transportation, housing, and education, out of which education makes 5% of the total household average expenditure. Moreover, it is realized that the unemployment rate for the Lebanese youth is 47% in 2022, while for the adults it's the half approximately, and the unemployment rates decreases as age of worker increases. Taking this into consideration, the youth has always had only 2 choices for survival, either surrender or immigration. The households always prefer to backup this plan by educating their children so they increase their opportunities of immigration. As a Lebanese youth, you either surrender to a certain political party and sell yourself for them as an ambassador, organizer, and an active member in their party in return of having a job in the Lebanese government or having contracts, bids, bonds with the government, or depositing money in banks and getting more than 14 % interest and many other facilities, or you simply immigrate and search for a job and a settlement in any foreign country. Unfortunately, Lebanon does not export anything rather than human-beings, that send back dollars and foreign currencies into the Lebanese economy which constitutes of a major part of this corrupt economy."
                         }
                     },
                     {
-                        "id": "W03eDTd_iM",
+                        "id": "n9pSZbyh9m",
                         "type": "paragraph",
                         "data": {
-                            "text": "Oxford English Dictionary: iconic, adj., Designating a person or thing regarded as representative of a culture or movement; important or influential in a particular cultural context"
+                            "text": "Due to this mere fact, and since most of women are well-educated, the Lebanese households invest so much in educating their children in order to prepare them well for immigration, and this investment goes beyond money, but the Lebanese women invest their lives and careers and sometimes cease their capabilities and ambitions, but rather serve as house-makers whom their first responsibility is fostering their children and tutoring them. This explains why the majority of educational staffs in Lebanon are of the feminine gender, since it is more preferable in the Lebanese mindsets to get tutored and educated by females."
                         }
                     },
                     {
-                        "id": "_6HazGXRF5",
+                        "id": "3HAq11NzU2",
                         "type": "paragraph",
                         "data": {
-                            "text": "Here, we've taken nine photos that have had the time to become \"widely recognized and well-established\" in the chess world while also representing the \"particular cultural context\" of an era in chess. But with such a subjective word, one person's iconic photo may be another person's black-and-white nothingburger. Still, it would be hard to understand either the roots or present-day nature of chess without these images."
+                            "text": "Moreover, the Lebanese feminine labor force suffers from a structural problem which derivates directly by the Lebanese corrupt regime. This regime was so cunning and smart and was always able to hide behind, creating conspiracy theories to keep the Lebanese citizens attention away from the main problem. This regime doesn't give the Lebanese women their right to have a civil registry, but instead each Lebanese women is registered on her father's registration and then on her husband's civil record. This explain one extremist example: many Lebanese households see their daughters as products that will be transported to another household, her husband, and that she is of no main value, since any achievement that she will achieve will be recorded in her husband's credit, thus serving into depriving them from inheritance or other lawful shares. This issue can be solved by having periodic census of the Lebanese population, which will allow women to be registered on the civil record they decide. It is not a coincidence that this regime is still using the French census that was conducted in 1932., for this census conflicts with their sectarian existence. This sectarian regime does not see its citizens as people with rights, but as votes when election happens, and as sects in other periods. Having a civil state in Lebanon, as the law states, can resolve many problems, which feminist problems are part of them. In addition, upon a request of the Lebanese government, a study from the world bank deduced that the Syrian refugees’ conflict in Lebanon will create a 40% increase in the labor force, thus a 16% decrease in wages, 60-200% increase in immigration rate, 3% decrease in GDP per capita, and an increase of taxation. Those numbers were proved right from 2013 till 2022, and this is to be added to major problems that Lebanese workers suffer from, thus eliminating more the possibility of the resolving of women in labor market suffering."
                         }
                     },
                     {
-                        "id": "bdAT5f6k2c",
-                        "type": "list",
-                        "data": {
-                            "style": "unordered",
-                            "items": [
-                                "The First Super Tournament, 1895",
-                                "The Five Grandmasters, 1914",
-                                "World's Top Prodigy, 1920",
-                                "Chess As Geopolitics, 1957",
-                                "Match of the Century, 1972",
-                                "Polgar Family, 1989",
-                                "Professional Chess, 1995",
-                                "World Diving Champion, 2013",
-                                "Conclusion"
-                            ]
-                        }
-                    },
-                    {
-                        "id": "TP8EepZVNS",
-                        "type": "header",
-                        "data": {
-                            "text": "The First Super Tournament, 1895",
-                            "level": 2
-                        }
-                    },
-                    {
-                        "id": "2q-qG-lKy7",
-                        "type": "image",
-                        "data": {
-                            "file": {
-                                "url": "http://res.cloudinary.com/dlhedrwu6/image/upload/v1725794307/QBwDdRMJZ5BcmktZJhtrU-1725794306899.jpg"
-                            },
-                            "caption": "",
-                            "withBorder": false,
-                            "stretched": false,
-                            "withBackground": false
-                        }
-                    },
-                    {
-                        "id": "uGn_wXClof",
+                        "id": "8Lsl2FqWX9",
                         "type": "paragraph",
                         "data": {
-                            "text": "Arguably, London 1851 was the first \"super tournament\" chock full of stars, but Hastings 1895 was the first one preserved for perpetuity in the form of a photograph. Here, in a single take, we find a stacked group of players that includes the first two world champions (Wilhelm Steinitz&nbsp;and&nbsp;Emanuel Lasker),&nbsp;five&nbsp;challengers (Mikhail Chigorin,&nbsp;Isidor Gunsberg,&nbsp;Siegbert Tarrasch,&nbsp;David Janowsky, and&nbsp;Carl Schlechter), and two&nbsp;unofficial world number-ones&nbsp;(Harry Pillsbury&nbsp;and&nbsp;Geza Maroczy).&nbsp;"
+                            "text": "Although the Lebanese government have signed the core international human rights treaties and treaty of international labor 1987, the Lebanese government created new specific laws against violence that domestic workers suffer from and against women violence, which is meaning-less since the basic treaties and laws serve the same mean, but it was a skillful play directed by this regime to create the illusion of progress. Besides, although the Lebanese law protects against domestic violence, in most cases, domestic violence is not displayed in court, thus, this law is meaningless. This violence is always justified by the abusers, since the regime in Lebanon does not see citizens as people with rights, but rather as sects, thus strengthening the mindset of papal authority."
                         }
                     },
                     {
-                        "id": "BepXfNKQey",
-                        "type": "header",
-                        "data": {
-                            "text": "The 5 Grandmasters, 1914",
-                            "level": 2
-                        }
-                    },
-                    {
-                        "id": "CLNP9ynb6J",
+                        "id": "LK3hS3nTrc",
                         "type": "paragraph",
                         "data": {
-                            "text": "What's more iconic than a photo with two champions? This album cover for the hottest mixtape of the 20th century:"
+                            "text": "It is not a coincidence that the Lebanese government signed the treaty of international human rights shortly after the left wing took action in France. This treaty was just a kind of protocol for it leaves many deficiencies since it has many exceptions, such as workers in agriculture, domestic workers, workers in public sector, and workers in small family productions. Another deficiency is in the treaty of international labor 1987 since the government have signed and agreed on all of its points except the second point which indicates that workers have the right to make syndicates. This also leaves us to observe the miserable condition of syndicates in Lebanon, since syndicates can be a major threat for the sectarian regime. Syndicates reallocate people from being in sects to being as workers and social levels, and that is why there isn't a party of labor in Lebanon, but parties each representing a sect, a party that is unable to take any decision since any decision will benefit one social level and disadvantage another, since a sect is a sect for all social levels, unlike labor parties, and syndicates. To initiate a syndicate, you have to give the names of all members to the government, which puts any dynamic member in danger from being fired from his job if he was an active policy influencer in a certain syndicate. Hence, demanding special laws to protect against domestic violence will continue to classify women as peripheral, and continue to vague the main problem in Lebanon since the main issue that women in labor suffer from, is the same issue that all workers in Lebanese market suffer from which is the sectarian regime."
                         }
                     },
                     {
-                        "id": "H6yl1vEEXZ",
-                        "type": "image",
-                        "data": {
-                            "file": {
-                                "url": "http://res.cloudinary.com/dlhedrwu6/image/upload/v1725794328/khjmw9qepyLW2rtl03ppv-1725794327385.jpg"
-                            },
-                            "caption": "",
-                            "withBorder": false,
-                            "stretched": false,
-                            "withBackground": false
-                        }
-                    },
-                    {
-                        "id": "MISdH4IHYD",
+                        "id": "CjcIosIDer",
                         "type": "paragraph",
                         "data": {
-                            "text": "Okay, the real answer is one with&nbsp;three&nbsp;champions&nbsp;(Lasker,&nbsp;Jose Capablanca, and&nbsp;Alexander Alekhine) and two challengers (Tarrasch and&nbsp;Frank Marshall) to boot. And while the official FIDE title of grandmaster was still 36 years away, these five players were decreed the \"first\" grandmasters by the czar himself, according to certain accounts—wrong accounts (see&nbsp;Edward Winter's note 5144), but it makes for a nice story, doesn't it?"
-                        }
-                    },
-                    {
-                        "id": "od1dFz8A_y",
-                        "type": "header",
-                        "data": {
-                            "text": "World's Top Prodigy, 1920",
-                            "level": 2
-                        }
-                    },
-                    {
-                        "id": "dXiknjQ6cC",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "Perhaps in 100 years, we will find photos of prodigies like GM&nbsp;Abhimanyu Mishra, GM-elect&nbsp;Yagiz Kaan Erdogmus, and FM&nbsp;Faustino Oro&nbsp;to be iconic. But from 100 years ago, we have GM&nbsp;Samuel Reshevsky, whose simultaneous exhibitions as a child are legendary."
-                        }
-                    },
-                    {
-                        "id": "PN2sRYWrgP",
-                        "type": "image",
-                        "data": {
-                            "file": {
-                                "url": "http://res.cloudinary.com/dlhedrwu6/image/upload/v1725794346/6SBOEfOWTqMrf-MpnLNaT-1725794344599.jpg"
-                            },
-                            "caption": "",
-                            "withBorder": false,
-                            "stretched": false,
-                            "withBackground": false
-                        }
-                    },
-                    {
-                        "id": "kC0NW0_ZTN",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "This photo almost seems staged, what with the multiple cold stares at the kid, even more folks staring at the camera, and that one guy with his hand on his head as if he&nbsp;just&nbsp;remembered that today was his wedding anniversary."
-                        }
-                    },
-                    {
-                        "id": "jwUEaK9FJA",
-                        "type": "header",
-                        "data": {
-                            "text": "Chess As Geopolitics, 1957",
-                            "level": 2
-                        }
-                    },
-                    {
-                        "id": "6RZ_ueWSzf",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "Perhaps no photo better represents the ironclad grip on chess held by the Soviets during the Cold War. Each square on the demonstration board is as big as the players' heads! In fact, everything in this photo, even those giant Soviet flags, seems to dwarf the players. The hierarchy is clear: chess first, players (GMs&nbsp;Mikhail Botvinnik&nbsp;and&nbsp;Vasily Smyslov) second."
-                        }
-                    },
-                    {
-                        "id": "QRtTYMhhHb",
-                        "type": "image",
-                        "data": {
-                            "file": {
-                                "url": "http://res.cloudinary.com/dlhedrwu6/image/upload/v1725794369/obA41Qj03wwVqiJsqfG-P-1725794368183.jpg"
-                            },
-                            "caption": "",
-                            "withBorder": false,
-                            "stretched": false,
-                            "withBackground": false
-                        }
-                    },
-                    {
-                        "id": "UYkBhYmK0w",
-                        "type": "header",
-                        "data": {
-                            "text": "Match of the Century, 1972",
-                            "level": 2
-                        }
-                    },
-                    {
-                        "id": "IfdGlbs8s5",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "We don't have very many photographs of the \"Match of the Century\" in progress because GM&nbsp;Bobby Fischer&nbsp;demanded all cameras be removed after the first game. And so every photo we do have of the most iconic chess match in history can be considered an iconic photo... especially in color."
-                        }
-                    },
-                    {
-                        "id": "HOaPRTbbR5",
-                        "type": "image",
-                        "data": {
-                            "file": {
-                                "url": "http://res.cloudinary.com/dlhedrwu6/image/upload/v1725794390/_6Syi0RmJOnynhiyw3NZD-1725794388974.jpg"
-                            },
-                            "caption": "",
-                            "withBorder": false,
-                            "stretched": false,
-                            "withBackground": false
-                        }
-                    },
-                    {
-                        "id": "GtTl186GBC",
-                        "type": "header",
-                        "data": {
-                            "text": "Polgar Family, 1989",
-                            "level": 2
-                        }
-                    },
-                    {
-                        "id": "Zw_uoAqyFt",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "Taken 75 years after the St. Petersburg&nbsp;mixtape&nbsp;tournament photo, this shot helps us see the evolution of what a chess master can be. GM&nbsp;Nona Gaprindashvili&nbsp;and GM&nbsp;Maia Chiburdanidze&nbsp;were already grandmasters by 1989, but this picture of GM&nbsp;Judit Polgar,&nbsp;GM&nbsp;Susan Polgar, and IM&nbsp;Sofia Polgar&nbsp;is the one you show someone to really drive the point home.&nbsp;"
-                        }
-                    },
-                    {
-                        "id": "6ctuiwiyoo",
-                        "type": "image",
-                        "data": {
-                            "file": {
-                                "url": "http://res.cloudinary.com/dlhedrwu6/image/upload/v1725794411/dxHdKeTRuUFF3D7qby384-1725794409877.jpg"
-                            },
-                            "caption": "Photo: Tamas Urban/Fortepan, CC.&nbsp;",
-                            "withBorder": false,
-                            "stretched": false,
-                            "withBackground": false
-                        }
-                    },
-                    {
-                        "id": "COURJHIS-3",
-                        "type": "image",
-                        "data": {
-                            "file": {
-                                "url": "http://res.cloudinary.com/dlhedrwu6/image/upload/v1725794419/3E9od6DF16Jpt9u6ErtBV-1725794418593.jpg"
-                            },
-                            "caption": "Photo: R. Cotrell/Wikimedia,&nbsp;CC.",
-                            "withBorder": false,
-                            "stretched": false,
-                            "withBackground": false
-                        }
-                    },
-                    {
-                        "id": "h5v1X8QIU5",
-                        "type": "header",
-                        "data": {
-                            "text": "Professional Chess, 1995",
-                            "level": 2
-                        }
-                    },
-                    {
-                        "id": "-x_lpMy9UE",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "GM&nbsp;Garry Kasparov&nbsp;started the Professional Chess Association to rival FIDE in 1993, and nothing says \"professional chess\" like a photo shoot on the observation deck of the old World Trade Center. That's exactly what Kasparov and GM&nbsp;Viswanathan Anand&nbsp;did before their 1995 World Championship match. Good luck finding a more \"90s\" chess photo than this."
-                        }
-                    },
-                    {
-                        "id": "UdtUO04wOC",
-                        "type": "image",
-                        "data": {
-                            "file": {
-                                "url": "http://res.cloudinary.com/dlhedrwu6/image/upload/v1725794441/6EhlPUPRkLXDwOX6jz7TQ-1725794440609.jpg"
-                            },
-                            "caption": "Photo: Owen Williams/Kasparov Agency,&nbsp;CC.&nbsp;",
-                            "withBorder": false,
-                            "stretched": false,
-                            "withBackground": false
-                        }
-                    },
-                    {
-                        "id": "doEv7qetgb",
-                        "type": "header",
-                        "data": {
-                            "text": "World Diving Champion, 2013",
-                            "level": 2
-                        }
-                    },
-                    {
-                        "id": "P2I7ZngJOG",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "GM&nbsp;Magnus Carlsen&nbsp;is a unique champion who certainly does things his way... even if that means&nbsp;getting soaked&nbsp;while fully clothed as the newly minted world chess champion in 2013. It was definitely the most memorable World Championship celebration and it will probably stay that way."
-                        }
-                    },
-                    {
-                        "id": "9p7RGetMzL",
-                        "type": "header",
-                        "data": {
-                            "text": "World Diving Champion, 2013",
-                            "level": 2
-                        }
-                    },
-                    {
-                        "id": "Xq7gCnBIct",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "GM&nbsp;Magnus Carlsen&nbsp;is a unique champion who certainly does things his way... even if that means&nbsp;getting soaked&nbsp;while fully clothed as the newly minted world chess champion in 2013. It was definitely the most memorable World Championship celebration and it will probably stay that way."
-                        }
-                    },
-                    {
-                        "id": "FxE0bsclw9",
-                        "type": "header",
-                        "data": {
-                            "text": "Conclusion",
-                            "level": 2
-                        }
-                    },
-                    {
-                        "id": "raZKhSK8WV",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "Chess is centuries older than photography. Maybe that's one reason why it isn't the most photogenic game out there. But as you can see, there have been plenty of terrific photos taken throughout the years."
-                        }
-                    },
-                    {
-                        "id": "UYlUZFJJMu",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "What is the first thing that comes to YOUR mind when you think of an iconic chess photo? Share it in the comments!"
+                            "text": "This article states and concludes that all problems such as Syrian refugees’ crisis, retirement compensations, labor laws, domestic violence, etc are major problems that all make-up the practice of the Lebanese regime. Although that those are major problems, common Lebanese people do not have any opinion on their solution. Simply, the Lebanese citizen is not convinced that he has rights! Women in labor is not a simple issue, but an issue that is a part of a big crisis in the Lebanese labor force, which is aching from the sectarian root."
                         }
                     }
                 ],
@@ -339,9 +66,10 @@
             }
         ],
         "tags": [
-            "chess",
-            "iconic",
-            "historic"
+            "economy",
+            "lebanese market",
+            "labor",
+            "women"
         ],
         "author": {
             "personal_info": {
@@ -351,648 +79,388 @@
             },
             "_id": "66b3b7d63cab83b43bddd060"
         },
-        "publishedAt": "2024-09-08T11:21:48.157Z"
-    },
-    {
+        "publishedAt": "2025-02-09T08:51:21.892Z"
+},
+  {
         "activity": {
-            "total_reads": 63
+            "total_reads": 2
         },
-        "_id": "66f2a0d892f56095ef4e59e7",
-        "blog_id": "AI-for-small-businesses-Tools-StrategiesaW8yawlV8Rl92EvqtD_c0",
-        "title": "AI for small businesses: Tools & Strategies",
-        "banner": "http://res.cloudinary.com/dlhedrwu6/image/upload/v1727176762/EHhtN-R2K9E8jkwBSWiSx-1727176756606.jpg",
-        "description": "Explore how AI can simplify and enhance everyday tasks for small businesses. We break down complex ideas into easy-to-understand insights, making AI accessible for everyone, regardless of expertise.",
+        "_id": "67a86d8b47ecc1b1fbef81a0",
+        "blog_id": "Venezuelan-Economic-Crisis-In-What-Aspects-Is-It-Related-to-The-Lebanese-Latter-LEs9iVNYjGJara7jIu2pB",
+        "title": "Venezuelan Economic Crisis: In What Aspects Is It Related to The Lebanese Latter?",
+        "banner": "http://res.cloudinary.com/dlhedrwu6/image/upload/v1739091246/stJ2Zj8sB_b0dXMdGnSwV-1739091246192.jpg",
+        "description": "ince 2019, it has been discussed so frequently on the news, televisions, and political salons how is the Lebanese crisis, which was displayed in considerable inflation rates, similar to the ...",
         "content": [
             {
-                "time": 1727176791693,
+                "time": 1739091274242,
                 "blocks": [
                     {
-                        "id": "u5sCIhqb5C",
+                        "id": "-8G-NurgsQ",
                         "type": "paragraph",
                         "data": {
-                            "text": "You might be nervous about adopting artificial intelligence (AI) within your business model. Rapid development in AI technology gives small businesses all kinds of solutions that can improve operations in a big way.&nbsp;"
+                            "text": "Since 2019, it has been discussed so frequently on the news, televisions, and political salons how is the Lebanese crisis, which was displayed in considerable inflation rates, similar to the Venezuelan crisis. However, this is true to a certain extent since both countries suffer from high inflation rates, but on the other hand, both economies are completely different, and the roots of the crises are different as well."
                         }
                     },
                     {
-                        "id": "1qIrLjJplo",
+                        "id": "RnNAUq17sg",
                         "type": "paragraph",
                         "data": {
-                            "text": "AI for small businesses enhances customer experiences, reduces operational costs, and increases production."
+                            "text": "In 1999, in Venezuela, Hugo Chavez was the president elected. Chavez was the beloved president in Venezuela. He decreased poverty and unemployment by half, improved education, and increased the national GDP. In 2004, the prices of oil were booming, thus, the Venezuelan economy booming too, with credit taken by Chavez indeed! Chavez was the savior of Venezuela in the perspectives of its people."
                         }
                     },
                     {
-                        "id": "cGFUm2hOMb",
+                        "id": "UcYmV831wv",
                         "type": "paragraph",
                         "data": {
-                            "text": "See how AI is already helping small businesses like yours bring significant cost savings, more effective advertising, and more efficient processes.&nbsp;"
+                            "text": "However, in reality Chavez achievements were not sustainable at all, and many economists burden him all the responsibility of what happened. Chavez created a new economy which is totally dependent on oil prices. For his luck and fortune, during his presidency (1999-2013), oil prices were convenient to appear as a savior. After his presidency ended, a new president, Maduro, was elected, and due to the world economy fluctuation at that period, oil prices fell down in 2014. After peaking at $107.95 a barrel on June 20, 2014, petroleum prices plunged to $44.08 a barrel by January 28, 2015, a drop of 59.2 percent in a little over 7 months. Thanks to Chavez, the Venezuelan economy is now correlated to the oil market, and with failure of Maduro to adjust , hyperinflation occurred, and the crisis of the Venezuelan economy starts now!"
                         }
                     },
                     {
-                        "id": "JI4BrvvUUq",
+                        "id": "06qomOflvV",
                         "type": "paragraph",
                         "data": {
-                            "text": "Below, we’ve curated the 7 strategies and 14 tools AI for small businesses need to scale.&nbsp;"
+                            "text": "Due to hyperinflation, products and services that were nearly free at Chavez’s presidency, became un-accessible by more than 82% of the population. Products like food and medication are considered now luxurious products in Venezuela."
                         }
                     },
                     {
-                        "id": "ZpKpfJbakr",
-                        "type": "header",
+                        "id": "VSXBBN_7LZ",
+                        "type": "paragraph",
                         "data": {
-                            "text": "Table of contents",
-                            "level": 2
+                            "text": "In a trial to fix the situation, Maduro fixed the $ rate for 1$=10Bolivars, but this rate was not accessible for anyone who was not in his military backbone, or of his allies. The real exchange rate was the black market one, 1$=12000Bolivars. The black-market rate represented 1200% of Maduro’s rate. Moreover, Maduro has given the military a privilege to import food supply of the country on his rate, and due to the corruption that Maduro created to keep him in power, the military forces sold those supplies at the black-market rates, making a fortune! Maduro’s allies and military cabinet made massive profits, which have set very good relations with Maduro, thus, keeping Maduro in power. A study in 2016, shows that more than 80% of the citizens demand Maduro out of the office of presidency, thus, the series of protests starts in Venezuela."
                         }
                     },
                     {
-                        "id": "n7IWq3mYlV",
+                        "id": "4Fr6rpR3MR",
+                        "type": "paragraph",
+                        "data": {
+                            "text": "In 2015, after 2 years of the election of Maduro, the opposition, MUD, took 2/3 of the national assembly, which lead Maduro to pressure the supreme court to make several orders thus filling the national assembly with Maduro’s allies. After many protests, Maduro had to act with little democracy and some respect for law, he created a new assembly in 2017 ,National constituent assembly, which consists of one wing only, thus people cannot vote for any party other than Maduro’s allies. The elections took place and Maduro announced his self a president again. The Venezuelan government stated that more than 7M citizen voted, while others estimate that not more than 3M voted. Many revolutions initiated and spread around the country, but Maduro’s military allies hit with his fist of steel. More than 100 protesters died in one day stating that Maduro’s government doesn’t have any problem to create massacres to maintain there authorities."
+                        }
+                    },
+                    {
+                        "id": "zYAtfUuBbx",
+                        "type": "paragraph",
+                        "data": {
+                            "text": "However, this crisis is not similar at all to Lebanon economic crisis, since:"
+                        }
+                    },
+                    {
+                        "id": "xQ5p6Fs2FY",
                         "type": "list",
                         "data": {
                             "style": "unordered",
                             "items": [
-                                "What is AI for small businesses?",
-                                "Benefits of AI for small businesses",
-                                "14 AI tools to scale up your small business",
-                                "7 Strategies to boost your small business with AI",
-                                "Challenges small businesses face that only artificial intelligence can solve",
-                                "Birdeye helps small businesses grow big with AI",
-                                "FAQs on AI for small businesses",
-                                "Harness the power of AI to scale your small business"
+                                "Lebanese economy is a rentier one(no production) unlike the Venezuelan one, then Venezuela was able to receive foreign currencies by selling goods and services to the rest of the world, but this decreased thoroughly due to sanctions initiated by the United Nations and the United States as well, adding to it the decrease of oil prices, the overall revenue decreased by 60% approximately thus, the rate of bolivar printing was so speedy ,leaving the Venezuelan currency roughly worthless. On the other hand, the Lebanese economy does not suffer from any sanctions, but it did get affected somehow by the fluctuation of oil prices. So we can see that the money supply in BDL was 20000 billion dollars in 2007, and it increased to reach 30000 billion dollars in 2009, after an increase in oil prices in this interval of time. However, this happened due to banking services that are performed by the Lebanese sectors but not a productive one or a sustainable one, or a sector that can hold by own an entire economy without having strict regulations. The entire money supply in Lebanon was found by debt, and that is why we saw a prospering economy in the 90s after Paris 1 conference, by which the Lebanese government borrowed more than 10 billion dollars, and then increasing this debt so much. However, after 2010, Lebanon did not find any side willing to borrow him more money so it sold bonds to local banks in hope that they pay them back by borrowing from the IMF , this is what is called a Ponzi scheme!"
                             ]
                         }
                     },
                     {
-                        "id": "aA8XaEKi5R",
-                        "type": "header",
+                        "id": "7hw2YcjL5t",
+                        "type": "list",
                         "data": {
-                            "text": "What is AI for small businesses?",
-                            "level": 2
+                            "style": "unordered",
+                            "items": [
+                                "The political stance in Venezuela has a right wing and a left wing, unlike the Lebanese political reality which does not have a clear wing"
+                            ]
                         }
-                    },
+                    }
+                ],
+                "version": "2.30.2"
+            }
+        ],
+        "tags": [
+            "economy",
+            "venezuelan market",
+            "lebanese economy",
+            "lebanese market",
+            "venezuelan economy",
+            "economic crisis"
+        ],
+        "author": {
+            "personal_info": {
+                "name": "ali m. moumneh",
+                "username": "ali2",
+                "profile_img": "http://res.cloudinary.com/dlhedrwu6/image/upload/v1733085425/VNu1WhaSG6u0V-RZ1Jb45-1733085425139.jpg"
+            },
+            "_id": "66b3b7d63cab83b43bddd060"
+        },
+        "publishedAt": "2025-02-09T08:55:39.556Z"
+},
+  {
+        "activity": {
+            "total_reads": 2
+        },
+        "_id": "67a86f400e17a292d575dfae",
+        "blog_id": "Economic-Warfare-The-Boycotting-Movement-Implications-on-Business-and-Corporates03T_OWucEcMPA-zylbvCn",
+        "title": "Economic Warfare: The Boycotting Movement Implications on Business and Corporates",
+        "banner": "http://res.cloudinary.com/dlhedrwu6/image/upload/v1739091610/5KCgxw98W2eD3HnVSwUqw-1739091610091.jpg",
+        "description": "Economists have been stuffed with the power of the invisible hand in the economy and the “laissez-faire” concepts of Adam Smith and other capitalistic economists and philosophers. However, the ...",
+        "content": [
+            {
+                "time": 1739091721226,
+                "blocks": [
                     {
-                        "id": "fxIoYRvi2B",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "AI is the technology that creates algorithms that adapt to humans’ way of working. Small businesses adopt AI for automating tedious work, analyzing consumer data, improving customer experiences, optimizing marketing efforts, and more.&nbsp;"
-                        }
-                    },
-                    {
-                        "id": "xe7ipYd5Xe",
-                        "type": "image",
-                        "data": {
-                            "file": {
-                                "url": "http://res.cloudinary.com/dlhedrwu6/image/upload/v1727176163/E5M1p0JzAxtRZ4kMmhSVa-1727176162608.jpg"
-                            },
-                            "caption": "",
-                            "withBorder": false,
-                            "stretched": false,
-                            "withBackground": false
-                        }
-                    },
-                    {
-                        "id": "VPT1qwV-PK",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "For local businesses, what matters is to be aligned with what the world searchers. They should focus on asking important questions like:"
-                        }
-                    },
-                    {
-                        "id": "NlwMI_mwOS",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "- What does it mean for my business?"
-                        }
-                    },
-                    {
-                        "id": "LE9gE-y0So",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "- What are my potential customers demanding?"
-                        }
-                    },
-                    {
-                        "id": "3Livwmq9uh",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "- What do I understand after engaging with my customers?"
-                        }
-                    },
-                    {
-                        "id": "n-v9JP-OIb",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "- How do I use data to align with the north star of my business?"
-                        }
-                    },
-                    {
-                        "id": "ft7cAEmA1T",
+                        "id": "z1Jk1fCqVQ",
                         "type": "quote",
                         "data": {
-                            "text": "AI has a huge opportunity to adapt to these and accelerate the path for your customers.",
-                            "caption": "Uday Ghatikar, Field CTO, Google Cloud, Speaker at Birdeye View.",
+                            "text": "Power that controls the economy should be in the hands of elected representatives of the people instead of an industrial oligarchy&nbsp;",
+                            "caption": "William O. Douglas",
                             "alignment": "left"
                         }
                     },
                     {
-                        "id": "Hq_XCBsABU",
+                        "id": "OuUYFZNImA",
+                        "type": "paragraph",
+                        "data": {
+                            "text": "Economists have been stuffed with the power of the invisible hand in the economy and the “laissez-faire” concepts of Adam Smith and other capitalistic economists and philosophers. However, the oligarchy created in these systems have always beaten the power of the invisible hands. In fact, oligarchs, the people with “the wealth” became the people in real power, whether implicitly or explicitly. Some narratives indicate that even Hitler have used German oligarch allies to reach the top of the pyramid."
+                        }
+                    },
+                    {
+                        "id": "bbT2vWx87c",
+                        "type": "paragraph",
+                        "data": {
+                            "text": "In a nutshell, in the womb of capitalistic markets, powerful oligarchs have taken over the world and displayed economic colonialism in the MENA region. As a reaction to the war in Gaza, the Arabs, Muslims, and Pro-Palestinian movements have initiated boycotts against Western brands, especially those that support the Zionist state! Mainly, these brands include Nestle, Starbucks, KFC, McDonalds, Coca-Cola, Pepsi, Zara, and a diverse variety of other brands. However, was this boycotting movement beneficial?"
+                        }
+                    },
+                    {
+                        "id": "kOqCGVMY26",
+                        "type": "paragraph",
+                        "data": {
+                            "text": "As the echoes of boycotts reverberate through the Middle East and North Africa (MENA), the impact on international economies is becoming increasingly apparent. The economic battleground, once dominated by global giants, is witnessing the rise of an Arab invisible hand challenging the established order. This silent protest of perceived pro-Israel stances or financial ties to Israel has transcended borders and is reshaping the dynamics of global commerce."
+                        }
+                    },
+                    {
+                        "id": "zrREs26Qve",
                         "type": "header",
                         "data": {
-                            "text": "Benefits of AI for small businesses",
+                            "text": "Financial Ripples Across the Globe:",
                             "level": 2
                         }
                     },
                     {
-                        "id": "dtJh4qXnaX",
+                        "id": "v6K0w0N2iv",
                         "type": "paragraph",
                         "data": {
-                            "text": "AI for small businesses can improve your bottom line. AI can improve customer service response times and client troubleshooting outcomes. Or it can assemble marketing data and reporting.&nbsp;"
+                            "text": "McDonald's, a stalwart symbol of Western fast-food supremacy, grappled with a staggering loss of $6 billion in market value, spotlighting the profound financial repercussions of the boycott movement (CNBC, 2024). Western fast-food giants, including McDonald's, Starbucks, and KFC, find themselves thrust into the forefront of a grassroots boycott surging through Egypt, Jordan, Kuwait, and Morocco, transcending specific borders to become a regional wave (Reuters, 2023). Originating in Egypt, Jordan, Kuwait, and Morocco, the boycott's influence is now permeating other Arab nations, albeit with limited effects in Saudi Arabia and the UAE (Reuters, 2023). What began as a reaction to perceived support for the Zionist state has transformed into a sweeping roster, encompassing Nestle, Starbucks, KFC, McDonald's, Coca-Cola, Pepsi, Zara, and an array of other prominent brands (Reuters, 2023). Fueled by the influential force of social media, the boycott broadens its reach to include a myriad of companies and products, amplifying its impact across diverse industries (Reuters, 2023). Stirred by a sense of activism, shoppers are heeding the call to shift their loyalty towards local alternatives, reflecting a significant shift in consumer behavior (Reuters, 2023)."
                         }
                     },
                     {
-                        "id": "XGYGqMKq0W",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "The benefits of AI for small businesses include:&nbsp;"
-                        }
-                    },
-                    {
-                        "id": "HOWyBKdCwx",
-                        "type": "list",
-                        "data": {
-                            "style": "unordered",
-                            "items": [
-                                "Enhanced customer insights",
-                                "Efficient inventory management",
-                                "Create personalized marketing campaigns",
-                                "Detect and prevent fraudulent transactions",
-                                "Strengthen cybersecurity measures",
-                                "Handle routine tasks of customer service agents&nbsp;",
-                                "Gain a competitive edge&nbsp;",
-                                "Forecast trends and market conditions"
-                            ]
-                        }
-                    },
-                    {
-                        "id": "s_qFuKPhJF",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "All this automation through AI can reduce labor costs, boost productivity, and streamline operations.&nbsp;"
-                        }
-                    },
-                    {
-                        "id": "FJi-7zd769",
+                        "id": "0_xYYj70HQ",
                         "type": "header",
                         "data": {
-                            "text": "14 AI tools to scale up your small business",
+                            "text": "Local Impact, Global Implications:",
                             "level": 2
                         }
                     },
                     {
-                        "id": "8oF3mPTN2c",
+                        "id": "Rc8J9diEwG",
                         "type": "paragraph",
                         "data": {
-                            "text": "There’s a place for AI tools in just about every part of your small business. Here are 14 examples of artificial intelligence tools you can use:&nbsp;"
+                            "text": "Protests at McDonald's and Starbucks in Jordan show that people are urging to support local brands as part of a social and political movement (Reuters, 2023). In response, McDonald's says they are sad about it, emphasizing that they welcome everyone and promise to help Gaza. Starbucks, on the other hand, claims that they're not taking sides, denying rumors that they support Israel (Reuters, 2023). This is not just about what companies say – it is affecting their sales too. McDonald's in Egypt reports that they are making less money and having a hard time covering their costs (Reuters, 2023). Even the companies that supply Starbucks and McDonald's in Egypt say they're selling about half as much as before, showing how global businesses and local economies are connected (Reuters, 2023). The impact is different in different places. In some countries, like Malaysia, a lot fewer people are going to McDonald's. But in others, the impact is not as clear, like in Saudi Arabia, the UAE, and Tunisia, where people are not as convinced that boycotting really helps Palestinians (Reuters, 2023). Lebanon, already facing challenges, is dealing with more problems because of the aftermath of bombings and military actions in the region (CNBC, 2024). Surprisingly, as Western brands struggle, Middle Eastern competitors like Starbucks and Coke are actually doing better because of the boycotts (Bloomberg, 2024). It's not just about sales; people are losing jobs because of this movement. Americana for F&amp;B, which includes KFC, Pizza Hut, and Hardees, had to let go of 100 employees (Megaphone, 2024). Even Starbucks in the USA is feeling the negative impact of the boycotts, showing that this movement is making waves beyond the Middle East (Raseef, 2024)."
                         }
                     },
                     {
-                        "id": "89dRzZ2kUC",
-                        "type": "list",
-                        "data": {
-                            "style": "ordered",
-                            "items": [
-                                "AI chatbots: Provide 24/7 availability to customers.",
-                                "Data analytics platforms:&nbsp;Facilitate the collection of customer information and the discovery of actionable insights.&nbsp;",
-                                "Predictive analytics tools: Anticipate changes in customer behaviors and trends.&nbsp;",
-                                "CRM solutions: Relationship and interaction management of customers.",
-                                "Marketing automation software: Boost the effectiveness of your marketing efforts by automating time-consuming steps in the marketing process.",
-                                "AI-powered virtual assistants: Help with administrative duties and planning.&nbsp;",
-                                "Inventory management systems: Streamline processes and ensure adequate stock levels.&nbsp;",
-                                "Fraud detection software: Recognize fraudulent acts and prevent them.",
-                                "Language translation tools: Reduce linguistic obstacles to ease international trade.",
-                                "Supply chain optimization software: Streamlining the supply chain will help businesses run more smoothly.&nbsp;",
-                                "Financial analysis platforms: Improve your decision-making by analyzing financial data.&nbsp;",
-                                "AI-powered customer feedback tools: Collecting and analyzing consumer comments may lead to better products and services.",
-                                "Social media management software: Promote your business more effectively using&nbsp;social media.",
-                                "AI-based email marketing tools: Create highly targeted and automated email marketing campaigns."
-                            ]
-                        }
-                    },
-                    {
-                        "id": "FH89Eb9IS-",
-                        "type": "image",
-                        "data": {
-                            "file": {
-                                "url": "http://res.cloudinary.com/dlhedrwu6/image/upload/v1727176263/g1PPjzmuFyWLDfMR-pWyQ-1727176263114.jpg"
-                            },
-                            "caption": "",
-                            "withBorder": false,
-                            "stretched": false,
-                            "withBackground": false
-                        }
-                    },
-                    {
-                        "id": "ZQ_YlFuiVd",
+                        "id": "dGYOE8hQzy",
                         "type": "header",
                         "data": {
-                            "text": "7 Strategies to boost your small business with AI",
+                            "text": "Conclusion:",
                             "level": 2
                         }
                     },
                     {
-                        "id": "OFyZ5sl6NN",
-                        "type": "header",
-                        "data": {
-                            "text": "1. Understand your business needs",
-                            "level": 3
-                        }
-                    },
-                    {
-                        "id": "cseZimnIm-",
+                        "id": "4nc3tXQCVf",
                         "type": "paragraph",
                         "data": {
-                            "text": "Determine which parts of your business will benefit most from AI implementation."
+                            "text": "The MENA boycotts, initially sparked by geopolitical tensions, are proving to be a transformative force, challenging established economic paradigms, and paving the way for a recalibration of global commerce dynamics. As the movement continues to unfold, the true extent of its impact on international economies remains to be seen."
                         }
                     },
                     {
-                        "id": "Xuz1CMbqoX",
-                        "type": "header",
-                        "data": {
-                            "text": "2. Start small",
-                            "level": 3
-                        }
-                    },
-                    {
-                        "id": "RrViSA2BMl",
+                        "id": "BpvCle6gMx",
                         "type": "paragraph",
                         "data": {
-                            "text": "You should start implementing AI technologies gradually, beginning with those that solve your most urgent problems."
+                            "text": "When international brands feel shame to support the Zionist state, when the Arab invisible hand stagnates the international economy, then, indeed the MENA spectates a new liberation from an economic colonialism that has been there for years! In a nutshell: boycotting has worked out!"
                         }
-                    },
+                    }
+                ],
+                "version": "2.30.2"
+            }
+        ],
+        "tags": [
+            "economy",
+            "economic warfare",
+            "boycott",
+            "mena"
+        ],
+        "author": {
+            "personal_info": {
+                "name": "ali m. moumneh",
+                "username": "ali2",
+                "profile_img": "http://res.cloudinary.com/dlhedrwu6/image/upload/v1733085425/VNu1WhaSG6u0V-RZ1Jb45-1733085425139.jpg"
+            },
+            "_id": "66b3b7d63cab83b43bddd060"
+        },
+        "publishedAt": "2025-02-09T09:02:56.038Z"
+    },
+  {
+        "activity": {
+            "total_reads": 2
+        },
+        "_id": "67a86fda48b9fe5378711282",
+        "blog_id": "Implications-on-International-Affairs-How-Did-the-War-Influence-Regional-Relations-ZvvZAL-W--tZ19-5ykqm9",
+        "title": "Implications on International Affairs: How Did the War Influence Regional Relations?",
+        "banner": "http://res.cloudinary.com/dlhedrwu6/image/upload/v1739091829/1C05-tzJ5uqWQR00NSg-0-1739091829820.jpg",
+        "description": "midst the Palestinian-Israeli conflict, the MENA region has witnessed notable boycott movements alongside the Red Sea attacks. These events have contributed to the emergence of what is now ...",
+        "content": [
+            {
+                "time": 1739091857519,
+                "blocks": [
                     {
-                        "id": "_yPnXPv4D0",
-                        "type": "header",
-                        "data": {
-                            "text": "3. Collect and analyze customer data",
-                            "level": 3
-                        }
-                    },
-                    {
-                        "id": "rJ0gN0AJyZ",
+                        "id": "Yc0UbIMVQk",
                         "type": "paragraph",
                         "data": {
-                            "text": "Use AI software to sift through consumer data and draw conclusions."
+                            "text": "Amidst the Palestinian-Israeli conflict, the MENA region has witnessed notable boycott movements alongside the Red Sea attacks. These events have contributed to the emergence of what is now recognized as ongoing economic warfare. This form of conflict has altered the narrative regarding regional dynamics and influenced international relations perceptions."
                         }
                     },
                     {
-                        "id": "KNdpu69cFi",
-                        "type": "header",
-                        "data": {
-                            "text": "4. Personalize customer interactions",
-                            "level": 3
-                        }
-                    },
-                    {
-                        "id": "SXT8Mfmruf",
+                        "id": "a14EV89hNo",
                         "type": "paragraph",
                         "data": {
-                            "text": "Tailor your marketing strategy and create individualized experiences for your customers with the help of AI-powered technologies."
+                            "text": "The boycott movements in the region have been characterized by concerted efforts to withhold economic support or engagement with entities perceived as detrimental to Arab interests, particularly concerning the Palestinian cause. On the other hand, the Red Sea attacks, which have disrupted trade routes and maritime activities in the region, have further escalated tensions, and have had severe economic impacts in the region. Consequently, the ongoing economic warfare, characterized by the boycott movement and trade disruptions through the Red Sea attacks has not only affected economic prosperity but also played a major role in questioning and reshaping diplomatic relations and alliances, influencing international dynamics as well."
                         }
                     },
                     {
-                        "id": "EYmNquvvLx",
-                        "type": "header",
-                        "data": {
-                            "text": "5. Automate routine tasks",
-                            "level": 3
-                        }
-                    },
-                    {
-                        "id": "6FlPpjqUIi",
+                        "id": "F8-2uzECi1",
                         "type": "paragraph",
                         "data": {
-                            "text": "Integrate artificial intelligence solutions that streamline mundane processes so you may focus on what matters most."
+                            "text": "On a different note, it is essential to highlight the current economic and political battle with the founding principles of the League of Arab States in 1945. The League was established to promote Arab unity and integration while addressing various challenges in the region, with a strong focus on resolving the Palestinian issue. The latter has long been a catalyst for common Arab action as the importance of the Palestinian cause was emphasized in 1964 through the establishment of the Palestinian Liberation Order (PLO) by the Arab League in 1964, which affirmed Palestine’s liberation as a common duty. Additionally, the League’s Khartoum resolution after the 1967 defeat outlined the ‘three nos” towards Israel. It is worth mentioning that the League has boycotted Israeli goods since 1948, with inconsistent enforcement due to territorial ambitions, Cold War dynamics, and intra-Arab rivalries. Yet, amidst the ongoing political and economic uncertainties in the region and the lack of proper action by the regional organization, it becomes important to question the role of the Arab League and Arab countries amidst the current war; could the Arab League recommit to its founding principles and actively advocate for the Palestinian cause once again?"
                         }
                     },
                     {
-                        "id": "_NPXrfrM0_",
-                        "type": "header",
-                        "data": {
-                            "text": "6. Improve customer support",
-                            "level": 3
-                        }
-                    },
-                    {
-                        "id": "sGOTcu8vM9",
+                        "id": "dADmFtUhRS",
                         "type": "paragraph",
                         "data": {
-                            "text": "Introduce AI-driven chatbots for round-the-clock service and instantaneous help."
+                            "text": "As the region grapples with ongoing economic and political turmoil, the League's role in promoting Arab solidarity and addressing common concerns remains paramount, yet complex due to different factors. It has been evident that the UAE, Bahrain, Egypt, and Jordan, prominent countries in the region have normalized ties with Israel even before the ongoing war. However, the October 7th attack in Gaza has changed the narratives and approach of political relations in the region. A prominent example is the situation in the Gulf, particularly the Saudi-Israel rapprochement where under the leadership of Crown Prince Mohammed bin Salman, Saudi Arabia has shown a keen interest in monitoring and assessing the ongoing normalization process between Israel and the Arab Gulf states."
                         }
                     },
                     {
-                        "id": "aGIakrCadD",
-                        "type": "header",
-                        "data": {
-                            "text": "7. Stay updated with AI trends",
-                            "level": 3
-                        }
-                    },
-                    {
-                        "id": "wOI0h_Rd16",
+                        "id": "t213ZOlwps",
                         "type": "paragraph",
                         "data": {
-                            "text": "Keep an eye on the development of AI to spot market shifts and capitalize on them."
+                            "text": "Saudi Arabia's public warming of ties with Israel has been a gradual process. In 2018, senior Israeli and Saudi officials met openly for the first time in Washington during a Counter-Violent Extremist Organizations Conference. Additionally, following the normalization of ties between Israel and the UAE, Saudi Arabia permitted Israeli flights traveling from Israel to the UAE to pass through its airspace. In a September 2023 interview, the Crown Prince stated his aspiration for Israelis to have a recognized role in Middle Eastern politics, contingent upon improvements in the lives of Palestinians. Additionally, the UAE and Bahrain, prominent countries in the Persian Gulf, had already moved forward with normalization under the \"Abraham Accords\" in September 2020. In fact, there is a major free trade agreement along with alliances and booming tourism of Israelis in the UAE, which has been signaling normalization in the region. Due to Gulf’s influential position in the Arab and Islamic spheres, U.S. officials have been focusing on achieving relations in the region, specifically, Israel-Saudi normalization to fully integrate Israel into the region. However, the October 7th massacre in Gaza disrupted the long-running U.S effort to ensure the normalization of relations between Israel and Saudi Arabia and questioned the future relations between the two parties. So how will the war in Gaza alter relations and long-lasting normalization efforts?"
                         }
                     },
                     {
-                        "id": "m2G3t8Vf3n",
-                        "type": "header",
-                        "data": {
-                            "text": "Challenges small businesses face that only artificial intelligence can solve",
-                            "level": 2
-                        }
-                    },
-                    {
-                        "id": "xTEolHLlol",
+                        "id": "6qSgwzvIO7",
                         "type": "paragraph",
                         "data": {
-                            "text": "Working with a smaller staff as a small business owner is normal. You can use AI to fill the gaps when faced with challenges related to:&nbsp;"
+                            "text": "On another note, it is essential to reiterate the importance of The Port of Cape Town amidst the ongoing crisis in the Red Sea, as ships are re-routing through it, providing the African region, particularly South Africa, with a unique economic opportunity. As trade shifts from the Suez Canal route to the Cape of Good Hope, the demand for bunkering and restocking services at certain African ports has increased drastically. However, inefficiencies, clogging, and power supply issues have prevented major African ports from fully exploiting the economic benefits of the increase in trade around the Cape of Good Hope. Consequently, this has altered the focus of African Policymakers to invest in port development strategies that will help build intra-African and international connectivity, resulting in increased efficiency and economic benefit during the upcoming years. However, it is important to note that, regardless of the economic benefits South Africa has been acquiring to the shift in Trade routes, it has shown great solidarity with the Palestinian community and advocated for a ceasefire. In fact, South Africa has filed an official case at the International Court of Justice (ICJ) accusing Israel of genocide in Gaza."
                         }
                     },
                     {
-                        "id": "w30G3iRroH",
-                        "type": "list",
-                        "data": {
-                            "style": "ordered",
-                            "items": [
-                                "Customer support",
-                                "Data analysis and insights&nbsp;",
-                                "Inventory management&nbsp;",
-                                "Language translation",
-                                "Sales and marketing&nbsp;",
-                                "Fraud detection and security",
-                                "Supply chain optimization",
-                                "Financial analysis"
-                            ]
-                        }
-                    },
-                    {
-                        "id": "LxZhMV9jiI",
+                        "id": "pAzfhqeMKH",
                         "type": "paragraph",
                         "data": {
-                            "text": "Small business owners like you face unique challenges. And artificial intelligence is up to the task of helping you overcome these.&nbsp;"
+                            "text": "From a global perspective, The United States' position concerning a ceasefire agreement during the Gaza conflict has gradually changed, reflecting shifts in diplomatic priorities and global conditions. At first, the U.S. administration made a point of clearly endorsing Israel's right to self-defense against Hamas. However, as the number of civilian deaths in Gaza increased and international pressure for an end to hostilities grew, American policy started to change. Diplomatic efforts led by the United Nations and other relevant parties gathered steam, leading the United States to change its approach towards a ceasefire agreement. After using its veto power three times to block Security Council resolutions that pressure Israel and call for a ceasefire agreement in Gaza, the US has allowed the passage of the latest Security Council resolution by abstaining from the vote."
                         }
-                    },
+                    }
+                ],
+                "version": "2.30.2"
+            }
+        ],
+        "tags": [
+            "mena",
+            "war",
+            "boycott",
+            "lebanon",
+            "saudi arabia",
+            "palestine",
+            "usa"
+        ],
+        "author": {
+            "personal_info": {
+                "name": "ali m. moumneh",
+                "username": "ali2",
+                "profile_img": "http://res.cloudinary.com/dlhedrwu6/image/upload/v1733085425/VNu1WhaSG6u0V-RZ1Jb45-1733085425139.jpg"
+            },
+            "_id": "66b3b7d63cab83b43bddd060"
+        },
+        "publishedAt": "2025-02-09T09:05:30.765Z"
+    },
+  {
+        "activity": {
+            "total_reads": 2
+        },
+        "_id": "67a8708c0e17a292d575dfc1",
+        "blog_id": "Economic-Warfare-The-Implications-of-the-Red-Sea-Attacks-on-International-Trade7DHy1uYU9m7zzVzaERYEu",
+        "title": "Economic Warfare: The Implications of the Red Sea Attacks on International Trade",
+        "banner": "http://res.cloudinary.com/dlhedrwu6/image/upload/v1739092019/2wzfFrik90KYHg3WcEKed-1739092019661.jpg",
+        "description": "International shipping disruptions, including the ongoing Red Sea and Suez Canal disruption, Panama Canal constraints, and Ukraine's war in the Black Sea, could reshape global maritime networks and...",
+        "content": [
+            {
+                "time": 1739092075562,
+                "blocks": [
                     {
-                        "id": "E7RwkW__gq",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "One example is AI-powered chatbots and other virtual assistance tools to respond to consumer inquiries. These helpful AI tools save you time and money when responding to common questions.&nbsp;"
-                        }
-                    },
-                    {
-                        "id": "_WrcxcrCUn",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "AI algorithms are also unmatched in providing consumer data and analytics. You’ll be privy to valuable insights like call resolution stats or customer sentiment.&nbsp;"
-                        }
-                    },
-                    {
-                        "id": "fscvwCSDHm",
-                        "type": "header",
-                        "data": {
-                            "text": "Customer support",
-                            "level": 3
-                        }
-                    },
-                    {
-                        "id": "Tyrn24kRUu",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "Sometimes, short-staffed small businesses struggle to provide reliable customer service. Artificially intelligent chatbots just might be the answer. AI-powered chatbots are always ready to share product information or answer typical questions, even after hours.&nbsp;&nbsp;"
-                        }
-                    },
-                    {
-                        "id": "VNjQOnS2f7",
-                        "type": "header",
-                        "data": {
-                            "text": "Data analysis and insights",
-                            "level": 3
-                        }
-                    },
-                    {
-                        "id": "gvC96vJWpY",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "Data drives business. Small business owners need reliable intel to make decisions about products, services, or new markets.AI revolutionizes how enterprises find, collect, and analyze data. Insights that used to take hours to collect can be assembled in seconds with the right artificial intelligence tools."
-                        }
-                    },
-                    {
-                        "id": "W5nHz4gta1",
-                        "type": "image",
-                        "data": {
-                            "file": {
-                                "url": "http://res.cloudinary.com/dlhedrwu6/image/upload/v1727176500/xNENYWRmHCPMSk9pQJVke-1727176499339.jpg"
-                            },
-                            "caption": "",
-                            "withBorder": false,
-                            "stretched": false,
-                            "withBackground": false
-                        }
-                    },
-                    {
-                        "id": "8mKaxDuHUb",
-                        "type": "header",
-                        "data": {
-                            "text": "Inventory management",
-                            "level": 3
-                        }
-                    },
-                    {
-                        "id": "K6vDmw9XXU",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "Stock management is another tricky area. AI for small businesses can manage inventory levels, alert you to potential shortages, and even reorder supplies. Better inventory management means reduced oversights and improved forecasting, too."
-                        }
-                    },
-                    {
-                        "id": "sCyzgo1v1y",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "The right AI tools can be downright game-changing in time and cost savings for retailers, warehousing facilities, or anyone else managing inventory."
-                        }
-                    },
-                    {
-                        "id": "pc0Trbik3q",
-                        "type": "header",
-                        "data": {
-                            "text": "Language translation",
-                            "level": 3
-                        }
-                    },
-                    {
-                        "id": "z_njuG5-5O",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "You need a translator if you’re a small business that sells to foreign markets. Or maybe the language barrier has been holding you back from jumping into the global market. If so, then you’ll love that AI capabilities include language translation.&nbsp;"
-                        }
-                    },
-                    {
-                        "id": "CYS5F6YmqC",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "Birdeye’s AI-powered Review platform is a boon for small businesses like yours to&nbsp;manage reputation. It allows you to translate customer’s reviews to answer them in their language.&nbsp;"
-                        }
-                    },
-                    {
-                        "id": "xLERVdbozw",
-                        "type": "image",
-                        "data": {
-                            "file": {
-                                "url": "http://res.cloudinary.com/dlhedrwu6/image/upload/v1727176537/kHSOioY2oapC1XKBrXFE0-1727176535981.jpg"
-                            },
-                            "caption": "",
-                            "withBorder": false,
-                            "stretched": false,
-                            "withBackground": false
-                        }
-                    },
-                    {
-                        "id": "0W5seZ-yKf",
-                        "type": "header",
-                        "data": {
-                            "text": "Sales and marketing",
-                            "level": 3
-                        }
-                    },
-                    {
-                        "id": "ZT-ISoAQFY",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "AI can make your small business marketing more effective. Artificial intelligence can sift through customer information, searching for patterns to help you market more effectively."
-                        }
-                    },
-                    {
-                        "id": "AvCosr5c52",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "AI can provide market insights, customer behavioral trends, and purchasing preferences. All of these data points are mission-critical to the success of any&nbsp;marketing strategy.&nbsp;"
-                        }
-                    },
-                    {
-                        "id": "jMNk3ss2sQ",
-                        "type": "header",
-                        "data": {
-                            "text": "Fraud detection and security",
-                            "level": 3
-                        }
-                    },
-                    {
-                        "id": "vaCwFOAt30",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "Scammers often prey on locally owned and operated businesses. They assume smaller companies aren’t as secure as some of the larger companies.You can leverage AI technology to avoid cyber-attacks. Artificial intelligence-powered detection uncovers frauds before they significantly damage your small business."
-                        }
-                    },
-                    {
-                        "id": "BRKrwSWPNI",
-                        "type": "header",
-                        "data": {
-                            "text": "Supply chain optimization",
-                            "level": 3
-                        }
-                    },
-                    {
-                        "id": "w_dpfS7bQO",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "AI tools help with virtually every area of supply chain management. AI software automates inventory oversight and reduces warehousing inefficiencies. Artificial intelligence streamlines shipping, receiving, and scheduling tasks.&nbsp;"
-                        }
-                    },
-                    {
-                        "id": "VPv85pbw3R",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "These intelligent solutions can even make predictions and avoid future shortages, too. AI reduces friction throughout the supply chain with one-click processes that used to take hours to accomplish."
-                        }
-                    },
-                    {
-                        "id": "KNdy7-Q0uD",
-                        "type": "header",
-                        "data": {
-                            "text": "Financial analysis",
-                            "level": 3
-                        }
-                    },
-                    {
-                        "id": "5ay7Qu-BO3",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "Take control of your small business finances with AI by:&nbsp;"
-                        }
-                    },
-                    {
-                        "id": "B8XQ3BSB6w",
-                        "type": "list",
-                        "data": {
-                            "style": "unordered",
-                            "items": [
-                                "Reduce errors in accounting billing and automate calculations.",
-                                "Helps onboard documents and processes for exchanges."
-                            ]
-                        }
-                    },
-                    {
-                        "id": "RfdGhy7jUP",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "Mastering online reputation for financial services&nbsp;is a no-brainer solution for small businesses that can’t afford robust accounting or finance departments.&nbsp;"
-                        }
-                    },
-                    {
-                        "id": "hA67d-FpOJ",
-                        "type": "header",
-                        "data": {
-                            "text": "Birdeye helps small businesses grow big with AI",
-                            "level": 2
-                        }
-                    },
-                    {
-                        "id": "IvwundsG5z",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "AI capabilities are integrated into every part of the Birdeye platform, delivering value across the customer lifecycle."
-                        }
-                    },
-                    {
-                        "id": "1k8NO8iFUB",
+                        "id": "R2vUDAb3E3",
                         "type": "quote",
                         "data": {
-                            "text": "BirdAI is the AI and NLP engine that offers local businesses all the AI tools to optimize customer feedback management, enhance customer interactions, increase productivity, and drive better business outcomes",
-                            "caption": "",
+                            "text": "On 19 November, the Houthis hijacked a commercial ship in the Red Sea. They have since launched dozens of missile and drone attacks on commercial ships. Of these, 34 have resulted in reported damage to vessels",
+                            "caption": "BBC, 2023.",
                             "alignment": "left"
                         }
                     },
                     {
-                        "id": "X4fuuZ7r9w",
+                        "id": "iY5__jh8A3",
                         "type": "paragraph",
                         "data": {
-                            "text": "With&nbsp;Birdeye’s AI to improve customer experience advantages, you can:"
+                            "text": "International shipping disruptions, including the ongoing Red Sea and Suez Canal disruption, Panama Canal constraints, and Ukraine's war in the Black Sea, could reshape global maritime networks and reconfigure the world trading map, potentially leading to greater supply chain upheaval, which has several effects on different levels."
                         }
                     },
                     {
-                        "id": "RmY-AMvBrp",
-                        "type": "list",
+                        "id": "si8lWloT2k",
+                        "type": "paragraph",
                         "data": {
-                            "style": "unordered",
-                            "items": [
-                                "Auto-generate contextualized and personalized review responses or rephrase when replying to customer reviews.",
-                                "Create reputation-defining experiences by automatically translating and responding to reviews in your language of choice.&nbsp;"
-                            ]
+                            "text": "On an international level, a single attack on commercial shipping globally impacts international business, affecting ships built in Korea, crewed by Filipino seafarers, owned by German investment funds, inspected by Indian classification societies, registered under the Marshall Islands flag, insured in Norway, and fueled in Singapore."
                         }
                     },
                     {
-                        "id": "CJv2RVqFTC",
+                        "id": "y7MvdGkr8c",
                         "type": "paragraph",
                         "data": {
-                            "text": "Do all these without adding extra resources so that you can focus on scaling your revenue.&nbsp;"
+                            "text": "On the level of trade microeconomics, Brad Martin, a US Navy Captain stated that: \"Flow through the Mediterranean will likely continue unimpeded. Israel is probably in a better position for absorbing disruption than most of its neighbors. However, shipping and trade can become subject to diplomatic and political action, so economically damaging isolation could certainly occur on that front” (Aljazeera, 2024). However, as of mid-December, Israel’s only Red Sea Port, at Eilat, reported an 85 percent drop in activity since the attacks began (Aljazeera, 2024). Based on a rapid assessment published by UNCTAD in February 2024, monthly transits dropped by around 50% in the Panama Canal and 42% in the Suez Canal."
+                        }
+                    },
+                    {
+                        "id": "euq4XquFfp",
+                        "type": "paragraph",
+                        "data": {
+                            "text": "In 2023, 22 percent of global seaborne container trade is estimated to have transited through the Canal, including liquified natural gas carriers, oil tankers, liquified petroleum gas carriers, car carriers, and bulkers. However, the response was immediate where many transits have been transferred from the Suez to the Cape of Good Hope. The Gulf of Eden experienced a 70% decline in ship tonnage between December 2023 and February 2024, while vessel tonnage passing through the Cape of Good Hope increased by 60%, with 621 container ships rerouting."
+                        }
+                    },
+                    {
+                        "id": "XN8uPbjyFc",
+                        "type": "paragraph",
+                        "data": {
+                            "text": "It is important to note that the Panama Canal is particularly important for the foreign trade of countries on the West Coast of South America. In fact, approximately, 22% of the Chilean foreign trade, 22% of that of Peru, and 26% of Ecuador’s foreign trade is channeled through Panama."
+                        }
+                    },
+                    {
+                        "id": "tPmsH9gciH",
+                        "type": "paragraph",
+                        "data": {
+                            "text": "Similarly, Egypt's Suez Canal, a significant foreign currency revenue source, has experienced a 40% drop due to the Red Sea crisis and attacks, potentially impacting Ethiopia and Sudan, and potentially causing negative spillover effects. The Suez Canal channels 31% of the foreign trade of Djibouti, 15% of Kenya, 12% of the Republic of Tanzania, 34% of Sudan, 31% of Yemen, and only 7% of German foreign trade."
+                        }
+                    },
+                    {
+                        "id": "WAydJoSsYD",
+                        "type": "paragraph",
+                        "data": {
+                            "text": "As a result, trade trips have started rerouting to an older pathway: The Cape of Good Hope. With already existing shifts in the path of trade, maritime cargo travels have increased due to global trade shifts and globalization trends, with the Red Sea conflict and Ukraine war exacerbated. Grain to Egypt now comes from Brazil or the US, while Russian oil shipments go to India and China. Since the Suez Canal path cuts around 40% of the distance along the Cape of Good Hope, several rerouting effects have been displayed. To explain, increased distances in shipping markets lead to increased ton-mile demand, such as container shipping, oil tanker rerouting, and liquified natural gas-carrying vessels diverting away from the Suez Canal. Bulk trade has limited market impacts, but bulker ship capacity has been diverted. Grain and soybean flows have been affected, and the number of specialized car-carrying ships using the Red Sea has been cut by over half. Vessel prices and charter rates have also increased since December 2023."
+                        }
+                    },
+                    {
+                        "id": "XNy3Wu5ggY",
+                        "type": "paragraph",
+                        "data": {
+                            "text": "On the level of international macroeconomics, The Suez gateway interruption is causing inflationary pressure due to soaring food and energy prices. Container shipping disruptions pose a threat to global supply chains, potentially leading to delayed deliveries, increased costs, and inflation. Current container freight rates are half the peak recorded during the COVID crisis, but sustained increases can drive up inflation. The crisis is also affecting global food prices, with disruptions in grain shipments from Russia, Ukraine, and Europe affecting consumers and lowering producer prices. The war in Ukraine has already shown the impact of longer distances and freight rates on food prices. Inflation rates in Europe reached a peak in October 2023, and interest rates have been increasing to combat inflation."
                         }
                     }
                 ],
@@ -1000,9 +468,9 @@
             }
         ],
         "tags": [
-            "technology",
-            "business",
-            "innovation"
+            "economy",
+            "mena",
+            "warfare"
         ],
         "author": {
             "personal_info": {
@@ -1012,305 +480,6 @@
             },
             "_id": "66b3b7d63cab83b43bddd060"
         },
-        "publishedAt": "2024-09-24T11:22:00.402Z"
-    },
-    {
-        "activity": {
-            "total_likes": 0,
-            "total_comments": 0,
-            "total_reads": 104,
-            "total_parent_comments": 0
-        },
-        "_id": "66dd8a72219aefc2ccc35a3f",
-        "blog_id": "Before-Vishy-Vs-The-World-There-Was-Kasparov-Vs-The-WorldSiNIDHlpMRx_sbFK2Dqxz",
-        "title": "Before Vishy Vs. The World, There Was Kasparov Vs. The World",
-        "banner": "http://res.cloudinary.com/dlhedrwu6/image/upload/v1725794637/aJJCNv1eaX0YVagrYGTrm-1725794636652.jpg",
-        "description": "As GM Viswanathan \"Vishy\" Anand and Chess.com are about to embark on a Vote Chess journey together, we recall the first major event where a top grandmaster took on the world in a game of chess. ",
-        "content": [
-            {
-                "time": 1725794882985,
-                "blocks": [
-                    {
-                        "id": "P2ad4zXZFp",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "As GM&nbsp;Viswanathan \"Vishy\" Anand&nbsp;and Chess.com are about to embark on a&nbsp;Vote Chess journey together, we recall the first major event where a top&nbsp;grandmaster&nbsp;took on the world in a game of chess. Exactly 25 years ago, back in 1999, GM&nbsp;Garry Kasparov&nbsp;vs. the World took a much younger internet by storm. After four months and 62 moves against more than 50,000 voters on the Microsoft Network (MSN), Kasparov finally won. He would later call it \"the greatest game in the history of chess.\""
-                        }
-                    },
-                    {
-                        "id": "lN2yt4Opx_",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "A lot has changed in 25 years, but not everything. In honor of the upcoming game, here is a quick recap of the Kasparov vs. the World game that blazed a trail that Vishy vs. the World will follow."
-                        }
-                    },
-                    {
-                        "id": "vaFP8gZQJE",
-                        "type": "list",
-                        "data": {
-                            "style": "unordered",
-                            "items": [
-                                "The Champions",
-                                "The Background",
-                                "The Advisors",
-                                "The Game",
-                                "What's Changed?",
-                                "Conclusion"
-                            ]
-                        }
-                    },
-                    {
-                        "id": "6rLBDiS0I_",
-                        "type": "header",
-                        "data": {
-                            "text": "The Champions",
-                            "level": 2
-                        }
-                    },
-                    {
-                        "id": "C3gUCuJCJJ",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "Neither Kasparov nor Anand&nbsp;really&nbsp;need an introduction, but we'll give them a brief one anyway. For his part, Anand is a five-time world champion and a legend of the game who turned an entire nation of one billion people onto the great game of chess.&nbsp;"
-                        }
-                    },
-                    {
-                        "id": "Td2xji4MCQ",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "Kasparov was no less a legend by 1999, even though he grew up in what was already the strongest chess nation in the world. He was still the&nbsp;highest-rated&nbsp;player in the world in 1999 and would remain so until his 2005 retirement. He had at the time also beaten Anand in the most recent match for the&nbsp;classical world championship&nbsp;and had, by 1999, been champion for 14 years."
-                        }
-                    },
-                    {
-                        "id": "Kr4U5x4cRZ",
-                        "type": "image",
-                        "data": {
-                            "file": {
-                                "url": "http://res.cloudinary.com/dlhedrwu6/image/upload/v1725794656/IU88kAdaBA3itHfakCCLN-1725794654680.jpg"
-                            },
-                            "caption": "Kasparov at Wijk aan Zee in 1999 after winning the tournament. Later in the year he faced off against the entire world... and also won. Kasparov won a lot of chess games. Photo: Dutch National Archives, CC.",
-                            "withBorder": false,
-                            "stretched": false,
-                            "withBackground": false
-                        }
-                    },
-                    {
-                        "id": "0_zX2HSO2D",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "So it's pretty easy to see why thousands would be motivated to play an epic game against Kasparov, just like it's easy to see why thousands could do the same with Vishy."
-                        }
-                    },
-                    {
-                        "id": "Fb0NAKen8d",
-                        "type": "header",
-                        "data": {
-                            "text": "The Background",
-                            "level": 2
-                        }
-                    },
-                    {
-                        "id": "xN2xruN5sP",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "Kasparov was no stranger to computers either. His prior experience in the field of computer chess was mostly positive—he was one of the first&nbsp;grandmasters&nbsp;to really take advantage of electronic opening databases—but suffered a giant black eye from his&nbsp;loss to Deep Blue&nbsp;in 1997.&nbsp;"
-                        }
-                    },
-                    {
-                        "id": "w0HC_jaUxH",
-                        "type": "image",
-                        "data": {
-                            "file": {
-                                "url": "http://res.cloudinary.com/dlhedrwu6/image/upload/v1725794669/CGyqkFchQKoreLE4m7kDJ-1725794668983.jpg"
-                            },
-                            "caption": "What a charismatic personality. Photo: James Gardner/Wikimedia, CC.",
-                            "withBorder": false,
-                            "stretched": false,
-                            "withBackground": false
-                        }
-                    },
-                    {
-                        "id": "gdszEb8bOX",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "But that was a supercomputer. You might have thought that the world champion facing off against an assortment of internet denizens left to their democratic devices would be an easy win for the champion. But the internet folk were not alone in their quest to defeat the champion and so, to quote Norm Macdonald (in a different context, obviously): \"No, it was actually close.\""
-                        }
-                    },
-                    {
-                        "id": "oCKrt7hLy-",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "How did the world hang with the champion for so long?"
-                        }
-                    },
-                    {
-                        "id": "YEYJxkmURO",
-                        "type": "header",
-                        "data": {
-                            "text": "The Advisors",
-                            "level": 2
-                        }
-                    },
-                    {
-                        "id": "R93nSvmN7D",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "The main thing that helped the world team put up a fight was its advisors. Microsoft assembled a crack squad of what Joe Pesci might call \"yutes\" (youths) and assigned them the task of suggesting moves. Those players—all between age 14 and 18 at the time, and listed below with their highest achieved titles, although none yet had them at the time of the game—were:"
-                        }
-                    },
-                    {
-                        "id": "aukbK4ESkW",
-                        "type": "list",
-                        "data": {
-                            "style": "unordered",
-                            "items": [
-                                "GM&nbsp;Etienne Bacrot&nbsp;(born 1983)",
-                                "GM&nbsp;Irina Krush&nbsp;(b. 1983)",
-                                "GM&nbsp;Elisabeth Paehtz&nbsp;(b. 1985)",
-                                "IM Florin Felecan (b. 1981)"
-                            ]
-                        }
-                    },
-                    {
-                        "id": "pqolmw6SxW",
-                        "type": "image",
-                        "data": {
-                            "file": {
-                                "url": "http://res.cloudinary.com/dlhedrwu6/image/upload/v1725794694/omkCGwz0_kFl22jwkWNp5-1725794693385.jpg"
-                            },
-                            "caption": "Krush, right, and Paehtz at the 2019 Cairns Cup. Photo: Maria Emelianova/Chess.com.",
-                            "withBorder": false,
-                            "stretched": false,
-                            "withBackground": false
-                        }
-                    },
-                    {
-                        "id": "LsECdPTKsC",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "Krush's move suggestions ended up dominating the results, but the whole team's advice was indispensable to the World's big fight. You will also have assistance against Vishy—names coming soon!"
-                        }
-                    },
-                    {
-                        "id": "1zhZPtzLoR",
-                        "type": "header",
-                        "data": {
-                            "text": "The Game",
-                            "level": 2
-                        }
-                    },
-                    {
-                        "id": "netb0N_S4Q",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "And here is the game itself, Kasparov vs. the World. If you'd like to read along with an analysis Krush and others wrote soon after the game, it can be found&nbsp;here&nbsp;(moves 1-31),&nbsp;here&nbsp;(moves 32-50), and&nbsp;here&nbsp;(moves 51-62)."
-                        }
-                    },
-                    {
-                        "id": "NEHlN44mEr",
-                        "type": "link",
-                        "data": {
-                            "link": "<iframe id=\"12157499\" allowtransparency=\"true\" frameborder=\"0\" style=\"width:100%;border:none;\" src=\"//www.chess.com/emboard?id=12157499\"></iframe><script>window.addEventListener(\"message\",(e)=>{const{data}=e;if(data?.id===\"12157499\"){constelement=document.getElementById(data.id);if(element){element.style.height=`${data.frameHeight+37}px`;}}});</script>"
-                        }
-                    },
-                    {
-                        "id": "FwFsrVeLAw",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "The game was so long, influential, and complicated that Kasparov co-authored an entire&nbsp;book about it.&nbsp;"
-                        }
-                    },
-                    {
-                        "id": "VJ3M_roXkE",
-                        "type": "header",
-                        "data": {
-                            "text": "What's Changed",
-                            "level": 2
-                        }
-                    },
-                    {
-                        "id": "s19iPWFu_w",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "Both the Kasparov and Anand games featured/will feature a world champion taking on the world in a game of vote chess, with expert advice given to the world team to help keep things competitive. But surely chess has changed a lot in 25 years too, right?"
-                        }
-                    },
-                    {
-                        "id": "fOlwKFdaeO",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "Of course it has. Perhaps the biggest&nbsp;difference between then and now is just how good computers have become at the game.&nbsp;Engines&nbsp;could be helpful in 1999—in fact, Kasparov announced mate in his game after analyzing with one—but they weren't the superpowers of 2024."
-                        }
-                    },
-                    {
-                        "id": "PAmB1iAYWc",
-                        "type": "image",
-                        "data": {
-                            "file": {
-                                "url": "http://res.cloudinary.com/dlhedrwu6/image/upload/v1725794867/8n6wpjhIM1raKtu_S3PnJ-1725794865746.jpg"
-                            },
-                            "caption": "Stockfish being the best of a powerful bunch. Image: Stockfishchess.org, GPL.",
-                            "withBorder": false,
-                            "stretched": false,
-                            "withBackground": false
-                        }
-                    },
-                    {
-                        "id": "oQeuvT32t3",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "But the main purpose of consulting a computer in a game like this would be to avoid simple blunders, which are going to be rare anyway in what is effectively a&nbsp;correspondence game&nbsp;between a champion on one side and the wisdom of crowds on the other. The problem, whether it's 1999 or 2024, is that when several moves show a very close evaluation, humans still have to decide what the best move for the situation is—and, even more difficult, get thousands of other humans to agree with them!"
-                        }
-                    },
-                    {
-                        "id": "EZCCmC1YeL",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "Secondly, more general but perhaps more obvious too, is that the internet of today is a completely different animal. If the Kasparov game could get 50,000 voters in 1999, in an era with far fewer people connected to the internet, how many can we get today? For example, in 1999, about three million people in&nbsp;India had internet access—that number today is&nbsp;over 900 million. And that's just one country out of almost 200. All those extra people are sure to make this upcoming match even more interesting."
-                        }
-                    },
-                    {
-                        "id": "zV-uOACkkE",
-                        "type": "header",
-                        "data": {
-                            "text": "Conclusion",
-                            "level": 2
-                        }
-                    },
-                    {
-                        "id": "WeaQ0ftKcw",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "So, it's up to you to help us make Vishy vs. the World all that it can be! You will be able to play your own part in carrying on the collaborative spirit of Kasparov vs. the World and create a bigger and better version of what, 25 years ago, was already a great format."
-                        }
-                    },
-                    {
-                        "id": "nnKtin1pmc",
-                        "type": "paragraph",
-                        "data": {
-                            "text": "Remember to start voting on September 30!"
-                        }
-                    }
-                ],
-                "version": "2.30.2"
-            }
-        ],
-        "tags": [
-            "chess",
-            "garry kasparov",
-            "deep blue",
-            "stockfish",
-            "historic",
-            "engines"
-        ],
-        "author": {
-            "personal_info": {
-                "name": "ali m. moumneh",
-                "username": "ali2",
-                "profile_img": "http://res.cloudinary.com/dlhedrwu6/image/upload/v1733085425/VNu1WhaSG6u0V-RZ1Jb45-1733085425139.jpg"
-            },
-            "_id": "66b3b7d63cab83b43bddd060"
-        },
-        "publishedAt": "2024-09-08T11:28:50.602Z"
-    }
+        "publishedAt": "2025-02-09T09:08:28.622Z"
+}
 ]
