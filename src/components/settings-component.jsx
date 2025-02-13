@@ -1,6 +1,8 @@
-import { useContext, useState } from "react";
-import { UserContext } from "../Router";
 import axios from "axios";
+import { useContext } from "react";
+import { UserContext } from "../Router";
+import "../css/components/settings-component.css";
+import ChangePassword from "./dashboard-change-pwd.jsx";
 
 const SettingsComponents = () => {
   let {
@@ -24,22 +26,10 @@ const SettingsComponents = () => {
       });
   };
   return (
-    <div className="sc-container p-2">
-      <h1 className="sc-title">Settings Page</h1>
-      <div className="row">
-        {is_author ? (
-          <div className="col bg-success text-white py-3 text-bold rounded-5 ms-3 text-center">
-            Author
-          </div>
-        ) : (
-          <div className="col bg-danger text-white text-bold py-3 text-center rounded-5 ms-3">
-            Not Author
-          </div>
-        )}
-      </div>
+    <div className="sc-container">
+      <ChangePassword />
     </div>
   );
 };
 
 export default SettingsComponents;
-

@@ -144,12 +144,6 @@ const verifyJWT = async (req, res, next) => {
         return res.status(403).json({ error: "User not found" });
       }
 
-      if (!user.isAuthor) {
-        return res
-          .status(403)
-          .json({ error: "Account does not have author privileges" });
-      }
-
       req.user = user._id; // Set the user ID to request object
       next();
     } catch (dbErr) {
@@ -464,6 +458,64 @@ server.post("/make-author", async (req, res) => {
   }
 });
 
+server.post("/change-password", verifyJWT, (req, res) => {
+  let { currentPassword, newPassword } = req.body;
+
+  if (
+    !passwordRegex.test(currentPassword) ||
+    !passwordRegex.test(newPassword)
+  ) {
+    return res.status(403).json({
+      error:
+        "Password must be 6 to 20 characters with a numeric and 1 lowercase letter.",
+    });
+  }
+  User.findOne({ _id: req.user })
+    .then((user) => {
+      if (user.google_auth) {
+        return res
+          .status(403)
+          .json({ error: "You can't change your google account's password." });
+      }
+      bcrypt.compare(
+        currentPassword,
+        user.personal_info.password,
+        (err, result) => {
+          if (err) {
+            return res.status(500).json({
+              error:
+                "Some error occurred while changing the password, please try again.",
+            });
+          }
+          if (!result) {
+            return res
+              .status(403)
+              .json({ error: "Incorrect current password" });
+          }
+          bcrypt.hash(newPassword, 10, (err, hashed_pwd) => {
+            User.findOneAndUpdate(
+              { _id: req.user },
+              { "personal_info.password": hashed_pwd }
+            )
+              .then((u) => {
+                return res.status(200).json({ status: "password changed" });
+              })
+              .catch((err) => {
+                return res.status(500).json({
+                  error:
+                    "Error occurred while saving password, please try again later.",
+                });
+              });
+          });
+        }
+      );
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ error: "User not found." });
+    });
+});
+
 server.post("/latest-blogs", (req, res) => {
   const { page } = req.body;
   let maxLimit = 10;
@@ -768,8 +820,8 @@ server.post("/new-blog", verifyJWT, (req, res) => {
 server.get("/", (req, res) => res.send("Express on Vercel"));
 
 // Start server
-// server.listen(port, "0.0.0.0", () => {
-//   console.log("Listening on port " + port);
-// });
+server.listen(port, "0.0.0.0", () => {
+  console.log("Listening on port " + port);
+});
 
 export default server;

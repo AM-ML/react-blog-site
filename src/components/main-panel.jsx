@@ -21,14 +21,9 @@ const MainPanel = () => {
     social_links,
     interests,
     favorite_blogs,
-    fullUser,
     google_auth,
+    is_author,
   } = userAuth;
-
-  useEffect(() => {
-    console.log(fullUser);
-    console.log(google_auth);
-  }, [fullUser]);
 
   const [backupImg, setBackupImg] = useState(profile_img);
 
@@ -150,7 +145,7 @@ const MainPanel = () => {
       <div className="mp-submit-bc">
         <h1 className="mp-submit-bc-page-title">Edit</h1>
         <button
-          className="btn btn-lg mp-submit-btn"
+          className="btn btn-lg mp-submit-btn cpwd-submit"
           onClick={handleSaveChanges}
         >
           Save
@@ -229,63 +224,65 @@ const MainPanel = () => {
         </div>
 
         {/* Social Links Section */}
-        <div className="mp-info-ic mp-socials-ic">
-          <h1 className="mp-socials-title mp-info-title">Socials</h1>
-          <div className="mp-socials">
-            <AnimationWrapper transition={{ duration: 0.3 }}>
-              <div className="mp-social-link">
-                <i className="mp-social-icon instagram-icon bx bxl-instagram-alt"></i>
-                <input
-                  name="social_links.instagram"
-                  value={updatedAccount.social_links.instagram}
-                  onChange={handleInputChange}
-                  spellCheck="false"
-                  type="text"
-                  className="mp-social-url mp-instagram-url text-clamp"
-                />
-              </div>
-            </AnimationWrapper>
-            <AnimationWrapper transition={{ duration: 0.3 }}>
-              <div className="mp-social-link">
-                <i className="mp-social-icon linkedin-icon bx bxl-linkedin-square"></i>
-                <input
-                  name="social_links.linkedin"
-                  value={updatedAccount.social_links.linkedin}
-                  onChange={handleInputChange}
-                  spellCheck="false"
-                  type="text"
-                  className="mp-social-url mp-linkedin-url text-clamp"
-                />
-              </div>
-            </AnimationWrapper>
-            <AnimationWrapper transition={{ duration: 0.3 }}>
-              <div className="mp-social-link">
-                <i className="mp-social-icon facebook-icon bx bxl-facebook-square"></i>
-                <input
-                  name="social_links.facebook"
-                  value={updatedAccount.social_links.facebook}
-                  onChange={handleInputChange}
-                  spellCheck="false"
-                  type="text"
-                  className="mp-social-url mp-facebook-url text-clamp"
-                />
-              </div>
-            </AnimationWrapper>
-            <AnimationWrapper transition={{ duration: 0.3 }}>
-              <div className="mp-social-link">
-                <i className="mp-social-icon twitter-icon bx bxl-twitter"></i>
-                <input
-                  name="social_links.twitter"
-                  value={updatedAccount.social_links.twitter}
-                  onChange={handleInputChange}
-                  spellCheck="false"
-                  type="text"
-                  className="mp-social-url mp-twitter-url text-clamp"
-                />
-              </div>
-            </AnimationWrapper>
+        {is_author && (
+          <div className="mp-info-ic mp-socials-ic">
+            <h1 className="mp-socials-title mp-info-title">Socials</h1>
+            <div className="mp-socials">
+              <AnimationWrapper transition={{ duration: 0.3 }}>
+                <div className="mp-social-link">
+                  <i className="mp-social-icon instagram-icon bx bxl-instagram-alt"></i>
+                  <input
+                    name="social_links.instagram"
+                    value={updatedAccount.social_links.instagram}
+                    onChange={handleInputChange}
+                    spellCheck="false"
+                    type="text"
+                    className="mp-social-url mp-instagram-url text-clamp"
+                  />
+                </div>
+              </AnimationWrapper>
+              <AnimationWrapper transition={{ duration: 0.3 }}>
+                <div className="mp-social-link">
+                  <i className="mp-social-icon linkedin-icon bx bxl-linkedin-square"></i>
+                  <input
+                    name="social_links.linkedin"
+                    value={updatedAccount.social_links.linkedin}
+                    onChange={handleInputChange}
+                    spellCheck="false"
+                    type="text"
+                    className="mp-social-url mp-linkedin-url text-clamp"
+                  />
+                </div>
+              </AnimationWrapper>
+              <AnimationWrapper transition={{ duration: 0.3 }}>
+                <div className="mp-social-link">
+                  <i className="mp-social-icon facebook-icon bx bxl-facebook-square"></i>
+                  <input
+                    name="social_links.facebook"
+                    value={updatedAccount.social_links.facebook}
+                    onChange={handleInputChange}
+                    spellCheck="false"
+                    type="text"
+                    className="mp-social-url mp-facebook-url text-clamp"
+                  />
+                </div>
+              </AnimationWrapper>
+              <AnimationWrapper transition={{ duration: 0.3 }}>
+                <div className="mp-social-link">
+                  <i className="mp-social-icon twitter-icon bx bxl-twitter"></i>
+                  <input
+                    name="social_links.twitter"
+                    value={updatedAccount.social_links.twitter}
+                    onChange={handleInputChange}
+                    spellCheck="false"
+                    type="text"
+                    className="mp-social-url mp-twitter-url text-clamp"
+                  />
+                </div>
+              </AnimationWrapper>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

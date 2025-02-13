@@ -50,7 +50,7 @@
     font-size: 16px;
     font-weight: 500;
 }
-.login-form input{
+.login-form input, .input-box{
     display: block;
     height: 50px;
     width: 100%;
@@ -61,8 +61,13 @@
     font-size: 14px;
     font-weight: 300;
 }
-.login-form *::placeholder{
+.login-form *::placeholder, .input-box::placeholder{
     color: #000000;
+}
+
+.input-box {
+  font-family: "open sans", "roboto", "rubik", sans-serif;
+  font-weight: 400;
 }
 
 .login-username-input,

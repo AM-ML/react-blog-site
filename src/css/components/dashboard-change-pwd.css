@@ -1,0 +1,33 @@
+.cpwd-container {
+  padding: 20px;
+}
+.cpwd-container .cpwd-header {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  padding: 10px 20px;
+  align-items: center;
+}
+
+.cpwd-container .cpwd-header *{
+  font-family: "open sans", "roboto", "rubik", sans-serif;
+  font-size: 32px;
+  font-weight: 300;
+}
+.cpwd-container .cpwd-header button{
+  font-size: 23px;
+}
+
+.cpwd-container .cpwd-form {
+  max-width: 900px;
+  margin: auto;
+
+}
+
+@media screen and (max-width: 450px) {
+  .cpwd-container .cpwd-header{
+    zoom: 60%;
+  }
+}
