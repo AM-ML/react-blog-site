@@ -1,6 +1,8 @@
 import AnimationWrapper from "../common/page-animation";
-import CVI from "../assets/obj/bulldozer.png";
+import CVI from "../assets/obj/crane.webp";
 import Service from "./boilerplate";
+import BlogCard from "../common/blogPreviewLG";
+import BlogsData from "../components/json/home-component-blogs-data.json";
 
 const CivilEngineering = () => {
   const description =
@@ -15,6 +17,7 @@ const CivilEngineering = () => {
         slogan={"Engineering the Future, Building with Precision."}
         img={CVI}
       />
+      <BlogCard blog={BlogsData[1]} aligned="left" />
     </AnimationWrapper>
   );
 };

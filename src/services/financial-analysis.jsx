@@ -1,6 +1,6 @@
 import AnimationWrapper from "../common/page-animation";
 import ServiceFull from "./servicefull";
-import IMAGE from "../assets/services/financial-analysis.jpeg";
+import IMAGE from "../assets/services/financial-analysis.webp";
 
 const FinancialAnalysis = () => {
   const desc =

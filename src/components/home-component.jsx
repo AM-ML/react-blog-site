@@ -1,6 +1,6 @@
 import "../css/components/home-component.css";
-import image from "../assets/home/stock_4_GPT.png";
-import robot_img from "../assets/projects/home1.jpg";
+import image from "../assets/home/stock_4_GPT.webp";
+import robot_img from "../assets/projects/home1.webp";
 import AnimationWrapper from "../common/page-animation.jsx";
 import BlogCard from "../common/blogPreviewLG.jsx";
 import Slideshow from "./slideshow";

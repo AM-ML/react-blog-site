@@ -1,6 +1,6 @@
 import AnimationWrapper from "../common/page-animation";
 import ServiceFull from "./servicefull";
-import IMAGE from "../assets/services/bug.jpg";
+import IMAGE from "../assets/services/bug.webp";
 
 const Programming = () => {
   const desc =

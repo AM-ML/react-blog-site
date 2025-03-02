@@ -1,5 +1,5 @@
 import AnimationWrapper from "../common/page-animation";
-import IMG from "../assets/obj/itb.jpg";
+import IMG from "../assets/obj/itb.webp";
 import ServiceFull from "./servicefull";
 
 const Networking = () => {

@@ -1,6 +1,6 @@
 import AnimationWrapper from "../common/page-animation";
 import ServiceFull from "./servicefull";
-import IMAGE from "../assets/services/pj.jpg";
+import IMAGE from "../assets/services/pj.webp";
 
 const ProjectManagement = () => {
   const desc =

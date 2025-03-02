@@ -1,5 +1,5 @@
 import "../css/services/interior-design.css";
-import IMAGE from "../assets/obj/interior.jpg";
+import IMAGE from "../assets/obj/interior.webp";
 import AnimationWrapper from "../common/page-animation";
 import ServiceFull from "./servicefull";
 

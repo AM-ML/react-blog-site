@@ -1,5 +1,5 @@
 import "../../css/components/editor/banner.css";
-import defaultBanner from "../../assets/blog_banner.png";
+import defaultBanner from "../../assets/blog_banner.webp";
 import axios from "axios";
 import { useContext, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
@@ -21,7 +21,11 @@ export const convertToBase64 = (file) => {
 };
 
 const EditorBanner = () => {
-  const { blog, blog: { banner }, setBlog } = useContext(EditorContext);
+  const {
+    blog,
+    blog: { banner },
+    setBlog,
+  } = useContext(EditorContext);
 
   const handleBannerUpload = async (file) => {
     if (file) {
@@ -29,14 +33,18 @@ const EditorBanner = () => {
 
       let toastId = toast.loading("Uploading Image...");
       try {
-        const response = await axios.post(`${import.meta.env.VITE_SERVER_DOMAIN}/uploadBanner`, { base64: b64 });
+        const response = await axios.post(
+          `${import.meta.env.VITE_SERVER_DOMAIN}/uploadBanner`,
+          { base64: b64 }
+        );
         const urlget = response.data.url;
         setBlog({ ...blog, banner: urlget });
 
         toast.remove(toastId);
       } catch (err) {
         toast.remove(toastId);
-        const errorMessage = err?.response?.data?.message || err.message || "An error occurred";
+        const errorMessage =
+          err?.response?.data?.message || err.message || "An error occurred";
         toast.error(errorMessage);
       }
     }
@@ -88,4 +96,3 @@ const EditorBanner = () => {
 };
 
 export default EditorBanner;
-

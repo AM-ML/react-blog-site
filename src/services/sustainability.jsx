@@ -1,6 +1,6 @@
 import AnimationWrapper from "../common/page-animation";
 import ServiceFull from "./servicefull";
-import IMAGE from "../assets/services/sus.jpg";
+import IMAGE from "../assets/services/sustainability-management.webp";
 
 const Sustainability = () => {
   const desc =

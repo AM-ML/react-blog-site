@@ -1,8 +1,8 @@
 import "../css/themes/light.css";
 import "../css/components/main-panel.css";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../Router";
-import cloud_img from "../assets/upload_to_cloud_white.png";
+import cloud_img from "../assets/upload_to_cloud_white.webp";
 import { TitleCase } from "../common/string";
 import AnimationWrapper from "../common/page-animation";
 import axios from "axios";

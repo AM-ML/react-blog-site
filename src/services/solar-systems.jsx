@@ -1,5 +1,5 @@
 import AnimationWrapper from "../common/page-animation";
-import IMAGE from "../assets/obj/solar_panels.png";
+import IMAGE from "../assets/obj/solar_panels.webp";
 import Service from "./boilerplate";
 
 const SolarSystems = () => {

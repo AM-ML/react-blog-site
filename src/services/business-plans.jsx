@@ -1,6 +1,6 @@
 import AnimationWrapper from "../common/page-animation";
 import ServiceFull from "./servicefull";
-import IMAGE from "../assets/services/bplan.jpg";
+import IMAGE from "../assets/services/bplan.webp";
 
 const BusinessPlans = () => {
   const desc =

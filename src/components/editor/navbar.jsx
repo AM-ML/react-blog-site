@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import "../../css/components/editor/navbar.css";
 import { EditorContext } from "../../pages/editor";
-import defaultBanner from "../../assets/blog_banner.png";
+import defaultBanner from "../../assets/blog_banner.webp";
 import { toast } from "react-hot-toast";
 import { UserContext } from "../../Router";
 import axios from "axios";

@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import "../css/components/slideshow.css";
-import img1 from "../assets/projects/proj1.jpg";
-import img2 from "../assets/projects/proj2.jpg";
-import img3 from "../assets/projects/proj3.jpg";
-import img4 from "../assets/projects/proj4.jpg";
+import img1 from "../assets/projects/proj1.webp";
+import img2 from "../assets/projects/proj2.webp";
+import img3 from "../assets/projects/proj3.webp";
+import img4 from "../assets/projects/proj4.webp";
 
 const slidesData = [
   {

@@ -1,4 +1,4 @@
-import IMAGE from "../assets/obj/exterior-drawing.jpg";
+import IMAGE from "../assets/obj/exterior-drawing.webp";
 import AnimationWrapper from "../common/page-animation";
 import Service from "./boilerplate";
 

@@ -1,5 +1,5 @@
 import AnimationWrapper from "../common/page-animation";
-import IMG from "../assets/services/feasibility study.jpg";
+import IMG from "../assets/services/feasibility study.webp";
 import ServiceFull from "./servicefull";
 
 const FeasibilityStudy = () => {

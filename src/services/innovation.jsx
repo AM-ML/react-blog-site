@@ -1,6 +1,6 @@
 import AnimationWrapper from "../common/page-animation";
 import ServiceFull from "./servicefull";
-import IMAGE from "../assets/services/inno.jpg";
+import IMAGE from "../assets/services/inno.webp";
 
 const Innovation = () => {
   const desc =

@@ -1,5 +1,5 @@
 import "../css/services/water-systems.css";
-import IMAGE from "../assets/obj/water-systems.jpg";
+import IMAGE from "../assets/obj/water-systems.webp";
 import AnimationWrapper from "../common/page-animation";
 import Service from "./boilerplate";
 
