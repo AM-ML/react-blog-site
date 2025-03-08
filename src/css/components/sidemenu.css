@@ -180,3 +180,9 @@ button.sdm-item {
 .sdm-menu-bc .sdm-menu-btn i {
   font-size: 40px;
 }
+
+body:has(.sdm-nvb-showing) .ipn-container,
+body:has(.sdm-nvb-showing) .srf-container .srf-img,
+body:has(.sdm-nvb-showing) .srv-container{
+  z-index: -1;
+}

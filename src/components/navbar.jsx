@@ -41,7 +41,7 @@ const Navbar = () => {
   };
 
   return (
-    <AnimationWrapper key={"navbar"}>
+    <AnimationWrapper key={"navbar"} transition={{ duration: 0.0 }}>
       <div className="np-header">
         <div
           className="custom-navbar-modal modal fade "
@@ -205,7 +205,10 @@ const Navbar = () => {
           </div>
         </nav>
       </div>
-      <div style={{ minHeight: "100vh", overflowY: "overlay" }}>
+      <div
+        style={{ minHeight: "100vh", overflowY: "overlay" }}
+        className={appearSide ? "sdm-nvb-showing" : "sdm-nvb-hidden"}
+      >
         {appearSide && (
           <SideMenu appearSide={appearSide} setAppearSide={setAppearSide} />
         )}

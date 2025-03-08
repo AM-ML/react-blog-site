@@ -1,14 +1,23 @@
 import "../css/services/servicefull.css";
 
-const ServiceFull = ({ name, cover=false, img, slogan="", description, children, className="" }) => {
+const ServiceFull = ({
+  name,
+  cover = false,
+  img,
+  slogan = "",
+  description,
+  children,
+  className = "",
+}) => {
   return (
-    <div className={( "srf-container " + (className))}>
+    <div className={"srf-container " + className}>
       <div className="srf-main">
         <div className="srf-img-c">
           <img
-            src={img} alt=""
+            src={img}
+            alt=""
             className="srf-img"
-            style={cover? {"objectFit": "cover"}: {}}
+            style={cover ? { objectFit: "cover" } : {}}
           />
           <a
             className="no-design srf-scroll-down-icon bx bx-chevron-down"
@@ -31,7 +40,7 @@ const ServiceFull = ({ name, cover=false, img, slogan="", description, children,
         {children}
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default ServiceFull;
