@@ -35,37 +35,46 @@ const HomeComponent = () => {
       </div>
 
       <div className="hmc-main">
-        <div className="hmc-sns-container">
-          <div className="hmc-slider-container">
-            <h3 className="hmc-slider-title">BOFFO Projects</h3>
-            <Slideshow />
-          </div>
-          <div className="hmc-stat-container">
-            <h4 className="hmc-stat-item text-capitalize">
-              Trusted by 100+ Businesses
-            </h4>
-            <h4 className="hmc-stat-item text-capitalize">
-              98% Client Satisfaction Rate
-            </h4>
-            <h4 className="hmc-stat-item text-capitalize">
-              50+ Successful Projects Delivered
-            </h4>
-            <h4 className="hmc-stat-item text-capitalize">
-              15+ Years of Industry Experience
-            </h4>
-          </div>
-        </div>
-
-        <div className="hmc-cts-container">
-          <div className="hmc-img-container">
-            <img src={robot_img} alt="" className="hmc-img" />
-          </div>
-          <div className="hmc-cts-text-container">
-            <div className="hmc-cts-title">
-              Let's Build Something Great Together!
+        <div className="hmc-main-subcontainer">
+          <div className="hmc-sns-container">
+            <div className="hmc-slider-container">
+              <h3 className="hmc-slider-title">BOFFO Projects</h3>
+              <Slideshow />
             </div>
-            <div className="hmc-cts-desc">
-              <u>Contact us.</u> Your success is our foundation.
+            <div className="hmc-stat-container">
+              <p className="hmc-stat-txt hmc-stat-item">
+                Boffo Consulting Group is a leading force in engineering,
+                construction, and architectural consulting, delivering
+                innovative solutions across diverse projects. From large-scale
+                infrastructure developments to high-end commercial and
+                residential designs, our expertise drives excellence at every
+                stage. We have contributed to landmark projects, including urban
+                master plans, state-of-the-art industrial facilities, and
+                sustainable building initiatives.
+                <br />
+                <br />
+                Our team collaborates with industry leaders to optimize
+                structural integrity, efficiency, and aesthetics, ensuring every
+                project meets the highest standards. At Boffo Consulting Group,
+                we transform visions into reality with precision, innovation,
+                and a commitment to excellence.
+              </p>
+            </div>
+          </div>
+
+          <div className="hmc-cts-big-container">
+            <div className="hmc-cts-container">
+              <div className="hmc-img-container">
+                <img src={robot_img} alt="" className="hmc-img" />
+              </div>
+              <div className="hmc-cts-text-container">
+                <div className="hmc-cts-title">
+                  Let's Build Something Great Together!
+                </div>
+                <div className="hmc-cts-desc">
+                  <u>Contact us.</u> Your success is our foundation.
+                </div>
+              </div>
             </div>
           </div>
         </div>

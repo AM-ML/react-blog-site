@@ -19,7 +19,6 @@
   line-height: 1.2;
   font-weight: 600;
   font-family: "Merriweather", "Domine", serif;
-  margin-bottom: 1rem;
 }
 
 .hmc-header-paragraph {
@@ -116,10 +115,6 @@
   width: 100%;
 }
 
-.hmc-main {
-  margin-top: 3rem;
-}
-
 .hmc-bps {
   margin: 4vh 0;
 }
@@ -128,7 +123,8 @@
   font-weight: 500;
   font-family: "Domine";
   font-size: 32px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+
 }
 
 .hmc-slider-container {
@@ -139,6 +135,7 @@
 
 .hmc-stat-container {
   min-width: 40%;
+  max-width: 70ch;
   display: flex;
   flex-direction: column;
   flex-wrap:nowrap;
@@ -149,14 +146,16 @@
   padding-bottom: 0;
 }
 
+
 .hmc-stat-container .hmc-stat-item {
   width: 100%;
-  font-family: "domine";
-  font-size: 2.4vw;
-  font-weight: 900;
-  color: #079;
-  box-shadow: 1px 1px 1px black;
-  padding: 10px;
+  color: #fff;
+  padding: 10px 20px;
+  font-family: "roboto";
+  font-size: 21px;
+  font-weight: 300;
+  height: 100%;
+  margin-top: 20px;
 }
 @media screen and (max-width:800px) {
   .hmc-stat-container .hmc-stat-item {
@@ -179,8 +178,18 @@
   flex-direction: row;
   justify-content: space-evenly;
   flex-wrap:wrap;
+  background: linear-gradient(to left, #00000000 55%, #2D417Eaa 93%, #2D417Eff 97%), linear-gradient(to left, #2D417Eff 12%, #2D417Eaa 44%, #0000ff00 74%), linear-gradient(to top, #37297Cff 0%, #37297Cff 100%);
+  margin-top: 0 !important;
+  padding-top: 30px;
+  color: white;
+  padding-bottom: 20px;
 }
 
+.hmc-main-subcontainer {
+  margin-top: 0;
+  padding-top: 10px;
+  background: #fff;
+}
 
 
 @media screen and (max-width: 1000px) {
@@ -192,8 +201,14 @@
   }
 }
 
-
-
+.hmc-cts-big-container {
+  background: linear-gradient(to bottom, #0000ff00 55%, #2D417E66 83%, #2D417E66 97%), linear-gradient(to top, #2D417E66 12%, #2D417E33 44%, #0000ff00 74%), linear-gradient(to right, #3729EC66 0%, #3729EC66 100%);
+  background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpaperaccess.com%2Ffull%2F4012650.jpg&f=1&nofb=1&ipt=1e12f46257b5d0a6b22dbdf9c4530b4fade04ec37842b8749eb85ee292b7fb60&ipo=images");
+  background-repeat: no-repeat;
+  object-fit:fill;
+  background-size:cover;
+  background-position-y:top;
+}
 
 .hmc-cts-container {
   position:relative;
@@ -208,7 +223,7 @@
   overflow: hidden;
   background-color:#1c204788;
 
-  margin-top: 4rem;
+  margin-top: 10px;
   margin-bottom: 4rem;
 }
 .hmc-cts-container .hmc-img-container {
