@@ -99,10 +99,10 @@ const Footer = () => {
               <h2 className="footer-menu-name"> Company</h2>
               <ul id="menu-company" className="footer-menu-list">
                 <li className="menu-item menu-item-type-post_type menu-item-object-page">
-                  <a href="#">Careers</a>
+                  <Link to="/careers/overview">Careers</Link>
                 </li>
                 <li className="menu-item menu-item-type-post_type menu-item-object-page">
-                  <a href="#">About Us</a>
+                  <Link to="/about-us/overview">About Us</Link>
                 </li>
               </ul>
             </div>
@@ -112,18 +112,13 @@ const Footer = () => {
               <h2 className="footer-menu-name"> Features</h2>
               <ul id="menu-company" className="footer-menu-list">
                 <li className="menu-item menu-item-type-custom menu-item-object-custom">
-                  <a target="_blank" rel="noopener noreferrer" href="#">
-                    Blogs
-                  </a>
+                  <Link to="/blogs">Blogs</Link>
                 </li>
                 <li className="menu-item menu-item-type-post_type menu-item-object-page">
-                  <a href="#">Projects</a>
-                </li>
-                <li className="menu-item menu-item-type-post_type_archive menu-item-object-customer">
-                  <a href="#">Our Services</a>
+                  <Link to="/contact-us">Contact Us</Link>
                 </li>
                 <li className="menu-item menu-item-type-post_type menu-item-object-page">
-                  <a href="#">Contact Us</a>
+                  <Link to="/about-us/case-studies">Case Studies</Link>
                 </li>
               </ul>
             </div>

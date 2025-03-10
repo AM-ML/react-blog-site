@@ -11,6 +11,7 @@ import comp5 from "../assets/about-us/comp/comp_5.png";
 import comp6 from "../assets/about-us/comp/comp_6.png";
 import comp7 from "../assets/about-us/comp/comp_7.png";
 import comp8 from "../assets/about-us/comp/comp_8.png";
+import industries from "../assets/about-us/industries.jpg";
 
 const AboutComponent = () => {
   return (
@@ -117,6 +118,23 @@ const AboutComponent = () => {
           </div>
         </div>
 
+        <div className="abt-wd-container">
+          <div className="abt-img-c">
+            <img src={industries} alt="" className="abt-img" />
+          </div>
+          <div className="abt-text">
+            <div className="title">What We Do</div>
+            <div className="text">
+              "We provide quantitative value at every level, that can be relied
+              upon in order to enhance your project" Boffo provides a broad
+              spectrum of services relative to projects in both public and
+              private sectors. We approach each situation with a "team
+              mentality", understanding that the ability to lend our expertise
+              is an integral part of the success of your project.
+            </div>
+          </div>
+        </div>
+
         <div className="abt-coop">
           <div className="title">
             NOTABLE WORLD LEADING COMPANIES WE COOPERATE WITH
@@ -153,10 +171,10 @@ const AboutComponent = () => {
               <div className="abt-text col">
                 “ Electrification is in our DNA. It is at the heart of our
                 existence. It is the reason why we give the best of ourselves to
-                build a better future dor the world”. Liban cables was founded
+                build a better future for the world”. Liban cables was founded
                 in 1967 by a group of Lebanese industrialists, backed up by the
-                technical assignments of two international leadinf firms, Les
-                Cables De lyon- France& Phelps Dodge USA
+                technical assignments of two international leading firms, Les
+                Cables De Lyon- France& Phelps Dodge USA
               </div>
             </div>
             <div className="abt-comp abt-comp-4 row">
@@ -201,7 +219,7 @@ const AboutComponent = () => {
                 Canadian solar closely examines our supply chains to ensure
                 goods imported are not mined, produced, or manufactured, wholly
                 or in part, with prohibited form of labor, i.e., slave, convict,
-                indentured, forced, or indentured chiled labor.
+                indentured, forced, or indentured child labor.
               </div>
             </div>
             <div className="abt-comp abt-comp-8">

@@ -237,6 +237,8 @@ body:has(.abt-pg-container) .sdm-nvb-hidden {
   font-family: "domine";
   font-weight: 900;
   margin-bottom: 20px;
+  text-decoration: underline;
+  text-underline-offset: 10px;
 
 }
 
@@ -254,7 +256,6 @@ body:has(.abt-pg-container) .sdm-nvb-hidden {
   margin: 0;
 
   width: 100%;
-  background: linear-gradient(to left, #00000000 55%, #2D417Eaa 93%, #2D417Eff 97%), linear-gradient(to left, #2D417Eff 12%, #2D417Eaa 44%, #0000ff00 74%), linear-gradient(to top, #37297Cff 0%, #37297Cff 100%);
 
   display: flex !important;
   flex-direction: row !important;
@@ -276,7 +277,7 @@ body:has(.abt-pg-container) .sdm-nvb-hidden {
 }
 
 .abt-comp .abt-text {
-  color: white;
+  color: black;
   font-family: "roboto";
   font-weight: 300;
   font-size: 20px;
@@ -285,3 +286,42 @@ body:has(.abt-pg-container) .sdm-nvb-hidden {
   padding: 20px;
 }
 
+
+.abt-wd-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 30px;
+  margin-top: 50px;
+  padding: 20px;
+}
+
+.abt-wd-container .abt-img-c {
+  width: 40%;
+  max-width: 500px;
+  min-width: 300px;
+}
+.abt-wd-container .abt-img-c .abt-img {
+  width: 100%;
+  height: 100%;
+}
+
+.abt-wd-container .abt-text {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 20px;
+  gap: 30px;
+}
+
+.abt-wd-container .abt-text .title {
+  font-weight: 900;
+  font-size: 40px;
+  font-family: "Domine";
+}
+
+.abt-wd-container .abt-text .text {
+  font-weight: 300;
+  font-size: 23px;
+  font-family: "roboto";
+}
