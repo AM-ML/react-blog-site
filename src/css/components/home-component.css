@@ -4,7 +4,8 @@
   margin: 0;
   color: white;
   padding-top: 30px;
-  background: linear-gradient(to top, #0000ff00 55%, #2D417Eaa 83%, #2D417Eff 97%), linear-gradient(to left, #2D417Eff 12%, #2D417Eaa 44%, #0000ff00 74%), linear-gradient(to top, #3729ECff 0%, #3729ECff 100%);
+  /* background: linear-gradient(to top, #0000ff00 55%, #2D417Eaa 83%, #2D417Eff 97%), linear-gradient(to left, #2D417Eff 12%, #2D417Eaa 44%, #0000ff00 74%), linear-gradient(to top, #3729ECff 0%, #3729ECff 100%); */
+  background: #16526C;
   height: fit-content;
   min-height: calc( 100vh - 100px );
 
@@ -35,7 +36,10 @@
 }
 
 .hmc-header-button {
-  padding: 20px;
+  display: inline-block;
+  text-decoration: none;
+  margin: 0;
+  padding: 27px;
   width: 100%;
   background: transparent;
   border: 2px solid white;
@@ -178,7 +182,7 @@
   flex-direction: row;
   justify-content: space-evenly;
   flex-wrap:wrap;
-  background: linear-gradient(to left, #00000000 55%, #2D417Eaa 93%, #2D417Eff 97%), linear-gradient(to left, #2D417Eff 12%, #2D417Eaa 44%, #0000ff00 74%), linear-gradient(to top, #37297Cff 0%, #37297Cff 100%);
+  background: #16526C;
   margin-top: 0 !important;
   padding-top: 30px;
   color: white;

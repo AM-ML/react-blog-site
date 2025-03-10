@@ -1,0 +1,135 @@
+.abst-pg-container {
+}
+
+.abst-container {
+  min-height: calc(100vh - 100px);
+}
+
+.abst-header .abst-img-c {
+   position: absolute;
+  width: 100%;
+  height: 100vh;
+  z-index: -2;
+
+}
+.abst-header .abst-img-c .abst-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.7);
+}
+
+.abst-img-shadow {
+position: absolute;
+  background: linear-gradient(to bottom, #18204988, #2d407e88);
+  z-index: -1;
+  width: 100%;
+  height: 100vh;
+}
+
+.abst-header {
+  position: relative;
+}
+.abst-header-text {
+  padding: 20px;
+  color: white;
+  min-height:100vh;
+  align-content: center;
+}
+.abst-header-text .abst-title {
+  font-weight: 900;
+  font-family: "Domine";
+  font-size: 3.5vw;
+  text-align: center;
+  letter-spacing: 0.02vw;
+}
+.abst-header-text .abst-title .highlight {
+  display: inline;
+  text-decoration: none;
+  font-family: "Domine";
+  color: yellow;
+}
+.abst-header-text .abst-desc {
+  font-weight: 300;
+  font-family: "roboto";
+  font-size: 1.4vw;
+  margin:auto;
+
+}
+.abst-header .abst-arrow-c {
+  position:absolute;
+  bottom: 35px;
+  left: calc(50% - 50px);
+}
+
+.abst-arrow-c .abst-arrow {
+  font-size: 50px;
+  color: white;
+}
+@media screen and (min-width: 900px) {
+  .abst-header-text .abst-desc {
+    width: 60vw;
+    margin-top: 40px;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .abst-header-text .abst-desc {
+    font-size: 20px;
+    line-height: 1.2;
+  }
+
+  .abst-header .abst-title {
+    font-size: 33px;
+    padding: 0;
+  }
+}
+
+body:has(.abst-pg-container) .np-header,
+body:has(.abst-pg-container) .navbar {
+  background: transparent ;
+}
+
+body:has(.abst-pg-container) .sdm-nvb-showing,
+body:has(.abst-pg-container) .sdm-nvb-hidden {
+  margin-top: -100px;
+}
+
+
+
+.abst-hf-container {
+  padding: 30px;
+  margin-top: 20px;
+}
+
+.abst-hf-container .title {
+  font-weight: 900;
+  font-size: 36px;
+  font-family: "Domine";
+  margin-bottom: 20px;
+}
+
+.abst-hf-container .text {
+  font-weight: 300;
+  font-size: 20px;
+  font-family: "Roboto";
+}
+
+.abst-hfs-container {
+  width:100%;
+  margin: 0;
+  padding: 0px;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.abst-hfs-container .abst-hf-container{
+  height: 400px;
+  width: 44%;
+  min-width: 440px;
+  background: #16526C;
+  color: white;
+  flex-grow: 1;
+  margin: 10px;
+}

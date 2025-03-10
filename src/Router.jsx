@@ -37,6 +37,7 @@ import BusinessPlans from "./services/business-plans";
 import Sustainability from "./services/sustainability";
 import ContactUs from "./pages/contact-us";
 import AboutUs from "./pages/about-us";
+import AboutStory from "./pages/about-story";
 
 export const UserContext = createContext({});
 
@@ -77,6 +78,8 @@ const Router = () => {
             element={<ElectricalEngineering />}
           />
           <Route path="about-us/overview" element={<AboutUs />} />
+          <Route path="about-us/our-story" element={<AboutStory />} />
+
           <Route path="services/architecture" element={<Architecture />} />
           <Route path="services/interior-design" element={<InteriorDesign />} />
           <Route path="services/solar-systems" element={<SolarSystems />} />

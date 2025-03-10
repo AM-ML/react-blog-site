@@ -1,10 +1,11 @@
 import "../css/components/home-component.css";
-import image from "../assets/home/stock_4_GPT.webp";
+import image from "../assets/home/hmfw.webp";
 import robot_img from "../assets/projects/home1.webp";
 import AnimationWrapper from "../common/page-animation.jsx";
 import BlogCard from "../common/blogPreviewLG.jsx";
 import Slideshow from "./slideshow";
 import blogsData from "./json/home-component-blogs-data.json"; // Importing pre-fetched blog data
+import { Link } from "react-router-dom";
 
 const HomeComponent = () => {
   return (
@@ -25,10 +26,14 @@ const HomeComponent = () => {
           </p>
           <div className="hmc-header-button-container row">
             <div className="col">
-              <button className="hmc-header-button">Join Us</button>
+              <Link className="hmc-header-button" to="/contact-us">
+                Join Us
+              </Link>
             </div>
             <div className="col">
-              <button className="hmc-header-button">Our Impact</button>
+              <Link className="hmc-header-button" to="/case-studies">
+                Our Impact
+              </Link>
             </div>
           </div>
         </div>

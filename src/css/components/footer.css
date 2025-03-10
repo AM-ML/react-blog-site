@@ -36,7 +36,7 @@
 
 
 .ftr-container * * {
-  background: #2D417E;
+  background: #16526C;
 }
 
 .ftr-container a:hover {
@@ -58,13 +58,13 @@
 }
 
 footer.ftr {
-  background-color: #2D417E;
+  background-color: #16526C;
   height: 100%;
   color: #fff;
   margin: 0 !important;
 }
 footer.ftr {
-  background-color: #2D417E;
+  background-color: #16526C;
   width: 100vw;
 }
 

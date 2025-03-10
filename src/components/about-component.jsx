@@ -137,7 +137,7 @@ const AboutComponent = () => {
 
         <div className="abt-coop">
           <div className="title">
-            NOTABLE WORLD LEADING COMPANIES WE COOPERATE WITH
+            Notable World Leading Companies We Work With
           </div>
 
           <div className="abt-comps">
