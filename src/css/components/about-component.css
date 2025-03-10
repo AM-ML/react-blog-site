@@ -5,14 +5,14 @@
   min-height: calc(100vh - 100px);
 }
 
-.abt-img-c {
+.abt-header .abt-img-c {
   position: absolute;
   width: 100%;
   height: 100vh;
   z-index: -2;
 }
 
-.abt-img-c .abt-img {
+.abt-header .abt-img-c .abt-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -41,7 +41,7 @@
 .abt-header-text .abt-title {
   font-weight: 900;
   font-family: "Domine";
-  font-size: 3.5vw;
+  font-size: 4.5vw;
   text-align: center;
   letter-spacing: 0.02vw;
 }
@@ -61,6 +61,17 @@
 
 }
 
+.abt-header .abt-arrow-c {
+  position:absolute;
+  bottom: 35px;
+  left: calc(50% - 50px);
+}
+
+.abt-arrow-c .abt-arrow {
+  font-size: 50px;
+  color: white;
+}
+
 @media screen and (min-width: 900px) {
   .abt-header-text .abt-desc {
     width: 60vw;
@@ -74,7 +85,7 @@
   }
 
   .abt-header .abt-title {
-    font-size: 26px;
+    font-size: 33px;
     padding: 0;
   }
 }
@@ -92,3 +103,185 @@ body:has(.abt-pg-container) .sdm-nvb-showing,
 body:has(.abt-pg-container) .sdm-nvb-hidden {
   margin-top: -100px;
 }
+
+
+.abt-mv-container {
+  margin:0;
+  margin-top: 20px;
+  padding: 40px 20px;
+  width:100%;
+
+  background: linear-gradient(to left, #00000000 55%, #2D417Eaa 93%, #2D417Eff 97%), linear-gradient(to left, #2D417Eff 12%, #2D417Eaa 44%, #0000ff00 74%), linear-gradient(to top, #37297Cff 0%, #37297Cff 100%);
+
+  color: white;
+}
+
+.abt-mv-container .col:first-child {
+  padding-right: 30px;
+}
+
+.abt-mv-container .col {
+  min-width: 300px;
+}
+
+@media screen and (max-width:640px) {
+  .abt-mv-container .col:last-child {
+    margin-top: 30px;
+  }
+}
+
+.abt-mv-container .col .title {
+  font-family: "Domine";
+  font-weight: 900;
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.abt-mv-container .col .text {
+  font-family: "Roboto";
+  font-weight: 300;
+  font-size: 20px;
+}
+
+.abt-stat-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: start;
+  justify-content: space-evenly;
+
+  padding: 30px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+.abt-stat-container .abt-stat-item {
+  width: 30%;
+  min-width: 250px;
+  color: #16526C;
+}
+
+.abt-stat-item .abt-row-1 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 3px solid #16526C;
+  padding: 0;
+  margin: 0;
+}
+
+.abt-stat-item .abt-row-1 .abt-img {
+  height: 106px !important;
+
+}
+
+.abt-stat-item .abt-row-1 .abt-number {
+  font-size: 37px;
+  font-family: "domine";
+}
+
+.abt-stat-item .abt-text {
+  font-family: "domine";
+  font-weight: 300;
+  font-size: 20px;
+  text-align: justify;
+  margin-top: 10px;
+}
+
+.abt-org {
+  margin: 0;
+  margin-top: 40px;
+  padding: 40px 20px;
+  width: 100%;
+
+  background: linear-gradient(to left, #00000000 55%, #2D417Eaa 93%, #2D417Eff 97%), linear-gradient(to left, #2D417Eff 12%, #2D417Eaa 44%, #0000ff00 74%), linear-gradient(to top, #37297Cff 0%, #37297Cff 100%);
+  color: white;
+}
+
+.abt-org .abt-title {
+  font-family: "Domine";
+  font-weight: 900;
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.abt-org .abt-col {
+  min-width: 300px;
+  font-family: "Roboto";
+  font-weight: 300;
+  font-size: 20px;
+}
+
+.abt-org .abt-row .abt-col:first-child {
+  padding-right: 30px;
+}
+
+
+@media screen and (max-width: 640px) {
+  .abt-org .abt-row .abt-col:last-child {
+    margin-top: 30px;
+  }
+}
+
+
+.abt-coop {
+  margin-top: 60px;
+  padding: 20px;
+}
+
+.abt-coop .title {
+  font-size: 36px;
+  font-family: "domine";
+  font-weight: 900;
+  margin-bottom: 20px;
+
+}
+
+.abt-comps {
+  display:flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  width:100%;
+  justify-content: center;
+  gap: 20px;
+
+}
+
+.abt-comp {
+  margin: 0;
+
+  width: 100%;
+  background: linear-gradient(to left, #00000000 55%, #2D417Eaa 93%, #2D417Eff 97%), linear-gradient(to left, #2D417Eff 12%, #2D417Eaa 44%, #0000ff00 74%), linear-gradient(to top, #37297Cff 0%, #37297Cff 100%);
+
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  justify-content: center;
+}
+
+.abt-comp .abt-img-c {
+  width: 30%;
+  min-width: 300px;
+  padding: 20px;
+  z-index: 1;
+}
+
+.abt-comp .abt-img-c .abt-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.abt-comp .abt-text {
+  color: white;
+  font-family: "roboto";
+  font-weight: 300;
+  font-size: 20px;
+  align-content: center;
+  min-width: 300px;
+  padding: 20px;
+}
+
