@@ -100,12 +100,15 @@ body:has(.abt-pg-container) .sdm-nvb-hidden {
   margin-top: -100px;
 }
 
-
+.abt-i-container:hover {
+  box-shadow: 0px 3px 15px #aaa !important;
+}
 .abt-i-container {
   padding: 40px;
   margin-top: 20px;
   margin: 20px;
   border-radius: 20px;
+  transition: all 0.3s ease;
 }
 
 .abt-i-container .title {
@@ -137,10 +140,14 @@ body:has(.abt-pg-container) .sdm-nvb-hidden {
   padding-right: 30px;
 }
 
+.abt-mv-container .col:hover {
+  box-shadow: 0px 3px 15px #aaa !important;
+}
 .abt-mv-container .col {
   min-width: 300px;
   padding: 40px 20px;
   border-radius: 20px;
+  transition: all 0.3s ease;
 }
 
 @media screen and (max-width:640px) {
@@ -209,44 +216,6 @@ body:has(.abt-pg-container) .sdm-nvb-hidden {
   font-size: 20px;
   margin-top: 10px;
 }
-
-.abt-org {
-  margin: 10px;
-  padding: 40px 20px;
-
-  border-radius: 20px;
-}
-
-.abt-org .abt-title .section {
-  display: inline-block;
-  width: 50%;
-}
-.abt-org .abt-title .section,
-.abt-org .abt-title {
-  font-family: "Domine";
-  font-weight: 900;
-  font-size: 36px;
-  margin-bottom: 20px;
-}
-
-.abt-org .abt-col {
-  min-width: 300px;
-  font-family: "Roboto";
-  font-weight: 300;
-  font-size: 20px;
-}
-
-.abt-org .abt-row .abt-col:first-child {
-  padding-right: 30px;
-}
-
-
-@media screen and (max-width: 640px) {
-  .abt-org .abt-row .abt-col:last-child {
-    margin-top: 30px;
-  }
-}
-
 
 .abt-coop {
   margin-top: 60px;

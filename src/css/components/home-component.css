@@ -248,8 +248,7 @@
 
 
 .hmc-bg-c:hover {
-  box-shadow: 0px 3px 15px gray !important;
-  scale: 1.005;
+  box-shadow: 0px 3px 15px #aaa !important;
 }
 .hmc-bg-c {
   padding: 20px;

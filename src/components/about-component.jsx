@@ -70,15 +70,10 @@ const AboutComponent = () => {
             </div>
           </div>
         </div>
-
-        <div className="abt-org shadow-lg">
-          <div className="abt-title">
-            {" "}
-            <div className="section">Our Organizational Structure </div>
-            <div className="section ps-3">& Operational Alignment</div>
-          </div>
-          <div className="abt-row row">
-            <div className="abt-col col">
+        <div className="abt-mv-container row">
+          <div className="col shadow">
+            <div className="title">Our Organizational Structure</div>
+            <div className="text">
               The strategic Management committee comprises the Executive Board
               and the Corporate Centers of the Group. This control level is
               responsible for the strategic and organizational development.
@@ -86,7 +81,10 @@ const AboutComponent = () => {
               comprises the marketing committee, finance committee, projects
               committee and operations committee.
             </div>
-            <div className="abt-col col">
+          </div>
+          <div className="col shadow">
+            <div className="title">& Operational Alignment</div>
+            <div className="text">
               With more than 15 years of accumulated experience, we believe
               investing in our people and upgrading their skills is the key to
               success. Our aim is to stay relevant in to the ever-changing
@@ -94,6 +92,7 @@ const AboutComponent = () => {
             </div>
           </div>
         </div>
+
         <div className="abt-stat-container">
           <div className="abt-stat-item">
             <div className="abt-row-1">
