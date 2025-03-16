@@ -43,8 +43,18 @@ const AboutComponent = () => {
       </div>
 
       <div className="abt-info" id="info">
+        <div className="abt-i-container shadow">
+          <div className="title">Our Impact</div>
+          <div className="text">
+            BOFFO Consulting has successfully completed projects across multiple
+            regions, contributing to national development and economic growth.
+            From large-scale infrastructure projects to detailed architectural
+            designs, we take pride in shaping skylines and enhancing
+            communities.
+          </div>
+        </div>
         <div className="abt-mv-container row">
-          <div className="col">
+          <div className="col shadow">
             <div className="title">Our Mission</div>
             <div className="text">
               To provide innovative, sustainable, and efficient construction and
@@ -52,7 +62,7 @@ const AboutComponent = () => {
               contribute to the advancement of the built environment.
             </div>
           </div>
-          <div className="col">
+          <div className="col shadow">
             <div className="title">Our Vision</div>
             <div className="text">
               To be a leading consulting firm recognized for our expertise,
@@ -61,6 +71,29 @@ const AboutComponent = () => {
           </div>
         </div>
 
+        <div className="abt-org shadow-lg">
+          <div className="abt-title">
+            {" "}
+            <div className="section">Our Organizational Structure </div>
+            <div className="section ps-3">& Operational Alignment</div>
+          </div>
+          <div className="abt-row row">
+            <div className="abt-col col">
+              The strategic Management committee comprises the Executive Board
+              and the Corporate Centers of the Group. This control level is
+              responsible for the strategic and organizational development.
+              Duties delegate by the board of directors to executive board which
+              comprises the marketing committee, finance committee, projects
+              committee and operations committee.
+            </div>
+            <div className="abt-col col">
+              With more than 15 years of accumulated experience, we believe
+              investing in our people and upgrading their skills is the key to
+              success. Our aim is to stay relevant in to the ever-changing
+              market place.
+            </div>
+          </div>
+        </div>
         <div className="abt-stat-container">
           <div className="abt-stat-item">
             <div className="abt-row-1">
@@ -92,28 +125,6 @@ const AboutComponent = () => {
               With the vision of being worldwide reference in Construction
               industry, we are executing projects in Algeria | Qatar | Oman |
               Iraq | Saudi Arabia | Lebanon.
-            </div>
-          </div>
-        </div>
-
-        <div className="abt-org">
-          <div className="abt-title">
-            Our Organizational Structure & Operational Alignment
-          </div>
-          <div className="abt-row row">
-            <div className="abt-col col">
-              The strategic Management committee comprises the Executive Board
-              and the Corporate Centers of the Group. This control level is
-              responsible for the strategic and organizational development.
-              Duties delegate by the board of directors to executive board which
-              comprises the marketing committee, finance committee, projects
-              committee and operations committee.
-            </div>
-            <div className="abt-col col">
-              With more than 15 years of accumulated experience, we believe
-              investing in our people and upgrading their skills is the key to
-              success. Our aim is to stay relevant in to the ever-changing
-              market place.
             </div>
           </div>
         </div>

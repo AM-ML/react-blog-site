@@ -31,8 +31,8 @@ const HomeComponent = () => {
               </Link>
             </div>
             <div className="col">
-              <Link className="hmc-header-button" to="/case-studies">
-                Our Impact
+              <Link className="hmc-header-button" to="/about-us/our-story">
+                Our Story
               </Link>
             </div>
           </div>
@@ -41,29 +41,34 @@ const HomeComponent = () => {
 
       <div className="hmc-main">
         <div className="hmc-main-subcontainer">
-          <div className="hmc-sns-container">
-            <div className="hmc-slider-container">
-              <h3 className="hmc-slider-title">BOFFO Projects</h3>
-              <Slideshow />
+          <div className="hmc-list-container">
+            <div className="item hmc-bg-c shadow">
+              <div className="title">Innovation</div>
+              <div className="text">
+                We integrate cutting-edge technology and modern methodologies to
+                stay ahead in the industry.
+              </div>
             </div>
-            <div className="hmc-stat-container">
-              <p className="hmc-stat-txt hmc-stat-item">
-                Boffo Consulting Group is a leading force in engineering,
-                construction, and architectural consulting, delivering
-                innovative solutions across diverse projects. From large-scale
-                infrastructure developments to high-end commercial and
-                residential designs, our expertise drives excellence at every
-                stage. We have contributed to landmark projects, including urban
-                master plans, state-of-the-art industrial facilities, and
-                sustainable building initiatives.
-                <br />
-                <br />
-                Our team collaborates with industry leaders to optimize
-                structural integrity, efficiency, and aesthetics, ensuring every
-                project meets the highest standards. At Boffo Consulting Group,
-                we transform visions into reality with precision, innovation,
-                and a commitment to excellence.
-              </p>
+            <div className="item hmc-bg-c shadow">
+              <div className="title">Quality</div>
+              <div className="text">
+                Precision and attention to detail are at the core of every
+                project we undertake.
+              </div>
+            </div>
+            <div className="item hmc-bg-c shadow">
+              <div className="title">Integrity</div>
+              <div className="text">
+                Transparency, honesty, and professionalism define our
+                interactions with clients and partners.
+              </div>
+            </div>
+            <div className="item hmc-bg-c shadow">
+              <div className="title">Sustainability</div>
+              <div className="text">
+                We implement eco-friendly and sustainable practices to minimize
+                environmental impact.
+              </div>
             </div>
           </div>
 

@@ -123,71 +123,7 @@
   margin: 4vh 0;
 }
 
-.hmc-slider-container .hmc-slider-title {
-  font-weight: 500;
-  font-family: "Domine";
-  font-size: 32px;
-  margin-bottom: 20px;
 
-}
-
-.hmc-slider-container {
-  margin: 0 20px;
-  min-width: 40%;
-  flex-grow: 1;
-}
-
-.hmc-stat-container {
-  min-width: 40%;
-  max-width: 70ch;
-  display: flex;
-  flex-direction: column;
-  flex-wrap:nowrap;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  padding-top: 40px;
-  padding-bottom: 0;
-}
-
-
-.hmc-stat-container .hmc-stat-item {
-  width: 100%;
-  color: #fff;
-  padding: 10px 20px;
-  font-family: "roboto";
-  font-size: 21px;
-  font-weight: 300;
-  height: 100%;
-  margin-top: 20px;
-}
-@media screen and (max-width:800px) {
-  .hmc-stat-container .hmc-stat-item {
-    font-size: 28px;
-  }
-
-  .hmc-stat-container {
-    padding: 5px;
-    padding-top: 10px;
-  }
-}
-@media screen and (max-width:600px) {
-  .hmc-stat-container .hmc-stat-item {
-    font-size: 20px;
-  }
-}
-
-.hmc-sns-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  flex-wrap:wrap;
-  background: #16526C;
-  margin-top: 0 !important;
-  padding-top: 30px;
-  color: white;
-  padding-bottom: 20px;
-}
 
 .hmc-main-subcontainer {
   margin-top: 0;
@@ -195,15 +131,6 @@
   background: #fff;
 }
 
-
-@media screen and (max-width: 1000px) {
-  .hmc-slider-container {
-    width:100%;
-  }
-  .hmc-stat-container {
-    width: 100%;
-  }
-}
 
 .hmc-cts-big-container {
   background: linear-gradient(to bottom, #0000ff00 55%, #2D417E66 83%, #2D417E66 97%), linear-gradient(to top, #2D417E66 12%, #2D417E33 44%, #0000ff00 74%), linear-gradient(to right, #3729EC66 0%, #3729EC66 100%);
@@ -285,4 +212,59 @@
   color: white;
   cursor:pointer;
   text-decoration: none;
+}
+
+.hmc-i-container {
+  padding: 20px;
+}
+
+.hmc-i-container .title {
+  font-weight: 900;
+  font-size: 43px;
+  font-family: "Domine";
+}
+
+.hmc-i-container .text {
+  font-weight: 300;
+  font-size: 26px;
+  font-family: "roboto";
+}
+
+.hmc-list-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 20px 15px;
+}
+
+.hmc-list-container .item {
+  min-width: 350px;
+  min-height: 300px;
+  width: 30%;
+  flex-grow: 1;
+  border-radius: 20px;
+}
+
+
+.hmc-bg-c:hover {
+  box-shadow: 0px 3px 15px gray !important;
+  scale: 1.005;
+}
+.hmc-bg-c {
+  padding: 20px;
+  transition: all 0.2s ease;
+}
+
+.hmc-bg-c .title {
+  font-weight: 900;
+  font-size: 43px;
+  font-family: "Domine";
+  margin-bottom: 20px;
+}
+
+.hmc-bg-c .text {
+  font-weight: 300;
+  font-size: 23px;
+  font-family: "roboto";
 }
