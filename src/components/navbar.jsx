@@ -52,7 +52,7 @@ const Navbar = () => {
         >
           <div className="modal-dialog modal-fullscreen">
             <div className="modal-content border-none bg-transparent ">
-              <div className="modal-header border-none">
+              <div className="modal-header border-none model-specs">
                 <div className="nb-search-container">
                   <input
                     type="text"
@@ -66,7 +66,7 @@ const Navbar = () => {
                 <button
                   ref={searchModalCloseBtn}
                   type="button"
-                  className="mb-5 bx bx-x"
+                  className="mb-5 bx bx-x nb-btn"
                   data-bs-dismiss="modal"
                   aria-label="Close"
                 ></button>

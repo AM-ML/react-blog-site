@@ -120,19 +120,17 @@
 
 .nb-search-container .nb-search:active,
 .nb-search-container .nb-search:focus {
-  border: 2px solid #18f;
-  box-shadow: 0 0 8px 2px #18f;
 }
 
-.bx.bx-x.mb-5 {
-  color: #ddd;
-  background: none;
+.nb-btn{
+  color: black !important;
+  background: white !important;
   border: none;
   font-size: 50px;
 }
 
-.bx.bx-x.mb-5:hover {
-  color: cyan !important;
+.nb-btn:hover {
+  color: black !important;
 }
 
 .custom-navbar-modal .modal-dialog,
@@ -142,10 +140,7 @@
 }
 .custom-navbar-modal .bx.bx-x.mb-5{
   color: white !important;
-  /* background: #2D417e; */
-  background: #16526C;
-  border: none;
-  font-size: 73px;
+  font-size: 100px;
   font-weight: 100;
   position: absolute;
   right: 0;
@@ -155,10 +150,8 @@
   padding: 0 5px !important;
   margin: 0;
   height: 100px;
-}
-
-.custom-navbar-modal .bx.bx-x.mb-5:hover {
-  color: cyan !important;
+  border: none !important;
+  background: #16526C !important;
 }
 
 .text-logo {
