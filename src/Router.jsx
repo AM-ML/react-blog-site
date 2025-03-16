@@ -38,6 +38,8 @@ import Sustainability from "./services/sustainability";
 import ContactUs from "./pages/contact-us";
 import AboutUs from "./pages/about-us";
 import AboutStory from "./pages/about-story";
+import AboutProjects from "./pages/about-projects";
+import AboutSustainability from "./pages/about-sustain";
 
 export const UserContext = createContext({});
 
@@ -79,6 +81,11 @@ const Router = () => {
           />
           <Route path="about-us/overview" element={<AboutUs />} />
           <Route path="about-us/our-story" element={<AboutStory />} />
+          <Route
+            path="about-us/sustainability"
+            element={<AboutSustainability />}
+          />
+          <Route path="about-us/projects" element={<AboutProjects />} />
 
           <Route path="services/architecture" element={<Architecture />} />
           <Route path="services/interior-design" element={<InteriorDesign />} />

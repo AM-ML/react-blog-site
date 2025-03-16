@@ -77,7 +77,10 @@ const HomeComponent = () => {
                   Let's Build Something Great Together!
                 </div>
                 <div className="hmc-cts-desc">
-                  <u>Contact us.</u> Your success is our foundation.
+                  <Link className="no-design text-white" to="/contact-us">
+                    <u>Contact us.</u>
+                  </Link>{" "}
+                  Your success is our foundation.
                 </div>
               </div>
             </div>

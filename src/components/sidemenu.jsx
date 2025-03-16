@@ -207,8 +207,8 @@ const SideMenu = ({ appearSide, setAppearSide }) => {
     const items = [
       { name: "Overview", link: "/about-us/overview" },
       { name: "Our Story", link: "/about-us/our-story" },
-      { name: "Case Studies", link: "/about-us/case-studies" },
-      { name: "Sustainability", link: "/about-us/responsibility" },
+      { name: "Sustainability", link: "/about-us/sustainability" },
+      { name: "Featured Projects", link: "/about-us/projects" },
     ];
 
     return (

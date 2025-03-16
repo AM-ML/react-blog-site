@@ -16,7 +16,7 @@
 }
 
 .hmc-header .hmc-header-title {
-  font-size: 50px;
+  font-size: 3.5vw;
   line-height: 1.2;
   font-weight: 600;
   font-family: "Merriweather", "Domine", serif;
@@ -26,12 +26,12 @@
   font-weight: 300 !important;
   font-family: "roboto";
   margin-right: 4vw;
-  font-size: 22px;
+  font-size: 1.4vw;
   margin-bottom: 30px;
 }
 
 .hmc-header-button-container {
-  margin-right: 5vw;
+  margin-right: 1vw;
   text-align: center;
 }
 

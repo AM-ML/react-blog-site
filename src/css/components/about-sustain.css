@@ -1,0 +1,161 @@
+.abts-container {
+  min-height: calc(100vh - 100px);
+}
+
+.abts-header .abts-img-c {
+   position: absolute;
+  width: 100%;
+  height: 100vh;
+  z-index: -2;
+
+}
+.abts-header .abts-img-c .abts-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.7);
+}
+
+.abts-img-shadow {
+position: absolute;
+  background: linear-gradient(to bottom, #18204988, #2d407e88);
+  z-index: -1;
+  width: 100%;
+  height: 100vh;
+}
+
+.abts-header {
+  position: relative;
+}
+.abts-header-text {
+  padding: 20px;
+  color: white;
+  min-height:100vh;
+  align-content: center;
+}
+.abts-header-text .abts-title {
+  font-weight: 900;
+  font-family: "Domine";
+  font-size: 3.5vw;
+  text-align: center;
+  letter-spacing: 0.02vw;
+}
+.abts-header-text .abts-title .highlight {
+  display: inline;
+  text-decoration: none;
+  font-family: "Domine";
+  color: springgreen;
+}
+.abts-header-text .abts-desc {
+  font-weight: 300;
+  font-family: "roboto";
+  font-size: 1.4vw;
+  margin:auto;
+
+}
+.abts-header .abts-arrow-c {
+  position:absolute;
+  bottom: 35px;
+  left: calc(50% - 50px);
+}
+
+.abts-arrow-c .abts-arrow {
+  font-size: 50px;
+  color: white;
+}
+@media screen and (min-width: 900px) {
+  .abts-header-text .abts-desc {
+    width: 60vw;
+    margin-top: 40px;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .abts-header-text .abts-desc {
+    font-size: 20px;
+    line-height: 1.2;
+  }
+
+  .abts-header .abts-title {
+    font-size: 33px;
+    padding: 0;
+  }
+}
+
+body:has(.abts-pg-container) .np-header,
+body:has(.abts-pg-container) .navbar {
+  background: transparent ;
+}
+
+body:has(.abts-pg-container) .sdm-nvb-showing,
+body:has(.abts-pg-container) .sdm-nvb-hidden {
+  margin-top: -100px;
+}
+
+
+.abts-info {
+  margin-top: 20px;
+}
+
+.abts-i-container {
+  padding: 20px;
+}
+
+.abts-i-container .title {
+  font-size: 43px;
+  font-weight: 900;
+  font-family: "Domine";
+  margin-bottom: 20px;
+}
+
+.abts-i-container .text {
+  font-size: 25px;
+  font-family: "roboto";
+  font-weight: 300;
+  padding: 20px;
+}
+
+.abts-el-container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  padding: 20px 40px;
+  flex-wrap: wrap;
+}
+
+.abts-bg-c {
+  padding: 20px;
+  background: #16526C;
+  color: white;
+}
+
+.abts-bg-c .title {
+  font-weight: 900;
+  font-size: 43px;
+  font-family: "Domine";
+  margin-bottom: 20px;
+}
+
+.abts-bg-c .text {
+  font-weight: 300;
+  font-size: 20px;
+  font-family: "roboto";
+}
+
+.abts-el-container .abts-bg-c {
+  min-width: 350px;
+  min-height: 300px;
+  width: 30%;
+  flex-grow: 1;
+  border-radius: 20px;
+}
+
+.abts-cc-el-container {
+  padding: 0px 60px;
+}
+
+.abts-cc-el-container .item {
+  font-size: 23px;
+  margin: 10px 0;
+  font-weight: 300;
+  font-family: "roboto";
+}

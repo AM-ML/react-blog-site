@@ -118,7 +118,7 @@ const Footer = () => {
                   <Link to="/contact-us">Contact Us</Link>
                 </li>
                 <li className="menu-item menu-item-type-post_type menu-item-object-page">
-                  <Link to="/about-us/case-studies">Case Studies</Link>
+                  <Link to="/about-us/projects">Projects</Link>
                 </li>
               </ul>
             </div>
