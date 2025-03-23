@@ -1,5 +1,4 @@
 import "../css/components/home-component.css";
-import image from "../assets/home/hmfw.webp";
 import robot_img from "../assets/projects/home1.webp";
 import AnimationWrapper from "../common/page-animation.jsx";
 import BlogCard from "../common/blogPreviewLG.jsx";
@@ -9,36 +8,33 @@ import { Link } from "react-router-dom";
 const HomeComponent = () => {
   return (
     <div className="hmc-container">
-      <div className="hmc-header row">
-        <div className="hmc-col hmc-header-images">
-          <img src={image} alt="" />
+      <div className="hmc-header">
+        <div className="layer-img">
+          <div className="shadow-overlay"></div>
         </div>
-        <div className="ms-auto hmc-col hmc-header-text">
-          <p className="hmc-header-title">
-            Innovative Solutions for the Modern Marketplace
-          </p>
-          <p className="hmc-header-paragraph">
-            In an ever-evolving marketplace, staying ahead requires more than
-            just keeping up. We provide cutting-edge solutions tailored to your
-            unique business challenges, harnessing deep industry insights and
-            advanced analytics.
-          </p>
-          <div className="hmc-header-button-container row">
-            <div className="col">
-              <Link className="hmc-header-button" to="/contact-us">
+        <div className="hmc-info">
+          <div className="hmc-text">
+            <div className="title">BOFFO Consulting Group</div>
+            <div className="desc">
+              Pioneering smart, sustainable, and efficient construction
+              solutions.
+            </div>
+            <div className="hmc-links">
+              <Link to="/contact-us" className="hmc-btn">
                 Join Us
               </Link>
-            </div>
-            <div className="col">
-              <Link className="hmc-header-button" to="/about-us/our-story">
+              <Link to="/about-us/our-story" className="hmc-btn">
                 Our Story
               </Link>
             </div>
           </div>
         </div>
+        <a href="#main" className="h-arrow-c">
+          <i className="bx bx-chevron-down h-arrow"></i>
+        </a>
       </div>
 
-      <div className="hmc-main">
+      <div id="main" className="hmc-main">
         <div className="hmc-main-subcontainer">
           <div className="hmc-list-container">
             <div className="item hmc-bg-c shadow">
