@@ -15,10 +15,7 @@ const HomeComponent = () => {
         <div className="hmc-info">
           <div className="hmc-text">
             <div className="title">BOFFO Consulting Group</div>
-            <div className="desc">
-              Pioneering smart, sustainable, and efficient construction
-              solutions.
-            </div>
+            <div className="desc">"Consulting for Excellence"</div>
             <div className="hmc-links">
               <Link to="/contact-us" className="hmc-btn">
                 Join Us

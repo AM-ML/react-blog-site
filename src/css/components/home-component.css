@@ -86,11 +86,14 @@
 }
 
 .hmc-info .hmc-text .desc {
-  font-weight: 700;
+  font-weight: 300;
   font-family: "roboto", "montserrat", sans-serif;
   font-size: 32px;
   color: white;
   text-align: center;
+  margin-top: -25px;
+  margin-bottom: 25px;
+  font-style:italic;
 }
 
 .hmc-links {
