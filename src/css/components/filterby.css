@@ -115,16 +115,22 @@ h4 {
 }
 
 /* Close Button */
-.modal-header .bx-x {
-  font-size: 30px;
-  margin-top: 35px;
-  color: #555;
-  cursor: pointer;
-  transition: color 0.3s ease;
+.fltr-close{
+  width: 64px !important;
+  height: 64px;
+  color: white !important;
+  align-content: center;
+  align-self: center;
+  margin-left: auto;
+  margin-top: auto;
+  background: none;
+  border: none;
+  font-size: 64px !important;
+  transition: all 0.2s ease-in;
 }
 
-.modal-header .bx-x:hover {
-  color: #000 !important;
+.fltr-close:hover {
+  color: cyan !important;
 }
 
 .filter-by .modal .modal-header {

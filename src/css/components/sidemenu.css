@@ -186,3 +186,6 @@ body:has(.sdm-nvb-showing) .srf-container .srf-img,
 body:has(.sdm-nvb-showing) .srv-container{
   z-index: -1;
 }
+body:has(.sdm-nvb-showing) .np-header {
+  background: #16526c !important;
+}

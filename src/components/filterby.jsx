@@ -15,8 +15,8 @@ const FilterBy = ({ blogs, onFilter }) => {
         const latestBlogs = blogs.results.slice(-30);
         const tagCount = {};
 
-        latestBlogs.forEach(blog => {
-          blog.tags.forEach(tag => {
+        latestBlogs.forEach((blog) => {
+          blog.tags.forEach((tag) => {
             const lowerTag = tag.toLowerCase();
             tagCount[lowerTag] = (tagCount[lowerTag] || 0) + 1;
           });
@@ -32,7 +32,6 @@ const FilterBy = ({ blogs, onFilter }) => {
     }
   }, [blogs]); // Add blogs as a dependency
   // Toggle the filter section visibility
-
 
   const toggleFilterSection = () => {
     setIsOpen(!isOpen);
@@ -54,14 +53,24 @@ const FilterBy = ({ blogs, onFilter }) => {
 
   return (
     <div className="filter-by">
-      <div className="modal fade " id="BlogsFilterByComponent" tabIndex="-1" aria-labelledby="NavbarSearchModalLabel" aria-hidden="true">
+      <div
+        className="modal fade "
+        id="BlogsFilterByComponent"
+        tabIndex="-1"
+        aria-labelledby="NavbarSearchModalLabel"
+        aria-hidden="true"
+      >
         <div className="modal-dialog modal-md">
           <div className="modal-content border-none bg-transparent ">
             <div className="modal-header border-none">
-              <button type="button" className="mb-5 bx bx-x" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button
+                type="button"
+                className="fltr-close mb-5 bx bx-x"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
             </div>
             <div className="modal-body g">
-
               <div className="filter-section">
                 <h4>Filter By</h4>
                 <div className="date-filter">
@@ -82,7 +91,9 @@ const FilterBy = ({ blogs, onFilter }) => {
                       <button
                         key={index}
                         onClick={() => handleTagClick(tag)}
-                        className={`fby-tag rounded-pill ${selectedTags.includes(tag) ? "selected" : ""}`}
+                        className={`fby-tag rounded-pill ${
+                          selectedTags.includes(tag) ? "selected" : ""
+                        }`}
                       >
                         {tag}
                       </button>
@@ -91,21 +102,28 @@ const FilterBy = ({ blogs, onFilter }) => {
                 </div>
 
                 {/* Apply Filter Button */}
-                <button data-bs-dismiss="modal" aria-label="Close" onClick={applyFilters}
-                  className="apply-filters-btn btn btn-outline-dark">
+                <button
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                  onClick={applyFilters}
+                  className="apply-filters-btn btn btn-outline-dark"
+                >
                   Apply Filters
                 </button>
               </div>
-
             </div>
           </div>
         </div>
       </div>
 
-      <button data-bs-toggle="modal" data-bs-target="#BlogsFilterByComponent" className="ipn-route-btn ms-auto" onClick={toggleFilterSection}>
+      <button
+        data-bs-toggle="modal"
+        data-bs-target="#BlogsFilterByComponent"
+        className="ipn-route-btn ms-auto"
+        onClick={toggleFilterSection}
+      >
         <i className="bx bxs-filter-alt"></i> Filter Blogs
       </button>
-
     </div>
   );
 };

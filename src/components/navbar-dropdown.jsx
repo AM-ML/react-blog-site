@@ -42,9 +42,7 @@ const DropdownContent = () => {
 
   useEffect(() => {
     const dpElement = dpContentRef.current.parentElement;
-    const handleC = () => {
-      dpContentRef.current.style.display = "none";
-    };
+    const handleC = () => {};
     const handleML = () => {
       dpElement.addEventListener("click", handleC);
     };
@@ -137,9 +135,7 @@ const CareersDropdown = () => {
   }, []);
   useEffect(() => {
     const dpElement = dpContentRef.current.parentElement;
-    const handleC = () => {
-      dpContentRef.current.style.display = "none";
-    };
+    const handleC = () => {};
     const handleML = () => {
       dpElement.addEventListener("click", handleC);
     };
@@ -196,15 +192,9 @@ const AboutDropdown = () => {
   }, []);
   useEffect(() => {
     const dpElement = dpContentRef.current.parentElement;
-    const handleC = () => {
-      dpContentRef.current.style.display = "none";
-    };
-    const handleML = () => {
-      dpElement.addEventListener("click", handleC);
-    };
-    const handleME = () => {
-      dpElement.removeEventListener("click", handleC);
-    };
+    const handleC = () => {};
+    const handleML = () => {};
+    const handleME = () => {};
     dpElement.addEventListener("mouseover", handleML);
     dpElement.addEventListener("mouseleave", handleME);
   }, []);

@@ -3,11 +3,7 @@ import "../css/components/navbar.css";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { UserContext } from "../Router";
 import AnimationWrapper from "../common/page-animation";
-import {
-  DropdownContent,
-  CareersDropdown,
-  AboutDropdown,
-} from "./navbar-dropdown";
+import { DropdownContent, AboutDropdown } from "./navbar-dropdown";
 import Footer from "./footer";
 import SideMenu from "./sidemenu";
 
@@ -110,17 +106,6 @@ const Navbar = () => {
                     <i className="bx bx-chevron-down"></i>
                   </Link>
                   <DropdownContent />
-                </li>
-                <li className="nav-item pe-4 dp">
-                  <Link
-                    role="button"
-                    className="dp-btn nav-link active text-sans text-bold text-lg"
-                    style={{ alignItems: "center", display: "flex" }}
-                  >
-                    Careers
-                    <i className="bx bx-chevron-down bx-md"></i>
-                  </Link>
-                  <CareersDropdown />
                 </li>
                 <li className="nav-item pe-4 dp">
                   <Link

@@ -21,10 +21,15 @@
   z-index: 10 !important;
   max-height: 100px !important;
   min-height: 100px !important;
-  position: sticky;
   /* background-color: #2D417E; */
   background-color: #16526C;
   box-shadow: 0px 0px 10px #283145;
+}
+
+.np-header {
+  top: 0;
+  left: 0;
+
 }
 
 @media screen and (max-width: 991px) {

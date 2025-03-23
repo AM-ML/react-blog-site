@@ -17,7 +17,7 @@ import dp4 from "../assets/about-us/domestic/d4.webp";
 const construction_projects = [
   {
     title: "GREATER BEIRUT WATER SUPPLY PROJECT",
-    desc: "This project is for the construction of a series of tunnels and pipelines to convey water from the existing hydroelectric power system tunnel near the village of joun some 30 km south of beirut to the site of proposed reservoirs at Hadath90 and Hadath125 in south of beirut. The proposed work comprise the following key elements: site investigations, tunnel to convey raw water, determination of final route and insitu tunnel lining design, steel tunnel design and steel pipe design in open cut trench as well as shaft lining design",
+    desc: "The construction of a series of tunnels and pipelines to convey water from the existing hydroelectric power system tunnel near the village of joun some 30 km south of beirut to the site of proposed reservoirs at Hadath90 and Hadath125 in south of beirut.",
     date: "2016 - On going",
     location: "Lebanon",
     client_name: "Lebanese government- CDR",

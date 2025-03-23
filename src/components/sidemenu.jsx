@@ -23,7 +23,6 @@ const SideMenu = ({ appearSide, setAppearSide }) => {
 
   const routes = [
     { type: "dropdown", name: "Industries" },
-    { type: "dropdown", name: "Careers" },
     { type: "Link", name: "Blogs", to: "/blogs" },
     { type: "dropdown", name: "About Us", toEnd: true },
     { type: "Link", name: "Contact Us", to: "/contact-us", toEnd: true },
@@ -172,37 +171,6 @@ const SideMenu = ({ appearSide, setAppearSide }) => {
     );
   };
 
-  const Careers = () => {
-    const careers = [
-      { name: "Overview" },
-      { name: "Job Search" },
-      { name: "Our Employees" },
-      { name: "Your Experience" },
-    ];
-    return (
-      <div className="sdm-cr-container sdm-ir-container">
-        <div className="sdm-ir-title sdm-cr-title d-block">Careers</div>
-        {careers.map((career, i) => {
-          const { name, link = "/dadv", span = 1 } = career;
-
-          return (
-            <Link
-              to={link}
-              key={i}
-              onClick={closeSideMenu}
-              className={"sdm-ir-item sdm-cr-item span-" + span}
-            >
-              <AnimationWrapper
-                transition={{ duration: linkDuration, delay: i * delayFactor }}
-              >
-                {name}
-              </AnimationWrapper>
-            </Link>
-          );
-        })}
-      </div>
-    );
-  };
   const About = () => {
     const items = [
       { name: "Overview", link: "/about-us/overview" },
@@ -237,10 +205,10 @@ const SideMenu = ({ appearSide, setAppearSide }) => {
     );
   };
 
-  const children = [<Industries />, <Careers />, <></>, <About />, <></>];
+  const children = [<Industries />, <></>, <About />, <></>];
 
   return (
-    <AnimationWrapper>
+    <div>
       <FloatingComponent
         className={!appearSide ? " d-none" : " sdm-ft"}
         style={{ display: "flex", flexDirection: "row", flexWrap: "nowrap" }}
@@ -289,7 +257,7 @@ const SideMenu = ({ appearSide, setAppearSide }) => {
           {activeIndex == -1 ? "" : children[activeIndex]}
         </div>
       </FloatingComponent>
-    </AnimationWrapper>
+    </div>
   );
 };
 

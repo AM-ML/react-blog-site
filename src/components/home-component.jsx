@@ -3,7 +3,6 @@ import image from "../assets/home/hmfw.webp";
 import robot_img from "../assets/projects/home1.webp";
 import AnimationWrapper from "../common/page-animation.jsx";
 import BlogCard from "../common/blogPreviewLG.jsx";
-import Slideshow from "./slideshow";
 import blogsData from "./json/home-component-blogs-data.json"; // Importing pre-fetched blog data
 import { Link } from "react-router-dom";
 
@@ -43,28 +42,40 @@ const HomeComponent = () => {
         <div className="hmc-main-subcontainer">
           <div className="hmc-list-container">
             <div className="item hmc-bg-c shadow">
-              <div className="title">Innovation</div>
+              <div className="title">
+                <div className="dot"></div>
+                Innovation
+              </div>
               <div className="text">
                 We integrate cutting-edge technology and modern methodologies to
                 stay ahead in the industry.
               </div>
             </div>
             <div className="item hmc-bg-c shadow">
-              <div className="title">Quality</div>
+              <div className="title">
+                <div className="dot"></div>
+                Quality
+              </div>
               <div className="text">
                 Precision and attention to detail are at the core of every
                 project we undertake.
               </div>
             </div>
             <div className="item hmc-bg-c shadow">
-              <div className="title">Integrity</div>
+              <div className="title">
+                <div className="dot"></div>
+                Integrity
+              </div>
               <div className="text">
                 Transparency, honesty, and professionalism define our
                 interactions with clients and partners.
               </div>
             </div>
             <div className="item hmc-bg-c shadow">
-              <div className="title">Sustainability</div>
+              <div className="title">
+                <div className="dot"></div>
+                Sustainability
+              </div>
               <div className="text">
                 We implement eco-friendly and sustainable practices to minimize
                 environmental impact.
