@@ -37,7 +37,7 @@
 .epp-preview {
   margin-top: 2rem;
   font-weight: bold;
-  font-family: "lato";
+  font-family: "roboto";
   color: #999;
 }
 
@@ -60,7 +60,7 @@
   text-align: justify;
   resize: none;
   padding: 15px;
-  font-family: "lato";
+  font-family: "roboto";
   font-size: 17px;
   width: 500px;
   outline: none;
