@@ -18,19 +18,19 @@
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  margin-left: 10px;
+  margin-left: 20px;
 
 }
 
 .ac-profile .ac-profile-img {
   width: 100px;
   border-radius: 50%;
-  margin: auto;
   margin-bottom: 30px;
+  margin-left: 20px;
 }
 
 .ac-profile .ac-profile-name {
-  font-family: "Merriweather";
+  font-family: "Domine";
   font-size: 20px;
   font-weight: 700;
 }
@@ -42,7 +42,7 @@
 }
 
 .ac-profile .ac-profile-blogs-count {
-  font-family: "Rubik";
+  font-family: "Roboto";
   font-weight: 400;
   color: #666;
   font-size: 16px;

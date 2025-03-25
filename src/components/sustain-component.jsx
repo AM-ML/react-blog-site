@@ -3,19 +3,23 @@ import img from "../assets/about-us/sustainability.webp";
 
 const SustainComponent = () => {
   return (
-    <div className="abts-container">
-      <div className="abts-header">
-        <div className="abts-img-c">
-          <img src={img} alt="" className="abts-img" />
-        </div>
-
-        <div className="abts-img-shadow"></div>
+    <section className="abts-container">
+      <header className="abts-header">
+        <figure className="abts-img-c">
+          <img
+            src={img}
+            alt="Sustainability Concept"
+            className="abts-img"
+            loading="lazy" // Lazy loading to improve performance
+          />
+        </figure>
+        <figcaption className="abts-img-shadow"></figcaption>
 
         <div className="abts-header-text">
-          <div className="abts-title">
-            Our Commitment to <div className="highlight">Sustainability</div>
-          </div>
-          <div className="abts-desc">
+          <h1 className="abts-title">
+            Our Commitment to <span className="highlight">Sustainability</span>
+          </h1>
+          <p className="abts-desc">
             At BOFFO Consulting, sustainability is not just a concept—it is the
             foundation of our operations. We are committed to fostering
             innovative, environmentally conscious, and socially responsible
@@ -23,131 +27,139 @@ const SustainComponent = () => {
             integrates environmental stewardship, social responsibility, and
             economic viability to create a lasting impact across all our
             projects.
-          </div>
+          </p>
         </div>
 
         <a href="#info" className="abts-arrow-c no-design no-default-design">
           <i className="abts-arrow bx bx-chevron-down"></i>
         </a>
-      </div>
-      <div className="abts-info" id="info">
-        <div className="abts-e-container abts-i-container">
-          <div className="title">Environmental Initiatives</div>
-          <div className="text">
+      </header>
+
+      <section className="abts-info" id="info">
+        <article className="abts-e-container abts-i-container">
+          <h2 className="title">Environmental Initiatives</h2>
+          <p className="text">
             BOFFO actively engages in reducing our carbon footprint through
             sustainable construction practices, eco-friendly materials, and
             energy-efficient solutions. Our environmental strategy includes:
-          </div>
-        </div>
+          </p>
+        </article>
+
         <div className="abts-el-container">
           <div className="abts-e1 abts-bg-c">
-            <div className="title">Green Building Practices</div>
-            <div className="text">
+            <h3 className="title">Green Building Practices</h3>
+            <p className="text">
               We implement energy-efficient designs, harness renewable energy
               sources, and prioritize low-emission materials.
-            </div>
+            </p>
           </div>
           <div className="abts-e2 abts-bg-c">
-            <div className="title">Eco-Friendly Materials</div>
-            <div className="text">
+            <h3 className="title">Eco-Friendly Materials</h3>
+            <p className="text">
               The use of sustainable resources, including prefabricated concrete
               and recyclable materials, minimizes environmental degradation.
-            </div>
+            </p>
           </div>
           <div className="abts-e3 abts-bg-c">
-            <div className="title">Water & Waste Management</div>
-            <div className="text">
+            <h3 className="title">Water & Waste Management</h3>
+            <p className="text">
               We incorporate advanced water conservation techniques and waste
               reduction strategies to ensure responsible resource utilization.
-            </div>
+            </p>
           </div>
           <div className="abts-e4 abts-bg-c">
-            <div className="title">Sustainable Urban Development</div>
-            <div className="text">
+            <h3 className="title">Sustainable Urban Development</h3>
+            <p className="text">
               Our projects integrate green spaces, smart infrastructure, and
               eco-conscious planning to support thriving communities.
-            </div>
+            </p>
           </div>
         </div>
-        <div className="abts-sr-container abts-i-container mt-4">
-          <div className="title">Social Responsibility</div>
-          <div className="text">
+
+        <article className="abts-sr-container abts-i-container mt-4">
+          <h2 className="title">Social Responsibility</h2>
+          <p className="text">
             BOFFO believes in creating more than just structures—we build
             communities. Our dedication to social responsibility is reflected
             in:
-          </div>
-        </div>
+          </p>
+        </article>
+
         <div className="abts-el-container">
           <div className="abts-e1 abts-bg-c">
-            <div className="title">Ethical Labor Practices</div>
-            <div className="text">
+            <h3 className="title">Ethical Labor Practices</h3>
+            <p className="text">
               We uphold strict adherence to fair wages, safe working conditions,
               and equal opportunities.
-            </div>
+            </p>
           </div>
           <div className="abts-e2 abts-bg-c">
-            <div className="title">Community Development Programs</div>
-            <div className="text">
+            <h3 className="title">Community Development Programs</h3>
+            <p className="text">
               Partnering with local organizations, we invest in projects that
               enhance public welfare, such as educational institutions,
               healthcare centers, and infrastructure improvements.
-            </div>
+            </p>
           </div>
           <div className="abts-e3 abts-bg-c">
-            <div className="title">Stakeholder Engagement</div>
-            <div className="text">
+            <h3 className="title">Stakeholder Engagement</h3>
+            <p className="text">
               We collaborate with governments, NGOs, and industry leaders to
               develop policies and practices that support social sustainability.
-            </div>
+            </p>
           </div>
           <div className="abts-e4 abts-bg-c">
-            <div className="title">Employee Well-being</div>
-            <div className="text">
+            <h3 className="title">Employee Well-being</h3>
+            <p className="text">
               Our workforce is our strength. We ensure ongoing training, career
               development, and a supportive work environment that values
               diversity and inclusion.
-            </div>
+            </p>
           </div>
         </div>
-        <div className="abts-ec-container abts-i-container mt-4">
-          <div className="title">Economic Sustainability</div>
-          <div className="text">
+
+        <article className="abts-ec-container abts-i-container mt-4">
+          <h2 className="title">Economic Sustainability</h2>
+          <p className="text">
             BOFFO is dedicated to responsible economic growth that balances
             profitability with sustainability. Our business model integrates:
-          </div>
-        </div>
+          </p>
+        </article>
+
         <div className="abts-el-container">
           <div className="abts-e1 abts-bg-c">
-            <div className="title">Cost-Effective Sustainable Solutions</div>
-            <div className="text">
+            <h3 className="title">Cost-Effective Sustainable Solutions</h3>
+            <p className="text">
               Leveraging innovative technologies and efficient processes to
               maximize returns while minimizing environmental impact.
-            </div>
+            </p>
           </div>
           <div className="abts-e2 abts-bg-c">
-            <div className="title">Long-Term Value Creation</div>
-            <div className="text">
+            <h3 className="title">Long-Term Value Creation</h3>
+            <p className="text">
               Designing projects with durability, adaptability, and future
               growth in mind, ensuring economic benefits for stakeholders and
               local communities.
-            </div>
+            </p>
           </div>
           <div className="abts-e3 abts-bg-c">
-            <div className="title">Sustainable Supply Chains</div>
-            <div className="text">
+            <h3 className="title">Sustainable Supply Chains</h3>
+            <p className="text">
               We work with ethical suppliers and contractors who share our
               commitment to sustainability.
-            </div>
+            </p>
           </div>
         </div>
-        <div className="abts-cc-container abts-i-container mt-4">
-          <div className="title">Certifications & Compliance</div>
-          <div className="text">
+
+        <article className="abts-cc-container abts-i-container mt-4">
+          <h2 className="title">Certifications & Compliance</h2>
+          <p className="text">
             To solidify our commitment to sustainability, BOFFO adheres to
             internationally recognized standards, ensuring best practices across
             all projects. Our compliance framework includes:
-          </div>
-        </div>
+          </p>
+        </article>
+
         <ul className="abts-cc-el-container">
           <li className="item">
             LEED (Leadership in Energy and Environmental Design) Certification
@@ -158,48 +170,51 @@ const SustainComponent = () => {
           </li>
           <li className="item">Continuous Monitoring & Improvement Programs</li>
         </ul>
-        <div className="abts-sc-container abts-i-container">
-          <div className="title">Sustainable Projects & Case Studies</div>
-          <div className="text">
+
+        <article className="abts-sc-container abts-i-container">
+          <h2 className="title">Sustainable Projects & Case Studies</h2>
+          <p className="text">
             BOFFO takes pride in its portfolio of sustainable projects that
             exemplify our commitment to eco-friendly development. Our projects
             demonstrate:
-          </div>
-        </div>
+          </p>
+        </article>
+
         <div className="abts-el-container">
           <div className="abts-e1 abts-bg-c">
-            <div className="title">Energy-efficient architecture</div>
-            <div className="text">
+            <h3 className="title">Energy-efficient architecture</h3>
+            <p className="text">
               that reduces operational costs and environmental impact.
-            </div>
+            </p>
           </div>
           <div className="abts-e2 abts-bg-c">
-            <div className="title">Smart urban planning</div>
-            <div className="text">
+            <h3 className="title">Smart urban planning</h3>
+            <p className="text">
               that enhances livability, reduces congestion, and fosters green
               transportation.
-            </div>
+            </p>
           </div>
           <div className="abts-e3 abts-bg-c">
-            <div className="title">Resource-efficient construction</div>
-            <div className="text">
+            <h3 className="title">Resource-efficient construction</h3>
+            <p className="text">
               methods that minimize waste and optimize material use.
-            </div>
+            </p>
           </div>
         </div>
+
         <div className="abts-i-container">
-          <div className="title">A Legacy for Future Generations</div>
-          <div className="text">
+          <h2 className="title">A Legacy for Future Generations</h2>
+          <p className="text">
             Sustainability is at the heart of BOFFO Consulting. We are dedicated
             to pushing the boundaries of what is possible, ensuring that every
             project we undertake is not only successful today but also
             beneficial for future generations. Through continuous innovation and
             unwavering commitment, we strive to leave behind a lasting legacy of
             sustainability, resilience, and progress.
-          </div>
+          </p>
         </div>
-      </div>
-    </div>
+      </section>
+    </section>
   );
 };
 

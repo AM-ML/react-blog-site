@@ -134,51 +134,47 @@ const Project = ({ title, desc, date, location, client_name = "", img }) => {
     </div>
   );
 };
+const ProjectsComponent = () => (
+  <section className="abp-container">
+    <header className="abp-header">
+      <div className="abp-img-c">
+        <img src={img} alt="Featured Boffo Projects" className="abp-img" />
+      </div>
 
-const ProjectsComponent = () => {
-  return (
-    <div className="abp-container">
-      <div className="abp-header">
-        <div className="abp-img-c">
-          <img src={img} alt="" className="abp-img" />
-        </div>
+      <div className="abp-img-shadow"></div>
 
-        <div className="abp-img-shadow"></div>
+      <div className="abp-header-text">
+        <h1 className="abp-title">
+          Featured <span className="highlight">BOFFO</span> Projects
+        </h1>
+      </div>
 
-        <div className="abp-header-text">
-          <div className="abp-title">
-            Featured <div className="highlight">BOFFO </div> Projects
+      <a href="#info" className="abp-arrow-c no-design no-default-design">
+        <i className="abp-arrow bx bx-chevron-down" aria-hidden="true"></i>
+        <span className="sr-only">Scroll down to view more projects</span>
+      </a>
+    </header>
+
+    <section className="abp-info" id="info">
+      <h2 className="abp-cp-title">Construction Projects</h2>
+      <div className="abp-cp-container abp-projs-container">
+        {construction_projects.map((project, i) => (
+          <div className={`abp-p-container + abp-p-${i}`} key={i}>
+            <Project {...project} />
           </div>
-        </div>
+        ))}
+      </div>
 
-        <a href="#info" className="abp-arrow-c no-design no-default-design">
-          <i className="abp-arrow bx bx-chevron-down"></i>
-        </a>
+      <h2 className="abp-dp-title">Domestic & Municipalities Projects</h2>
+      <div className="abp-dp-container abp-projs-container">
+        {domestic_projects.map((project, i) => (
+          <div className={`abp-p-container + abp-p-${i}`} key={i}>
+            <Project {...project} />
+          </div>
+        ))}
       </div>
-      <div className="abp-info" id="info">
-        <div className="abp-cp-title">Construction Projects</div>
-        <div className="abp-cp-container abp-projs-container">
-          {construction_projects.map((project, i) => {
-            return (
-              <div className={`abp-p-container + abp-p-${i}}`} key={i}>
-                <Project {...project} />
-              </div>
-            );
-          })}
-        </div>
-        <div className="abp-dp-title">Domestic & Municipalities Projects</div>
-        <div className="abp-dp-container abp-projs-container">
-          {domestic_projects.map((project, i) => {
-            return (
-              <div className={`abp-p-container + abp-p-${i}}`} key={i}>
-                <Project {...project} />
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </div>
-  );
-};
+    </section>
+  </section>
+);
 
 export default ProjectsComponent;

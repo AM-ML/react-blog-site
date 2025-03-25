@@ -23,7 +23,7 @@ const Footer = () => {
             <div className="footer-logo">
               <Link className="footer-logo-link" to="/">
                 <span className="hidden-link-text">LOGO</span>
-                <img src={logo} alt="BOFFO LOGO" width="128px" />
+                <img src={logo} alt="BOFFO LOGO" width="128px" height="168px" />
               </Link>
             </div>
             <div className="footer-call-to-action">

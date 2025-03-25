@@ -40,19 +40,6 @@ const DropdownContent = () => {
     };
   }, []);
 
-  useEffect(() => {
-    const dpElement = dpContentRef.current.parentElement;
-    const handleC = () => {};
-    const handleML = () => {
-      dpElement.addEventListener("click", handleC);
-    };
-    const handleME = () => {
-      dpElement.removeEventListener("click", handleC);
-    };
-    dpElement.addEventListener("mouseover", handleML);
-    dpElement.addEventListener("mouseleave", handleME);
-  }, []);
-
   return (
     <div className="dp-content" ref={dpContentRef}>
       <div className="dp-content-container">
@@ -106,63 +93,6 @@ const DropdownContent = () => {
   );
 };
 
-const CareersDropdown = () => {
-  const dpContentRef = useRef(null);
-  useEffect(() => {
-    const dpContent = dpContentRef.current;
-    const handleMouseEnter = () => {
-      dpContent.style.display = "flex";
-      const buffer = 5;
-      const dpContentRect = dpContent.getBoundingClientRect();
-      if (dpContentRect.right > window.innerWidth - buffer) {
-        dpContent.style.left = "auto";
-        dpContent.style.right = "0";
-      } else {
-        dpContent.style.left = "";
-        dpContent.style.right = "";
-      }
-    };
-    const handleMouseLeave = () => {
-      dpContent.style.display = "none";
-    };
-    const dpElement = dpContent.parentElement;
-    dpElement.addEventListener("mouseenter", handleMouseEnter);
-    dpElement.addEventListener("mouseleave", handleMouseLeave);
-    return () => {
-      dpElement.removeEventListener("mouseenter", handleMouseEnter);
-      dpElement.removeEventListener("mouseleave", handleMouseLeave);
-    };
-  }, []);
-  useEffect(() => {
-    const dpElement = dpContentRef.current.parentElement;
-    const handleC = () => {};
-    const handleML = () => {
-      dpElement.addEventListener("click", handleC);
-    };
-    const handleME = () => {
-      dpElement.removeEventListener("click", handleC);
-    };
-    dpElement.addEventListener("mouseover", handleML);
-    dpElement.addEventListener("mouseleave", handleME);
-  }, []);
-
-  return (
-    <div className="dp-content dp-careers" ref={dpContentRef}>
-      <Link to="/careers/overview" className="dp-col">
-        <div className="dp-title">Overview</div>
-      </Link>
-
-      <Link to="/careers/job-search" className="dp-col">
-        <div className="dp-title">Job Search</div>
-      </Link>
-
-      <Link to="/careers/employees" className="dp-col">
-        <div className="dp-title">Our Employees</div>
-      </Link>
-    </div>
-  );
-};
-
 const AboutDropdown = () => {
   const dpContentRef = useRef(null);
   useEffect(() => {
@@ -192,7 +122,6 @@ const AboutDropdown = () => {
   }, []);
   useEffect(() => {
     const dpElement = dpContentRef.current.parentElement;
-    const handleC = () => {};
     const handleML = () => {};
     const handleME = () => {};
     dpElement.addEventListener("mouseover", handleML);
@@ -220,4 +149,4 @@ const AboutDropdown = () => {
   );
 };
 
-export { DropdownContent, CareersDropdown, AboutDropdown };
+export { DropdownContent, AboutDropdown };

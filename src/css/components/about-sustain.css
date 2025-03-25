@@ -17,7 +17,7 @@
 }
 
 .abts-img-shadow {
-position: absolute;
+  position: absolute;
   background: linear-gradient(to bottom, #18204988, #2d407e88);
   z-index: -1;
   width: 100%;

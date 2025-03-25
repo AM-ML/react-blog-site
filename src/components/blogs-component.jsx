@@ -1,13 +1,21 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, {
+  createContext,
+  useEffect,
+  useState,
+  Suspense,
+  lazy,
+} from "react";
 import "../css/components/blogs-component.css";
 import InPageNavigation from "./inpage-navigation";
 import axios from "axios";
 import Preloader from "../common/preloader";
-import BlogCard from "./blog-card";
-import AnimationWrapper from "../common/page-animation";
 import filterPaginationData from "../common/pagination";
 import LoadMoreBtn from "../common/load-more";
 import Loading from "../common/loading";
+
+// Lazy loading components
+const BlogCard = lazy(() => import("./blog-card"));
+const AnimationWrapper = lazy(() => import("../common/page-animation"));
 
 export const FilterContext = createContext({});
 
@@ -29,7 +37,6 @@ const BlogsComponent = () => {
         page,
       })
       .then(async ({ data: { blogs: newBlogs, totalDocs } }) => {
-        // Ensure the blogs state has a proper initial structure
         let paginationData = await filterPaginationData({
           create_new_array: doCreate,
           current_data: blogs,
@@ -108,8 +115,8 @@ const BlogsComponent = () => {
         setTrendings,
       }}
     >
-      <div className="bc-container  mt-3">
-        <div className="bc-latest">
+      <main className="bc-container mt-3">
+        <section className="bc-latest">
           <InPageNavigation
             blogs={originalBlogs}
             filterFunc={handleFilter}
@@ -121,21 +128,21 @@ const BlogsComponent = () => {
                   <Preloader />
                 ) : blogs.results.length ? (
                   <>
-                    {blogs.results.map((blog, i) => {
-                      return (
+                    <Suspense fallback={<Preloader />}>
+                      {blogs.results.map((blog, i) => (
                         <AnimationWrapper
                           transition={{ duration: 1, delay: (i % 10) * 0.08 }}
                           key={i}
                         >
-                          <div className="blog-card-container">
+                          <article className="blog-card-container">
                             <BlogCard
                               blog={blog}
-                              addBorder={i + 1 != blogs.results.length}
+                              addBorder={i + 1 !== blogs.results.length}
                             />
-                          </div>
+                          </article>
                         </AnimationWrapper>
-                      );
-                    })}
+                      ))}
+                    </Suspense>
                   </>
                 ) : (
                   <p className="scc-no-data">No Blogs Found.</p>
@@ -157,19 +164,21 @@ const BlogsComponent = () => {
                   <Preloader />
                 ) : trendings.length ? (
                   <>
-                    {trendings.map((trending, i) => {
-                      if (trending.author?.personal_info?.name)
-                        return (
-                          <AnimationWrapper
-                            transition={{ duration: 1, delay: i * 0.08 }}
-                            key={i}
-                          >
-                            <div className="blog-card-container">
-                              <BlogCard blog={trending} />
-                            </div>
-                          </AnimationWrapper>
-                        );
-                    })}
+                    <Suspense fallback={<Preloader />}>
+                      {trendings.map((trending, i) => {
+                        if (trending.author?.personal_info?.name)
+                          return (
+                            <AnimationWrapper
+                              transition={{ duration: 1, delay: i * 0.08 }}
+                              key={i}
+                            >
+                              <article className="blog-card-container">
+                                <BlogCard blog={trending} />
+                              </article>
+                            </AnimationWrapper>
+                          );
+                      })}
+                    </Suspense>
                   </>
                 ) : (
                   <p className="scc-no-data">No Blogs Found.</p>
@@ -177,9 +186,9 @@ const BlogsComponent = () => {
               </div>
             </div>
           </InPageNavigation>
-        </div>
-        <div className="bc-filters"></div>
-      </div>
+        </section>
+        <section className="bc-filters"></section>
+      </main>
     </FilterContext.Provider>
   );
 };

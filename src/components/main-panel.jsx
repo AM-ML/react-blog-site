@@ -36,10 +36,9 @@ const MainPanel = () => {
   const updateAccount = (id, access_token, info) => {
     let loadId = toast.loading("Updating Account...");
 
-    // Prevent modifying email if it's a Google account
     const updatedInfo = { ...info };
     if (userAuth.isGoogleAccount) {
-      delete updatedInfo.email; // Ensure backend doesn’t attempt to change it
+      delete updatedInfo.email;
     }
 
     axios
@@ -140,9 +139,9 @@ const MainPanel = () => {
   };
 
   return (
-    <div className="mp-container">
+    <main className="mp-container">
       <Toaster />
-      <div className="mp-submit-bc">
+      <section className="mp-submit-bc">
         <h1 className="mp-submit-bc-page-title">Edit</h1>
         <button
           className="btn btn-lg mp-submit-btn cpwd-submit"
@@ -150,11 +149,17 @@ const MainPanel = () => {
         >
           Save
         </button>
-      </div>
-      <div className="mp-input-container">
-        <div className="mp-profile-img-ic">
+      </section>
+
+      <section className="mp-input-container">
+        <article className="mp-profile-img-ic">
           <label htmlFor="mp-profile-img-input" className="mp-img-overlay">
-            <img src={cloud_img} alt="" className="mp-overlay-img" />
+            <img
+              src={cloud_img}
+              alt="Upload to cloud"
+              className="mp-overlay-img"
+              loading="lazy"
+            />
 
             <input
               type="file"
@@ -167,12 +172,13 @@ const MainPanel = () => {
           <img
             src={profile_img}
             onError={handleProfileImgError}
-            alt=""
+            alt="Profile Image"
             className="mp-profile-img"
+            loading="lazy"
           />
-        </div>
+        </article>
 
-        <div className="mp-text-ic">
+        <article className="mp-text-ic">
           <div className="mp-name-ic">
             <input
               name="name"
@@ -196,24 +202,24 @@ const MainPanel = () => {
               disabled={google_auth}
             />
           </div>
-        </div>
-      </div>
+        </article>
+      </section>
 
-      <div className="mp-info-container">
+      <section className="mp-info-container">
         {/* Interests Section */}
-        <div className="mp-info-ic mp-interests-ic">
-          <h1 className="mp-interests-title mp-info-title">Interests</h1>
+        <section className="mp-info-ic mp-interests-ic">
+          <h2 className="mp-interests-title mp-info-title">Interests</h2>
           <div className="mp-interests">
             <div className="mp-add-container">
               <i className="bx bx-plus mp-add-icon"></i>
             </div>
-            {interests?.length == true && <></>}
+            {interests?.length === true && <></>}
           </div>
-        </div>
+        </section>
 
         {/* Favorite Blogs Section */}
-        <div className="mp-info-ic mp-fav-ic">
-          <h1 className="mp-fav-title mp-info-title">Favorite Blogs</h1>
+        <section className="mp-info-ic mp-fav-ic">
+          <h2 className="mp-fav-title mp-info-title">Favorite Blogs</h2>
           {favorite_blogs?.length ? (
             <></>
           ) : (
@@ -221,12 +227,12 @@ const MainPanel = () => {
               <div className="mp-no-data-msg">No Blogs Selected.</div>
             </div>
           )}
-        </div>
+        </section>
 
         {/* Social Links Section */}
         {is_author && (
-          <div className="mp-info-ic mp-socials-ic">
-            <h1 className="mp-socials-title mp-info-title">Socials</h1>
+          <section className="mp-info-ic mp-socials-ic">
+            <h2 className="mp-socials-title mp-info-title">Socials</h2>
             <div className="mp-socials">
               <AnimationWrapper transition={{ duration: 0.3 }}>
                 <div className="mp-social-link">
@@ -281,10 +287,10 @@ const MainPanel = () => {
                 </div>
               </AnimationWrapper>
             </div>
-          </div>
+          </section>
         )}
-      </div>
-    </div>
+      </section>
+    </main>
   );
 };
 

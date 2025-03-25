@@ -47,7 +47,7 @@
 .layer-img .shadow-overlay {
   width: 100%;
   height: 100%;
-  background: #0008;
+  background: #0004;
 }
 
 .hmc-header .hmc-info {
@@ -78,6 +78,7 @@
 .hmc-info .hmc-text .title {
   font-weight: 900;
   font-family: "roboto";
+  font-display: swap !important;
   color: #fff;
   font-size: 48px;
   padding: 0;
@@ -156,25 +157,26 @@
   align-items: center;
 
   width: 100%;
+  height: 80vh;
   overflow: hidden;
   background-color:#1c204788;
 
   margin-top: 10px;
+  padding: 20px;
   margin-bottom: 4rem;
-}
-.hmc-cts-container .hmc-img-container {
-  position: relative;
-  overflow: hidden;
-  padding-bottom: 40%;
-  width: 100%;
-  z-index: -1;
+
+  background-image: url("../../assets/projects/home1.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-x: center;
+  background-position-y: center;
 }
 
-.hmc-cts-container .hmc-img {
-  position:absolute;
+.hmc-cts-container .shadow-overlay {
+  position: absolute;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  background-color: #1c204788;
 }
 
 .hmc-cts-text-container {
@@ -185,12 +187,13 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 15%;
+  margin-bottom: 7%;
 }
 
 .hmc-cts-title {
+  font-display: swap;
   font-size: 4vw;
-  font-family: "Domine", "Merriweather", "times new roman";
+  font-family: "Domine", serif;
   font-weight: 900;
   color: white;
 }
@@ -202,6 +205,37 @@
   padding: 5px;
   font-weight: 600;
 }
+@media screen and (max-width: 1000px) {
+  .hmc-cts-title {
+    font-size: 35px;
+  }
+  .hmc-cts-desc {
+    font-size: 22px;
+  }
+}
+@media screen and (max-width: 700px) {
+  .hmc-cts-title {
+    font-size: 25px;
+  }
+  .hmc-cts-desc {
+    font-size: 15px;
+  }
+
+  .hmc-cts-container {
+    height: 60vh;
+    min-height: max-content;
+  }
+}
+@media screen and (max-width: 550px) {
+  .hmc-cts-title {
+    font-size: 19px;
+  }
+  .hmc-cts-desc {
+    font-size: 16px;
+  }
+}
+
+
 
 .hmc-cts-desc u {
   color: white;
@@ -224,6 +258,7 @@
 }
 
 .hmc-i-container .title {
+  font-display: swap;
   font-weight: 900;
   font-size: 43px;
   font-family: "Domine";
@@ -265,6 +300,7 @@
 
 .hmc-bg-c .title,
 .item.hmc-bg-c .title .text {
+  font-display: swap;
   font-weight: 900;
   font-size: 43px;
   font-family: "Domine";
@@ -272,6 +308,7 @@
 }
 
 .item.hmc-bg-c .title {
+  font-display: swap;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -293,6 +330,7 @@
 }
 
 .hmc-main-subcontainer .title.text-center {
+  font-display: swap;
   display: inline-block;
   margin-left: calc(50% - 4.7ch);
   margin-bottom: -20px;
