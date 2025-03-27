@@ -40,6 +40,11 @@ import AboutUs from "./pages/about-us";
 import AboutStory from "./pages/about-story";
 import AboutProjects from "./pages/about-projects";
 import AboutSustainability from "./pages/about-sustain";
+import AdminPanel from "./pages/admin";
+import AdminWrapper from "./components/admin-wrapper";
+import AdminUsers from "./components/admin/users";
+import AdminNewsletter from "./components/admin/newsletter";
+import UnsubscribePage from "./pages/unsubscribe";
 
 export const UserContext = createContext({});
 
@@ -70,6 +75,7 @@ const Router = () => {
           <Route path="search/:query" element={<Search />} />
           <Route path="search/null" element={<Redirect route="/blogs" />} />
           <Route path="search/" element={<Redirect route="/blogs" />} />
+          <Route path="unsubscribe" element={<UnsubscribePage />} />
           <Route path="test" element={<Test />} />
           <Route
             path="services/civil-engineering"
@@ -138,6 +144,11 @@ const Router = () => {
           </Route>
           <Route path="/dashboard/author/:username" element={<Author />} />
           <Route path="/dashboard/settings" element={<Settings />} />
+          <Route path="/dashboard/admin" element={<AdminWrapper />}>
+            <Route index element={<AdminPanel />} />
+            <Route path="/dashboard/admin/users" element={<AdminUsers />} />
+            <Route path="/dashboard/admin/newsletter" element={<AdminNewsletter />} />
+          </Route>
         </Route>
       </Routes>
     </UserContext.Provider>

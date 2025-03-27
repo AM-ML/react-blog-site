@@ -1,0 +1,147 @@
+.newsletter-section {
+  background-color: #f8f9fa;
+  padding: 60px 0;
+  margin-top: 50px;
+}
+
+.newsletter-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.newsletter-content {
+  text-align: center;
+}
+
+.newsletter-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #212529;
+}
+
+.newsletter-description {
+  font-size: 1.1rem;
+  color: #6c757d;
+  margin-bottom: 30px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.newsletter-form {
+  margin-bottom: 20px;
+}
+
+.newsletter-input-group {
+  display: flex;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.newsletter-input {
+  flex: 1;
+  padding: 15px 20px;
+  border: 1px solid #dee2e6;
+  border-radius: 5px 0 0 5px;
+  font-size: 1rem;
+  transition: border-color 0.15s ease-in-out;
+}
+
+.newsletter-input-error {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+}
+
+.newsletter-error {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  text-align: left;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.newsletter-input:focus {
+  border-color: #0d6efd;
+  outline: none;
+}
+
+.newsletter-button {
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+  padding: 0 30px;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+  font-weight: 500;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.newsletter-button:hover {
+  background-color: #0b5ed7;
+}
+
+.newsletter-button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.newsletter-privacy {
+  font-size: 0.85rem;
+  color: #6c757d;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.newsletter-privacy a {
+  color: #0d6efd;
+  text-decoration: none;
+}
+
+.newsletter-privacy a:hover {
+  text-decoration: underline;
+}
+
+.newsletter-spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 576px) {
+  .newsletter-title {
+    font-size: 1.5rem;
+  }
+
+  .newsletter-description {
+    font-size: 1rem;
+  }
+
+  .newsletter-input-group {
+    flex-direction: column;
+  }
+
+  .newsletter-input {
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+
+  .newsletter-button {
+    border-radius: 5px;
+    padding: 15px;
+  }
+} 

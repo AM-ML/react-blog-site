@@ -1,3 +1,38 @@
 .dfc-container {
-  padding: 0 1vw;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.dfc-row {
+  margin-bottom: 2rem;
+}
+
+.dfc-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.dfc-subtitle {
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.dfc-blogs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Draft badge styling */
+.bgcd-draft-badge {
+  background-color: #ff9800;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.25rem;
+  margin-left: 1rem;
+  text-transform: uppercase;
 }

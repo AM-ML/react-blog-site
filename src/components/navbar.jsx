@@ -6,6 +6,7 @@ import AnimationWrapper from "../common/page-animation";
 import { DropdownContent, AboutDropdown } from "./navbar-dropdown";
 import Footer from "./footer";
 import SideMenu from "./sidemenu";
+import NewsletterSubscribe from "./newsletter-subscribe";
 
 const Navbar = () => {
   const {
@@ -185,6 +186,7 @@ const Navbar = () => {
           <SideMenu appearSide={appearSide} setAppearSide={setAppearSide} />
         )}
         <Outlet />
+        <NewsletterSubscribe />
       </div>
 
       <Footer />

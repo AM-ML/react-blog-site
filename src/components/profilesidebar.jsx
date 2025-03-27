@@ -10,7 +10,7 @@ import DashNav from "./dashnav";
 
 const ProfileSidebar = () => {
   let {
-    userAuth: { id, is_author, access_token, name, profile_img, username },
+    userAuth: { id, is_author, access_token, name, profile_img, username, role },
     setUserAuth,
   } = useContext(UserContext);
   const [isOpen, setIsOpen] = useState(false);
@@ -51,6 +51,12 @@ const ProfileSidebar = () => {
     handleLClick();
     setWhatOpened("Settings");
   };
+  const adminOpened = () => {
+    handleLClick();
+    setWhatOpened("Admin");
+  };
+
+  const isAdmin = role === 'admin' || role === 'owner';
 
   return access_token ? (
     <AnimationWrapper transition={{ duration: 0.5 }}>
@@ -110,6 +116,15 @@ const ProfileSidebar = () => {
                 <span className="custom-links_name">View Profile</span>
               </Link>
               <span className="custom-tooltip">View Profile</span>
+            </li>
+          )}
+          {isAdmin && (
+            <li>
+              <Link to="/dashboard/admin" onClick={adminOpened}>
+                <i className="bx bx-shield"></i>
+                <span className="custom-links_name">Admin Panel</span>
+              </Link>
+              <span className="custom-tooltip">Admin Panel</span>
             </li>
           )}
           <li>

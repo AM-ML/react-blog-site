@@ -1,0 +1,141 @@
+/* Main CSS file to import all styles */
+
+/* Import theme */
+@import './themes/light.css';
+
+/* Import typography */
+@import './common/typography.css';
+
+/* Import components */
+@import './common/components.css';
+
+/* Import other common styles */
+@import './common/loading.css';
+@import './common/nodata.css';
+@import './common/preloader.css';
+@import './common/blogPreviewLG.css';
+@import './common/content-block.css';
+@import './common/end-of-data.css';
+@import './common/floating-component.css';
+@import './common/load-more.css';
+
+/* Import service styles */
+@import './services/service-styles.css';
+
+/* Import individual page styles */
+@import './home.css';
+
+/* Global styles */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: var(--background);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--primary-dark);
+}
+
+hr {
+  border-color: var(--border);
+  margin: 2rem 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-alt);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-light);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* Container adjustments */
+.container {
+  padding: 0 15px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Spacing utilities */
+.my-5 {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.py-5 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Custom section styles */
+.section {
+  padding: 5rem 0;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.section-title:after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 3px;
+  background-color: var(--primary);
+  margin: 1rem auto 0;
+}
+
+/* Blog post styles */
+.blog-post {
+  margin-bottom: 3rem;
+}
+
+.blog-post-title {
+  font-family: var(--font-heading);
+  margin-bottom: 0.5rem;
+}
+
+.blog-post-meta {
+  color: var(--text-light);
+  margin-bottom: 1rem;
+  font-family: var(--font-accent);
+  font-size: 0.9rem;
+} 

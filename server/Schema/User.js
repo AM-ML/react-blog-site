@@ -63,6 +63,11 @@ const userSchema = mongoose.Schema({
     type: Boolean,
     default: false
   },
+  role: {
+    type: String,
+    enum: ['user', 'author', 'admin', 'owner'],
+    default: 'user'
+  },
   blogs: {
     type: [Schema.Types.ObjectId],
     ref: 'blogs',
