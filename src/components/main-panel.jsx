@@ -31,13 +31,11 @@ const MainPanel = () => {
     "Civil Engineering",
     "Architecture",
     "Interior Design",
-    "Urban Planning",
-    "Construction Management",
-    "Structural Engineering",
-    "MEP Engineering",
+    "Electrical Engineering",
     "Project Management",
-    "Sustainable Design",
-    "BIM Services"
+    "Sustainability Management",
+    "Financial Analysis",
+    "Insights",
   ]);
   const [selectedInterests, setSelectedInterests] = useState(interests || []);
   const [userFavoriteBlogs, setUserFavoriteBlogs] = useState([]);
@@ -160,8 +158,8 @@ const MainPanel = () => {
     if (favorite_blogs && favorite_blogs.length > 0) {
       setIsLoadingBlogs(true);
       axios
-        .post(import.meta.env.VITE_SERVER_DOMAIN + "/get-favorite-blogs", { 
-          ids: favorite_blogs 
+        .post(import.meta.env.VITE_SERVER_DOMAIN + "/get-favorite-blogs", {
+          ids: favorite_blogs,
         })
         .then(({ data }) => {
           setUserFavoriteBlogs(data.blogs);
@@ -175,7 +173,7 @@ const MainPanel = () => {
     } else {
       setIsLoadingBlogs(false);
     }
-    
+
     // Set initial interests
     if (interests) {
       setSelectedInterests(interests);
@@ -185,15 +183,15 @@ const MainPanel = () => {
   const toggleInterest = (interest) => {
     const isSelected = selectedInterests.includes(interest);
     let updatedInterests;
-    
+
     if (isSelected) {
-      updatedInterests = selectedInterests.filter(item => item !== interest);
+      updatedInterests = selectedInterests.filter((item) => item !== interest);
     } else {
       updatedInterests = [...selectedInterests, interest];
     }
-    
+
     setSelectedInterests(updatedInterests);
-    
+
     // Update account with new interests
     updateAccount(id, access_token, { interests: updatedInterests });
   };
@@ -201,19 +199,19 @@ const MainPanel = () => {
   const handleAddInterest = () => {
     // Show dialog to select interest
     const remainingServices = availableServices.filter(
-      service => !selectedInterests.includes(service)
+      (service) => !selectedInterests.includes(service)
     );
-    
+
     if (remainingServices.length === 0) {
       toast.error("You've added all available interests!");
       return;
     }
-    
+
     // This is a simplified dialog. In a real app, you'd create a proper modal with selection
     const service = window.prompt(
       "Select an interest:\n\n" + remainingServices.join("\n")
     );
-    
+
     if (service && remainingServices.includes(service)) {
       toggleInterest(service);
     } else if (service) {
@@ -237,13 +235,15 @@ const MainPanel = () => {
       .then(({ data }) => {
         if (!data.favorited) {
           // Remove from UI immediately
-          setUserFavoriteBlogs(prevBlogs => prevBlogs.filter(blog => blog._id !== blogId));
+          setUserFavoriteBlogs((prevBlogs) =>
+            prevBlogs.filter((blog) => blog._id !== blogId)
+          );
           toast.success("Removed from favorites");
-          
+
           // Update the userAuth favorites list
-          setUserAuth(prev => ({
+          setUserAuth((prev) => ({
             ...prev,
-            favorite_blogs: prev.favorite_blogs.filter(id => id !== blogId)
+            favorite_blogs: prev.favorite_blogs.filter((id) => id !== blogId),
           }));
         }
       })
@@ -325,12 +325,16 @@ const MainPanel = () => {
         <section className="mp-info-ic mp-interests-ic">
           <h2 className="mp-interests-title mp-info-title">Interests</h2>
           <div className="mp-interests">
-            {selectedInterests && selectedInterests.map((interest, index) => (
-              <div key={index} className="mp-interest-tag">
-                {interest}
-                <i className="bx bx-x" onClick={() => toggleInterest(interest)}></i>
-              </div>
-            ))}
+            {selectedInterests &&
+              selectedInterests.map((interest, index) => (
+                <div key={index} className="mp-interest-tag">
+                  {interest}
+                  <i
+                    className="bx bx-x"
+                    onClick={() => toggleInterest(interest)}
+                  ></i>
+                </div>
+              ))}
             <div className="mp-add-container" onClick={handleAddInterest}>
               <i className="bx bx-plus mp-add-icon"></i>
             </div>
@@ -346,12 +350,15 @@ const MainPanel = () => {
             <div className="mp-favorite-blogs">
               {userFavoriteBlogs.map((blog) => (
                 <div key={blog._id} className="mp-favorite-blog-item">
-                  <Link to={`/blog/${blog.blog_id}`} className="mp-fav-blog-title">
+                  <Link
+                    to={`/blog/${blog.blog_id}`}
+                    className="mp-fav-blog-title"
+                  >
                     {TitleCase(blog.title)}
                   </Link>
                   <div className="mp-fav-blog-actions">
-                    <i 
-                      className="bx bx-trash" 
+                    <i
+                      className="bx bx-trash"
                       onClick={() => removeFromFavorites(blog._id)}
                       title="Remove from favorites"
                     ></i>
