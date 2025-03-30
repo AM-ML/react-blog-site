@@ -48,7 +48,7 @@ export default function AuthComponent() {
   const getBlogs = async ({ page = 1, user_id = author.id, doCreate = false }) => {
     try {
       const { data } = await axios.post(import.meta.env.VITE_SERVER_DOMAIN + "/search-blogs", {
-        author_id: user_id,
+        author: user_id,
         page,
       });
 

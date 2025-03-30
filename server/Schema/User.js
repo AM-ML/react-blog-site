@@ -77,11 +77,7 @@ const userSchema = mongoose.Schema({
     type: [Schema.Types.ObjectId],
     ref: 'blogs',
     default: [],
-  },
-  interests: {
-    type: [String]
   }
-
 },
   {
     timestamps: {

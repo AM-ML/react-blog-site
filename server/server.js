@@ -13,6 +13,7 @@ import rateLimit from "express-rate-limit";
 import helmet from "helmet";
 import xss from "xss-clean";
 import mongoSanitize from "express-mongo-sanitize";
+import compression from "compression";
 
 import { v2 as cloudinary } from "cloudinary";
 
@@ -157,7 +158,6 @@ const formatDataToSend = (user) => {
     email: user.personal_info.email,
     name: user.personal_info.name,
     social_links: user.social_links,
-    interests: user.interests,
     favorite_blogs: user.favorite_blogs,
     is_author: user.isAuthor,
     role: user.role,
@@ -863,7 +863,6 @@ server.post("/update-account", verifyJWT, async (req, res) => {
     social_links,
     account_info,
     favorite_blogs,
-    interests,
   } = req.body;
 
   try {
@@ -884,8 +883,7 @@ server.post("/update-account", verifyJWT, async (req, res) => {
       updates.social_links = { ...user.social_links, ...social_links };
     if (account_info)
       updates.account_info = { ...user.account_info, ...account_info };
-    if (favorite_blogs) updates.favorite_blogs = favorite_blogs; // Assuming this is a direct replace
-    if (interests) updates.interests = interests; // Assuming this is a direct replace
+    if (favorite_blogs) updates.favorite_blogs = favorite_blogs;
 
     // Update the user document
     Object.assign(user, updates);
@@ -1454,9 +1452,11 @@ server.post("/toggle-favorite", verifyJWT, async (req, res) => {
 
     await user.save();
 
+    // Return the updated user data
     return res.status(200).json({
       favorited: !isFavorited,
       message: isFavorited ? "Removed from favorites" : "Added to favorites",
+      favorite_blogs: user.favorite_blogs
     });
   } catch (err) {
     console.error("Toggle favorite error:", err);
@@ -1469,11 +1469,15 @@ server.post("/get-favorite-blogs", async (req, res) => {
   try {
     const { ids } = req.body;
 
-    if (!ids || !ids.length) {
+    if (!ids || !Array.isArray(ids) || ids.length === 0) {
       return res.status(200).json({ blogs: [] });
     }
 
     const blogs = await Blog.find({ _id: { $in: ids } })
+      .populate(
+        "author",
+        "personal_info.name personal_info.username personal_info.profile_img"
+      )
       .select("title blog_id banner publishedAt")
       .sort({ publishedAt: -1 });
 
@@ -1531,6 +1535,62 @@ server.post("/delete-blog", verifyJWT, async (req, res) => {
   } catch (err) {
     console.error("Delete blog error:", err);
     return res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// Add compression middleware
+server.use(compression());
+
+// Add a cache instance for user data
+const userDataCache = new NodeCache({ stdTTL: 300 }); // Cache for 5 minutes
+
+// Add new endpoint for fetching optimized user data
+server.post("/get-user-data", verifyJWT, async (req, res) => {
+  try {
+    const { id } = req.body;
+
+    if (!id) {
+      return res.status(400).json({ error: "User ID is required" });
+    }
+
+    // Find user and select only necessary fields
+    const user = await User.findById(id)
+      .select(
+        "personal_info.name personal_info.email personal_info.profile_img personal_info.username social_links favorite_blogs isAuthor role google_auth"
+      )
+      .lean(); // Use lean() for better performance
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    // Format the response with only necessary data
+    const formattedData = {
+      id: user._id,
+      name: user.personal_info.name,
+      email: user.personal_info.email,
+      profile_img: user.personal_info.profile_img,
+      username: user.personal_info.username,
+      social_links: user.social_links,
+      favorite_blogs: user.favorite_blogs || [],
+      is_author: user.isAuthor,
+      role: user.role,
+      google_auth: user.google_auth,
+      last_updated: new Date().toISOString(),
+    };
+
+    // Set cache control headers to prevent caching
+    res.set({
+      "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+      Pragma: "no-cache",
+      Expires: "0",
+      "Content-Type": "application/json",
+    });
+
+    res.status(200).json(formattedData);
+  } catch (err) {
+    console.error("Error fetching user data:", err);
+    res.status(500).json({ error: "Internal server error" });
   }
 });
 

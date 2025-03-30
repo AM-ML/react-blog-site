@@ -146,12 +146,12 @@ button.sdm-item {
 }
 
 .sdm-ir-container::-webkit-scrollbar-track {
-  border: 5px solid #34417C;
+  border: 5px solid #16526c;
 	background-color: #b2bec3;
 }
 
 .sdm-ir-container::-webkit-scrollbar-thumb {
-  background-color: #34417c;
+  background-color: #16526c;
 	border-radius: 10px;
   margin: 0;
 }

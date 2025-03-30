@@ -16,6 +16,7 @@ const BlogComponent = ({ blogId }) => {
   let {
     userAuth,
     userAuth: { username, access_token, id, favorite_blogs = [] },
+    setUserAuth,
   } = useContext(UserContext);
 
   const navigate = useNavigate();
@@ -159,9 +160,15 @@ const BlogComponent = ({ blogId }) => {
           toast.success("Removed from favorites");
         }
         setIsFavorite(data.favorited);
+        
+        // Update the userAuth context with the new favorites list
+        setUserAuth((prev) => ({
+          ...prev,
+          favorite_blogs: data.favorite_blogs,
+        }));
       })
       .catch((err) => {
-        console.log(err);
+        console.error("Toggle favorite error:", err);
         toast.error("Error updating favorites");
       });
   };

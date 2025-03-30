@@ -1,6 +1,6 @@
 import "../css/themes/light.css";
 import "../css/components/main-panel.css";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../Router";
 import cloud_img from "../assets/upload_to_cloud_white.webp";
 import { TitleCase } from "../common/string";
@@ -8,7 +8,6 @@ import AnimationWrapper from "../common/page-animation";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { convertToBase64 } from "./editor/banner";
-import { Link } from "react-router-dom";
 
 const MainPanel = () => {
   const { userAuth, setUserAuth } = useContext(UserContext);
@@ -16,30 +15,19 @@ const MainPanel = () => {
     id,
     name,
     access_token,
-    username,
     email,
     profile_img,
     social_links,
-    interests,
-    favorite_blogs,
     google_auth,
     is_author,
   } = userAuth;
 
   const [backupImg, setBackupImg] = useState(profile_img);
-  const [availableServices, setAvailableServices] = useState([
-    "Civil Engineering",
-    "Architecture",
-    "Interior Design",
-    "Electrical Engineering",
-    "Project Management",
-    "Sustainability Management",
-    "Financial Analysis",
-    "Insights",
-  ]);
-  const [selectedInterests, setSelectedInterests] = useState(interests || []);
-  const [userFavoriteBlogs, setUserFavoriteBlogs] = useState([]);
-  const [isLoadingBlogs, setIsLoadingBlogs] = useState(true);
+  const [updatedAccount, setUpdatedAccount] = useState({
+    name: TitleCase(name),
+    email: email,
+    social_links: { ...social_links },
+  });
 
   const config = {
     headers: {
@@ -47,6 +35,7 @@ const MainPanel = () => {
       Authorization: "Bearer " + access_token,
     },
   };
+
   const updateAccount = (id, access_token, info) => {
     let loadId = toast.loading("Updating Account...");
 
@@ -65,7 +54,6 @@ const MainPanel = () => {
             profile_img: updatedInfo.profile_img || profile_img,
           },
           social_links: updatedInfo.social_links,
-          interests: updatedInfo.interests || selectedInterests,
         },
         config
       )
@@ -80,6 +68,7 @@ const MainPanel = () => {
         toast.error("Failed to update account. Please try again.");
       });
   };
+
   const handleFileSelect = async (e) => {
     const file = e.target.files[0];
     setBackupImg(profile_img);
@@ -119,12 +108,6 @@ const MainPanel = () => {
     }
   };
 
-  const [updatedAccount, setUpdatedAccount] = useState({
-    name: TitleCase(name),
-    email: email,
-    social_links: { ...social_links },
-  });
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     if (name.startsWith("social_links")) {
@@ -151,106 +134,6 @@ const MainPanel = () => {
   const handleProfileImgError = () => {
     toast.error("Error Occurred While Uploading Profile Image");
     setUserAuth({ ...userAuth, profile_img: backupImg });
-  };
-
-  useEffect(() => {
-    // Load favorite blogs if there are any
-    if (favorite_blogs && favorite_blogs.length > 0) {
-      setIsLoadingBlogs(true);
-      axios
-        .post(import.meta.env.VITE_SERVER_DOMAIN + "/get-favorite-blogs", {
-          ids: favorite_blogs,
-        })
-        .then(({ data }) => {
-          setUserFavoriteBlogs(data.blogs);
-        })
-        .catch((err) => {
-          console.error("Error fetching favorite blogs:", err);
-        })
-        .finally(() => {
-          setIsLoadingBlogs(false);
-        });
-    } else {
-      setIsLoadingBlogs(false);
-    }
-
-    // Set initial interests
-    if (interests) {
-      setSelectedInterests(interests);
-    }
-  }, [favorite_blogs, interests]);
-
-  const toggleInterest = (interest) => {
-    const isSelected = selectedInterests.includes(interest);
-    let updatedInterests;
-
-    if (isSelected) {
-      updatedInterests = selectedInterests.filter((item) => item !== interest);
-    } else {
-      updatedInterests = [...selectedInterests, interest];
-    }
-
-    setSelectedInterests(updatedInterests);
-
-    // Update account with new interests
-    updateAccount(id, access_token, { interests: updatedInterests });
-  };
-
-  const handleAddInterest = () => {
-    // Show dialog to select interest
-    const remainingServices = availableServices.filter(
-      (service) => !selectedInterests.includes(service)
-    );
-
-    if (remainingServices.length === 0) {
-      toast.error("You've added all available interests!");
-      return;
-    }
-
-    // This is a simplified dialog. In a real app, you'd create a proper modal with selection
-    const service = window.prompt(
-      "Select an interest:\n\n" + remainingServices.join("\n")
-    );
-
-    if (service && remainingServices.includes(service)) {
-      toggleInterest(service);
-    } else if (service) {
-      toast.error("Please select a valid interest from the list.");
-    }
-  };
-
-  const removeFromFavorites = (blogId) => {
-    const config = {
-      headers: {
-        Authorization: `Bearer ${access_token}`,
-      },
-    };
-
-    axios
-      .post(
-        import.meta.env.VITE_SERVER_DOMAIN + "/toggle-favorite",
-        { blogId, userId: id },
-        config
-      )
-      .then(({ data }) => {
-        if (!data.favorited) {
-          // Remove from UI immediately
-          setUserFavoriteBlogs((prevBlogs) =>
-            prevBlogs.filter((blog) => blog._id !== blogId)
-          );
-          toast.success("Removed from favorites");
-
-          // Update the userAuth favorites list
-          setUserAuth((prev) => ({
-            ...prev,
-            favorite_blogs: prev.favorite_blogs.filter((id) => id !== blogId),
-          }));
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error("Error updating favorites");
-      });
   };
 
   return (
@@ -321,58 +204,6 @@ const MainPanel = () => {
       </section>
 
       <section className="mp-info-container">
-        {/* Interests Section */}
-        <section className="mp-info-ic mp-interests-ic">
-          <h2 className="mp-interests-title mp-info-title">Interests</h2>
-          <div className="mp-interests">
-            {selectedInterests &&
-              selectedInterests.map((interest, index) => (
-                <div key={index} className="mp-interest-tag">
-                  {interest}
-                  <i
-                    className="bx bx-x"
-                    onClick={() => toggleInterest(interest)}
-                  ></i>
-                </div>
-              ))}
-            <div className="mp-add-container" onClick={handleAddInterest}>
-              <i className="bx bx-plus mp-add-icon"></i>
-            </div>
-          </div>
-        </section>
-
-        {/* Favorite Blogs Section */}
-        <section className="mp-info-ic mp-fav-ic">
-          <h2 className="mp-fav-title mp-info-title">Favorite Blogs</h2>
-          {isLoadingBlogs ? (
-            <div className="mp-loading">Loading favorite blogs...</div>
-          ) : userFavoriteBlogs?.length ? (
-            <div className="mp-favorite-blogs">
-              {userFavoriteBlogs.map((blog) => (
-                <div key={blog._id} className="mp-favorite-blog-item">
-                  <Link
-                    to={`/blog/${blog.blog_id}`}
-                    className="mp-fav-blog-title"
-                  >
-                    {TitleCase(blog.title)}
-                  </Link>
-                  <div className="mp-fav-blog-actions">
-                    <i
-                      className="bx bx-trash"
-                      onClick={() => removeFromFavorites(blog._id)}
-                      title="Remove from favorites"
-                    ></i>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="mp-no-data">
-              <div className="mp-no-data-msg">No Blogs Selected.</div>
-            </div>
-          )}
-        </section>
-
         {/* Social Links Section */}
         {is_author && (
           <section className="mp-info-ic mp-socials-ic">

@@ -19,6 +19,7 @@ import DraftsPanel from "./components/drafts-panel";
 import ScrollToTop from "./common/scroll";
 import Search from "./pages/search";
 import Redirect from "./common/redirect";
+import FavoriteBlogs from "./pages/favorite-blogs";
 import CivilEngineering from "./services/civil-engineering";
 import ElectricalEngineering from "./services/electrical-engineering";
 import Architecture from "./services/architecture";
@@ -144,6 +145,7 @@ const Router = () => {
           </Route>
           <Route path="/dashboard/author/:username" element={<Author />} />
           <Route path="/dashboard/settings" element={<Settings />} />
+          <Route path="/dashboard/favorites" element={<FavoriteBlogs />} />
           <Route path="/dashboard/admin" element={<AdminWrapper />}>
             <Route index element={<AdminPanel />} />
             <Route path="/dashboard/admin/users" element={<AdminUsers />} />

@@ -39,7 +39,7 @@ const DraftsComponent = () => {
           page,
           totalDocs: data.totalDocs,
         });
-        
+
         setDrafts(paginationData);
       })
       .catch((err) => {
@@ -61,11 +61,13 @@ const DraftsComponent = () => {
   const handleDeleteDraft = (blogId) => {
     // Remove the draft from the list
     if (drafts && drafts.results) {
-      const updatedResults = drafts.results.filter(draft => draft.blog_id !== blogId);
+      const updatedResults = drafts.results.filter(
+        (draft) => draft.blog_id !== blogId
+      );
       setDrafts({
         ...drafts,
         results: updatedResults,
-        totalDocs: drafts.totalDocs - 1
+        totalDocs: drafts.totalDocs - 1,
       });
     }
   };
@@ -94,9 +96,9 @@ const DraftsComponent = () => {
             {drafts && drafts.results.length ? (
               <>
                 {drafts.results.map((draft, i) => (
-                  <BlogCard 
-                    key={i} 
-                    blog={{ ...draft, draft: true }} 
+                  <BlogCard
+                    key={i}
+                    blog={{ ...draft, draft: true }}
                     addBorder={i !== drafts.results.length - 1}
                     onDelete={handleDeleteDraft}
                   />
@@ -110,7 +112,7 @@ const DraftsComponent = () => {
                 )}
               </>
             ) : (
-              <NoData message="No drafts found" />
+              <h1 className="dfc-no-data">No Drafts Found.</h1>
             )}
           </div>
         </>

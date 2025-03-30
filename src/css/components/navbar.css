@@ -83,7 +83,7 @@
 }
 
 .nb-end-md .nb-end-profile-ic:has(.nb-end-profile):hover {
-  border: 2px solid #34417c;
+  border: 2px solid #16526c;
   transition-duration: 100ms;
   transition-property: all;
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 71, 0.2);

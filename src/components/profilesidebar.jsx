@@ -87,6 +87,16 @@ const ProfileSidebar = () => {
             </Link>
             <span className="custom-tooltip">Account</span>
           </li>
+          <li>
+            <Link to="/dashboard/favorites" onClick={() => {
+              handleLClick();
+              setWhatOpened("Favorites");
+            }}>
+              <i className="bx bx-bookmark"></i>
+              <span className="custom-links_name">Favorite Blogs</span>
+            </Link>
+            <span className="custom-tooltip">Favorite Blogs</span>
+          </li>
           {is_author && (
             <li>
               <Link to="/dashboard/writer/drafts" onClick={draftsOpened}>

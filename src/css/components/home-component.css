@@ -344,6 +344,7 @@
   color: rgb(75 85 99 / var(--tw-text-opacity)) !important;
   font-family: "inter" !important;
   width: 350px;
+  max-width: 100%;
 }
 
 .hmc-main-subcontainer .title.text-center {

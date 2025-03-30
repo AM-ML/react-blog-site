@@ -113,7 +113,7 @@
   border: none !important;
   border-radius: 12px !important;
   transition: all 0.2s ease !important;
-  background: #34417C !important;
+  background: #16526c !important;
 }
 
 .custom-sidebar.open input {
@@ -127,7 +127,7 @@
   left: 0 !important;
   transform: translateY(-50%) !important;
   font-size: 22px !important;
-  background: #34417C !important;
+  background: #16526c !important;
   color: #fff !important;
 }
 
@@ -137,7 +137,7 @@
 }
 
 .custom-sidebar.open .bx-search:hover {
-  background: #34417C !important;
+  background: #16526c!important;
   color: #fff !important;
 }
 

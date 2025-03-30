@@ -1,7 +1,7 @@
 .dfc-container {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 2rem 0;
+  padding: 2rem ;
 }
 
 .dfc-row {
@@ -35,4 +35,11 @@
   border-radius: 0.25rem;
   margin-left: 1rem;
   text-transform: uppercase;
+}
+
+.dfc-no-data {
+  font-size: 32px;
+  font-weight: 900;
+  font-family: "Domine";
+  padding: 0 2rem;
 }
