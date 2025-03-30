@@ -170,3 +170,45 @@
 .bgcd-container-container:hover {
   transform: translateY(-1px);
 }
+
+.bgcd-outer-container {
+  position: relative;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  width: 100%;
+}
+
+.bgcd-outer-container.no-border {
+  border-bottom: none;
+}
+
+.bgcd-actions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+}
+
+.bgcd-delete-btn {
+  background-color: rgba(220, 53, 69, 0.9);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.bgcd-delete-btn:hover {
+  background-color: #dc3545;
+  transform: scale(1.1);
+}
+
+.bgcd-delete-btn i {
+  font-size: 18px;
+}

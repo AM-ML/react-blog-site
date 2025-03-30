@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import Loading from "../common/loading";
 import AnimationWrapper from "../common/page-animation";
 import { TitleCase } from "../common/string";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { formatDate } from "../common/functions";
 import BlogCard from "./blog-card";
 import LoadMoreBtn from "../common/load-more";
@@ -14,16 +14,20 @@ import { UserContext } from "../Router";
 
 const BlogComponent = ({ blogId }) => {
   let {
-    userAuth: { username },
+    userAuth,
+    userAuth: { username, access_token, id, favorite_blogs = [] },
   } = useContext(UserContext);
 
+  const navigate = useNavigate();
   const [blog, setBlog] = useState({});
   const [relatedBlogs, setRelatedBlogs] = useState([]);
   const [relatedBlogsLoading, setRelatedBlogsLoading] = useState(true);
   const [loading, setLoading] = useState(true);
   const [fetchLoading, setFetchLoading] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   let {
+    _id,
     tags = [],
     title = "",
     banner = "",
@@ -85,6 +89,13 @@ const BlogComponent = ({ blogId }) => {
     getBlogData();
   }, [blogId]);
 
+  useEffect(() => {
+    // Check if blog is in favorites
+    if (_id && favorite_blogs) {
+      setIsFavorite(favorite_blogs.includes(_id));
+    }
+  }, [_id, favorite_blogs]);
+
   const loadMoreRelatedBlogs = () => {
     setFetchLoading(true);
 
@@ -121,6 +132,74 @@ const BlogComponent = ({ blogId }) => {
       });
   };
 
+  const toggleFavorite = () => {
+    if (!access_token) {
+      // Redirect to login if not authenticated
+      toast.error("Please login to favorite blogs");
+      navigate("/signin");
+      return;
+    }
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
+    };
+
+    axios
+      .post(
+        import.meta.env.VITE_SERVER_DOMAIN + "/toggle-favorite",
+        { blogId: _id, userId: id },
+        config
+      )
+      .then(({ data }) => {
+        if (data.favorited) {
+          toast.success("Added to favorites!");
+        } else {
+          toast.success("Removed from favorites");
+        }
+        setIsFavorite(data.favorited);
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Error updating favorites");
+      });
+  };
+
+  const deleteBlog = () => {
+    if (!access_token) {
+      toast.error("You need to be logged in to delete this blog");
+      return;
+    }
+
+    // Ask for confirmation
+    if (!window.confirm("Are you sure you want to delete this blog? This action cannot be undone.")) {
+      return;
+    }
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
+    };
+
+    axios
+      .post(
+        import.meta.env.VITE_SERVER_DOMAIN + "/delete-blog",
+        { blog_id: blogId },
+        config
+      )
+      .then(() => {
+        toast.success("Blog deleted successfully!");
+        // Redirect to dashboard
+        navigate("/dashboard");
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Error deleting blog. Please try again later.");
+      });
+  };
+
   return (
     <AnimationWrapper>
       {loading ? (
@@ -152,6 +231,17 @@ const BlogComponent = ({ blogId }) => {
               <div className="bbc-fb-end">
                 <i
                   role="button"
+                  onClick={toggleFavorite}
+                  className={`bx ${
+                    isFavorite ? "bxs-star" : "bx-star"
+                  } bbc-star`}
+                  style={{
+                    color: isFavorite ? "#FFD700" : "inherit",
+                    marginRight: "15px",
+                  }}
+                ></i>
+                <i
+                  role="button"
                   onClick={copyLink}
                   className="bx bxs-share-alt"
                 ></i>
@@ -162,12 +252,20 @@ const BlogComponent = ({ blogId }) => {
             </div>
 
             {username == author_username && (
-              <Link
-                className="bbc-ua-edit mb-2 btn btn-danger btn-lg"
-                to={`/dashboard/writer/write/${blogId}`}
-              >
-                Edit Blog
-              </Link>
+              <div className="bbc-user-actions">
+                <Link
+                  className="bbc-ua-edit mb-2 btn btn-danger btn-lg"
+                  to={`/dashboard/writer/write/${blogId}`}
+                >
+                  Edit Blog
+                </Link>
+                <button
+                  className="bbc-ua-delete mb-2 btn btn-danger btn-lg"
+                  onClick={deleteBlog}
+                >
+                  Delete Blog
+                </button>
+              </div>
             )}
 
             <div className="bbc-bc aspect-video shadow">

@@ -75,7 +75,7 @@
 
 .hmc-info .hmc-text .title {
   font-weight: 900;
-  font-family: "roboto";
+  font-family: "inter";
   font-display: swap !important;
   color: #fff;
   font-size: 48px;
@@ -85,8 +85,8 @@
 }
 
 .hmc-info .hmc-text .desc {
-  font-weight: 300;
-  font-family: "roboto", "montserrat", sans-serif;
+  font-weight: 100;
+  font-family: "inter", "montserrat", sans-serif;
   font-size: 32px;
   color: white;
   text-align: center;
@@ -104,8 +104,12 @@
 }
 
 .hmc-btn {
-  padding: 17px 36px;
-  border: 3px solid white;
+  font-family: "inter";
+  width: 150px;
+  padding: 10px 36px;
+  text-align: center;
+  border: 2px solid white;
+  border-radius: 5px;
   color: white;
   background: none;
   text-decoration: none;
@@ -273,15 +277,22 @@
   flex-direction: row;
   flex-wrap: wrap;
   gap: 10px;
-  padding: 20px 15px;
-  margin: 20px 0;
+  padding: 40px 15px;
+  background: #F9FAFB;
 }
 
 .hmc-list-container .item {
-  min-width: 350px;
-  min-height: 300px;
-  width: 30%;
-  flex-grow: 1;
+  padding: 2rem;
+  border: 1px solid #ccc;
+  width: 32%;
+}
+
+.hmc-list-container .item .item-icon {
+  padding: 0.75rem;
+  border-radius: 50%;
+  background: #f5f5f5 !important;
+  width: fit-content;
+  margin-bottom: 1.5rem;
 }
 
 
@@ -292,17 +303,17 @@
 .hmc-bg-c {
   padding: 20px;
   transition: all 0.2s ease;
-  box-shadow: 0px 2px 10px #bbb !important;
   cursor: default;
 }
 
 .hmc-bg-c .title,
 .item.hmc-bg-c .title .text {
-  font-display: swap;
-  font-weight: 900;
-  font-size: 43px;
-  font-family: "Domine";
-  margin-bottom: 20px;
+  font-weight: 600;
+  font-family: "inter";
+  font-size:1.25rem;
+  line-height: 1.75rem;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.025em;
 }
 
 .item.hmc-bg-c .title {
@@ -314,6 +325,11 @@
   gap: 15px;
 }
 
+.item.hmc-bg-c .item-link {
+  color: #15626c !important;
+  text-decoration: none;
+}
+
 .title .dot {
  width: 16px;
   height: 16px;
@@ -321,10 +337,13 @@
   border-radius: 50%;
 }
 
-.hmc-bg-c .text {
-  font-weight: 300;
-  font-size: 23px;
-  font-family: "roboto";
+.item.hmc-bg-c .text {
+  margin-bottom: 1.5rem !important;
+  font-weight: 300 !important;
+  font-size: 18px !important;
+  color: rgb(75 85 99 / var(--tw-text-opacity)) !important;
+  font-family: "inter" !important;
+  width: 350px;
 }
 
 .hmc-main-subcontainer .title.text-center {

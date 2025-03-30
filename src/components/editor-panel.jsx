@@ -12,17 +12,21 @@ import { tools } from "./editor/tools";
 const EditorPanel = () => {
   const blogContext = useContext(EditorContext);
   const {
-    blog: { content },
+    blog,
     setBlog,
     textEditor,
     setTextEditor,
   } = blogContext;
 
   useEffect(() => {
-    // Initialize EditorJS
+    // Initialize EditorJS - safely handle content that might be undefined or not in expected format
+    const editorData = blog && blog.content ? 
+      (Array.isArray(blog.content) ? blog.content[0] : blog.content) : 
+      { blocks: [] }; // Default empty content
+    
     const editor = new EditorJS({
       holderId: "textEditor",
-      data: Array.isArray(content) ? content[0] : content, // Use default if content is undefined
+      data: editorData,
       tools: tools,
       placeholder: "Write blog content here.",
     });

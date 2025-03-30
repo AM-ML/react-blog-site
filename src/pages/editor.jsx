@@ -10,7 +10,7 @@ import axios from "axios";
 let blogStructure = {
   title: "",
   banner: "",
-  content: "",
+  content: { blocks: [] },
   tags: [],
   description: "",
   author: { personal_info: {} },

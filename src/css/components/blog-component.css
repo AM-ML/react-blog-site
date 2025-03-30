@@ -161,3 +161,35 @@
     margin: 2rem 0;
   }
 }
+
+.bbc-star {
+  margin-right: 1.5em !important;
+}
+
+.bbc-user-actions {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.bbc-ua-delete {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: white;
+}
+
+.bbc-ua-delete:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+.bbc-ua-edit {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: white;
+}
+
+.bbc-ua-edit:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
+}

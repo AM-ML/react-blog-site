@@ -661,64 +661,88 @@ server.post("/latest-blogs-counter", (req, res) => {
 });
 
 server.post("/search-blogs", async (req, res) => {
-  const {
-    limit = null,
-    tags = [],
-    date = null,
-    page = 1,
-    query = null,
-    author_id = null,
-  } = req.body;
-  let maxLimit = limit ? limit : 10;
-
-  // Create a base query object
-  let searchQuery = { draft: false };
-
-  // Add date filter if provided
-  if (date) {
-    const dateFilter = new Date(date);
-    searchQuery.publishedAt = { $gte: dateFilter };
-  }
-
-  // Add tags filter if provided
-  if (tags.length > 0) {
-    searchQuery.tags = { $in: tags.map((tag) => tag.toLowerCase()) };
-  }
-
-  // Add search query filter if provided
-  if (query) {
-    searchQuery.$or = [
-      { title: { $regex: query, $options: "i" } }, // case-insensitive search in title
-      { description: { $regex: query, $options: "i" } }, // case-insensitive search in description
-      { tags: { $regex: query, $options: "i" } },
-    ];
-  }
-
-  // Add author filter if provided
-  if (author_id) {
-    console.log("Filtering by author_id:", author_id);
-    searchQuery.author = author_id; // Ensure this is the correct field
-  }
-
-  console.log("\n\nNew Request: ", searchQuery);
-  console.log("vars: ", tags, date, page, query, author_id);
-
   try {
-    const blogs = await Blog.find(searchQuery)
-      .populate(
-        "author",
-        "personal_info.profile_img personal_info.username personal_info.name -_id"
-      )
-      .sort({ publishedAt: -1 })
-      .select("blog_id title description banner activity tags publishedAt -_id")
-      .skip((page - 1) * maxLimit)
-      .limit(maxLimit);
-
-    const totalDocs = await Blog.countDocuments(searchQuery);
-    console.log("data, length:", totalDocs);
+    let { query, tag, page = 1, limit = 10, eliminate_blog, author, userId } = req.body;
+    
+    let findQuery = { draft: false };
+    
+    if (query) {
+      findQuery.$or = [
+        { title: { $regex: query, $options: 'i' } },
+        { tags: { $regex: query, $options: 'i' } }
+      ];
+    }
+    
+    if (tag) {
+      findQuery.tags = { $in: [tag] };
+    }
+    
+    if (eliminate_blog) {
+      findQuery.blog_id = { $ne: eliminate_blog };
+    }
+    
+    if (author) {
+      findQuery.author = author;
+    }
+    
+    let sortCriteria = {};
+    let userInterests = [];
+    
+    // If userId is provided, fetch user's interests for personalized sorting
+    if (userId) {
+      const user = await User.findById(userId);
+      if (user && user.interests) {
+        userInterests = user.interests;
+      }
+    }
+    
+    // Default sort by publish date (newest first)
+    sortCriteria.publishedAt = -1;
+    
+    const blogs = await Blog.find(findQuery)
+      .populate("author", "personal_info.name personal_info.username personal_info.profile_img")
+      .sort(sortCriteria)
+      .skip((page - 1) * limit)
+      .limit(limit);
+    
+    const totalDocs = await Blog.countDocuments(findQuery);
+    
+    // Reorder blogs based on user interests if available
+    if (userInterests.length > 0) {
+      // Calculate relevance score for each blog based on matching tags
+      const scoredBlogs = blogs.map(blog => {
+        let score = 0;
+        // Increase score for each tag that matches user interests
+        blog.tags.forEach(tag => {
+          if (userInterests.includes(tag)) {
+            score += 1;
+          }
+        });
+        return { blog, score };
+      });
+      
+      // Sort by score (descending) and then by publish date
+      scoredBlogs.sort((a, b) => {
+        if (b.score !== a.score) {
+          return b.score - a.score;
+        }
+        // If scores are equal, sort by publish date
+        return new Date(b.blog.publishedAt) - new Date(a.blog.publishedAt);
+      });
+      
+      // Extract just the blogs in the new order
+      const reorderedBlogs = scoredBlogs.map(item => item.blog);
+      
+      return res.status(200).json({ 
+        blogs: reorderedBlogs, 
+        totalDocs 
+      });
+    }
+    
     return res.status(200).json({ blogs, totalDocs });
   } catch (err) {
-    return res.status(500).json({ error: err.message });
+    console.error("Search blogs error:", err);
+    return res.status(500).json({ error: "Internal server error" });
   }
 });
 
@@ -1355,6 +1379,121 @@ server.get("/admin/newsletter/history", verifyAdmin, async (req, res) => {
     return res.status(200).json({ newsletters });
   } catch (err) {
     console.error("Get newsletter history error:", err);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// Toggle favorite blog
+server.post("/toggle-favorite", verifyJWT, async (req, res) => {
+  try {
+    const { blogId, userId } = req.body;
+    
+    // Find the user
+    const user = await User.findById(userId);
+    
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    
+    // Check if blog exists
+    const blog = await Blog.findById(blogId);
+    if (!blog) {
+      return res.status(404).json({ error: "Blog not found" });
+    }
+    
+    // Check if blog is already in favorites
+    const isFavorited = user.favorite_blogs.includes(blogId);
+    
+    if (isFavorited) {
+      // Remove from favorites
+      user.favorite_blogs = user.favorite_blogs.filter(
+        id => id.toString() !== blogId.toString()
+      );
+    } else {
+      // Add to favorites
+      user.favorite_blogs.push(blogId);
+    }
+    
+    await user.save();
+    
+    return res.status(200).json({
+      favorited: !isFavorited,
+      message: isFavorited ? "Removed from favorites" : "Added to favorites"
+    });
+  } catch (err) {
+    console.error("Toggle favorite error:", err);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// Get favorite blogs
+server.post("/get-favorite-blogs", async (req, res) => {
+  try {
+    const { ids } = req.body;
+    
+    if (!ids || !ids.length) {
+      return res.status(200).json({ blogs: [] });
+    }
+    
+    const blogs = await Blog.find({ _id: { $in: ids } })
+      .select("title blog_id banner publishedAt")
+      .sort({ publishedAt: -1 });
+      
+    return res.status(200).json({ blogs });
+  } catch (err) {
+    console.error("Get favorite blogs error:", err);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// Delete blog endpoint
+server.post("/delete-blog", verifyJWT, async (req, res) => {
+  try {
+    const { blog_id } = req.body;
+    const userId = req.user;
+
+    if (!blog_id) {
+      return res.status(400).json({ error: "Blog ID is required" });
+    }
+
+    // Find the blog
+    const blog = await Blog.findOne({ blog_id });
+
+    if (!blog) {
+      return res.status(404).json({ error: "Blog not found" });
+    }
+
+    // Check if the user is the author of the blog
+    if (blog.author.toString() !== userId.toString()) {
+      return res.status(403).json({ error: "You don't have permission to delete this blog" });
+    }
+
+    // Delete the blog
+    await Blog.deleteOne({ blog_id });
+
+    // Update the user's total_posts count if the blog was published
+    if (!blog.draft) {
+      await User.findByIdAndUpdate(
+        userId,
+        { $inc: { "account_info.total_posts": -1 } }
+      );
+    }
+
+    // Remove the blog from user's blogs array
+    await User.findByIdAndUpdate(
+      userId,
+      { $pull: { blogs: blog._id } }
+    );
+
+    // Remove the blog from any user's favorite_blogs array
+    await User.updateMany(
+      { favorite_blogs: blog._id },
+      { $pull: { favorite_blogs: blog._id } }
+    );
+
+    return res.status(200).json({ message: "Blog deleted successfully" });
+  } catch (err) {
+    console.error("Delete blog error:", err);
     return res.status(500).json({ error: "Internal server error" });
   }
 });

@@ -7,6 +7,7 @@ import BlogCard from "./blog-card";
 import NoData from "../common/nodata";
 import LoadMoreBtn from "../common/load-more";
 import filterPaginationData from "../common/pagination";
+import { Toaster } from "react-hot-toast";
 
 const DraftsComponent = () => {
   const [drafts, setDrafts] = useState(null);
@@ -56,12 +57,26 @@ const DraftsComponent = () => {
     }
   };
 
+  // Handle blog deletion
+  const handleDeleteDraft = (blogId) => {
+    // Remove the draft from the list
+    if (drafts && drafts.results) {
+      const updatedResults = drafts.results.filter(draft => draft.blog_id !== blogId);
+      setDrafts({
+        ...drafts,
+        results: updatedResults,
+        totalDocs: drafts.totalDocs - 1
+      });
+    }
+  };
+
   useEffect(() => {
     getDrafts();
   }, []);
 
   return (
     <div className="dfc-container">
+      <Toaster />
       {loading ? (
         <Preloader />
       ) : (
@@ -83,6 +98,7 @@ const DraftsComponent = () => {
                     key={i} 
                     blog={{ ...draft, draft: true }} 
                     addBorder={i !== drafts.results.length - 1}
+                    onDelete={handleDeleteDraft}
                   />
                 ))}
 

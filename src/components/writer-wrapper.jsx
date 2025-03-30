@@ -1,9 +1,10 @@
 import { useContext } from "react";
-import { Outlet } from "react-router-dom"
+import { Outlet, useNavigate } from "react-router-dom"
 import {UserContext} from "../Router";
 
 const WriterWrapper = () => {
   let { userAuth: {is_author} } = useContext(UserContext);
+  const navigate = useNavigate();
 
   return (
     is_author?

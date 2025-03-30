@@ -4,6 +4,7 @@ import React, {
   useState,
   Suspense,
   lazy,
+  useContext,
 } from "react";
 import "../css/components/blogs-component.css";
 import InPageNavigation from "./inpage-navigation";
@@ -12,6 +13,7 @@ import Preloader from "../common/preloader";
 import filterPaginationData from "../common/pagination";
 import LoadMoreBtn from "../common/load-more";
 import Loading from "../common/loading";
+import { UserContext } from "../Router";
 
 // Lazy loading components
 const BlogCard = lazy(() => import("./blog-card"));
@@ -20,6 +22,7 @@ const AnimationWrapper = lazy(() => import("../common/page-animation"));
 export const FilterContext = createContext({});
 
 const BlogsComponent = () => {
+  const { userAuth } = useContext(UserContext);
   const [blogs, setBlogs] = useState(null);
   const [originalBlogs, setOriginalBlogs] = useState(null);
   const [originalTrendings, setOriginalTrendings] = useState(null);
@@ -35,6 +38,7 @@ const BlogsComponent = () => {
         date: uDate,
         tags: uTags,
         page,
+        userId: userAuth?.id // Send user ID to prioritize interests
       })
       .then(async ({ data: { blogs: newBlogs, totalDocs } }) => {
         let paginationData = await filterPaginationData({
