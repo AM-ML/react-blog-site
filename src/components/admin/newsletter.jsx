@@ -5,6 +5,8 @@ import { UserContext } from "../../Router";
 import "../../css/components/admin/newsletter.css";
 import { formatDate } from "../../common/functions";
 import toast, { Toaster } from "react-hot-toast";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 const AdminNewsletter = () => {
   const [subscribers, setSubscribers] = useState([]);
@@ -183,6 +185,38 @@ const AdminNewsletter = () => {
     }
   };
 
+  const handleContentChange = (content) => {
+    setNewsletterForm(prev => ({
+      ...prev,
+      content
+    }));
+    
+    // Clear content error when user types
+    if (formErrors.content) {
+      setFormErrors(prev => ({
+        ...prev,
+        content: ""
+      }));
+    }
+  };
+
+  const modules = {
+    toolbar: [
+      [{ 'header': [1, 2, 3, false] }],
+      ['bold', 'italic', 'underline', 'strike'],
+      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+      ['link', 'image'],
+      ['clean']
+    ]
+  };
+
+  const formats = [
+    'header',
+    'bold', 'italic', 'underline', 'strike',
+    'list', 'bullet',
+    'link', 'image'
+  ];
+
   useEffect(() => {
     fetchData();
     
@@ -269,23 +303,21 @@ const AdminNewsletter = () => {
                   
                   <div className="admin-form-group">
                     <label htmlFor="content">Content</label>
-                    <textarea
-                      id="content"
-                      name="content"
-                      placeholder="Write your newsletter content..."
-                      value={newsletterForm.content}
-                      onChange={handleInputChange}
-                      className={formErrors.content ? "admin-input-error" : ""}
-                      rows={10}
-                      disabled={sendingNewsletter}
-                      required
-                    ></textarea>
+                    <div className="admin-quill-editor">
+                      <ReactQuill
+                        value={newsletterForm.content}
+                        onChange={handleContentChange}
+                        modules={modules}
+                        formats={formats}
+                        placeholder="Write your newsletter content..."
+                        className={formErrors.content ? "admin-input-error" : ""}
+                        disabled={sendingNewsletter}
+                        theme="snow"
+                      />
+                    </div>
                     {formErrors.content && (
                       <div className="admin-form-error">{formErrors.content}</div>
                     )}
-                    <div className="admin-form-help">
-                      Use plain text. Line breaks will be preserved.
-                    </div>
                   </div>
                   
                   <div className="admin-form-actions">

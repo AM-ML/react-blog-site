@@ -11,7 +11,7 @@ import toast from "react-hot-toast";
 const BlogCard = ({ blog, addBorder = true, onDelete }) => {
   const navigate = useNavigate();
   const { userAuth } = useContext(UserContext);
-  
+
   let {
     blog_id,
     banner,
@@ -26,19 +26,23 @@ const BlogCard = ({ blog, addBorder = true, onDelete }) => {
   } = blog;
 
   // Determine the link based on draft status
-  const blogLink = draft 
-    ? `/dashboard/writer/write/${blog_id}` 
+  const blogLink = draft
+    ? `/dashboard/writer/write/${blog_id}`
     : `/blog/${blog_id}`;
-    
+
   // Function to handle delete
   const handleDelete = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    
-    if (!window.confirm("Are you sure you want to delete this blog? This action cannot be undone.")) {
+
+    if (
+      !window.confirm(
+        "Are you sure you want to delete this blog? This action cannot be undone."
+      )
+    ) {
       return;
     }
-    
+
     const config = {
       headers: {
         Authorization: `Bearer ${userAuth.access_token}`,
@@ -54,7 +58,7 @@ const BlogCard = ({ blog, addBorder = true, onDelete }) => {
       .then(() => {
         toast.success("Blog deleted successfully!");
         // Call the onDelete callback if provided
-        if (typeof onDelete === 'function') {
+        if (typeof onDelete === "function") {
           onDelete(blog_id);
         }
       })
@@ -66,10 +70,7 @@ const BlogCard = ({ blog, addBorder = true, onDelete }) => {
 
   return (
     <div className={`bgcd-outer-container ${!addBorder && "no-border"}`}>
-      <Link
-        to={blogLink}
-        className="bgcd-container-container"
-      >
+      <Link to={blogLink} className="bgcd-container-container">
         <div className="bgcd-container me-2">
           <div className="bgcd-header">
             <img
@@ -118,11 +119,11 @@ const BlogCard = ({ blog, addBorder = true, onDelete }) => {
           <img src={banner} className="bgcd-banner" alt="Blog banner" />
         </div>
       </Link>
-      
+
       {username === userAuth.username && (
         <div className="bgcd-actions">
-          <button 
-            className="bgcd-delete-btn" 
+          <button
+            className="bgcd-delete-btn"
             onClick={handleDelete}
             title="Delete Blog"
           >

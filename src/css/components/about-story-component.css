@@ -5,6 +5,11 @@
   min-height: calc(100vh - 100px);
 }
 
+.abst-info {
+  max-width: 1450px;
+  margin: auto;
+}
+
 .abst-header .abst-img-c {
    position: absolute;
   width: 100%;
@@ -59,7 +64,8 @@ position: absolute;
 .abst-header .abst-arrow-c {
   position:absolute;
   bottom: 35px;
-  left: calc(50% - 50px);
+  width: 100vw;
+  text-align: center;
 }
 
 .abst-arrow-c .abst-arrow {
@@ -128,7 +134,7 @@ body:has(.abst-pg-container) .sdm-nvb-hidden {
   height: 400px;
   width: 44%;
   min-width: 440px;
-  background: #16526C;
+  background: #15626C;
   color: white;
   flex-grow: 1;
   margin: 10px;

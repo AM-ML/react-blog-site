@@ -2,13 +2,22 @@
   min-height: calc(100vh - 100px);
 }
 
+@media screen and (max-width: 768px) {
+  .abts-container {
+  }
+  .abts-header .abts-img-c, .abts-img-shadow, .sdm-nvb-hidden {
+  }
+}
+
+.sdm-nvb-hidden { overflow-x: hidden }
+
 .abts-header .abts-img-c {
-   position: absolute;
+  position: absolute;
   width: 100%;
   height: 100vh;
   z-index: -2;
-
 }
+
 .abts-header .abts-img-c .abts-img {
   width: 100%;
   height: 100%;
@@ -56,7 +65,8 @@
 .abts-header .abts-arrow-c {
   position:absolute;
   bottom: 35px;
-  left: calc(50% - 50px);
+  width: 100vw;
+  text-align: center;
 }
 
 .abts-arrow-c .abts-arrow {
@@ -81,6 +91,12 @@
   }
 }
 
+@media screen and (max-width: 768px) {
+  .abts-info {
+    zoom: 80%;
+  }
+}
+
 body:has(.abts-pg-container) .np-header,
 body:has(.abts-pg-container) .navbar {
   background: transparent ;
@@ -93,7 +109,10 @@ body:has(.abts-pg-container) .sdm-nvb-hidden {
 
 
 .abts-info {
-  margin-top: 20px;
+  margin-top: 40px !important;
+  overflow-x: hidden !important;
+  max-width: 1450px;
+  margin: auto;
 }
 
 .abts-i-container {
@@ -104,27 +123,27 @@ body:has(.abts-pg-container) .sdm-nvb-hidden {
   font-size: 43px;
   font-weight: 900;
   font-family: "Domine";
-  margin-bottom: 20px;
 }
 
 .abts-i-container .text {
   font-size: 25px;
   font-family: "roboto";
   font-weight: 300;
-  padding: 20px;
+  min-width: 300px;
+  max-width: 100% !important;
 }
 
 .abts-el-container {
   display: flex;
   flex-direction: row;
   gap: 10px;
-  padding: 20px 40px;
+  padding: 0 20px;
   flex-wrap: wrap;
 }
 
 .abts-bg-c {
   padding: 20px;
-  background: #16526C;
+  background: #15626C;
   color: white;
 }
 
@@ -142,15 +161,15 @@ body:has(.abts-pg-container) .sdm-nvb-hidden {
 }
 
 .abts-el-container .abts-bg-c {
-  min-width: 350px;
+  min-width: 300px;
   min-height: 300px;
   width: 30%;
   flex-grow: 1;
-  border-radius: 20px;
 }
 
 .abts-cc-el-container {
   padding: 0px 60px;
+  margin: 0;
 }
 
 .abts-cc-el-container .item {

@@ -12,6 +12,7 @@ import comp6 from "../assets/about-us/comp/comp_6.png";
 import comp7 from "../assets/about-us/comp/comp_7.png";
 import comp8 from "../assets/about-us/comp/comp_8.png";
 import industries from "../assets/about-us/industries.jpg";
+import { Link } from "react-router-dom";
 
 const AboutComponent = () => {
   return (
@@ -52,29 +53,57 @@ const AboutComponent = () => {
       </header>
 
       <section className="abt-info" id="info">
-        <div className="abt-i-container shadow" aria-labelledby="impact-title">
+        <div
+          className="info-box m-3 lg serif shadow-sm border-none"
+          aria-labelledby="impact-title"
+        >
           <h2 id="impact-title" className="title">
             Our Impact
           </h2>
-          <p className="text">
+          <p className="desc">
             BOFFO Consulting has successfully completed projects across multiple
             regions, contributing to national development and economic growth.
             From large-scale infrastructure projects to detailed architectural
             designs, we take pride in shaping skylines and enhancing
             communities.
           </p>
+          <Link to="/about-us/projects" className="link">
+            Learn more{" "}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-arrow-up-right ml-1 h-4 w-4"
+              data-lov-id="src/pages/Index.tsx:220:22"
+              data-lov-name="ArrowUpRight"
+              data-component-path="src/pages/Index.tsx"
+              data-component-line="220"
+              data-component-file="Index.tsx"
+              data-component-name="ArrowUpRight"
+              data-component-content="%7B%22className%22%3A%22ml-1%20h-4%20w-4%22%7D"
+            >
+              <path d="M7 7h10v10"></path>
+              <path d="M7 17 17 7"></path>
+            </svg>
+          </Link>
         </div>
 
-        <div className="abt-mv-container row">
-          <div className="col shadow">
+        <div className="abt-mv-container info-box-list mt-0 pt-0 pb-3">
+          <div className="info-box lg serif shadow-sm">
             <h3 className="title">Our Mission</h3>
-            <p className="text">
+            <p className="desc">
               To provide innovative, sustainable, and efficient construction and
               management solutions that exceed client expectations and
               contribute to the advancement of the built environment.
             </p>
           </div>
-          <div className="col shadow">
+          <div className="info-box lg serif shadow-sm">
             <h3 className="title">Our Vision</h3>
             <p className="text">
               To be a leading consulting firm recognized for our expertise,
@@ -83,10 +112,10 @@ const AboutComponent = () => {
           </div>
         </div>
 
-        <div className="abt-mv-container row">
-          <div className="col shadow">
+        <div className="abt-mv-container info-box-list pt-0">
+          <div className="info-box serif lg shadow-sm">
             <h3 className="title">Our Organizational Structure</h3>
-            <p className="text">
+            <p className="desc">
               The strategic Management committee comprises the Executive Board
               and the Corporate Centers of the Group. This control level is
               responsible for the strategic and organizational development.
@@ -95,9 +124,9 @@ const AboutComponent = () => {
               committee, and operations committee.
             </p>
           </div>
-          <div className="col shadow">
+          <div className="info-box serif lg shadow-sm">
             <h3 className="title">& Operational Alignment</h3>
-            <p className="text">
+            <p className="desc">
               With more than 15 years of accumulated experience, we believe
               investing in our people and upgrading their skills is the key to
               success. Our aim is to stay relevant in the ever-changing

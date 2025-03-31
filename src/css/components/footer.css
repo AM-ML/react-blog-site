@@ -36,7 +36,7 @@
 
 
 .ftr-container * * {
-  background: #16526C;
+  background: #15626C;
 }
 
 .ftr-container a:hover {
@@ -58,13 +58,13 @@
 }
 
 footer.ftr {
-  background-color: #16526C;
+  background-color: #15626C;
   height: 100%;
   color: #fff;
   margin: 0 !important;
 }
 footer.ftr {
-  background-color: #16526C;
+  background-color: #15626C;
   width: 100vw;
 }
 
@@ -164,7 +164,7 @@ footer.ftr {
     margin-right: 0;
 }
 .footer-call-to-action-button {
-    background-color: #027b9a;
+    background-color: #A5AA7B;
     border-radius: 21px;
     color: #fffff2;
     display: inline-block;
@@ -386,7 +386,7 @@ footer.ftr {
     display: inline;
   }
   footer.ftr {
-    height: 700px;
+    height: 850px;
   }
 
   .max-760-hidden { display : none ; }

@@ -22,7 +22,7 @@
   max-height: 100px !important;
   min-height: 100px !important;
   /* background-color: #2D417E; */
-  background-color: #16526C;
+  background-color: #15626C;
   box-shadow: 0px 0px 10px #283145;
 }
 
@@ -83,7 +83,7 @@
 }
 
 .nb-end-md .nb-end-profile-ic:has(.nb-end-profile):hover {
-  border: 2px solid #16526c;
+  border: 2px solid #15626c;
   transition-duration: 100ms;
   transition-property: all;
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 71, 0.2);
@@ -156,7 +156,7 @@
   margin: 0;
   height: 100px;
   border: none !important;
-  background: #16526C !important;
+  background: #15626C !important;
 }
 
 .text-logo {

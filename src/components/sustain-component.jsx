@@ -151,7 +151,7 @@ const SustainComponent = () => {
           </div>
         </div>
 
-        <article className="abts-cc-container abts-i-container mt-4">
+        <article className="abts-cc-container abts-i-container mt-4 pb-1">
           <h2 className="title">Certifications & Compliance</h2>
           <p className="text">
             To solidify our commitment to sustainability, BOFFO adheres to
@@ -202,7 +202,7 @@ const SustainComponent = () => {
           </div>
         </div>
 
-        <div className="abts-i-container">
+        <div className="abts-i-container mt-4">
           <h2 className="title">A Legacy for Future Generations</h2>
           <p className="text">
             Sustainability is at the heart of BOFFO Consulting. We are dedicated

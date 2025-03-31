@@ -64,7 +64,8 @@
 .abt-header .abt-arrow-c {
   position:absolute;
   bottom: 35px;
-  left: calc(50% - 50px);
+  width: 100vw;
+  text-align: center;
 }
 
 .abt-arrow-c .abt-arrow {
@@ -125,50 +126,11 @@ body:has(.abt-pg-container) .sdm-nvb-hidden {
   padding-right: 20px;
 }
 
-
 .abt-mv-container {
-  padding: 10px 20px;
-  margin: 0;
-  width:100%;
-  margin-top: 20px;
-
-  gap:20px;
-
+  margin: 0 !important;
+  max-width: 100% !important;
 }
 
-.abt-mv-container .col:first-child {
-  padding-right: 30px;
-}
-
-.abt-mv-container .col:hover {
-  box-shadow: 0px 3px 15px #aaa !important;
-}
-.abt-mv-container .col {
-  min-width: 300px;
-  padding: 40px 20px;
-  border-radius: 20px;
-  transition: all 0.3s ease;
-}
-
-@media screen and (max-width:640px) {
-  .abt-mv-container .col:last-child {
-    margin-top: 30px;
-  }
-}
-
-.abt-mv-container .col .title {
-  font-family: "Domine";
-  font-weight: 900;
-  font-size: 36px;
-  margin-bottom: 20px;
-}
-
-.abt-mv-container .col .text {
-  font-family: "Roboto";
-  font-weight: 300;
-  font-size: 20px;
-  padding-right: 30px;
-}
 
 .abt-stat-container {
   display: flex;
@@ -185,7 +147,7 @@ body:has(.abt-pg-container) .sdm-nvb-hidden {
 .abt-stat-container .abt-stat-item {
   width: 30%;
   min-width: 250px;
-  color: #16526C;
+  color: #15626C;
   padding: 30px;
   border-radius: 20px;
 }
@@ -196,7 +158,7 @@ body:has(.abt-pg-container) .sdm-nvb-hidden {
   flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
-  border-bottom: 3px solid #16526C;
+  border-bottom: 3px solid #15626C;
   padding: 0;
   margin: 0;
 }
@@ -321,4 +283,10 @@ body:has(.abt-pg-container) .sdm-nvb-hidden {
   font-weight: 300;
   font-size: 23px;
   font-family: "roboto";
+}
+
+.abt-info {
+  background: #F9FAFB;
+  max-width: 1450px;
+  margin: auto;
 }

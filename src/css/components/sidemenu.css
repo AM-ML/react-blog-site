@@ -1,6 +1,6 @@
 .sdm-container {
   height: calc(100vh - 100px);
-  background-color: #16526C;
+  background-color: #15626C;
   scrollbar-gutter: stable;
   min-width: 350px !important;
   max-width: 350px !important;
@@ -146,12 +146,12 @@ button.sdm-item {
 }
 
 .sdm-ir-container::-webkit-scrollbar-track {
-  border: 5px solid #16526c;
+  border: 5px solid #15626c;
 	background-color: #b2bec3;
 }
 
 .sdm-ir-container::-webkit-scrollbar-thumb {
-  background-color: #16526c;
+  background-color: #15626c;
 	border-radius: 10px;
   margin: 0;
 }
@@ -187,5 +187,5 @@ body:has(.sdm-nvb-showing) .srv-container{
   z-index: -1;
 }
 body:has(.sdm-nvb-showing) .np-header {
-  background: #16526c !important;
+  background: #15626c !important;
 }
