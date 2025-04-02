@@ -1,4 +1,9 @@
-/* Hover animations for interactive elements */
+/* Base transition for all interactive elements */
+.smooth-transition {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hover animations */
 .hover-scale {
   transition: transform 0.2s ease-in-out;
 }
@@ -16,53 +21,35 @@
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-.hover-glow {
-  transition: box-shadow 0.2s ease-in-out;
+/* Fade and slide animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-.hover-glow:hover {
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
-/* Smooth transitions */
-.smooth-transition {
-  transition: all 0.3s ease-in-out;
-}
-
-/* Fade animations */
 .fade-in {
   animation: fadeIn 0.5s ease-in-out;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-/* Slide animations */
-.slide-in-left {
-  animation: slideInLeft 0.5s ease-in-out;
-}
-
-@keyframes slideInLeft {
-  from {
-    transform: translateX(-20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
+.slide-in {
+  animation: slideIn 0.5s ease-in-out;
 }
 
 /* Staggered animations for lists */
 .stagger-list > * {
   opacity: 0;
-  animation: fadeIn 0.5s ease-in-out forwards;
+  animation: slideIn 0.5s ease-in-out forwards;
 }
 
 .stagger-list > *:nth-child(1) { animation-delay: 0.1s; }

@@ -1,5 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
+import { useMemo } from "react";
 
+// Memoize variants to prevent unnecessary re-renders
 const pageVariants = {
   initial: {
     opacity: 0,
@@ -53,14 +55,18 @@ const AnimationWrapper = ({
   isListItem = false,
   index = 0 // Add index prop for staggered animations
 }) => {
-  const variants = isListItem ? listItemVariants : pageVariants;
+  // Memoize variants selection
+  const variants = useMemo(() => 
+    isListItem ? listItemVariants : pageVariants,
+    [isListItem]
+  );
   
   return (
     <AnimatePresence mode="wait">
       <motion.div
         key={keyValue}
         initial={initial}
-        animate={isListItem ? animate : animate}
+        animate={animate}
         exit={exit}
         variants={variants}
         custom={isListItem ? index : undefined}

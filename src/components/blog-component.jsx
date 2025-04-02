@@ -1,6 +1,6 @@
 import axios from "axios";
 import "../css/components/blog-component.css";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useCallback, useMemo } from "react";
 import Loading from "../common/loading";
 import AnimationWrapper from "../common/page-animation";
 import { TitleCase } from "../common/string";
@@ -13,7 +13,7 @@ import ContentBlock from "../common/content-block";
 import { UserContext } from "../Router";
 
 const BlogComponent = ({ blogId }) => {
-  let {
+  const {
     userAuth,
     userAuth: { username, access_token, id, favorite_blogs = [] },
     setUserAuth,
@@ -27,7 +27,8 @@ const BlogComponent = ({ blogId }) => {
   const [fetchLoading, setFetchLoading] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
 
-  let {
+  // Destructure blog data with default values
+  const {
     _id,
     tags = [],
     title = "",
@@ -44,168 +45,180 @@ const BlogComponent = ({ blogId }) => {
     } = {},
   } = blog;
 
-  useEffect(() => {
-    const getRelatedBlogsData = ({ tags = [], blogId = "" }) => {
-      axios
-        .post(import.meta.env.VITE_SERVER_DOMAIN + "/search-blogs", {
-          tags,
-          limit: 5,
-        })
-        .then(({ data }) => {
-          data.blogs = data.blogs.filter((dBlog) => dBlog.blog_id != blogId);
-          setRelatedBlogs({
-            results: data.blogs,
-            totalDocs: data.totalDocs - 1,
-            page: 1,
-          });
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-        .finally(() => {
-          setRelatedBlogsLoading(false);
+  // Memoize API calls
+  const getRelatedBlogsData = useCallback(
+    async ({ tags = [], blogId = "" }) => {
+      try {
+        const { data } = await axios.post(
+          import.meta.env.VITE_SERVER_DOMAIN + "/search-blogs",
+          {
+            tags,
+            limit: 5,
+          }
+        );
+        data.blogs = data.blogs.filter((dBlog) => dBlog.blog_id != blogId);
+        setRelatedBlogs({
+          results: data.blogs,
+          totalDocs: data.totalDocs - 1,
+          page: 1,
         });
-    };
+      } catch (err) {
+        console.error("Error fetching related blogs:", err);
+      } finally {
+        setRelatedBlogsLoading(false);
+      }
+    },
+    []
+  );
 
-    const getBlogData = () => {
-      axios
-        .post(import.meta.env.VITE_SERVER_DOMAIN + "/get-blog", {
+  const getBlogData = useCallback(async () => {
+    try {
+      const { data } = await axios.post(
+        import.meta.env.VITE_SERVER_DOMAIN + "/get-blog",
+        {
           blog_id: blogId,
-        })
-        .then(({ data }) => {
-          setBlog(data.blog);
-          getRelatedBlogsData({
-            tags: data.blog.tags,
-            blogId: data.blog.blog_id,
-          });
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-    };
-
-    getBlogData();
-  }, [blogId]);
+        }
+      );
+      setBlog(data.blog);
+      await getRelatedBlogsData({
+        tags: data.blog.tags,
+        blogId: data.blog.blog_id,
+      });
+    } catch (err) {
+      console.error("Error fetching blog:", err);
+    } finally {
+      setLoading(false);
+    }
+  }, [blogId, getRelatedBlogsData]);
 
   useEffect(() => {
-    // Check if blog is in favorites
+    getBlogData();
+  }, [getBlogData]);
+
+  useEffect(() => {
     if (_id && favorite_blogs) {
       setIsFavorite(favorite_blogs.includes(_id));
     }
   }, [_id, favorite_blogs]);
 
-  const loadMoreRelatedBlogs = () => {
+  const loadMoreRelatedBlogs = useCallback(async () => {
     setFetchLoading(true);
-
-    axios
-      .post(import.meta.env.VITE_SERVER_DOMAIN + "/search-blogs", {
-        tags,
-        limit: 5,
-        page: relatedBlogs.page + 1,
-      })
-      .then(({ data }) => {
-        data.blogs = data.blogs.filter((dBlog) => dBlog.blog_id != blogId);
-        setRelatedBlogs({
-          results: [...relatedBlogs.results, ...data.blogs],
-          totalDocs: data.totalDocs - 1,
+    try {
+      const { data } = await axios.post(
+        import.meta.env.VITE_SERVER_DOMAIN + "/search-blogs",
+        {
+          tags,
+          limit: 5,
           page: relatedBlogs.page + 1,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        setFetchLoading(false);
-      });
-  };
+        }
+      );
+      data.blogs = data.blogs.filter((dBlog) => dBlog.blog_id != blogId);
+      setRelatedBlogs((prev) => ({
+        results: [...prev.results, ...data.blogs],
+        totalDocs: data.totalDocs - 1,
+        page: prev.page + 1,
+      }));
+    } catch (err) {
+      console.error("Error loading more blogs:", err);
+    } finally {
+      setFetchLoading(false);
+    }
+  }, [tags, blogId, relatedBlogs.page]);
 
-  const copyLink = () => {
+  const copyLink = useCallback(() => {
     navigator.clipboard
       .writeText("https://boffoconsulting.net/blog/" + blogId)
-      .then(() => {
-        toast.success("Copied Blog Link!");
-      })
-      .catch((err) => {
-        toast.error("Error While Copying Blog Link: " + err);
-      });
-  };
+      .then(() => toast.success("Copied Blog Link!"))
+      .catch((err) => toast.error("Error While Copying Blog Link: " + err));
+  }, [blogId]);
 
-  const toggleFavorite = () => {
+  const toggleFavorite = useCallback(async () => {
     if (!access_token) {
-      // Redirect to login if not authenticated
       toast.error("Please login to favorite blogs");
       navigate("/signin");
       return;
     }
 
-    const config = {
-      headers: {
-        Authorization: `Bearer ${access_token}`,
-      },
-    };
-
-    axios
-      .post(
+    try {
+      const { data } = await axios.post(
         import.meta.env.VITE_SERVER_DOMAIN + "/toggle-favorite",
         { blogId: _id, userId: id },
-        config
-      )
-      .then(({ data }) => {
-        if (data.favorited) {
-          toast.success("Added to favorites!");
-        } else {
-          toast.success("Removed from favorites");
+        {
+          headers: { Authorization: `Bearer ${access_token}` },
         }
-        setIsFavorite(data.favorited);
-        
-        // Update the userAuth context with the new favorites list
-        setUserAuth((prev) => ({
-          ...prev,
-          favorite_blogs: data.favorite_blogs,
-        }));
-      })
-      .catch((err) => {
-        console.error("Toggle favorite error:", err);
-        toast.error("Error updating favorites");
-      });
-  };
+      );
 
-  const deleteBlog = () => {
+      toast.success(
+        data.favorited ? "Added to favorites!" : "Removed from favorites"
+      );
+      setIsFavorite(data.favorited);
+
+      setUserAuth((prev) => ({
+        ...prev,
+        favorite_blogs: data.favorite_blogs,
+      }));
+    } catch (err) {
+      console.error("Toggle favorite error:", err);
+      toast.error("Error updating favorites");
+    }
+  }, [access_token, _id, id, navigate, setUserAuth]);
+
+  const deleteBlog = useCallback(async () => {
     if (!access_token) {
       toast.error("You need to be logged in to delete this blog");
       return;
     }
 
-    // Ask for confirmation
-    if (!window.confirm("Are you sure you want to delete this blog? This action cannot be undone.")) {
+    if (
+      !window.confirm(
+        "Are you sure you want to delete this blog? This action cannot be undone."
+      )
+    ) {
       return;
     }
 
-    const config = {
-      headers: {
-        Authorization: `Bearer ${access_token}`,
-      },
-    };
-
-    axios
-      .post(
+    try {
+      await axios.post(
         import.meta.env.VITE_SERVER_DOMAIN + "/delete-blog",
         { blog_id: blogId },
-        config
-      )
-      .then(() => {
-        toast.success("Blog deleted successfully!");
-        // Redirect to dashboard
-        navigate("/dashboard");
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error("Error deleting blog. Please try again later.");
-      });
-  };
+        {
+          headers: { Authorization: `Bearer ${access_token}` },
+        }
+      );
+      toast.success("Blog deleted successfully!");
+      navigate("/dashboard");
+    } catch (err) {
+      console.error("Error deleting blog:", err);
+      toast.error("Error deleting blog. Please try again later.");
+    }
+  }, [access_token, blogId, navigate]);
+
+  // Memoize content blocks
+  const contentBlocks = useMemo(
+    () =>
+      blog.content?.[0]?.blocks?.map((block, i) => (
+        <AnimationWrapper key={i} isListItem={true} index={i}>
+          <div className="bbc-ctb-wrapper">
+            <ContentBlock block={block} />
+          </div>
+        </AnimationWrapper>
+      )) || [],
+    [blog.content]
+  );
+
+  // Memoize related blogs
+  const relatedBlogsList = useMemo(
+    () =>
+      relatedBlogs.results?.map((rBlog, i) => (
+        <AnimationWrapper key={i} isListItem={true} index={i}>
+          <BlogCard
+            addBorder={i + 1 !== relatedBlogs.results.length}
+            blog={rBlog}
+          />
+        </AnimationWrapper>
+      )) || [],
+    [relatedBlogs.results]
+  );
 
   return (
     <AnimationWrapper>
@@ -216,10 +229,18 @@ const BlogComponent = ({ blogId }) => {
 
         <div className="bbc-fb">
           <div className="bbc-author">
-            <img src={profile_img} alt="" className="bbc-author-img" />
+            <img
+              src={profile_img}
+              alt=""
+              className="bbc-author-img"
+              loading="lazy"
+            />
             <div className="bbc-author-text">
               {TitleCase(name)}
-              <Link to={"/author/" + author_username} className="bbc-author-username">
+              <Link
+                to={"/author/" + author_username}
+                className="bbc-author-username"
+              >
                 @{author_username}
               </Link>
             </div>
@@ -229,7 +250,9 @@ const BlogComponent = ({ blogId }) => {
             <i
               role="button"
               onClick={toggleFavorite}
-              className={`bx ${isFavorite ? "bxs-star" : "bx-star"} bbc-star`}
+              className={`bx ${
+                isFavorite ? "bxs-star" : "bx-star"
+              } bbc-star me-5`}
               style={{
                 color: isFavorite ? "#FFD700" : "inherit",
                 marginRight: "15px",
@@ -240,22 +263,20 @@ const BlogComponent = ({ blogId }) => {
               onClick={copyLink}
               className="bx bxs-share-alt"
             ></i>
-            <p className="bbc-date">
-              Published On {formatDate(publishedAt)}
-            </p>
+            <p className="bbc-date">Published On {formatDate(publishedAt)}</p>
           </div>
         </div>
 
-        {username == author_username && (
-          <div className="bbc-user-actions">
+        {username === author_username && (
+          <div className="bbc-user-actions d-flex flex-row flex-stretch">
             <Link
-              className="bbc-ua-edit mb-2 btn btn-danger btn-lg"
+              className="bbc-ua-edit mb-2 btn btn-primary btn-lg d-inline-block px-5 w-max flex-grow"
               to={`/dashboard/writer/write/${blogId}`}
             >
               Edit Blog
             </Link>
             <button
-              className="bbc-ua-delete mb-2 btn btn-danger btn-lg"
+              className="bbc-ua-delete mb-2 btn btn-danger btn-lg d-inline-block px-5 w-max"
               onClick={deleteBlog}
             >
               Delete Blog
@@ -264,20 +285,10 @@ const BlogComponent = ({ blogId }) => {
         )}
 
         <div className="bbc-bc aspect-video shadow">
-          <img src={banner} alt="" className="bbc-bc-img" />
+          <img src={banner} alt="" className="bbc-bc-img" loading="lazy" />
         </div>
 
-        <div className="bbc-ctbs-container">
-          {blog.content[0].blocks.map((block, i) => {
-            return (
-              <AnimationWrapper key={i} isListItem={true} index={i}>
-                <div className="bbc-ctb-wrapper">
-                  <ContentBlock block={block} />
-                </div>
-              </AnimationWrapper>
-            );
-          })}
-        </div>
+        <div className="bbc-ctbs-container">{contentBlocks}</div>
       </div>
 
       <div className="bbc-rb-container">
@@ -293,22 +304,7 @@ const BlogComponent = ({ blogId }) => {
         ) : (
           <>
             <h1 className="bbc-rb-section-title">Related Blogs</h1>
-            <div className="bbc-rb-blogs">
-              {relatedBlogs.results.map((rBlog, i) => {
-                return (
-                  <AnimationWrapper
-                    key={i}
-                    isListItem={true}
-                    index={i}
-                  >
-                    <BlogCard
-                      addBorder={i + 1 != relatedBlogs.results.length}
-                      blog={rBlog}
-                    />
-                  </AnimationWrapper>
-                );
-              })}
-            </div>
+            <div className="bbc-rb-blogs">{relatedBlogsList}</div>
             {relatedBlogs &&
               !fetchLoading &&
               relatedBlogs.results.length &&
