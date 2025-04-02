@@ -45,7 +45,7 @@
 .abts-header-text .abts-title {
   font-weight: 900;
   font-family: "Domine";
-  font-size: 3.5vw;
+  font-size: 3.425rem;
   text-align: center;
   letter-spacing: 0.02vw;
 }
@@ -58,7 +58,7 @@
 .abts-header-text .abts-desc {
   font-weight: 300;
   font-family: "roboto";
-  font-size: 1.4vw;
+  font-size: 1.225rem;
   margin:auto;
 
 }
@@ -75,23 +75,25 @@
 }
 @media screen and (min-width: 900px) {
   .abts-header-text .abts-desc {
-    width: 60vw;
+    max-width: 60rem;
     margin-top: 40px;
   }
 }
 @media screen and (max-width: 1000px) {
   .abts-header-text .abts-desc {
-    font-size: 20px;
     line-height: 1.2;
+    zoom: 80%;
   }
 
   .abts-header .abts-title {
-    font-size: 33px;
-    padding: 0;
+    zoom: 80%;padding: 0;
   }
 }
 
 @media screen and (max-width: 768px) {
+  .abts-header .abts-desc, .abts-header .abts-title {
+    zoom: 60%;
+  }
   .abts-info {
     zoom: 80%;
   }
@@ -120,14 +122,14 @@ body:has(.abts-pg-container) .sdm-nvb-hidden {
 }
 
 .abts-i-container .title {
-  font-size: 43px;
+  font-size: 40px;
   font-weight: 900;
-  font-family: "Domine";
+  font-family: "inter";
 }
 
 .abts-i-container .text {
-  font-size: 25px;
-  font-family: "roboto";
+  font-size: 22px;
+  font-family: "inter";
   font-weight: 300;
   min-width: 300px;
   max-width: 100% !important;
@@ -149,15 +151,15 @@ body:has(.abts-pg-container) .sdm-nvb-hidden {
 
 .abts-bg-c .title {
   font-weight: 900;
-  font-size: 43px;
-  font-family: "Domine";
+  font-size: 40px;
+  font-family: "inter";
   margin-bottom: 20px;
 }
 
 .abts-bg-c .text {
   font-weight: 300;
   font-size: 20px;
-  font-family: "roboto";
+  font-family: "inter";
 }
 
 .abts-el-container .abts-bg-c {
@@ -173,8 +175,8 @@ body:has(.abts-pg-container) .sdm-nvb-hidden {
 }
 
 .abts-cc-el-container .item {
-  font-size: 23px;
+  font-size: 20px;
   margin: 10px 0;
   font-weight: 300;
-  font-family: "roboto";
+  font-family: "inter";
 }

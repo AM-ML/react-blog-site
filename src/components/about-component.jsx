@@ -1,17 +1,5 @@
 import "../css/components/about-component.css";
 import img from "../assets/about-us/about-header.webp";
-import projIcon from "../assets/about-us/proj-icon.png";
-import empIcon from "../assets/about-us/emp-icon.png";
-import countIcon from "../assets/about-us/count-icon.png";
-import comp1 from "../assets/about-us/comp/comp_1.png";
-import comp2 from "../assets/about-us/comp/comp_2.png";
-import comp3 from "../assets/about-us/comp/comp_3.png";
-import comp4 from "../assets/about-us/comp/comp_4.png";
-import comp5 from "../assets/about-us/comp/comp_5.png";
-import comp6 from "../assets/about-us/comp/comp_6.png";
-import comp7 from "../assets/about-us/comp/comp_7.png";
-import comp8 from "../assets/about-us/comp/comp_8.png";
-import industries from "../assets/about-us/industries.jpg";
 import { Link } from "react-router-dom";
 
 const AboutComponent = () => {
@@ -52,9 +40,24 @@ const AboutComponent = () => {
         </a>
       </header>
 
-      <section className="abt-info" id="info">
+      <section className="abt-info mt-5" id="info">
+        <div className="about-section py-5">
+          <div className="container">
+            <div className="text">
+              <h3 className="title">Who We Are</h3>
+              <p className="desc">
+                "We provide quantitative value at every level, that can be
+                relied upon in order to enhance your project." Boffo provides a
+                broad spectrum of services relative to projects in both public
+                and private sectors. We approach each situation with a "team
+                mentality", understanding that the ability to lend our expertise
+                is an integral part of the success of your project.
+              </p>
+            </div>
+          </div>
+        </div>
         <div
-          className="info-box m-3 lg serif shadow-sm border-none"
+          className="info-box m-3 m-auto lg border-none about-section abt-impact"
           aria-labelledby="impact-title"
         >
           <h2 id="impact-title" className="title">
@@ -95,7 +98,7 @@ const AboutComponent = () => {
         </div>
 
         <div className="abt-mv-container info-box-list mt-0 pt-0 pb-3">
-          <div className="info-box lg serif shadow-sm">
+          <div className="info-box lg about-section py-5">
             <h3 className="title">Our Mission</h3>
             <p className="desc">
               To provide innovative, sustainable, and efficient construction and
@@ -103,7 +106,7 @@ const AboutComponent = () => {
               contribute to the advancement of the built environment.
             </p>
           </div>
-          <div className="info-box lg serif shadow-sm">
+          <div className="info-box lg about-section py-5">
             <h3 className="title">Our Vision</h3>
             <p className="text">
               To be a leading consulting firm recognized for our expertise,
@@ -113,7 +116,7 @@ const AboutComponent = () => {
         </div>
 
         <div className="abt-mv-container info-box-list pt-0">
-          <div className="info-box serif lg shadow-sm">
+          <div className="info-box about-section lg py-5">
             <h3 className="title">Our Organizational Structure</h3>
             <p className="desc">
               The strategic Management committee comprises the Executive Board
@@ -124,7 +127,7 @@ const AboutComponent = () => {
               committee, and operations committee.
             </p>
           </div>
-          <div className="info-box serif lg shadow-sm">
+          <div className="info-box about-section lg py-5">
             <h3 className="title">& Operational Alignment</h3>
             <p className="desc">
               With more than 15 years of accumulated experience, we believe
@@ -136,139 +139,52 @@ const AboutComponent = () => {
         </div>
 
         <div className="abt-stat-container">
-          <div className="abt-stat-item">
-            <div className="abt-row-1">
-              <img
-                src={projIcon}
-                alt="Projects Icon"
-                className="abt-img"
-                loading="lazy"
-              />
-              <div className="abt-number">16+</div>
-            </div>
-            <p className="abt-text">
-              Covering the entire value chain in the construction industry.
-              We've executed international Infrastructure, Building
-              Construction, and Civil Engineering projects.
-            </p>
-          </div>
-          <div className="abt-stat-item">
-            <div className="abt-row-1">
-              <img
-                src={empIcon}
-                alt="Employees Icon"
-                className="abt-img"
-                loading="lazy"
-              />
-              <div className="abt-number">15+</div>
-            </div>
-            <p className="abt-text">
-              Our employees, with their dedication, experience, and
-              extraordinary technical knowledge, made us who we are today.
-            </p>
-          </div>
-          <div className="abt-stat-item">
-            <div className="abt-row-1">
-              <img
-                src={countIcon}
-                alt="Countries Icon"
-                className="abt-img"
-                loading="lazy"
-              />
-              <div className="abt-number">6+</div>
-            </div>
-            <p className="abt-text">
-              With the vision of being a worldwide reference in the Construction
-              industry, we are executing projects in Algeria, Qatar, Oman, Iraq,
-              Saudi Arabia, and Lebanon.
-            </p>
-          </div>
-        </div>
-
-        <div className="abt-wd-container">
-          <div className="abt-img-c">
-            <img
-              src={industries}
-              alt="Industries"
-              className="abt-img"
-              loading="lazy"
-            />
-          </div>
-          <div className="abt-text">
-            <h3 className="title">What We Do</h3>
-            <p className="text">
-              "We provide quantitative value at every level, that can be relied
-              upon in order to enhance your project." Boffo provides a broad
-              spectrum of services relative to projects in both public and
-              private sectors. We approach each situation with a "team
-              mentality", understanding that the ability to lend our expertise
-              is an integral part of the success of your project.
-            </p>
-          </div>
-        </div>
-
-        <section className="abt-coop">
-          <h2 className="title">
-            Notable World Leading Companies We Work With
-          </h2>
-
-          <div className="abt-comps">
-            {[
-              {
-                src: comp1,
-                alt: "Comp 1",
-                text: "LONGI’s technological and manufacturing leadership in solar...",
-              },
-              {
-                src: comp2,
-                alt: "Comp 2",
-                text: "As a global leading provider for photovoltaic (PV) modules...",
-              },
-              {
-                src: comp3,
-                alt: "Comp 3",
-                text: "Electrification is in our DNA. It is at the heart of our existence...",
-              },
-              {
-                src: comp4,
-                alt: "Comp 4",
-                text: "We are a leading manufacturer of solar inverters, batteries, and more...",
-              },
-              {
-                src: comp5,
-                alt: "Comp 5",
-                text: "We work solely with certified materials from leading manufacturers...",
-              },
-              {
-                src: comp6,
-                alt: "Comp 6",
-                text: "Voltronic Power is committed to operating in only 100% ODM...",
-              },
-              {
-                src: comp7,
-                alt: "Comp 7",
-                text: "Canadian Solar ensures goods imported are not produced with prohibited labor...",
-              },
-              {
-                src: comp8,
-                alt: "Comp 8",
-                text: "We provide technologies for clean energy solutions in the industrial sector...",
-              },
-            ].map((comp, idx) => (
-              <div key={idx} className={`abt-comp abt-comp-${idx + 1} row`}>
-                <div className="abt-img-c col-4">
+          <div className="wrapper">
+            <div className="container">
+              <div className="text">
+                <span className="header">OUR PURPOSE</span>
+                <h2 className="title">Creating value that matters</h2>
+                <p className="desc-r1">
+                  For over two decades, we've been helping organizations solve
+                  their most pressing challenges. We combine deep industry
+                  expertise, advanced analytics, and innovative approaches to
+                  help our clients shape their futures.
+                </p>
+                <p className="desc-r2">
+                  Our firm is designed to operate as one—a single global
+                  partnership united by a strong set of values, including an
+                  unrelenting commitment to serving our clients with distinction
+                  and integrity.
+                </p>
+                <div className="stats">
+                  <div className="item">
+                    <div className="stat-number">16+</div>
+                    <p className="desc">Projects worldwide</p>
+                  </div>
+                  <div className="item">
+                    <div className="stat-number">15+</div>
+                    <p className="desc">Employees & experience</p>
+                  </div>
+                  <div className="item">
+                    <div className="stat-number">6+</div>
+                    <p className="desc">Countries with presence</p>
+                  </div>
+                </div>
+              </div>
+              <div className="img-c">
+                <div className="wrapper">
                   <img
-                    src={comp.src}
-                    alt={comp.alt}
-                    className="abt-img"
-                    loading="lazy"
+                    src={
+                      "https://images.unsplash.com/photo-1605810230434-7631ac76ec81"
+                    }
+                    alt=""
+                    className="img"
                   />
                 </div>
-                <div className="abt-text col">{comp.text}</div>
               </div>
-            ))}
+            </div>
           </div>
-        </section>
+        </div>
       </section>
     </main>
   );

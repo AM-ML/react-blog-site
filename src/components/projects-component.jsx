@@ -144,9 +144,6 @@ const ProjectsComponent = () => (
       <div className="abp-img-shadow"></div>
 
       <div className="abp-header-text">
-        <h1 className="abp-title">
-          Featured <span className="highlight">BOFFO</span> Projects
-        </h1>
       </div>
 
       <a href="#info" className="abp-arrow-c no-design no-default-design">
