@@ -1,13 +1,48 @@
 import "../css/components/home-component.css";
-import blogsData from "./json/home-component-blogs-data.json";
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import Loading from "../common/loading";
+import AnimationWrapper from "../common/page-animation";
+import cachedBlogsData from "./json/home-component-blogs-data.json";
 
-// Lazy load the AnimationWrapper and BlogCard components
-const AnimationWrapper = lazy(() => import("../common/page-animation.jsx"));
+// Lazy load the BlogCard component
 const BlogCard = lazy(() => import("../common/blogPreviewLG.jsx"));
 
 const HomeComponent = () => {
+  const [latestBlogs, setLatestBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadLatestBlogs = async () => {
+      try {
+        // Use cached data if available
+        if (cachedBlogsData && cachedBlogsData.blogs) {
+          setLatestBlogs(cachedBlogsData.blogs);
+          setLoading(false);
+          return;
+        }
+
+        // Fallback to API call if cache is not available
+        const { data } = await axios.post(
+          import.meta.env.VITE_SERVER_DOMAIN + "/search-blogs",
+          {
+            limit: 3,
+            page: 1,
+            sort: { publishedAt: -1 },
+          }
+        );
+        setLatestBlogs(data.blogs);
+      } catch (error) {
+        console.error("Error loading latest blogs:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadLatestBlogs();
+  }, []);
+
   return (
     <div className="hmc-container">
       <header className="hmc-header">
@@ -242,19 +277,20 @@ const HomeComponent = () => {
           </div>
           <Suspense fallback={<div>Loading Blogs...</div>}>
             <div className="hmc-bps">
-              {blogsData.map((blog, i) => (
-                <AnimationWrapper
-                  transition={{ duration: 1, delay: i * 0.01 }}
-                  key={i}
-                >
-                  <div className="hmc-bp-container">
-                    <BlogCard
-                      blog={blog}
-                      aligned={(i + 1) % 2 === 0 ? "right" : "left"}
-                    />
-                  </div>
-                </AnimationWrapper>
-              ))}
+              {loading ? (
+                <Loading height="30vh" />
+              ) : (
+                latestBlogs.map((blog, i) => (
+                  <AnimationWrapper
+                    transition={{ duration: 1, delay: i * 0.01 }}
+                    key={blog._id}
+                  >
+                    <div className="hmc-bp-container">
+                      <BlogCard blog={blog} />
+                    </div>
+                  </AnimationWrapper>
+                ))
+              )}
             </div>
           </Suspense>
         </section>

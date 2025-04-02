@@ -246,7 +246,7 @@ const BlogComponent = ({ blogId }) => {
             </div>
           </div>
 
-          <div className="bbc-fb-end">
+          <div className="bbc-fb-end mt-5">
             <i
               role="button"
               onClick={toggleFavorite}

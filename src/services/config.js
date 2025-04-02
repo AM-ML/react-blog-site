@@ -1,0 +1,1 @@
+export const SERVER_DOMAIN = "http://localhost:3000"; // Change this to your actual server domain 
