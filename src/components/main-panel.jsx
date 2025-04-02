@@ -206,7 +206,7 @@ const MainPanel = () => {
       <section className="mp-info-container">
         {/* Social Links Section */}
         {is_author && (
-          <section className="mp-info-ic mp-socials-ic ms-5">
+          <section className="mp-info-ic mp-socials-ic ms-4">
             <h2 className="mp-socials-title mp-info-title">Socials</h2>
             <div className="mp-socials">
               <AnimationWrapper transition={{ duration: 0.3 }}>

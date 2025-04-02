@@ -218,3 +218,19 @@
   font-size: 48px;
   line-height:1;
 }
+
+@media screen and (max-width: 768px) {
+  .cnt-media .list .media-link i {
+    font-size: 28px;
+  }
+
+  .cnt-wrapper, .cnt-wrapper .container{
+    max-height: 600px !important;
+    min-height: max-content;
+  }
+
+  .cnt-wrapper .container {
+    padding-bottom: 20px !important;
+  }
+}
+
