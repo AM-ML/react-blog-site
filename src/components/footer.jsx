@@ -29,16 +29,6 @@ const Footer = () => {
             <div className="footer-call-to-action">
               <h2 className="footer-call-to-action-title">Call us:</h2>
               <p className="footer-call-to-action-link-wrapper">
-                {" "}
-                <a
-                  className="footer-call-to-action-link"
-                  href="tel:+96176168184"
-                  target="_self"
-                >
-                  (+961) 76 16 81 84
-                </a>
-              </p>
-              <p className="footer-call-to-action-link-wrapper">
                 <a
                   className="footer-call-to-action-link"
                   href="tel:+96171553322"

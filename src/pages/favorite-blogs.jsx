@@ -88,30 +88,32 @@ const FavoriteBlogs = () => {
         
         {favoriteBlogs.length > 0 ? (
           <div className="fb-blogs-grid">
-            {favoriteBlogs.map((blog) => (
-              <div key={blog._id} className="fb-blog-card">
-                <Link to={`/blog/${blog.blog_id}`} className="fb-blog-link">
-                  <img
-                    src={blog.banner}
-                    alt={blog.title}
-                    className="fb-blog-banner"
-                    loading="lazy"
-                  />
-                  <div className="fb-blog-content">
-                    <h2 className="fb-blog-title">{TitleCase(blog.title)}</h2>
-                    <p className="fb-blog-date">
-                      {new Date(blog.publishedAt).toLocaleDateString()}
-                    </p>
-                  </div>
-                </Link>
-                <button
-                  className="fb-remove-btn"
-                  onClick={() => removeFromFavorites(blog._id)}
-                  title="Remove from favorites"
-                >
-                  <i className="bx bx-trash"></i>
-                </button>
-              </div>
+            {favoriteBlogs.map((blog, i) => (
+              <AnimationWrapper key={blog._id} isListItem={true} index={i}>
+                <div className="fb-blog-card">
+                  <Link to={`/blog/${blog.blog_id}`} className="fb-blog-link">
+                    <img
+                      src={blog.banner}
+                      alt={blog.title}
+                      className="fb-blog-banner"
+                      loading="lazy"
+                    />
+                    <div className="fb-blog-content">
+                      <h2 className="fb-blog-title">{TitleCase(blog.title)}</h2>
+                      <p className="fb-blog-date">
+                        {new Date(blog.publishedAt).toLocaleDateString()}
+                      </p>
+                    </div>
+                  </Link>
+                  <button
+                    className="fb-remove-btn"
+                    onClick={() => removeFromFavorites(blog._id)}
+                    title="Remove from favorites"
+                  >
+                    <i className="bx bx-trash"></i>
+                  </button>
+                </div>
+              </AnimationWrapper>
             ))}
           </div>
         ) : (

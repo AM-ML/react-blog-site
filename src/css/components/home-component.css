@@ -362,7 +362,7 @@
   gap: 15px;
 }
 
-.item.hmc-bg-c .item-link {
+.item .item-link {
   color: #15626c !important;
   text-decoration: none;
 }

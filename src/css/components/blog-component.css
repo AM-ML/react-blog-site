@@ -1,10 +1,12 @@
 .bbc-container {
   max-width: 900px;
   margin: auto;
+  animation: fadeIn 0.5s ease-out;
 }
 
 .bbc-title-container {
   margin-top: 1.5em;
+  position: relative;
 }
 
 .bbc-title-container .bbc-title {
@@ -12,15 +14,46 @@
   font-size: 30px;
   color: #111;
   font-weight: 500;
+  position: relative;
+  display: inline-block;
+}
+
+.bbc-title-container .bbc-title::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #111;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bbc-title-container .bbc-title:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
 .bbc-fb {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-
   justify-content: space-between;
   margin: 1.5rem 0;
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .bbc-author {
@@ -28,43 +61,59 @@
   flex-direction: row;
   gap: 0.7rem;
   align-items: center;
+  transition: transform 0.3s ease;
+}
 
+.bbc-author:hover {
+  transform: translateX(5px);
 }
 
 .bbc-author .bbc-author-img {
   width: 3rem;
   height: 3rem;
-
   border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.bbc-author:hover .bbc-author-img {
+  transform: scale(1.1);
 }
 
 .bbc-author .bbc-author-text {
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   justify-content: center;
-
   margin: 0;
   line-height: 1.2;
-
   height: 100%;
   font-family: "Domine";
-
   font-weight: 600;
   font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.bbc-author:hover .bbc-author-text {
+  color: #666;
 }
 
 .bbc-author-text .bbc-author-username {
   text-decoration: none;
   font-size: 17px;
   font-weight: normal;
+  transition: color 0.3s ease;
+}
+
+.bbc-author-text .bbc-author-username:hover {
+  color: #666;
 }
 
 .bbc-fb-end {
   text-align: end;
   align-items: center;
   display: flex;
-  position:relative;
+  position: relative;
 }
+
 .bbc-fb-end .bx {
   font-size: 28px;
   margin-left: auto;
@@ -73,20 +122,31 @@
   top: -1.5em;
   text-align: end;
   justify-content: end;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.bbc-fb-end .bx:hover {
+  transform: scale(1.2);
+  color: #FFD700;
 }
 
 .bbc-date {
-  margin:0;
+  margin: 0;
   align-content: center;
   color: #666;
   margin-right: 1rem;
+  transition: color 0.3s ease;
 }
 
-
+.bbc-fb-end:hover .bbc-date {
+  color: #444;
+}
 
 .bbc-rb-container {
   max-width: 900px;
   margin: auto;
+  animation: fadeIn 0.5s ease-out;
 }
 
 .bbc-rb-container .bgcd-description {
@@ -99,23 +159,39 @@
   font-family: "Roboto";
   font-weight: 500;
   color: black;
-
   margin-bottom: 0.3em;
   margin-top: 1em;
-
-
   padding: 13px 25px;
   border-bottom: 2px solid #000;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.bbc-rb-section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #000;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bbc-rb-section-title:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
 .bbc-rb-blogs {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-
   gap: 1em;
+  animation: fadeIn 0.5s ease-out;
 }
-
 
 .bbc-rb-no-data .bbc-rb-no-data-text {
   margin: 4rem 3rem;
@@ -124,8 +200,89 @@
   font-family: "Roboto";
   font-weight: 500;
   font-size: 18px;
+  animation: fadeIn 0.5s ease-out;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.bbc-bc {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.bbc-bc:hover {
+  transform: scale(1.02);
+}
+
+.bbc-bc-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bbc-bc:hover .bbc-bc-img {
+  transform: scale(1.1);
+}
+
+.bbc-ctbs-container {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.bbc-ctb-wrapper {
+  transition: transform 0.3s ease;
+}
+
+.bbc-ctb-wrapper:hover {
+  transform: translateX(5px);
+}
+
+.bbc-user-actions {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+  animation: slideIn 0.5s ease-out;
+}
+
+.bbc-user-actions .btn {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.bbc-user-actions .btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.bbc-user-actions .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.bbc-user-actions .btn:hover::before {
+  left: 100%;
+}
 
 @media screen and (max-width: 968px) {
   .bbc-container {
@@ -146,30 +303,8 @@
   }
 }
 
-.bbc-ctbs-container {
-  margin-top: 5em;
-}
-.bbc-ctb-wrapper {
-  /* tailwind 1 unit = 0.25rem
-  *  => my-4 = 1rem
-  * */
-  margin: 1rem 0;
-}
-
-@media screen and (max-width: 800px) {
-  .bbc-ctb-wrapper {
-    margin: 2rem 0;
-  }
-}
-
 .bbc-star {
   margin-right: 1.5em !important;
-}
-
-.bbc-user-actions {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 20px;
 }
 
 .bbc-ua-delete {
@@ -193,3 +328,4 @@
   background-color: #0069d9;
   border-color: #0062cc;
 }
+

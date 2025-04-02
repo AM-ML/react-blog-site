@@ -209,129 +209,116 @@ const BlogComponent = ({ blogId }) => {
 
   return (
     <AnimationWrapper>
-      {loading ? (
-        <Loading height="70vh" />
-      ) : (
-        <>
-          <Toaster />
-          <div className="bbc-container">
-            <div className="bbc-title-container">
-              <h2 className="bbc-title">{TitleCase(title, false)}</h2>
+      <div className="bbc-container">
+        <div className="bbc-title-container">
+          <h2 className="bbc-title">{TitleCase(title, false)}</h2>
+        </div>
+
+        <div className="bbc-fb">
+          <div className="bbc-author">
+            <img src={profile_img} alt="" className="bbc-author-img" />
+            <div className="bbc-author-text">
+              {TitleCase(name)}
+              <Link to={"/author/" + author_username} className="bbc-author-username">
+                @{author_username}
+              </Link>
             </div>
+          </div>
 
-            <div className="bbc-fb">
-              <div className="bbc-author">
-                <img src={profile_img} alt="" className="bbc-author-img" />
+          <div className="bbc-fb-end">
+            <i
+              role="button"
+              onClick={toggleFavorite}
+              className={`bx ${isFavorite ? "bxs-star" : "bx-star"} bbc-star`}
+              style={{
+                color: isFavorite ? "#FFD700" : "inherit",
+                marginRight: "15px",
+              }}
+            ></i>
+            <i
+              role="button"
+              onClick={copyLink}
+              className="bx bxs-share-alt"
+            ></i>
+            <p className="bbc-date">
+              Published On {formatDate(publishedAt)}
+            </p>
+          </div>
+        </div>
 
-                <p className="bbc-author-text">
-                  {TitleCase(name)}
-                  <br />
-                  <Link
-                    className="bbc-author-username"
-                    to={`/author/${author_username}`}
-                  >
-                    @{author_username}
-                  </Link>
-                </p>
-              </div>
+        {username == author_username && (
+          <div className="bbc-user-actions">
+            <Link
+              className="bbc-ua-edit mb-2 btn btn-danger btn-lg"
+              to={`/dashboard/writer/write/${blogId}`}
+            >
+              Edit Blog
+            </Link>
+            <button
+              className="bbc-ua-delete mb-2 btn btn-danger btn-lg"
+              onClick={deleteBlog}
+            >
+              Delete Blog
+            </button>
+          </div>
+        )}
 
-              <div className="bbc-fb-end">
-                <i
-                  role="button"
-                  onClick={toggleFavorite}
-                  className={`bx ${
-                    isFavorite ? "bxs-star" : "bx-star"
-                  } bbc-star`}
-                  style={{
-                    color: isFavorite ? "#FFD700" : "inherit",
-                    marginRight: "15px",
-                  }}
-                ></i>
-                <i
-                  role="button"
-                  onClick={copyLink}
-                  className="bx bxs-share-alt"
-                ></i>
-                <p className="bbc-date">
-                  Published On {formatDate(publishedAt)}
-                </p>
-              </div>
-            </div>
+        <div className="bbc-bc aspect-video shadow">
+          <img src={banner} alt="" className="bbc-bc-img" />
+        </div>
 
-            {username == author_username && (
-              <div className="bbc-user-actions">
-                <Link
-                  className="bbc-ua-edit mb-2 btn btn-danger btn-lg"
-                  to={`/dashboard/writer/write/${blogId}`}
-                >
-                  Edit Blog
-                </Link>
-                <button
-                  className="bbc-ua-delete mb-2 btn btn-danger btn-lg"
-                  onClick={deleteBlog}
-                >
-                  Delete Blog
-                </button>
-              </div>
-            )}
+        <div className="bbc-ctbs-container">
+          {blog.content[0].blocks.map((block, i) => {
+            return (
+              <AnimationWrapper key={i} isListItem={true} index={i}>
+                <div className="bbc-ctb-wrapper">
+                  <ContentBlock block={block} />
+                </div>
+              </AnimationWrapper>
+            );
+          })}
+        </div>
+      </div>
 
-            <div className="bbc-bc aspect-video shadow">
-              <img src={banner} alt="" className="bbc-bc-img" />
-            </div>
-
-            <div className="bbc-ctbs-container">
-              {blog.content[0].blocks.map((block, i) => {
+      <div className="bbc-rb-container">
+        {relatedBlogsLoading || !relatedBlogs ? (
+          <Loading height="30vh" />
+        ) : !relatedBlogs.results.length ? (
+          <div className="bbc-rb-no-data">
+            <h1 className="bbc-rb-section-title">Related Blogs</h1>
+            <h1 className="bbc-rb-no-data-text text-dark text-bold">
+              No Blogs Found.
+            </h1>
+          </div>
+        ) : (
+          <>
+            <h1 className="bbc-rb-section-title">Related Blogs</h1>
+            <div className="bbc-rb-blogs">
+              {relatedBlogs.results.map((rBlog, i) => {
                 return (
-                  <>
-                    <div className="bbc-ctb-wrapper" key={i}>
-                      <ContentBlock block={block} />
-                    </div>
-                  </>
+                  <AnimationWrapper
+                    key={i}
+                    isListItem={true}
+                    index={i}
+                  >
+                    <BlogCard
+                      addBorder={i + 1 != relatedBlogs.results.length}
+                      blog={rBlog}
+                    />
+                  </AnimationWrapper>
                 );
               })}
             </div>
-          </div>
-
-          <div className="bbc-rb-container">
-            {relatedBlogsLoading || !relatedBlogs ? (
-              <Loading height="30vh" />
-            ) : !relatedBlogs.results.length ? (
-              <div className="bbc-rb-no-data">
-                <h1 className="bbc-rb-section-title">Related Blogs</h1>
-                <h1 className="bbc-rb-no-data-text text-dark text-bold">
-                  No Blogs Found.
-                </h1>
-              </div>
-            ) : (
-              <>
-                <h1 className="bbc-rb-section-title">Related Blogs</h1>
-                <div className="bbc-rb-blogs">
-                  {relatedBlogs.results.map((rBlog, i) => {
-                    return (
-                      <AnimationWrapper
-                        key={i}
-                        transition={{ duration: 1, delay: (i % 10) * 0.07 }}
-                      >
-                        <BlogCard
-                          addBorder={i + 1 != relatedBlogs.results.length}
-                          blog={rBlog}
-                        />
-                      </AnimationWrapper>
-                    );
-                  })}
-                </div>
-                {relatedBlogs &&
-                  !fetchLoading &&
-                  relatedBlogs.results.length &&
-                  relatedBlogs.results.length < relatedBlogs.totalDocs && (
-                    <LoadMoreBtn onClick={loadMoreRelatedBlogs} />
-                  )}
-                {fetchLoading && <Loading height="30vh" />}
-              </>
-            )}
-          </div>
-        </>
-      )}
+            {relatedBlogs &&
+              !fetchLoading &&
+              relatedBlogs.results.length &&
+              relatedBlogs.results.length < relatedBlogs.totalDocs && (
+                <LoadMoreBtn onClick={loadMoreRelatedBlogs} />
+              )}
+            {fetchLoading && <Loading height="30vh" />}
+          </>
+        )}
+      </div>
     </AnimationWrapper>
   );
 };
