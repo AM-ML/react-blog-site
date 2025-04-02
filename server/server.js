@@ -398,16 +398,16 @@ const uploadBanner = async (base64) => {
     overwrite: true,
     invalidate: true,
     resource_type: "image",
-    format: "jpeg",
-    quality: "auto",
+    format: "webp",
+    quality: 65,
     tags: ["banner"],
   };
 
   try {
     const result = await cloudinary.uploader.upload(base64, opts);
-    return result.url; // Return the URL directly
+    return result.url;
   } catch (err) {
-    throw err; // Throw the error to be handled in the calling function
+    throw err;
   }
 };
 
@@ -419,16 +419,16 @@ const uploadImage = async (base64, is_profile_img = false) => {
       overwrite: true,
       invalidate: true,
       resource_type: "image",
-      format: "jpeg",
-      quality: "auto",
+      format: "webp",
+      quality: 65,
       tags: ["blog-image", "image"],
     };
 
     try {
       const result = await cloudinary.uploader.upload(base64, opts);
-      return result.url; // Return the URL directly
+      return result.url;
     } catch (err) {
-      throw err; // Throw the error to be handled in the calling function
+      throw err;
     }
   } else {
     const opts = {
@@ -436,8 +436,8 @@ const uploadImage = async (base64, is_profile_img = false) => {
       overwrite: true,
       invalidate: true,
       resource_type: "image",
-      format: "jpeg",
-      quality: "auto",
+      format: "webp",
+      quality: 65,
       transformation: [
         {
           width: 200,
@@ -451,9 +451,9 @@ const uploadImage = async (base64, is_profile_img = false) => {
 
     try {
       const result = await cloudinary.uploader.upload(base64, opts);
-      return result.url; // Return the URL directly
+      return result.url;
     } catch (err) {
-      throw err; // Throw the error to be handled in the calling function
+      throw err;
     }
   }
 };
