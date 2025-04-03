@@ -14,6 +14,7 @@ import filterPaginationData from "../common/pagination";
 import LoadMoreBtn from "../common/load-more";
 import Loading from "../common/loading";
 import { UserContext } from "../Router";
+import ScrollRevealWrapper from "../common/ScrollRevealWrapper";
 
 // Lazy loading components
 const BlogCard = lazy(() => import("./blog-card"));
@@ -126,69 +127,64 @@ const BlogsComponent = () => {
             filterFunc={handleFilter}
             routes={["home", "trending"]}
           >
-            <div className="ltbgs-container">
-              <div className="ltbgs">
-                {!blogs ? (
-                  <Preloader />
-                ) : blogs.results.length ? (
-                  <>
-                    <Suspense fallback={<Preloader />}>
-                      {blogs.results.map((blog, i) => (
-                        <AnimationWrapper
-                          transition={{ duration: 1, delay: (i % 10) * 0.08 }}
-                          key={i}
-                        >
-                          <article className="blog-card-container">
+            <ScrollRevealWrapper animation="fade">
+              <div className="ltbgs-container">
+                <div className="ltbgs">
+                  {!blogs ? (
+                    <Preloader />
+                  ) : blogs.results.length ? (
+                    <>
+                      <Suspense fallback={<Preloader />}>
+                        {blogs.results.map((blog, i) => (
+                          <article className="blog-card-container" key={i}>
                             <BlogCard
                               blog={blog}
                               addBorder={i + 1 !== blogs.results.length}
+                              index={i}
                             />
                           </article>
-                        </AnimationWrapper>
-                      ))}
-                    </Suspense>
-                  </>
+                        ))}
+                      </Suspense>
+                    </>
+                  ) : (
+                    <p className="scc-no-data">No Blogs Found.</p>
+                  )}
+                </div>
+                {!loading ? (
+                  blogs && blogs.totalDocs > blogs.results.length ? (
+                    <LoadMoreBtn onClick={loadMore} />
+                  ) : (
+                    ""
+                  )
                 ) : (
-                  <p className="scc-no-data">No Blogs Found.</p>
+                  <Loading height="40vh" />
                 )}
               </div>
-              {!loading ? (
-                blogs && blogs.totalDocs > blogs.results.length ? (
-                  <LoadMoreBtn onClick={loadMore} />
-                ) : (
-                  ""
-                )
-              ) : (
-                <Loading height="40vh" />
-              )}
-            </div>
-            <div className="ltbgs-container">
-              <div className="ltbgs">
-                {!trendings ? (
-                  <Preloader />
-                ) : trendings.length ? (
-                  <>
-                    <Suspense fallback={<Preloader />}>
-                      {trendings.map((trending, i) => {
-                        if (trending.author?.personal_info?.name)
-                          return (
-                            <AnimationWrapper
-                              transition={{ duration: 1, delay: i * 0.08 }}
-                              key={i}
-                            >
-                              <article className="blog-card-container">
-                                <BlogCard blog={trending} />
+            </ScrollRevealWrapper>
+            <ScrollRevealWrapper animation="fade">
+              <div className="ltbgs-container">
+                <div className="ltbgs">
+                  {!trendings ? (
+                    <Preloader />
+                  ) : trendings.length ? (
+                    <>
+                      <Suspense fallback={<Preloader />}>
+                        {trendings.map((trending, i) => {
+                          if (trending.author?.personal_info?.name)
+                            return (
+                              <article className="blog-card-container" key={i}>
+                                <BlogCard blog={trending} index={i} />
                               </article>
-                            </AnimationWrapper>
-                          );
-                      })}
-                    </Suspense>
-                  </>
-                ) : (
-                  <p className="scc-no-data">No Blogs Found.</p>
-                )}
+                            );
+                        })}
+                      </Suspense>
+                    </>
+                  ) : (
+                    <p className="scc-no-data">No Blogs Found.</p>
+                  )}
+                </div>
               </div>
-            </div>
+            </ScrollRevealWrapper>
           </InPageNavigation>
         </section>
         <section className="bc-filters"></section>

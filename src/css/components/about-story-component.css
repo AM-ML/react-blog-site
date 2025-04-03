@@ -134,6 +134,7 @@
 @media screen and (min-width: 700px) {
   .abst-header-text .abst-desc {
     max-width: 60rem;
+    margin-top: 40px;
   }
 }
 @media screen and (max-width: 768px) {

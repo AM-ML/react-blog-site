@@ -88,8 +88,8 @@
   animation: slideIn 1.2s ease-out;
   animation-delay: 0.3s;
   opacity: 0;
-  animation-fill-mode: forwards;
   margin-top: 40px;
+  animation-fill-mode: forwards;
 }
 
 .abt-header .abt-arrow-c {
@@ -130,11 +130,12 @@
 @media screen and (min-width: 900px) {
   .abt-header-text .abt-desc {
     max-width: 60rem;
+    margin-top: 40px;
   }
 }
 @media screen and (max-width: 768px) {
-  .abt-header .abt-desc {  zoom: 60% !important; }
-  .abt-header .abt-title { zoom: 50% !important; }
+  .abt-header .abt-desc {  zoom: 70% !important; }
+  .abt-header .abt-title { zoom: 60% !important; }
 }
 @media screen and (max-width: 1100px) {
   .abt-header-text .abt-desc {
@@ -172,7 +173,6 @@ body:has(.abt-pg-container) .sdm-nvb-hidden {
 
 
 .about-section {
-  transition: all 0.4s ease !important;
   margin: 0 !important;
   padding-top: 8rem;
   padding-bottom: 5rem;
@@ -235,6 +235,7 @@ body:has(.abt-pg-container) .sdm-nvb-hidden {
   max-width: 58rem;
   font-family: "Inter";
   transition: color 0.3s ease;
+  margin-top: 40px;
 }
 
 .about-section:hover .text .desc {

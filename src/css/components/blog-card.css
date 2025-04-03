@@ -13,6 +13,7 @@
   align-items: center;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding: 1.5rem 0.8rem;
+  margin-bottom: 1.5rem;
   text-decoration: none;
   width: 100%;
   transition: all 0.3s ease-in-out;
@@ -223,6 +224,7 @@
 .bgcd-outer-container {
   position: relative;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  margin-bottom: 30px;
   width: 100%;
   transition: opacity 0.3s ease;
 }

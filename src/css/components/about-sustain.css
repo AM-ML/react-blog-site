@@ -45,6 +45,7 @@
 
 .abts-header-text {
   padding: 20px;
+  padding-top: 30vh;
   color: white;
   min-height: 100vh;
   align-content: center;
@@ -52,7 +53,6 @@
   flex-direction: column;
   justify-content: center;
   animation: fadeIn 1.2s ease-out;
-  padding-top: 30vh;
 }
 
 .abts-header-text .abts-title {
@@ -138,6 +138,7 @@
 @media screen and (min-width: 900px) {
   .abts-header-text .abts-desc {
     max-width: 60rem;
+    margin-top: 40px;
   }
 }
 @media screen and (max-width: 1000px) {
@@ -153,7 +154,7 @@
 
 @media screen and (max-width: 768px) {
   .abts-header .abts-desc, .abts-header .abts-title {
-    zoom: 60%;
+    zoom: 70%;
   }
   .abts-info {
     zoom: 80%;

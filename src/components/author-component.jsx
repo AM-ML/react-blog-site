@@ -5,10 +5,10 @@ import axios from 'axios';
 import { TitleCase } from '../common/string';
 import Preloader from '../common/preloader';
 import NoData from '../common/nodata';
-import AnimationWrapper from '../common/page-animation';
 import Loading from '../common/loading';
 import BlogCard from './blog-card';
 import LoadMoreBtn from '../common/load-more';
+import ScrollRevealWrapper from '../common/ScrollRevealWrapper';
 
 export default function AuthComponent() {
   let { username: URLusername } = useParams();
@@ -88,9 +88,9 @@ export default function AuthComponent() {
 
   return (
     <div className="ac-container">
+      <ScrollRevealWrapper animation="fade">
       <div className="ac-profile-container max-800-visible">
         <div className="ac-profile">
-
           <div className="ac-profile-row">
             <img src={author.profile_img} className="ac-profile-img" alt="Profile" />
 
@@ -107,11 +107,11 @@ export default function AuthComponent() {
             </div>
           </div>
 
-
           <span className="ac-profile-bio">{author.bio.length ? `"${author.bio}"` : "No Bio."}</span>
           <div className="sm-hr"></div>
         </div>
       </div>
+      </ScrollRevealWrapper>
 
       <div className="ac-blogs-container">
         <div className="ac-blogs me-2">
@@ -126,13 +126,16 @@ export default function AuthComponent() {
                     const addBorder = !(isLastDoc !== isLastPage);
 
                     return (
-                      <AnimationWrapper key={i} transition={{ duration: 1, delay: (i % 10) * 0.07 }}>
-                        <BlogCard blog={blog} addBorder={addBorder} />
-                      </AnimationWrapper>
+                    <BlogCard 
+                      key={i} 
+                      blog={blog} 
+                      addBorder={addBorder} 
+                      index={i}
+                    />
                     );
                   })
                 ) : (
-                    !blogs ? <Loading height="70vh" />:
+                !blogs ? <Loading height="70vh" /> :
                       <NoData
                         msg={blogs && blogs.results.length === 0 ? "No Blogs Found." : "Loading..."}
                         addBtn={true}
@@ -141,15 +144,18 @@ export default function AuthComponent() {
                       />
                   )}
                 {blogs && blogs.results && blogs.results.length < blogs.totalDocs && (
+                <ScrollRevealWrapper animation="fade" delay={200}>
                   <div className="ac-lm-container">
                     {!moreLoading ? <LoadMoreBtn onClick={loadMore} /> : <Loading height="30vh" />}
                   </div>
+                </ScrollRevealWrapper>
                 )}
               </>
             )}
         </div>
       </div>
 
+      <ScrollRevealWrapper animation="right" delay={200}>
       <div className="ac-profile-container max-800-hidden">
         <div className="ac-profile">
           <img src={author.profile_img} className="ac-profile-img" alt="Profile" />
@@ -165,6 +171,7 @@ export default function AuthComponent() {
           <span className="ac-profile-bio">{author.bio.length ? `"${author.bio}"` : "No Bio."}</span>
         </div>
       </div>
+      </ScrollRevealWrapper>
     </div>
   );
 }

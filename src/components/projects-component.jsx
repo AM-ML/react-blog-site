@@ -1,5 +1,4 @@
 import "../css/components/projects-component.css";
-import img from "../assets/about-us/proj.webp";
 import cp1 from "../assets/about-us/construction/1.webp";
 import cp2 from "../assets/about-us/construction/2.webp";
 import cp3 from "../assets/about-us/construction/3.webp";
@@ -13,6 +12,8 @@ import dp1 from "../assets/about-us/domestic/d1.webp";
 import dp2 from "../assets/about-us/domestic/d2.webp";
 import dp3 from "../assets/about-us/domestic/d3.webp";
 import dp4 from "../assets/about-us/domestic/d4.webp";
+import ScrollRevealWrapper from "../common/ScrollRevealWrapper";
+import { useState } from "react";
 
 const construction_projects = [
   {
@@ -117,61 +118,108 @@ const domestic_projects = [
 ];
 
 const Project = ({ title, desc, date, location, client_name = "", img }) => {
+  const [expanded, setExpanded] = useState(false);
+
+  const handleExpand = (e) => {
+    e.stopPropagation(); // Prevent event bubbling
+    setExpanded(!expanded);
+  };
+
   return (
-    <div className="abp-p-card">
-      <img src={img} alt={title} className="abp-p-img" />
-      <div className="abp-p-overlay"></div>
+    <div
+      className={`abp-p-card ${expanded ? "expanded" : ""}`}
+      onClick={desc ? handleExpand : undefined}
+    >
+      <div className="abp-p-img-container">
+        <img src={img} alt={title} className="abp-p-img" />
+        <div className="abp-p-overlay"></div>
+      </div>
       <div className="abp-p-info">
         <h3 className="abp-p-title">{title}</h3>
-        <p className="abp-p-desc">{desc}</p>
-        {location && (
-          <p className="abp-p-details">
-            {location} {date ? `| ${date}` : ""}
-          </p>
+
+        <div className="abp-p-basic-info">
+          {location && (
+            <p className="abp-p-details">
+              <span className="abp-p-location">
+                <i className="bx bx-map"></i> {location}
+              </span>
+              {date && (
+                <span className="abp-p-date">
+                  <i className="bx bx-calendar"></i> {date}
+                </span>
+              )}
+            </p>
+          )}
+          {client_name && (
+            <p className="abp-p-client">
+              <i className="bx bx-building-house"></i> Client: {client_name}
+            </p>
+          )}
+        </div>
+
+        {desc && (
+          <>
+            <div className={`abp-p-description ${expanded ? "visible" : ""}`}>
+              <p className="abp-p-desc">{desc}</p>
+            </div>
+
+            <div className="abp-p-expand-indicator" onClick={handleExpand}>
+              <i
+                className={`bx ${
+                  expanded ? "bx-chevron-up" : "bx-chevron-down"
+                }`}
+              ></i>
+              <span>{expanded ? "Less Details" : "More Details"}</span>
+            </div>
+          </>
         )}
-        {client_name && <p className="abp-p-client">Client: {client_name}</p>}
       </div>
     </div>
   );
 };
-const ProjectsComponent = () => (
-  <section className="abp-container">
-    <header className="abp-header">
-      <div className="abp-img-c">
-        <img src={img} alt="Featured Boffo Projects" className="abp-img" />
-      </div>
 
-      <div className="abp-img-shadow"></div>
+const ProjectsComponent = () => {
+  return (
+    <section className="abp-container">
+      <section className="abp-info" id="info">
+        <ScrollRevealWrapper animation="fade">
+          <h2 className="abp-section-title abp-cp-title">
+            <span className="abp-section-title-underline">
+              Construction Projects
+            </span>
+          </h2>
+        </ScrollRevealWrapper>
 
-      <div className="abp-header-text">
-      </div>
+        <div className="abp-cp-container abp-projs-container">
+          {construction_projects.map((project, i) => (
+            <ScrollRevealWrapper key={i} animation="fade" delay={(i % 3) * 100}>
+              <div className="abp-p-container">
+                <Project {...project} />
+              </div>
+            </ScrollRevealWrapper>
+          ))}
+        </div>
 
-      <a href="#info" className="abp-arrow-c no-design no-default-design">
-        <i className="abp-arrow bx bx-chevron-down" aria-hidden="true"></i>
-        <span className="sr-only">Scroll down to view more projects</span>
-      </a>
-    </header>
+        <ScrollRevealWrapper animation="fade">
+          <h2 className="abp-section-title abp-dp-title">
+            <span className="abp-section-title-underline">
+              Domestic & Municipalities Projects
+            </span>
+          </h2>
+        </ScrollRevealWrapper>
 
-    <section className="abp-info" id="info">
-      <h2 className="abp-cp-title">Construction Projects</h2>
-      <div className="abp-cp-container abp-projs-container">
-        {construction_projects.map((project, i) => (
-          <div className={`abp-p-container + abp-p-${i}`} key={i}>
-            <Project {...project} />
-          </div>
-        ))}
-      </div>
-
-      <h2 className="abp-dp-title">Domestic & Municipalities Projects</h2>
-      <div className="abp-dp-container abp-projs-container">
-        {domestic_projects.map((project, i) => (
-          <div className={`abp-p-container + abp-p-${i}`} key={i}>
-            <Project {...project} />
-          </div>
-        ))}
-      </div>
+        <div className="abp-dp-container abp-projs-container">
+          {domestic_projects.map((project, i) => (
+            <ScrollRevealWrapper key={i} animation="fade" delay={(i % 3) * 100}>
+              <div className="abp-p-container">
+                <Project {...project} />
+              </div>
+            </ScrollRevealWrapper>
+          ))}
+        </div>
+      </section>
     </section>
-  </section>
-);
+  );
+};
 
 export default ProjectsComponent;
