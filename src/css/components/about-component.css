@@ -7,6 +7,7 @@
   width: 100%;
   height: 100vh;
   z-index: -2;
+  overflow: hidden;
 }
 
 .abt-header .abt-img-c .abt-img {
@@ -14,6 +15,12 @@
   height: 100%;
   object-fit: cover;
   filter: brightness(0.7);
+  transition: transform 8s ease-in-out;
+}
+
+/* Subtle zoom effect on page load */
+.abt-header:hover .abt-img-c .abt-img {
+  transform: scale(1.05);
 }
 
 .abt-img-shadow {
@@ -33,6 +40,11 @@
   color: white;
   min-height:100vh;
   align-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation: fadeIn 1.2s ease-out;
+  padding-top: 30vh;
 }
 
 .abt-header-text .abt-title {
@@ -41,6 +53,7 @@
   font-size: 4.325rem;
   text-align: center;
   letter-spacing: 0.02vw;
+  animation: slideIn 1s ease-out;
 }
 
 .abt-header-text .abt-title .highlight {
@@ -48,32 +61,75 @@
   text-decoration: none;
   font-family: "Domine";
   color: yellow;
+  position: relative;
+}
+
+/* Add an underline animation to the highlight */
+.abt-header-text .abt-title .highlight::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 3px;
+  bottom: 0;
+  left: 0;
+  background-color: yellow;
+  transition: width 0.5s ease;
+}
+
+.abt-header-text .abt-title .highlight:hover::after {
+  width: 100%;
 }
 
 .abt-header-text .abt-desc {
   font-weight: 300;
   font-family: "roboto";
   font-size: 1.225rem;
-  margin:auto;
-
+  margin: auto;
+  animation: slideIn 1.2s ease-out;
+  animation-delay: 0.3s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+  margin-top: 40px;
 }
 
 .abt-header .abt-arrow-c {
-  position:absolute;
+  position: absolute;
   bottom: 35px;
   width: 100vw;
   text-align: center;
+  animation: bounce 2s infinite;
+  transition: opacity 0.3s ease;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+.abt-arrow-c:hover {
+  opacity: 0.8;
 }
 
 .abt-arrow-c .abt-arrow {
   font-size: 50px;
   color: white;
+  transition: transform 0.3s ease;
+}
+
+.abt-arrow-c:hover .abt-arrow {
+  transform: scale(1.2);
 }
 
 @media screen and (min-width: 900px) {
   .abt-header-text .abt-desc {
     max-width: 60rem;
-    margin-top: 40px;
   }
 }
 @media screen and (max-width: 768px) {
@@ -116,9 +172,15 @@ body:has(.abt-pg-container) .sdm-nvb-hidden {
 
 
 .about-section {
+  transition: all 0.4s ease !important;
   margin: 0 !important;
   padding-top: 8rem;
   padding-bottom: 5rem;
+  transition: background-color 0.3s ease;
+}
+
+.about-section:hover {
+  background-color: rgba(245, 247, 250, 0.5);
 }
 
 .about-section .container {
@@ -138,6 +200,24 @@ body:has(.abt-pg-container) .sdm-nvb-hidden {
   max-width: 56rem;
   letter-spacing: -0.025em;
   font-family: "Inter";
+  position: relative;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.about-section .text .title::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: #15626c;
+  transition: width 0.5s ease;
+}
+
+.about-section:hover .text .title::after {
+  width: 100%;
 }
 
 @media (min-width: 768px) {
@@ -154,6 +234,11 @@ body:has(.abt-pg-container) .sdm-nvb-hidden {
   line-height: 1.75rem;
   max-width: 58rem;
   font-family: "Inter";
+  transition: color 0.3s ease;
+}
+
+.about-section:hover .text .desc {
+  color: rgb(55 65 81);
 }
 
 .abt-impact {
@@ -161,12 +246,38 @@ body:has(.abt-pg-container) .sdm-nvb-hidden {
   background: #fff !important;
   padding: 3rem 2.5rem;
   margin: 0 15px !important;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
+
+.abt-impact:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+}
+
 .abt-impact .desc, .abt-impact .title, .abt-impact .link{
   max-width: 58rem;
 }
+
 .abt-impact a {
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  color: #15626c;
+  font-weight: 500;
+  margin-top: 1rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.abt-impact a:hover {
+  color: #0d4b54;
+  transform: translateX(5px);
+}
+
+.abt-impact a svg {
+  transition: transform 0.3s ease;
+}
+
+.abt-impact a:hover svg {
+  transform: translateX(3px) translateY(-3px);
 }
 
 .abt-stat-container {
@@ -250,32 +361,60 @@ body:has(.abt-pg-container) .sdm-nvb-hidden {
 }
 
 .abt-stat-container .stats {
-  gap: 1.5rem;
-  grid-template-columns: repeat(2, minmax(0px, 1fr));
   display: grid;
-  margin-top: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
 
+.abt-stat-container .stats .item {
+  transition: transform 0.3s ease;
+}
+
+.abt-stat-container .stats .item:hover {
+  transform: translateY(-5px);
 }
 
 .abt-stat-container .stats .item .stat-number {
+  font-size: 2.5rem;
+  line-height: 1;
+  font-weight: 500;
   color: #15626c;
-  font-weight: 700;
-  font-size: 1.875rem;
-  line-height: 2.25rem;
+  margin-bottom: 0.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+.abt-stat-container .stats .item .stat-number::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 3px;
+  bottom: 0;
+  left: 0;
+  background-color: #15626c;
+  transition: width 0.5s ease;
+}
+
+.abt-stat-container .stats .item:hover .stat-number::after {
+  width: 100%;
 }
 
 .abt-stat-container .stats .item .desc {
-  color: rgb(75 85 99);
+  color: rgb(107 114 128);
+  font-size: 1rem;
 }
 
 .abt-stat-container .img-c {
-  transition-delay: 200ms;
-  animation-delay: 200ms;
-  will-change: opacity, transform;
   order: 1;
-  animation: 0.7s ease-out 0s 1 normal forwards running fadeIn;
-  width: 100%;
+  animation: fadeIn 0.7s ease-out;
+  transition: transform 0.5s ease;
 }
+
+.abt-stat-container .img-c:hover {
+  transform: scale(1.02);
+}
+
 @media (min-width: 1024px) {
   .abt-stat-container .img-c {
     order: 2;
@@ -284,15 +423,16 @@ body:has(.abt-pg-container) .sdm-nvb-hidden {
 
 .abt-stat-container .img-c .wrapper {
   position: relative;
+  overflow: hidden;
+  border-radius: 0.75rem;
 }
 
 .abt-stat-container .img-c .wrapper .img {
-  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / .1), 0 4px 6px -4px rgb(0 0 0 / .1);
-  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-  border-radius: var(5px);
   width: 100%;
-  height: auto;    max-width: 100%;
-  overflow-clip-margin: content-box;
-  overflow: clip;
+  transition: transform 0.8s ease;
+  border-radius: 0.75rem;
+}
+
+.abt-stat-container .img-c:hover .wrapper .img {
+  transform: scale(1.05);
 }

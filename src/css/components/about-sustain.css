@@ -16,6 +16,7 @@
   width: 100%;
   height: 100vh;
   z-index: -2;
+  overflow: hidden;
 }
 
 .abts-header .abts-img-c .abts-img {
@@ -23,6 +24,11 @@
   height: 100%;
   object-fit: cover;
   filter: brightness(0.7);
+  transition: transform 8s ease;
+}
+
+.abts-header:hover .abts-img-c .abts-img {
+  transform: scale(1.05);
 }
 
 .abts-img-shadow {
@@ -36,47 +42,102 @@
 .abts-header {
   position: relative;
 }
+
 .abts-header-text {
   padding: 20px;
   color: white;
-  min-height:100vh;
+  min-height: 100vh;
   align-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation: fadeIn 1.2s ease-out;
+  padding-top: 30vh;
 }
+
 .abts-header-text .abts-title {
   font-weight: 900;
   font-family: "Domine";
   font-size: 3.425rem;
   text-align: center;
   letter-spacing: 0.02vw;
+  animation: slideIn 1s ease-out;
 }
+
 .abts-header-text .abts-title .highlight {
   display: inline;
   text-decoration: none;
   font-family: "Domine";
   color: springgreen;
+  position: relative;
 }
+
+/* Add an underline animation to the highlight */
+.abts-header-text .abts-title .highlight::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 3px;
+  bottom: 0;
+  left: 0;
+  background-color: springgreen;
+  transition: width 0.5s ease;
+}
+
+.abts-header-text .abts-title .highlight:hover::after {
+  width: 100%;
+}
+
 .abts-header-text .abts-desc {
   font-weight: 300;
   font-family: "roboto";
   font-size: 1.225rem;
-  margin:auto;
-
+  margin: auto;
+  animation: slideIn 1.2s ease-out;
+  animation-delay: 0.3s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+  margin-top: 40px;
 }
+
 .abts-header .abts-arrow-c {
-  position:absolute;
+  position: absolute;
   bottom: 35px;
   width: 100vw;
   text-align: center;
+  animation: bounce 2s infinite;
+  transition: opacity 0.3s ease;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+.abts-arrow-c:hover {
+  opacity: 0.8;
 }
 
 .abts-arrow-c .abts-arrow {
   font-size: 50px;
   color: white;
+  transition: transform 0.3s ease;
 }
+
+.abts-arrow-c:hover .abts-arrow {
+  transform: scale(1.2);
+}
+
 @media screen and (min-width: 900px) {
   .abts-header-text .abts-desc {
     max-width: 60rem;
-    margin-top: 40px;
   }
 }
 @media screen and (max-width: 1000px) {
@@ -119,12 +180,35 @@ body:has(.abts-pg-container) .sdm-nvb-hidden {
 
 .abts-i-container {
   padding: 20px;
+  transition: transform 0.3s ease;
+  border-radius: 8px;
+}
+
+.abts-i-container:hover {
+  transform: translateY(-5px);
 }
 
 .abts-i-container .title {
   font-size: 40px;
   font-weight: 900;
   font-family: "inter";
+  position: relative;
+  display: inline-block;
+}
+
+.abts-i-container .title::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #15626C;
+  transition: width 0.5s ease;
+}
+
+.abts-i-container:hover .title::after {
+  width: 100%;
 }
 
 .abts-i-container .text {
@@ -133,12 +217,17 @@ body:has(.abts-pg-container) .sdm-nvb-hidden {
   font-weight: 300;
   min-width: 300px;
   max-width: 100% !important;
+  transition: color 0.3s ease;
+}
+
+.abts-i-container:hover .text {
+  color: #333;
 }
 
 .abts-el-container {
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  gap: 15px;
   padding: 0 20px;
   flex-wrap: wrap;
 }
@@ -147,6 +236,33 @@ body:has(.abts-pg-container) .sdm-nvb-hidden {
   padding: 20px;
   background: #15626C;
   color: white;
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Add a subtle ripple effect on hover */
+.abts-bg-c::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.abts-bg-c:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  background: #1a7680;
+}
+
+.abts-bg-c:hover::before {
+  transform: translateX(0);
 }
 
 .abts-bg-c .title {
@@ -154,12 +270,22 @@ body:has(.abts-pg-container) .sdm-nvb-hidden {
   font-size: 40px;
   font-family: "inter";
   margin-bottom: 20px;
+  transition: transform 0.3s ease;
+}
+
+.abts-bg-c:hover .title {
+  transform: translateY(-5px);
 }
 
 .abts-bg-c .text {
   font-weight: 300;
   font-size: 20px;
   font-family: "inter";
+  transition: opacity 0.3s ease;
+}
+
+.abts-bg-c:hover .text {
+  opacity: 0.9;
 }
 
 .abts-el-container .abts-bg-c {
@@ -169,14 +295,59 @@ body:has(.abts-pg-container) .sdm-nvb-hidden {
   flex-grow: 1;
 }
 
+/* Add staggered animation to the boxes */
+.abts-el-container .abts-bg-c:nth-child(1) {
+  animation: fadeIn 0.5s ease-in-out forwards;
+  animation-delay: 0.1s;
+}
+
+.abts-el-container .abts-bg-c:nth-child(2) {
+  animation: fadeIn 0.5s ease-in-out forwards;
+  animation-delay: 0.2s;
+}
+
+.abts-el-container .abts-bg-c:nth-child(3) {
+  animation: fadeIn 0.5s ease-in-out forwards;
+  animation-delay: 0.3s;
+}
+
+.abts-el-container .abts-bg-c:nth-child(4) {
+  animation: fadeIn 0.5s ease-in-out forwards;
+  animation-delay: 0.4s;
+}
+
 .abts-cc-el-container {
   padding: 0px 60px;
   margin: 0;
+  list-style-type: none;
 }
 
 .abts-cc-el-container .item {
   font-size: 20px;
-  margin: 10px 0;
+  margin: 15px 0;
   font-weight: 300;
   font-family: "inter";
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: transform 0.3s ease, background-color 0.3s ease, padding-left 0.3s ease;
+  position: relative;
+}
+
+.abts-cc-el-container .item::before {
+  content: '✓';
+  margin-right: 10px;
+  color: #15626C;
+  font-weight: bold;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.abts-cc-el-container .item:hover {
+  transform: translateX(5px);
+  background-color: rgba(21, 98, 108, 0.1);
+  padding-left: 25px;
+}
+
+.abts-cc-el-container .item:hover::before {
+  opacity: 1;
 }

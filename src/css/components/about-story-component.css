@@ -8,21 +8,27 @@
 }
 
 .abst-header .abst-img-c {
-   position: absolute;
+  position: absolute;
   width: 100%;
   height: 100vh;
   z-index: -2;
-
+  overflow: hidden;
 }
+
 .abst-header .abst-img-c .abst-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   filter: brightness(0.7);
+  transition: transform 8s ease;
+}
+
+.abst-header:hover .abst-img-c .abst-img {
+  transform: scale(1.05);
 }
 
 .abst-img-shadow {
-position: absolute;
+  position: absolute;
   background: linear-gradient(to bottom, #18204988, #2d407e88);
   z-index: -1;
   width: 100%;
@@ -32,47 +38,102 @@ position: absolute;
 .abst-header {
   position: relative;
 }
+
 .abst-header-text {
   padding: 20px;
   color: white;
-  min-height:100vh;
+  min-height: 100vh;
   align-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation: fadeIn 1.2s ease-out;
+  padding-top: 30vh;
 }
+
 .abst-header-text .abst-title {
   font-weight: 900;
   font-family: "Domine";
   font-size: 3.325rem;
   text-align: center;
   letter-spacing: 0.02vw;
+  animation: slideIn 1s ease-out;
 }
+
 .abst-header-text .abst-title .highlight {
   display: inline;
   text-decoration: none;
   font-family: "Domine";
   color: yellow;
+  position: relative;
 }
+
+/* Add an underline animation to the highlight */
+.abst-header-text .abst-title .highlight::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 3px;
+  bottom: 0;
+  left: 0;
+  background-color: yellow;
+  transition: width 0.5s ease;
+}
+
+.abst-header-text .abst-title .highlight:hover::after {
+  width: 100%;
+}
+
 .abst-header-text .abst-desc {
   font-weight: 300;
   font-family: "roboto";
   font-size: 1.325rem;
-  margin:auto;
-
+  margin: auto;
+  animation: slideIn 1.2s ease-out;
+  animation-delay: 0.3s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+  margin-top: 40px;
 }
+
 .abst-header .abst-arrow-c {
-  position:absolute;
+  position: absolute;
   bottom: 35px;
   width: 100vw;
   text-align: center;
+  animation: bounce 2s infinite;
+  transition: opacity 0.3s ease;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+.abst-arrow-c:hover {
+  opacity: 0.8;
 }
 
 .abst-arrow-c .abst-arrow {
   font-size: 50px;
   color: white;
+  transition: transform 0.3s ease;
 }
+
+.abst-arrow-c:hover .abst-arrow {
+  transform: scale(1.2);
+}
+
 @media screen and (min-width: 700px) {
   .abst-header-text .abst-desc {
     max-width: 60rem;
-    margin-top: 40px;
   }
 }
 @media screen and (max-width: 768px) {
@@ -105,11 +166,17 @@ body:has(.abst-pg-container) .sdm-nvb-hidden {
   margin-top: -100px;
 }
 
-
-
 .abst-hf-container {
   padding: 30px;
   margin-top: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 8px;
+}
+
+.abst-hf-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  background-color: rgba(245, 247, 250, 0.5);
 }
 
 .abst-hf-container .title {
@@ -117,6 +184,23 @@ body:has(.abst-pg-container) .sdm-nvb-hidden {
   font-size: 36px;
   font-family: "inter";
   margin-bottom: 20px;
+  position: relative;
+  display: inline-block;
+}
+
+.abst-hf-container .title::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #15626c;
+  transition: width 0.5s ease;
+}
+
+.abst-hf-container:hover .title::after {
+  width: 100%;
 }
 
 .abst-hf-container .text {
@@ -124,23 +208,59 @@ body:has(.abst-pg-container) .sdm-nvb-hidden {
   font-size: 18px;
   font-family: "inter";
   color: rgb(75 85 99);
+  transition: color 0.3s ease;
+  line-height: 1.6;
+}
+
+.abst-hf-container:hover .text {
+  color: rgb(55 65 81);
 }
 
 .abst-hfs-container {
-  width:100%;
+  width: 100%;
   margin: 0;
   padding: 0px;
-
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
 }
-.abst-hfs-container .abst-hf-container{
-  height: 300px;
+
+.abst-hfs-container .abst-hf-container {
+  height: auto;
   min-height: max-content;
   width: 44%;
   min-width: 320px;
   flex-grow: 1;
   margin: 10px;
+  padding: 30px;
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.abst-hfs-container .abst-hf-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+/* Add staggered animation to the feature boxes */
+.abst-hfs-container .abst-hf-container:nth-child(1) {
+  animation: fadeIn 0.5s ease-in-out forwards;
+  animation-delay: 0.1s;
+}
+
+.abst-hfs-container .abst-hf-container:nth-child(2) {
+  animation: fadeIn 0.5s ease-in-out forwards;
+  animation-delay: 0.2s;
+}
+
+.abst-hfs-container .abst-hf-container:nth-child(3) {
+  animation: fadeIn 0.5s ease-in-out forwards;
+  animation-delay: 0.3s;
+}
+
+.abst-hfs-container .abst-hf-container:nth-child(4) {
+  animation: fadeIn 0.5s ease-in-out forwards;
+  animation-delay: 0.4s;
 }

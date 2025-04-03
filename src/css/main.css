@@ -19,6 +19,9 @@
 @import './common/floating-component.css';
 @import './common/load-more.css';
 
+/* Import animations */
+@import './animations.css';
+
 /* Import service styles */
 @import './services/service-styles.css';
 
@@ -31,6 +34,7 @@ html, body {
   padding: 0;
   height: 100%;
   background-color: var(--background);
+  scroll-behavior: smooth;
 }
 
 * {
@@ -40,11 +44,27 @@ html, body {
 a {
   color: var(--primary);
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color 0.3s ease, transform 0.3s ease;
+  display: inline-block;
 }
 
 a:hover {
   color: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+/* Add transition to all buttons */
+button, .btn, input[type="button"], input[type="submit"] {
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+button:hover, .btn:hover, input[type="button"]:hover, input[type="submit"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+button:active, .btn:active, input[type="button"]:active, input[type="submit"]:active {
+  transform: translateY(0);
 }
 
 hr {
@@ -55,6 +75,17 @@ hr {
 img {
   max-width: 100%;
   height: auto;
+  transition: transform 0.3s ease;
+}
+
+/* Cards and content blocks subtle hover effect */
+.card, .info-box, .content-block {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover, .info-box:hover, .content-block:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
 }
 
 /* Custom scrollbar */
@@ -69,6 +100,7 @@ img {
 ::-webkit-scrollbar-thumb {
   background: var(--primary-light);
   border-radius: 4px;
+  transition: background 0.3s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -99,19 +131,75 @@ img {
   to { opacity: 1; }
 }
 
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from { 
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to { 
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 .fade-in {
   animation: fadeIn 0.5s ease-in-out;
+}
+
+.slide-up {
+  animation: slideUp 0.5s ease-in-out;
+}
+
+.scale-in {
+  animation: scaleIn 0.5s ease-in-out;
+}
+
+/* Page transition effect */
+.page-enter {
+  opacity: 0;
+}
+
+.page-enter-active {
+  opacity: 1;
+  transition: opacity 300ms;
+}
+
+.page-exit {
+  opacity: 1;
+}
+
+.page-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
 }
 
 /* Custom section styles */
 .section {
   padding: 5rem 0;
+  position: relative;
+  overflow: hidden;
 }
 
 .section-title {
   text-align: center;
   margin-bottom: 3rem;
   position: relative;
+  transition: transform 0.3s ease;
+}
+
+.section-title:hover {
+  transform: translateY(-3px);
 }
 
 .section-title:after {
@@ -121,16 +209,48 @@ img {
   height: 3px;
   background-color: var(--primary);
   margin: 1rem auto 0;
+  transition: width 0.5s ease;
+}
+
+.section-title:hover:after {
+  width: 120px;
 }
 
 /* Blog post styles */
 .blog-post {
   margin-bottom: 3rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.blog-post:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  background-color: rgba(245, 247, 250, 0.5);
 }
 
 .blog-post-title {
   font-family: var(--font-heading);
   margin-bottom: 0.5rem;
+  position: relative;
+  display: inline-block;
+  transition: color 0.3s ease;
+}
+
+.blog-post-title:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--primary);
+  transition: width 0.5s ease;
+}
+
+.blog-post:hover .blog-post-title:after {
+  width: 100%;
 }
 
 .blog-post-meta {
@@ -138,4 +258,9 @@ img {
   margin-bottom: 1rem;
   font-family: var(--font-accent);
   font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.blog-post:hover .blog-post-meta {
+  color: var(--primary);
 } 
