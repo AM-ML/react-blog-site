@@ -46,10 +46,10 @@ A full-featured React.js frontend & Backend for a professional business website 
 - Programming
 
 ### 🧭 About Us Pages
-- Overview — ![Overview Image](https://github.com/user-attachments/assets/0a937a81-68d1-48b7-bb9e-23d1a9b62581 =400x250)
-- Our Story — ![Our Story Image](https://github.com/user-attachments/assets/bea4d10e-f650-4b98-916b-16a25b5eaef5 =400x250)
-- Sustainability — ![Sustainability Image](https://github.com/user-attachments/assets/546daee8-c6b0-4a6f-a7f2-27563506bf97 =400x250)
-- Projects — ![Projects Image](https://github.com/user-attachments/assets/983ef10e-33b0-4579-8115-6f91e526e6d0 =400x250)
+- Overview — ![image](https://github.com/user-attachments/assets/0a937a81-68d1-48b7-bb9e-23d1a9b62581 =400x250)
+- Our Story — ![image](https://github.com/user-attachments/assets/bea4d10e-f650-4b98-916b-16a25b5eaef5 =400x250)
+- Sustainability — ![image](https://github.com/user-attachments/assets/546daee8-c6b0-4a6f-a7f2-27563506bf97 =400x250)
+- Projects
 
 ### 📬 Contact & Newsletter
 - Contact form
@@ -81,18 +81,18 @@ A full-featured React.js frontend & Backend for a professional business website 
 
 ## 📷 Screenshots
 
-![Screenshot 1](https://github.com/user-attachments/assets/983ef10e-33b0-4579-8115-6f91e526e6d0 =400x250)
-![Screenshot 2](https://github.com/user-attachments/assets/849308ca-d766-4d94-b6bd-3f4f75023958 =400x250)
-![Screenshot 3](https://github.com/user-attachments/assets/871cd855-aa95-4bea-8251-0a4d46eb4e1c =400x250)
-![Screenshot 4](https://github.com/user-attachments/assets/b6f37a22-c07c-40ae-b65d-a85c371cab71 =400x250)
-![Screenshot 5](https://github.com/user-attachments/assets/7ecda481-6811-4b2d-81f9-f1dcc8fee4cb =400x250)
-![Screenshot 6](https://github.com/user-attachments/assets/421aef13-72c1-4fb3-bd70-a6c6b9e99894 =400x250)
-![Screenshot 7](https://github.com/user-attachments/assets/a99ffe94-eada-461f-8849-f5ea410eb74b =400x250)
-![Screenshot 8](https://github.com/user-attachments/assets/9a6db00b-cac1-4f79-a202-59d7af5dfa8c =400x250)
-![Screenshot 9](https://github.com/user-attachments/assets/a6641c17-8f4f-432f-957f-641d393940e0 =400x250)
-![Screenshot 10](https://github.com/user-attachments/assets/3ee41218-046b-43c8-a1a0-dbb4d5cef921 =400x250)
-![Screenshot 11](https://github.com/user-attachments/assets/2023d4f0-6227-43a3-b679-f51e71c8b591 =400x250)
-![Screenshot 12](https://github.com/user-attachments/assets/6bb065a0-08ab-4f99-9bc5-434b540f5293 =400x250)
+![image](https://github.com/user-attachments/assets/983ef10e-33b0-4579-8115-6f91e526e6d0 =400x250)
+![image](https://github.com/user-attachments/assets/849308ca-d766-4d94-b6bd-3f4f75023958 =400x250)
+![image](https://github.com/user-attachments/assets/871cd855-aa95-4bea-8251-0a4d46eb4e1c =400x250)
+![image](https://github.com/user-attachments/assets/b6f37a22-c07c-40ae-b65d-a85c371cab71 =400x250)
+![image](https://github.com/user-attachments/assets/7ecda481-6811-4b2d-81f9-f1dcc8fee4cb =400x250)
+![image](https://github.com/user-attachments/assets/421aef13-72c1-4fb3-bd70-a6c6b9e99894 =400x250)
+![image](https://github.com/user-attachments/assets/a99ffe94-eada-461f-8849-f5ea410eb74b =400x250)
+![image](https://github.com/user-attachments/assets/9a6db00b-cac1-4f79-a202-59d7af5dfa8c =400x250)
+![image](https://github.com/user-attachments/assets/a6641c17-8f4f-432f-957f-641d393940e0 =400x250)
+![image](https://github.com/user-attachments/assets/3ee41218-046b-43c8-a1a0-dbb4d5cef921 =400x250)
+![image](https://github.com/user-attachments/assets/2023d4f0-6227-43a3-b679-f51e71c8b591 =400x250)
+![image](https://github.com/user-attachments/assets/6bb065a0-08ab-4f99-9bc5-434b540f5293 =400x250)
 
 ---
 
