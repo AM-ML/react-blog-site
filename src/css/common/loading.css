@@ -1,39 +1,25 @@
 .loading-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  /* height: 100vh; defined by user*/
+  align-items: center;
+  width: 100%;
+  margin: 1rem auto;
+  position: relative;
 }
 
-.outer-spinner {
-  border: 6px solid #f3f3f3;
-  border-top: 6px solid #3498db ;
-  border-radius: 50%;
-  width: 63px;
-  height: 63px;
-  animation: spin-reverse 1.6s linear infinite;
-  position: absolute;
-}
-
-.inner-spinner {
-  margin-top: 65px;
-  border: 6px solid #f3f3f3;
-  border-top: 6px solid #3498db;
-  border-radius: 50%;
+.loading-spinner {
   width: 50px;
   height: 50px;
-  animation: spin 1.1s linear infinite;
+  border: 3px solid rgba(21, 98, 108, 0.2);
+  border-radius: 50%;
+  border-top-color: #15626c;
+  animation: spin 1s ease-in-out infinite;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-@keyframes spin-reverse {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(-360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .loading-container p {

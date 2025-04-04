@@ -6,8 +6,8 @@ export const initScrollReveal = () => {
   const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
   
   const revealOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+    threshold: 0.05,
+    rootMargin: '0px 0px -150px 0px'
   };
   
   const revealCallback = (entries, observer) => {
@@ -43,11 +43,12 @@ export const applyRevealToElements = (selector, revealClass = 'reveal', staggere
     elements.forEach((element, index) => {
       element.classList.add(revealClass);
       
-      // Add staggered delay if requested
+      // Add staggered delay if requested - with reduced delays
       if (staggered && index < 5) {
-        element.classList.add(`delay-${(index + 1) * 100}`);
+        // Reduced delays (from 100ms increments to 50ms increments)
+        element.classList.add(`delay-${Math.min((index + 1) * 50, 300)}`);
       } else if (staggered) {
-        element.classList.add('delay-500');
+        element.classList.add('delay-300'); // Reduced from delay-500
       }
     });
   }

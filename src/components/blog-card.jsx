@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { TitleCase } from "../common/string";
 import { formatDate } from "../common/functions";
 import AnimationWrapper from "../common/page-animation";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../Router";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -12,6 +12,8 @@ import ScrollRevealWrapper from "../common/ScrollRevealWrapper";
 const BlogCard = ({ blog, addBorder = true, onDelete, index = 0 }) => {
   const navigate = useNavigate();
   const { userAuth } = useContext(UserContext);
+  const [deleteStatus, setDeleteStatus] = useState("idle"); // idle, deleting, success, error
+  const [isVisible, setIsVisible] = useState(true);
 
   let {
     blog_id,
@@ -44,6 +46,8 @@ const BlogCard = ({ blog, addBorder = true, onDelete, index = 0 }) => {
       return;
     }
 
+    setDeleteStatus("deleting");
+
     const config = {
       headers: {
         Authorization: `Bearer ${userAuth.access_token}`,
@@ -57,15 +61,26 @@ const BlogCard = ({ blog, addBorder = true, onDelete, index = 0 }) => {
         config
       )
       .then(() => {
-        toast.success("Blog deleted successfully!");
-        // Call the onDelete callback if provided
-        if (typeof onDelete === "function") {
-          onDelete(blog_id);
-        }
+        setDeleteStatus("success");
+        // Add fade-out animation
+        setIsVisible(false);
+        // Wait for animation to complete before calling onDelete
+        setTimeout(() => {
+          toast.success("Blog deleted successfully!");
+          // Call the onDelete callback if provided
+          if (typeof onDelete === "function") {
+            onDelete(blog_id);
+          }
+        }, 300);
       })
       .catch((err) => {
         console.log(err);
+        setDeleteStatus("error");
         toast.error("Error deleting blog. Please try again later.");
+        // Reset delete status after 2 seconds
+        setTimeout(() => {
+          setDeleteStatus("idle");
+        }, 2000);
       });
   };
 
@@ -74,7 +89,25 @@ const BlogCard = ({ blog, addBorder = true, onDelete, index = 0 }) => {
 
   return (
     <ScrollRevealWrapper animation="fade" delay={delay}>
-      <div className={`bgcd-outer-container ${!addBorder && "no-border"}`}>
+      <div 
+        className={`bgcd-outer-container ${!addBorder && "no-border"} ${deleteStatus === "success" ? "delete-success" : ""} ${!isVisible ? "fade-out" : ""}`}
+        style={{ 
+          position: "relative",
+        }}
+      >
+        {deleteStatus === "deleting" && (
+          <div className="delete-overlay">
+            <div className="delete-spinner"></div>
+            <p>Deleting...</p>
+          </div>
+        )}
+        {deleteStatus === "error" && (
+          <div className="delete-overlay error">
+            <i className="bx bx-error"></i>
+            <p>Delete failed!</p>
+          </div>
+        )}
+        
         <Link to={blogLink} className="bgcd-container-container">
           <div className="bgcd-container me-2">
             <div className="bgcd-header">
@@ -128,11 +161,12 @@ const BlogCard = ({ blog, addBorder = true, onDelete, index = 0 }) => {
         {username === userAuth.username && (
           <div className="bgcd-actions">
             <button
-              className="bgcd-delete-btn"
+              className={`bgcd-delete-btn ${deleteStatus !== "idle" ? "disabled" : ""}`}
               onClick={handleDelete}
               title="Delete Blog"
+              disabled={deleteStatus !== "idle"}
             >
-              <i className="bx bx-trash"></i>
+              <i className={`bx ${deleteStatus === "deleting" ? "bx-loader-alt bx-spin" : "bx-trash"}`}></i>
             </button>
           </div>
         )}

@@ -224,11 +224,24 @@
   position: relative;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   width: 100%;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .bgcd-outer-container.no-border {
   border-bottom: none;
+}
+
+.bgcd-outer-container.fade-out {
+  opacity: 0;
+  transform: translateX(100px);
+  height: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.bgcd-outer-container.delete-success {
+  background-color: rgba(220, 53, 69, 0.05);
 }
 
 .bgcd-actions {
@@ -251,14 +264,19 @@
   color: white;
   border: none;
   border-radius: 50%;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.bgcd-delete-btn.disabled {
+  background-color: rgba(220, 53, 69, 0.5);
+  cursor: not-allowed;
 }
 
 .bgcd-delete-btn:hover {
@@ -292,5 +310,66 @@
   }
   100% {
     opacity: 0.7;
+  }
+}
+
+/* Delete overlay styles */
+.delete-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  animation: fadeIn 0.3s ease;
+}
+
+.delete-overlay.error {
+  background-color: rgba(220, 53, 69, 0.1);
+}
+
+.delete-overlay p {
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.delete-overlay.error p {
+  color: #dc3545;
+}
+
+.delete-overlay.error i {
+  font-size: 40px;
+  color: #dc3545;
+}
+
+.delete-spinner {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid rgba(21, 98, 108, 0.1);
+  border-top-color: #15626c;
+  animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

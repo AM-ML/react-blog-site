@@ -14,7 +14,7 @@ import AuthorCard from "./author-card.jsx";
 
 const SearchComponent = ({ query } ) => {
   const [loading, setLoading] = useState(false);
-  const [bigLoading, setBigLoading] = useState(false);
+  const [bigLoading, setBigLoading] = useState(true);
   const [originalBlogs, setOriginalBlogs] = useState(null);
   const [blogs, setBlogs] = useState(null);
   const [authors, setAuthors] = useState(null);
@@ -99,13 +99,92 @@ const SearchComponent = ({ query } ) => {
 
   useEffect(() => {
     resetData();
-    getLatestBlogs(1, true, true);
-    getAuthors({page: 1, doCreate: true, bigLoad: true});
+    setBigLoading(true);
+    
+    // Start a timestamp to ensure minimum loading time for better UX
+    const loadingStartTime = Date.now();
+    const minimumLoadingTime = 1500; // 1.5 seconds minimum
+    
+    // Track completion of both data fetches
+    let blogsLoaded = false;
+    let authorsLoaded = false;
+    
+    // Function to check if we can complete loading
+    const checkLoading = () => {
+      if (blogsLoaded && authorsLoaded) {
+        const timeElapsed = Date.now() - loadingStartTime;
+        if (timeElapsed < minimumLoadingTime) {
+          setTimeout(() => {
+            setBigLoading(false);
+          }, minimumLoadingTime - timeElapsed);
+        } else {
+          setBigLoading(false);
+        }
+      }
+    };
+    
+    // Modified data fetch functions with completion tracking
+    const fetchBlogs = () => {
+      axios.post(import.meta.env.VITE_SERVER_DOMAIN + "/search-blogs", {
+        date: uDate,
+        tags: uTags,
+        page: 1,
+        query
+      })
+        .then(async ({ data: { blogs: newBlogs, totalDocs } }) => {
+          let paginationData = await filterPaginationData({
+            create_new_array: true,
+            current_data: null,
+            new_data: newBlogs,
+            page: 1,
+            totalDocs
+          });
+          setBlogs(paginationData);
+          setOriginalBlogs(paginationData);
+          blogsLoaded = true;
+          checkLoading();
+        })
+        .catch(err => {
+          console.log(err);
+          blogsLoaded = true;
+          checkLoading();
+        });
+    };
+    
+    const fetchAuthors = () => {
+      axios.post(import.meta.env.VITE_SERVER_DOMAIN + "/search-authors", {
+        page: 1,
+        query
+      })
+        .then(async ({ data: { authors: newAuthors, totalDocs } }) => {
+          let paginationData = await filterPaginationData({
+            create_new_array: true,
+            current_data: null,
+            new_data: newAuthors,
+            page: 1,
+            totalDocs
+          });
+          setAuthors(paginationData);
+          authorsLoaded = true;
+          checkLoading();
+        })
+        .catch(err => {
+          console.log(err);
+          authorsLoaded = true;
+          checkLoading();
+        });
+    };
+    
+    // Start both fetches
+    fetchBlogs();
+    fetchAuthors();
+    
   }, [query]);
+
   useEffect(() => {getLatestBlogs(1, true);}, [uDate, uTags]);
   return (
     <div className="scc-container">
-      {(bigLoading || !blogs || !originalBlogs || !authors) && <Preloader />}
+      {bigLoading && <Preloader />}
       <div className="scc-results-container">
         <InPageNavigation
           routes={[`${ window.innerWidth >= 768 ? `Search Results for - ${query}`: 'Results'}`, "Authors"]}
@@ -168,7 +247,7 @@ const SearchComponent = ({ query } ) => {
         </InPageNavigation>
       </div>
     </div>
-  )
+  );
 };
 
 export default SearchComponent;

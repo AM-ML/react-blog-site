@@ -11,6 +11,7 @@ import LoadMoreBtn from "../common/load-more";
 import toast, { Toaster } from "react-hot-toast";
 import ContentBlock from "../common/content-block";
 import { UserContext } from "../Router";
+import Preloader from "../common/preloader";
 
 const BlogComponent = ({ blogId }) => {
   const {
@@ -72,6 +73,7 @@ const BlogComponent = ({ blogId }) => {
   );
 
   const getBlogData = useCallback(async () => {
+    setLoading(true);
     try {
       const { data } = await axios.post(
         import.meta.env.VITE_SERVER_DOMAIN + "/get-blog",
@@ -84,9 +86,9 @@ const BlogComponent = ({ blogId }) => {
         tags: data.blog.tags,
         blogId: data.blog.blog_id,
       });
+      setLoading(false);
     } catch (err) {
       console.error("Error fetching blog:", err);
-    } finally {
       setLoading(false);
     }
   }, [blogId, getRelatedBlogsData]);
@@ -221,101 +223,110 @@ const BlogComponent = ({ blogId }) => {
   );
 
   return (
-    <AnimationWrapper>
-      <div className="bbc-container">
-        <div className="bbc-title-container">
-          <h2 className="bbc-title">{TitleCase(title, false)}</h2>
-        </div>
+    <>
+      {loading && <Preloader />}
+      <AnimationWrapper>
+        <div className="bbc-container">
+          <div className="bbc-title-container">
+            <h2 className="bbc-title">{TitleCase(title, false)}</h2>
+          </div>
 
-        <div className="bbc-fb">
-          <div className="bbc-author">
-            <img
-              src={profile_img}
-              alt=""
-              className="bbc-author-img"
-              loading="lazy"
-            />
-            <div className="bbc-author-text">
-              {TitleCase(name)}
-              <Link
-                to={"/author/" + author_username}
-                className="bbc-author-username"
-              >
-                @{author_username}
-              </Link>
+          <div className="bbc-fb">
+            <div className="bbc-author">
+              <img
+                src={profile_img}
+                alt=""
+                className="bbc-author-img"
+                loading="lazy"
+              />
+              <div className="bbc-author-text">
+                {TitleCase(name)}
+                <Link
+                  to={"/author/" + author_username}
+                  className="bbc-author-username"
+                >
+                  @{author_username}
+                </Link>
+              </div>
+            </div>
+
+            <div className="bbc-fb-end mt-5">
+              <i
+                role="button"
+                onClick={toggleFavorite}
+                className={`bx ${
+                  isFavorite ? "bxs-star" : "bx-star"
+                } bbc-star me-5`}
+                style={{
+                  color: isFavorite ? "#FFD700" : "inherit",
+                  marginRight: "15px",
+                }}
+              ></i>
+              <i
+                role="button"
+                onClick={copyLink}
+                className="bx bxs-share-alt"
+              ></i>
+              <p className="bbc-date">Published On {formatDate(publishedAt)}</p>
             </div>
           </div>
 
-          <div className="bbc-fb-end mt-5">
-            <i
-              role="button"
-              onClick={toggleFavorite}
-              className={`bx ${
-                isFavorite ? "bxs-star" : "bx-star"
-              } bbc-star me-5`}
-              style={{
-                color: isFavorite ? "#FFD700" : "inherit",
-                marginRight: "15px",
-              }}
-            ></i>
-            <i
-              role="button"
-              onClick={copyLink}
-              className="bx bxs-share-alt"
-            ></i>
-            <p className="bbc-date">Published On {formatDate(publishedAt)}</p>
+          {username === author_username && (
+            <div className="bbc-user-actions d-flex flex-row flex-stretch">
+              <Link
+                className="bbc-ua-edit mb-2 btn btn-primary btn-lg d-inline-block px-5 w-max flex-grow"
+                to={`/dashboard/writer/write/${blogId}`}
+              >
+                Edit Blog
+              </Link>
+              <button
+                className="bbc-ua-delete mb-2 btn btn-danger btn-lg d-inline-block px-5 w-max"
+                onClick={deleteBlog}
+              >
+                Delete Blog
+              </button>
+            </div>
+          )}
+
+          <div className="bbc-bc aspect-video shadow">
+            <img src={banner} alt="" className="bbc-bc-img" loading="lazy" />
           </div>
+
+          <div className="bbc-ctbs-container">{contentBlocks}</div>
         </div>
 
-        {username === author_username && (
-          <div className="bbc-user-actions d-flex flex-row flex-stretch">
-            <Link
-              className="bbc-ua-edit mb-2 btn btn-primary btn-lg d-inline-block px-5 w-max flex-grow"
-              to={`/dashboard/writer/write/${blogId}`}
-            >
-              Edit Blog
-            </Link>
-            <button
-              className="bbc-ua-delete mb-2 btn btn-danger btn-lg d-inline-block px-5 w-max"
-              onClick={deleteBlog}
-            >
-              Delete Blog
-            </button>
-          </div>
-        )}
-
-        <div className="bbc-bc aspect-video shadow">
-          <img src={banner} alt="" className="bbc-bc-img" loading="lazy" />
-        </div>
-
-        <div className="bbc-ctbs-container">{contentBlocks}</div>
-      </div>
-
-      <div className="bbc-rb-container">
-        {relatedBlogsLoading || !relatedBlogs ? (
-          <Loading height="30vh" />
-        ) : !relatedBlogs.results.length ? (
-          <div className="bbc-rb-no-data">
-            <h1 className="bbc-rb-section-title">Related Blogs</h1>
-            <h1 className="bbc-rb-no-data-text text-dark text-bold">
-              No Blogs Found.
-            </h1>
-          </div>
-        ) : (
-          <>
-            <h1 className="bbc-rb-section-title">Related Blogs</h1>
-            <div className="bbc-rb-blogs">{relatedBlogsList}</div>
-            {relatedBlogs &&
-              !fetchLoading &&
-              relatedBlogs.results.length &&
-              relatedBlogs.results.length < relatedBlogs.totalDocs && (
-                <LoadMoreBtn onClick={loadMoreRelatedBlogs} />
+        <div className="bbc-rb-container">
+          {relatedBlogsLoading ? (
+            <div className="w-100 d-flex justify-content-center">
+              <Loading height="30vh" />
+            </div>
+          ) : !relatedBlogs.results.length ? (
+            <div className="bbc-rb-no-data">
+              <h1 className="bbc-rb-section-title">Related Blogs</h1>
+              <h1 className="bbc-rb-no-data-text text-dark text-bold">
+                No Blogs Found.
+              </h1>
+            </div>
+          ) : (
+            <>
+              <h1 className="bbc-rb-section-title">Related Blogs</h1>
+              <div className="bbc-rb-blogs">{relatedBlogsList}</div>
+              {relatedBlogs &&
+                !fetchLoading &&
+                relatedBlogs.results.length &&
+                relatedBlogs.results.length < relatedBlogs.totalDocs && (
+                  <LoadMoreBtn onClick={loadMoreRelatedBlogs} />
+                )}
+              {fetchLoading && (
+                <div className="w-100 d-flex justify-content-center">
+                  <Loading height="30vh" />
+                </div>
               )}
-            {fetchLoading && <Loading height="30vh" />}
-          </>
-        )}
-      </div>
-    </AnimationWrapper>
+            </>
+          )}
+        </div>
+      </AnimationWrapper>
+    </>
   );
 };
 

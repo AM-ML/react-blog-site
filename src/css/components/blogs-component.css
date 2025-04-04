@@ -35,3 +35,26 @@
 
 .blog-card-container:hover {
 }
+
+/* Add these styles to better position Loading components */
+.w-100 {
+  width: 100%;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+/* Ensure Loading components don't overlap with each other */
+.ltbgs-container .loading-container {
+  margin: 2rem auto;
+}
+
+/* Add spacing between Load More button and content */
+.ltbgs-container .load-more-btn {
+  margin-top: 2rem;
+}

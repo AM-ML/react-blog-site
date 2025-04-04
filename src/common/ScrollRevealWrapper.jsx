@@ -28,9 +28,9 @@ const ScrollRevealWrapper = ({
     if (animation === "right") animationClass = "reveal-right";
     if (animation === "scale") animationClass = "reveal-scale";
 
-    // Get delay class
+    // Get delay class - reduce maximum delay to make animations happen faster
     const delayClass =
-      delay > 0 ? `delay-${Math.min(Math.floor(delay / 100) * 100, 500)}` : "";
+      delay > 0 ? `delay-${Math.min(Math.floor(delay / 200) * 100, 300)}` : "";
 
     // Add classes
     if (elementRef.current) {
@@ -48,8 +48,12 @@ const ScrollRevealWrapper = ({
           });
         },
         {
-          threshold: 0.1,
-          rootMargin: "0px 0px -50px 0px",
+          // Lower threshold to trigger earlier (previous: 0.1)
+          threshold: 0.05,
+          // Increase rootMargin to start animation sooner
+          // Previous: "0px 0px -50px 0px" (start when 50px from bottom of viewport)
+          // New: "0px 0px -150px 0px" (start when 150px from bottom of viewport)
+          rootMargin: "0px 0px -150px 0px",
         }
       );
 

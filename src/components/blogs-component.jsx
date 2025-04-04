@@ -28,12 +28,18 @@ const BlogsComponent = () => {
   const [originalBlogs, setOriginalBlogs] = useState(null);
   const [originalTrendings, setOriginalTrendings] = useState(null);
   const [trendings, setTrendings] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false); // Separate state for "load more"
   const [uDate, setuDate] = useState(null);
   const [uTags, setuTags] = useState([]);
 
   const getLatestBlogs = (page = 1, doCreate = false) => {
-    if (blogs != null) setLoading(true);
+    if (page === 1) {
+      setLoading(true); // Initial loading
+    } else {
+      setLoadingMore(true); // Loading more
+    }
+    
     axios
       .post(import.meta.env.VITE_SERVER_DOMAIN + "/search-blogs", {
         date: uDate,
@@ -51,22 +57,35 @@ const BlogsComponent = () => {
         });
         setBlogs(paginationData);
         setOriginalBlogs(paginationData);
-        setLoading(false);
+        
+        // Clear appropriate loading state
+        if (page === 1) {
+          if (trendings) setLoading(false);
+        } else {
+          setLoadingMore(false);
+        }
       })
       .catch((err) => {
-        setLoading(false);
+        if (page === 1) {
+          if (trendings) setLoading(false);
+        } else {
+          setLoadingMore(false);
+        }
         console.log(err);
       });
   };
 
   const getTrendingBlogs = () => {
+    setLoading(true);
     axios
       .post(import.meta.env.VITE_SERVER_DOMAIN + "/trending-blogs")
       .then((data) => {
         setTrendings(data.data.blogs);
         setOriginalTrendings(data.data.blogs);
+        if (blogs) setLoading(false);
       })
       .catch((err) => {
+        if (blogs) setLoading(false);
         console.log(err);
       });
   };
@@ -81,7 +100,7 @@ const BlogsComponent = () => {
   }, [uDate, uTags]);
 
   const loadMore = () => {
-    setLoading(true);
+    setLoadingMore(true); // Only set loadingMore, not main loading
     getLatestBlogs(blogs.page + 1);
   };
 
@@ -120,6 +139,7 @@ const BlogsComponent = () => {
         setTrendings,
       }}
     >
+      {loading && <Preloader />}
       <main className="bc-container mt-3">
         <section className="bc-latest">
           <InPageNavigation
@@ -131,10 +151,16 @@ const BlogsComponent = () => {
               <div className="ltbgs-container">
                 <div className="ltbgs">
                   {!blogs ? (
-                    <Preloader />
+                    <div className="w-100 d-flex justify-content-center">
+                      <Loading height="40vh" />
+                    </div>
                   ) : blogs.results.length ? (
                     <>
-                      <Suspense fallback={<Preloader />}>
+                      <Suspense fallback={
+                        <div className="w-100 d-flex justify-content-center">
+                          <Loading height="40vh" />
+                        </div>
+                      }>
                         {blogs.results.map((blog, i) => (
                           <article className="blog-card-container" key={i}>
                             <BlogCard
@@ -150,14 +176,14 @@ const BlogsComponent = () => {
                     <p className="scc-no-data">No Blogs Found.</p>
                   )}
                 </div>
-                {!loading ? (
-                  blogs && blogs.totalDocs > blogs.results.length ? (
-                    <LoadMoreBtn onClick={loadMore} />
-                  ) : (
-                    ""
-                  )
-                ) : (
-                  <Loading height="40vh" />
+                {blogs && blogs.totalDocs > blogs.results.length && (
+                  <div className="w-100 d-flex justify-content-center">
+                    {!loadingMore ? (
+                      <LoadMoreBtn onClick={loadMore} />
+                    ) : (
+                      <Loading height="40vh" />
+                    )}
+                  </div>
                 )}
               </div>
             </ScrollRevealWrapper>
@@ -165,10 +191,16 @@ const BlogsComponent = () => {
               <div className="ltbgs-container">
                 <div className="ltbgs">
                   {!trendings ? (
-                    <Preloader />
+                    <div className="w-100 d-flex justify-content-center">
+                      <Loading height="40vh" />
+                    </div>
                   ) : trendings.length ? (
                     <>
-                      <Suspense fallback={<Preloader />}>
+                      <Suspense fallback={
+                        <div className="w-100 d-flex justify-content-center">
+                          <Loading height="40vh" />
+                        </div>
+                      }>
                         {trendings.map((trending, i) => {
                           if (trending.author?.personal_info?.name)
                             return (
