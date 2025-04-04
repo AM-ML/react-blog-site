@@ -46,10 +46,15 @@ A full-featured React.js frontend & Backend for a professional business website 
 - Programming
 
 ### 🧭 About Us Pages
-- Overview — ![image](https://github.com/user-attachments/assets/0a937a81-68d1-48b7-bb9e-23d1a9b62581 =400x250)
-- Our Story — ![image](https://github.com/user-attachments/assets/bea4d10e-f650-4b98-916b-16a25b5eaef5 =400x250)
-- Sustainability — ![image](https://github.com/user-attachments/assets/546daee8-c6b0-4a6f-a7f2-27563506bf97 =400x250)
+- Overview
+  <img src="https://github.com/user-attachments/assets/0a937a81-68d1-48b7-bb9e-23d1a9b62581" width="300"/>
+- Our Story
+  <img src="https://github.com/user-attachments/assets/bea4d10e-f650-4b98-916b-16a25b5eaef5" width="300"/>
+- Sustainability
+  <img src="https://github.com/user-attachments/assets/546daee8-c6b0-4a6f-a7f2-27563506bf97" width="300"/>
 - Projects
+  <img src="https://github.com/user-attachments/assets/cc0d9c2a-384a-48a3-9c79-6a7922d881ba" width="300"/>
+
 
 ### 📬 Contact & Newsletter
 - Contact form
@@ -58,41 +63,41 @@ A full-featured React.js frontend & Backend for a professional business website 
 ---
 
 ## 🚦 Routes Overview
-/ -> Home
-/signin -> Sign in
-/signup -> Sign up
-/blogs -> Blog list
-/blog/:id -> Single blog
-/author/:username -> Author profile
-/dashboard -> User dashboard
-/services/... -> Business services
-/about-us/... -> Company information
-/contact-us -> Contact page
-/unsubscribe -> Unsubscribe
+- / -> Home
+- /signin -> Sign in
+- /signup -> Sign up
+- /blogs -> Blog list
+- /blog/:id -> Single blog
+- /author/:username -> Author profile
+- /dashboard -> User dashboard
+- /services/... -> Business services
+- /about-us/... -> Company information
+- /contact-us -> Contact page
+- /unsubscribe -> Unsubscribe
 
 ---
 
 ## 📂 Project Frontend Structure (`src/`)
-/pages         - Main page components
-/components    - Shared UI components
-/services      - Individual service pages
-/common        - Reusable logic (e.g., scroll, redirect)
+- /pages         - Main page components
+- /components    - Shared UI components
+- /services      - Individual service pages
+- /common        - Reusable logic (e.g., scroll, redirect)
 ---
 
 ## 📷 Screenshots
 
-![image](https://github.com/user-attachments/assets/983ef10e-33b0-4579-8115-6f91e526e6d0 =400x250)
-![image](https://github.com/user-attachments/assets/849308ca-d766-4d94-b6bd-3f4f75023958 =400x250)
-![image](https://github.com/user-attachments/assets/871cd855-aa95-4bea-8251-0a4d46eb4e1c =400x250)
-![image](https://github.com/user-attachments/assets/b6f37a22-c07c-40ae-b65d-a85c371cab71 =400x250)
-![image](https://github.com/user-attachments/assets/7ecda481-6811-4b2d-81f9-f1dcc8fee4cb =400x250)
-![image](https://github.com/user-attachments/assets/421aef13-72c1-4fb3-bd70-a6c6b9e99894 =400x250)
-![image](https://github.com/user-attachments/assets/a99ffe94-eada-461f-8849-f5ea410eb74b =400x250)
-![image](https://github.com/user-attachments/assets/9a6db00b-cac1-4f79-a202-59d7af5dfa8c =400x250)
-![image](https://github.com/user-attachments/assets/a6641c17-8f4f-432f-957f-641d393940e0 =400x250)
-![image](https://github.com/user-attachments/assets/3ee41218-046b-43c8-a1a0-dbb4d5cef921 =400x250)
-![image](https://github.com/user-attachments/assets/2023d4f0-6227-43a3-b679-f51e71c8b591 =400x250)
-![image](https://github.com/user-attachments/assets/6bb065a0-08ab-4f99-9bc5-434b540f5293 =400x250)
+<img src="https://github.com/user-attachments/assets/983ef10e-33b0-4579-8115-6f91e526e6d0" width="300"/>
+<img src="https://github.com/user-attachments/assets/849308ca-d766-4d94-b6bd-3f4f75023958" width="300"/>
+<img src="https://github.com/user-attachments/assets/871cd855-aa95-4bea-8251-0a4d46eb4e1c" width="300"/>
+<img src="https://github.com/user-attachments/assets/b6f37a22-c07c-40ae-b65d-a85c371cab71" width="300"/>
+<img src="https://github.com/user-attachments/assets/7ecda481-6811-4b2d-81f9-f1dcc8fee4cb" width="300"/>
+<img src="https://github.com/user-attachments/assets/421aef13-72c1-4fb3-bd70-a6c6b9e99894" width="300"/>
+<img src="https://github.com/user-attachments/assets/a99ffe94-eada-461f-8849-f5ea410eb74b" width="300"/>
+<img src="https://github.com/user-attachments/assets/9a6db00b-cac1-4f79-a202-59d7af5dfa8c" width="300"/>
+<img src="https://github.com/user-attachments/assets/a6641c17-8f4f-432f-957f-641d393940e0" width="300"/>
+<img src="https://github.com/user-attachments/assets/3ee41218-046b-43c8-a1a0-dbb4d5cef921" width="300"/>
+<img src="https://github.com/user-attachments/assets/2023d4f0-6227-43a3-b679-f51e71c8b591" width="300"/>
+<img src="https://github.com/user-attachments/assets/6bb065a0-08ab-4f99-9bc5-434b540f5293" width="300"/>
 
 ---
 
