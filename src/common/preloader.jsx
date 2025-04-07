@@ -3,8 +3,8 @@ import "../css/common/preloader.css";
 
 const Preloader = () => {
   const [visible, setVisible] = useState(true);
-  const [progress, setProgress] = useState(0);
-  const progressRef = useRef(0);
+  const [progress, setProgress] = useState(20);
+  const progressRef = useRef(20);
   const animationRef = useRef(null);
   const reachedNinetyRef = useRef(false);
   const reachedNinetyFiveRef = useRef(false);
@@ -68,8 +68,8 @@ const Preloader = () => {
       let increment = 0;
       
       if (progressRef.current < 30) {
-        // Fast initial progress (0-30%)
-        increment = (elapsed / 1000) * 30; // 30% per second
+        // Fast initial progress (20-30%)
+        increment = (elapsed / 1000) * 10; // 10% per second
       } else if (progressRef.current < 60) {
         // Medium speed (30-60%)
         increment = (elapsed / 1000) * 20; // 20% per second
