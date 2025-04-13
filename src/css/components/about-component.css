@@ -496,6 +496,7 @@ body:has(.abt-pg-container) .sdm-nvb-hidden {
   cursor: pointer;
   overflow: hidden;
   transition: all 0.4s ease;
+  padding: 0 !important;
 }
 
 @media (min-width: 992px) {
