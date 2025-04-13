@@ -241,6 +241,7 @@ body:has(.abst-pg-container) .sdm-nvb-hidden {
   display: inline;
   width: max-content;
   padding-right: 20px;
+  max-width: 100%;
 }
 
 .abst-hf-container .title::after {
