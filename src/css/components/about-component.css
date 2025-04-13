@@ -214,6 +214,8 @@ body:has(.abt-pg-container) .sdm-nvb-hidden {
 .abt-mv-container {
   margin: 0 !important;
   max-width: 100% !important;
+  justify-content: space-evenly;
+  gap: 20px !important;
 }
 
 .abt-info {
@@ -337,8 +339,6 @@ body:has(.abt-pg-container) .sdm-nvb-hidden {
 }
 
 .abt-stat-container .wrapper {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
   margin-left: auto;
   margin-right: auto;
   width: 100%;
@@ -349,6 +349,10 @@ body:has(.abt-pg-container) .sdm-nvb-hidden {
   grid-template-columns: repeat(1, minmax(0px, 1fr));
   align-items: center;
   gap: 3rem;
+  width: 100% !important;
+  margin: auto;
+  max-width: 100%;
+  padding: 0 3rem;
 }
 
 @media (min-width: 1024px) {
@@ -496,6 +500,8 @@ body:has(.abt-pg-container) .sdm-nvb-hidden {
   cursor: pointer;
   overflow: hidden;
   transition: all 0.4s ease;
+  zoom: 90%;
+  margin: 10px !important;
 }
 .abt-container .feature-card {
   padding: 0 !important;
