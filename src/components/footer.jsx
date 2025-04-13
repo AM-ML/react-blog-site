@@ -66,7 +66,7 @@ const Footer = () => {
                   </a>
                 </li>
                 <li className="li menu-item menu-item-type-post_type menu-item-object-product">
-                  <a href="#">
+                  <a href="https://www.linkedin.com/company/boffo-consulting-group">
                     <i className="bx bxl-linkedin me-1"></i>
                     LinkedIn
                   </a>
@@ -78,7 +78,7 @@ const Footer = () => {
                   </a>
                 </li>
                 <li className="ig menu-item menu-item-type-post_type menu-item-object-product">
-                  <a href="#">
+                  <a href="https://www.instagram.com/boffo_consulting_group">
                     <i className="bx bxl-instagram me-1"></i>
                     Instagram
                   </a>
@@ -89,10 +89,10 @@ const Footer = () => {
               <h2 className="footer-menu-name"> Company</h2>
               <ul id="menu-company" className="footer-menu-list">
                 <li className="menu-item menu-item-type-post_type menu-item-object-page">
-                  <Link to="/careers/overview">Careers</Link>
+                  <Link to="/about-us/overview">About Us</Link>
                 </li>
                 <li className="menu-item menu-item-type-post_type menu-item-object-page">
-                  <Link to="/about-us/overview">About Us</Link>
+                  <Link to="/about-us/our-story">Our Story</Link>
                 </li>
               </ul>
             </div>

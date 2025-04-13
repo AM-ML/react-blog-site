@@ -126,14 +126,14 @@ const Contact = ({}) => {
                 <i className="bx bxl-facebook-square"></i>
               </a>
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/boffo_consulting_group"
                 target="_blank"
                 className="media-link"
               >
                 <i className="bx bxl-instagram"></i>
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/company/boffo-consulting-group"
                 target="_blank"
                 className="media-link"
               >

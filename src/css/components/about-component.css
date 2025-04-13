@@ -502,6 +502,7 @@ body:has(.abt-pg-container) .sdm-nvb-hidden {
   transition: all 0.4s ease;
   zoom: 90%;
   margin: 10px !important;
+  border-radius: 30px;
 }
 .abt-container .feature-card {
   padding: 0 !important;
