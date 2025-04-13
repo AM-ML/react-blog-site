@@ -496,6 +496,8 @@ body:has(.abt-pg-container) .sdm-nvb-hidden {
   cursor: pointer;
   overflow: hidden;
   transition: all 0.4s ease;
+}
+.abt-container .feature-card {
   padding: 0 !important;
 }
 
