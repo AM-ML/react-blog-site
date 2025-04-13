@@ -5,6 +5,7 @@
 .abst-info {
   max-width: 1450px;
   margin: auto;
+  padding: 20px;
 }
 
 .abst-header .abst-img-c {
@@ -29,7 +30,7 @@
 
 .abst-img-shadow {
   position: absolute;
-  background: linear-gradient(to bottom, #18204988, #2d407e88);
+  background: linear-gradient(to bottom, rgba(98, 98, 98, 0.4), rgba(0, 0, 0, 0.4));
   z-index: -1;
   width: 100%;
   height: 100vh;
@@ -66,11 +67,14 @@
   font-family: "Domine";
   color: yellow;
   position: relative;
+  padding: 0 8px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
 }
 
 /* Add an underline animation to the highlight */
 .abst-header-text .abst-title .highlight::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 0;
   height: 3px;
@@ -84,6 +88,11 @@
   width: 100%;
 }
 
+.abst-header-text .abst-title .highlight:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 .abst-header-text .abst-desc {
   font-weight: 300;
   font-family: "roboto";
@@ -94,6 +103,9 @@
   opacity: 0;
   animation-fill-mode: forwards;
   margin-top: 40px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  max-width: 800px;
+  line-height: 1.6;
 }
 
 .abst-header .abst-arrow-c {
@@ -106,7 +118,11 @@
 }
 
 @keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
     transform: translateY(0);
   }
   40% {
@@ -125,10 +141,44 @@
   font-size: 50px;
   color: white;
   transition: transform 0.3s ease;
+  width: 50px;
+  height: 50px;
+  stroke-width: 1.5;
 }
 
 .abst-arrow-c:hover .abst-arrow {
   transform: scale(1.2);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 @media screen and (min-width: 700px) {
@@ -159,7 +209,7 @@
 
 body:has(.abst-pg-container) .np-header,
 body:has(.abst-pg-container) .navbar {
-  background: transparent ;
+  background: transparent;
 }
 
 body:has(.abst-pg-container) .sdm-nvb-showing,
@@ -172,11 +222,13 @@ body:has(.abst-pg-container) .sdm-nvb-hidden {
   margin-top: 20px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border-radius: 8px;
+  position: relative;
+  overflow: hidden;
 }
 
 .abst-hf-container:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   background-color: rgba(245, 247, 250, 0.5);
 }
 
@@ -186,11 +238,13 @@ body:has(.abst-pg-container) .sdm-nvb-hidden {
   font-family: "inter";
   margin-bottom: 20px;
   position: relative;
-  display: inline-block;
+  display: inline;
+  width: max-content;
+  padding-right: 20px;
 }
 
 .abst-hf-container .title::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 0;
   height: 2px;
@@ -236,32 +290,160 @@ body:has(.abst-pg-container) .sdm-nvb-hidden {
   margin: 10px;
   padding: 30px;
   border-radius: 8px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(21, 98, 108, 0.1);
+  background-color: white;
 }
 
 .abst-hfs-container .abst-hf-container:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Feature card styles */
+.feature-card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  cursor: pointer;
+}
+
+.feature-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background-color: #15626c;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.feature-icon {
+  color: white;
+  width: 30px;
+  height: 30px;
+}
+
+.feature-card:hover .feature-icon-container {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(21, 98, 108, 0.3);
+}
+
+.feature-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(21, 98, 108, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  border-radius: 8px;
+  z-index: 10;
+}
+
+.feature-card.active .feature-overlay {
+  opacity: 1;
+}
+
+.feature-details {
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.feature-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+  text-align: left;
+}
+
+.feature-list li {
+  margin-bottom: 10px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.feature-list li:before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: white;
+}
+
+.feature-btn {
+  background-color: white;
+  color: #15626c;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 auto;
+}
+
+.feature-btn:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Add staggered animation to the feature boxes */
 .abst-hfs-container .abst-hf-container:nth-child(1) {
-  animation: fadeIn 0.5s ease-in-out forwards;
+  animation: scaleIn 0.5s ease-in-out forwards;
   animation-delay: 0.1s;
+  opacity: 0;
 }
 
 .abst-hfs-container .abst-hf-container:nth-child(2) {
-  animation: fadeIn 0.5s ease-in-out forwards;
+  animation: scaleIn 0.5s ease-in-out forwards;
   animation-delay: 0.2s;
+  opacity: 0;
 }
 
 .abst-hfs-container .abst-hf-container:nth-child(3) {
-  animation: fadeIn 0.5s ease-in-out forwards;
+  animation: scaleIn 0.5s ease-in-out forwards;
   animation-delay: 0.3s;
+  opacity: 0;
 }
 
 .abst-hfs-container .abst-hf-container:nth-child(4) {
-  animation: fadeIn 0.5s ease-in-out forwards;
+  animation: scaleIn 0.5s ease-in-out forwards;
   animation-delay: 0.4s;
+  opacity: 0;
 }
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .feature-overlay {
+    position: relative;
+    opacity: 1;
+    height: auto;
+    background-color: rgba(21, 98, 108, 0.1);
+  }
+
+  .feature-details {
+    color: #333;
+  }
+
+  .feature-list li:before {
+    color: #15626c;
+  }
+
+  .feature-btn {
+    background-color: #15626c;
+    color: white;
+  }
+}
+

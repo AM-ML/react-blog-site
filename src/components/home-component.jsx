@@ -233,7 +233,11 @@ const HomeComponent = () => {
                   data-component-name="Link"
                   data-component-content="%7B%22text%22%3A%22Learn%20more%22%2C%22className%22%3A%22inline-flex%20items-center%20text-sm%20font-medium%20text-primary%20transition-colors%22%7D"
                   className="item-link inline-flex items-center text-sm font-medium text-primary transition-colors"
-                  to="/services#strategy-corporate-finance"
+                  to={
+                    ["/about-us/overview", "/about-us/sustainability"][
+                      i == 4 ? 1 : 0
+                    ]
+                  }
                 >
                   Learn more
                   <svg

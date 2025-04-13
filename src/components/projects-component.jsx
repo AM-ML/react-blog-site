@@ -1,3 +1,5 @@
+"use client";
+
 import "../css/components/projects-component.css";
 import cp1 from "../assets/about-us/construction/1.webp";
 import cp2 from "../assets/about-us/construction/2.webp";
@@ -13,7 +15,15 @@ import dp2 from "../assets/about-us/domestic/d2.webp";
 import dp3 from "../assets/about-us/domestic/d3.webp";
 import dp4 from "../assets/about-us/domestic/d4.webp";
 import ScrollRevealWrapper from "../common/ScrollRevealWrapper";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import ReactDOM from "react-dom";
+import { MapPin, Calendar, Building, ChevronDown, Tag, X } from "lucide-react";
+
+// Define different heights for project cards to create visual interest
+const getRandomHeight = () => {
+  const heights = [200, 220, 250, 280];
+  return heights[Math.floor(Math.random() * heights.length)];
+};
 
 const construction_projects = [
   {
@@ -23,6 +33,8 @@ const construction_projects = [
     location: "Lebanon",
     client_name: "Lebanese government- CDR",
     img: cp1,
+    category: "Infrastructure",
+    imgHeight: getRandomHeight(),
   },
   {
     title: "MUNICIPALITIES FACILITIES",
@@ -31,6 +43,8 @@ const construction_projects = [
     location: "Lebanon",
     client_name: "Lebanese government- Nabatieh Region Municipality",
     img: cp2,
+    category: "Public Facilities",
+    imgHeight: getRandomHeight(),
   },
   {
     title:
@@ -40,6 +54,8 @@ const construction_projects = [
     location: "Lebanon",
     client_name: "Lebanese government",
     img: cp3,
+    category: "Electrical",
+    imgHeight: getRandomHeight(),
   },
   {
     title: "JANNAT EL HUSSEIN",
@@ -48,6 +64,8 @@ const construction_projects = [
     location: "Karbalaa - Iraq",
     client_name: "IRCCO GROUP",
     img: cp4,
+    category: "Private Infrastructure",
+    imgHeight: getRandomHeight(),
   },
   {
     title: "STUDY AND DESIGN OF UTILIZATION OF DAM WATER",
@@ -55,6 +73,8 @@ const construction_projects = [
     location: "Saudia Arabia",
     client_name: "Ministry of Environment Water & Agriculture Municipality",
     img: cp5,
+    category: "Water Management",
+    imgHeight: getRandomHeight(),
   },
   {
     title: "CREATING A TRADITIONAL HERITAGE SQUARE",
@@ -62,119 +82,214 @@ const construction_projects = [
     location: "Karbalaa - Iraq",
     client_name: "IRCCO GROUP",
     img: cp6,
+    category: "Heritage",
+    imgHeight: getRandomHeight(),
   },
   {
-    title: "CREATING A TRADITIONAL HERITAGESQUARE AROUND MOSQUE",
+    title: "CREATING A TRADITIONAL HERITAGE SQUARE AROUND MOSQUE",
     desc: "Creating a public heritage square around the mosque in water in Maroun Al Ras village.",
     location: "South Governance-Maroun Al Ras Lebanon",
     client_name: "Municipality of Maroun al Ras",
     img: cp7,
+    category: "Heritage",
+    imgHeight: getRandomHeight(),
   },
   {
     title: "ASSAHA EL-TURATHIYA - MAROUN EL RAS",
-    desc: "",
-    location: "",
-    client_name: "",
+    desc: "Traditional public square development project focused on preserving cultural heritage while creating functional community spaces.",
+    location: "Maroun El Ras, Lebanon",
+    client_name: "Local Municipality",
     img: cp8,
+    category: "Public Space",
+    imgHeight: getRandomHeight(),
   },
   {
     title: "RENNOVATION OF MAKAM BENYAMIN SITE",
-    desc: "",
-    location: "",
-    client_name: "",
+    desc: "Historical site renovation project aimed at preserving cultural significance while improving visitor facilities and accessibility.",
+    location: "Lebanon",
+    client_name: "Heritage Foundation",
     img: cp9,
+    category: "Renovation",
+    imgHeight: getRandomHeight(),
   },
 ];
 
 const domestic_projects = [
   {
     title: "SOLAR POWERED WATER PUMP",
-    desc: " 171 panels installed for a 70 HP PUMP",
+    desc: "171 panels installed for a 70 HP PUMP, providing sustainable energy for water distribution in rural areas.",
     location: "Maroun Al Ras - Lebanon",
     date: "2023",
     img: dp1,
+    category: "Renewable Energy",
+    imgHeight: getRandomHeight(),
   },
   {
     title: "GHAZIEH ELECTRICAL STATION",
-    desc: "250 Solar Panels Installed",
+    desc: "250 Solar Panels Installed to power local electrical infrastructure, reducing dependency on traditional power sources.",
     location: "Ghazieh - South Lebanon",
     date: "2023",
     img: dp2,
+    category: "Renewable Energy",
+    imgHeight: getRandomHeight(),
   },
   {
     title: "SOLAR POWERED WATER PUMP",
-    desc: "200 panel installed for a 75 HP PUMP",
+    desc: "200 panel installed for a 75 HP PUMP, creating an efficient and environmentally friendly water distribution system.",
     location: "Mazraat Mechref - South Lebanon",
     date: "2022",
     img: dp3,
+    category: "Renewable Energy",
+    imgHeight: getRandomHeight(),
   },
   {
     title: "MAATOUK STEAL FACTORY",
-    desc: "210 Solar Panels Installed",
+    desc: "210 Solar Panels Installed to power industrial operations, significantly reducing operational costs and environmental impact.",
     location: "Toul - South Lebanon",
     date: "2023",
     img: dp4,
+    category: "Industrial",
+    imgHeight: getRandomHeight(),
   },
 ];
 
-const Project = ({ title, desc, date, location, client_name = "", img }) => {
+const Project = ({
+  title,
+  desc,
+  date,
+  location,
+  client_name = "",
+  img,
+  category,
+  imgHeight,
+}) => {
   const [expanded, setExpanded] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const handleExpand = (e) => {
     e.stopPropagation(); // Prevent event bubbling
-    setExpanded(!expanded);
+
+    // Instead of expanding in-place, show a modal with details
+    if (desc) {
+      setShowModal(true);
+      document.body.style.overflow = "hidden"; // Prevent scrolling when modal is open
+    }
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    document.body.style.overflow = ""; // Re-enable scrolling
   };
 
   return (
-    <div
-      className={`abp-p-card ${expanded ? "expanded" : ""}`}
-      onClick={desc ? handleExpand : undefined}
-    >
-      <div className="abp-p-img-container">
-        <img src={img} alt={title} className="abp-p-img" />
-        <div className="abp-p-overlay"></div>
-      </div>
-      <div className="abp-p-info">
-        <h3 className="abp-p-title">{title}</h3>
-
-        <div className="abp-p-basic-info">
-          {location && (
-            <p className="abp-p-details">
-              <span className="abp-p-location">
-                <i className="bx bx-map"></i> {location}
-              </span>
-              {date && (
-                <span className="abp-p-date">
-                  <i className="bx bx-calendar"></i> {date}
-                </span>
-              )}
-            </p>
-          )}
-          {client_name && (
-            <p className="abp-p-client">
-              <i className="bx bx-building-house"></i> Client: {client_name}
-            </p>
+    <>
+      <div className="abp-p-card" onClick={desc ? handleExpand : undefined}>
+        <div
+          className="abp-p-img-container"
+          style={{ height: `${imgHeight}px` }}
+        >
+          <img
+            src={img || "/placeholder.svg"}
+            alt={title}
+            className="abp-p-img"
+          />
+          <div className="abp-p-overlay"></div>
+          {category && (
+            <div className="abp-p-category">
+              <Tag size={14} />
+              <span>{category}</span>
+            </div>
           )}
         </div>
+        <div className="abp-p-info">
+          <h3 className="abp-p-title">{title}</h3>
 
-        {desc && (
-          <>
-            <div className={`abp-p-description ${expanded ? "visible" : ""}`}>
-              <p className="abp-p-desc">{desc}</p>
-            </div>
+          <div className="abp-p-basic-info">
+            {location && (
+              <p className="abp-p-details">
+                <span className="abp-p-location">
+                  <MapPin size={16} /> {location}
+                </span>
+                {date && (
+                  <span className="abp-p-date">
+                    <Calendar size={16} /> {date}
+                  </span>
+                )}
+              </p>
+            )}
+            {client_name && (
+              <p className="abp-p-client">
+                <Building size={16} /> Client: {client_name}
+              </p>
+            )}
+          </div>
 
-            <div className="abp-p-expand-indicator" onClick={handleExpand}>
-              <i
-                className={`bx ${
-                  expanded ? "bx-chevron-up" : "bx-chevron-down"
-                }`}
-              ></i>
-              <span>{expanded ? "Less Details" : "More Details"}</span>
+          {desc && (
+            <div className="abp-p-expand-indicator">
+              <ChevronDown size={18} />
+              <span>View Details</span>
             </div>
-          </>
-        )}
+          )}
+        </div>
       </div>
-    </div>
+
+      {/* Modal for expanded view */}
+      {showModal &&
+        ReactDOM.createPortal(
+          <div className="project-modal-overlay" onClick={closeModal}>
+            <div
+              className="project-modal-content"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button className="modal-close-btn" onClick={closeModal}>
+                <X size={24} />
+              </button>
+
+              <div className="modal-image-container">
+                <img
+                  src={img || "/placeholder.svg"}
+                  alt={title}
+                  className="modal-image"
+                />
+                {category && (
+                  <div className="modal-category">
+                    <Tag size={14} />
+                    <span>{category}</span>
+                  </div>
+                )}
+              </div>
+
+              <div className="modal-info">
+                <h2 className="modal-title">{title}</h2>
+
+                <div className="modal-details">
+                  {location && (
+                    <span className="modal-location">
+                      <MapPin size={18} /> {location}
+                    </span>
+                  )}
+                  {date && (
+                    <span className="modal-date">
+                      <Calendar size={18} /> {date}
+                    </span>
+                  )}
+                  {client_name && (
+                    <span className="modal-client">
+                      <Building size={18} /> Client: {client_name}
+                    </span>
+                  )}
+                </div>
+
+                <div className="modal-description">
+                  <h3>Project Description</h3>
+                  <p>{desc}</p>
+                </div>
+              </div>
+            </div>
+          </div>,
+          document.body
+        )}
+    </>
   );
 };
 
@@ -182,13 +297,15 @@ const ProjectsComponent = () => {
   return (
     <section className="abp-container">
       <section className="abp-info" id="info">
-        <ScrollRevealWrapper animation="fade">
-          <h2 className="abp-section-title abp-cp-title">
-            <span className="abp-section-title-underline">
-              Construction Projects
-            </span>
-          </h2>
-        </ScrollRevealWrapper>
+        <div className="section-header">
+          <ScrollRevealWrapper animation="fade">
+            <h2 className="abp-section-title abp-cp-title">
+              <span className="abp-section-title-underline">
+                Construction Projects
+              </span>
+            </h2>
+          </ScrollRevealWrapper>
+        </div>
 
         <div className="abp-cp-container abp-projs-container">
           {construction_projects.map((project, i) => (
@@ -200,13 +317,15 @@ const ProjectsComponent = () => {
           ))}
         </div>
 
-        <ScrollRevealWrapper animation="fade">
-          <h2 className="abp-section-title abp-dp-title">
-            <span className="abp-section-title-underline">
-              Domestic & Municipalities Projects
-            </span>
-          </h2>
-        </ScrollRevealWrapper>
+        <div className="section-header">
+          <ScrollRevealWrapper animation="fade">
+            <h2 className="abp-section-title abp-dp-title">
+              <span className="abp-section-title-underline">
+                Domestic & Municipalities Projects
+              </span>
+            </h2>
+          </ScrollRevealWrapper>
+        </div>
 
         <div className="abp-dp-container abp-projs-container">
           {domestic_projects.map((project, i) => (

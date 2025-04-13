@@ -1,4 +1,3 @@
-import "../css/themes/light.css";
 import "../css/components/main-panel.css";
 import { useContext, useState } from "react";
 import { UserContext } from "../Router";
@@ -140,131 +139,158 @@ const MainPanel = () => {
     <main className="mp-container">
       <Toaster />
       <section className="mp-submit-bc">
-        <h1 className="mp-submit-bc-page-title">Edit</h1>
+        <h1 className="mp-submit-bc-page-title">Edit Profile</h1>
         <button
           className="btn btn-lg mp-submit-btn cpwd-submit"
           onClick={handleSaveChanges}
         >
+          <i className="bx bx-save mp-save-icon"></i>
           Save
         </button>
       </section>
 
-      <section className="mp-input-container">
-        <article className="mp-profile-img-ic">
-          <label htmlFor="mp-profile-img-input" className="mp-img-overlay">
+      <div className="mp-card">
+        <section className="mp-input-container">
+          <article className="mp-profile-img-ic">
+            <label htmlFor="mp-profile-img-input" className="mp-img-overlay">
+              <img
+                src={cloud_img || "/placeholder.svg"}
+                alt="Upload to cloud"
+                className="mp-overlay-img"
+                loading="lazy"
+              />
+              <span className="mp-overlay-text">Change Photo</span>
+              <input
+                type="file"
+                accept=".png, .jpg, .jpeg"
+                id="mp-profile-img-input"
+                onChange={handleFileSelect}
+                hidden
+              />
+            </label>
             <img
-              src={cloud_img}
-              alt="Upload to cloud"
-              className="mp-overlay-img"
+              src={profile_img || "/placeholder.svg"}
+              onError={handleProfileImgError}
+              alt="Profile Image"
+              className="mp-profile-img"
               loading="lazy"
             />
+          </article>
 
-            <input
-              type="file"
-              accept=".png, .jpg, .jpeg"
-              id="mp-profile-img-input"
-              onChange={handleFileSelect}
-              hidden
-            />
-          </label>
-          <img
-            src={profile_img}
-            onError={handleProfileImgError}
-            alt="Profile Image"
-            className="mp-profile-img"
-            loading="lazy"
-          />
-        </article>
-
-        <article className="mp-text-ic">
-          <div className="mp-name-ic">
-            <input
-              name="name"
-              value={updatedAccount.name}
-              onChange={handleInputChange}
-              type="text"
-              spellCheck="false"
-              className={"mp-name " + (google_auth ? "disabled" : "")}
-              disabled={google_auth}
-            />
-          </div>
-
-          <div className="mp-email-ic">
-            <input
-              name="email"
-              type="text"
-              value={updatedAccount.email}
-              onChange={handleInputChange}
-              className={"mp-email " + (google_auth ? "disabled" : "")}
-              spellCheck="false"
-              disabled={google_auth}
-            />
-          </div>
-        </article>
-      </section>
-
-      <section className="mp-info-container">
-        {/* Social Links Section */}
-        {is_author && (
-          <section className="mp-info-ic mp-socials-ic ms-4">
-            <h2 className="mp-socials-title mp-info-title">Socials</h2>
-            <div className="mp-socials">
-              <AnimationWrapper transition={{ duration: 0.3 }}>
-                <div className="mp-social-link">
-                  <i className="mp-social-icon instagram-icon bx bxl-instagram-alt"></i>
-                  <input
-                    name="social_links.instagram"
-                    value={updatedAccount.social_links.instagram}
-                    onChange={handleInputChange}
-                    spellCheck="false"
-                    type="text"
-                    className="mp-social-url mp-instagram-url text-clamp"
-                  />
-                </div>
-              </AnimationWrapper>
-              <AnimationWrapper transition={{ duration: 0.3 }}>
-                <div className="mp-social-link">
-                  <i className="mp-social-icon linkedin-icon bx bxl-linkedin-square"></i>
-                  <input
-                    name="social_links.linkedin"
-                    value={updatedAccount.social_links.linkedin}
-                    onChange={handleInputChange}
-                    spellCheck="false"
-                    type="text"
-                    className="mp-social-url mp-linkedin-url text-clamp"
-                  />
-                </div>
-              </AnimationWrapper>
-              <AnimationWrapper transition={{ duration: 0.3 }}>
-                <div className="mp-social-link">
-                  <i className="mp-social-icon facebook-icon bx bxl-facebook-square"></i>
-                  <input
-                    name="social_links.facebook"
-                    value={updatedAccount.social_links.facebook}
-                    onChange={handleInputChange}
-                    spellCheck="false"
-                    type="text"
-                    className="mp-social-url mp-facebook-url text-clamp"
-                  />
-                </div>
-              </AnimationWrapper>
-              <AnimationWrapper transition={{ duration: 0.3 }}>
-                <div className="mp-social-link">
-                  <i className="mp-social-icon twitter-icon bx bxl-twitter"></i>
-                  <input
-                    name="social_links.twitter"
-                    value={updatedAccount.social_links.twitter}
-                    onChange={handleInputChange}
-                    spellCheck="false"
-                    type="text"
-                    className="mp-social-url mp-twitter-url text-clamp"
-                  />
-                </div>
-              </AnimationWrapper>
+          <article className="mp-text-ic">
+            <div className="mp-input-group">
+              <label className="mp-input-label">Name</label>
+              <div className="mp-name-ic">
+                <input
+                  name="name"
+                  value={updatedAccount.name}
+                  onChange={handleInputChange}
+                  type="text"
+                  spellCheck="false"
+                  className={"mp-name " + (google_auth ? "disabled" : "")}
+                  disabled={google_auth}
+                />
+              </div>
             </div>
+
+            <div className="mp-input-group">
+              <label className="mp-input-label">Email</label>
+              <div className="mp-email-ic">
+                <input
+                  name="email"
+                  type="text"
+                  value={updatedAccount.email}
+                  onChange={handleInputChange}
+                  className={"mp-email " + (google_auth ? "disabled" : "")}
+                  spellCheck="false"
+                  disabled={google_auth}
+                />
+              </div>
+              {google_auth && (
+                <p className="mp-google-note">
+                  Google accounts cannot change their email
+                </p>
+              )}
+            </div>
+          </article>
+        </section>
+      </div>
+
+      {is_author && (
+        <div className="mp-card">
+          <section className="mp-info-container">
+            <section className="mp-info-ic mp-socials-ic">
+              <h2 className="mp-socials-title mp-info-title">Social Links</h2>
+              <div className="mp-socials">
+                <AnimationWrapper transition={{ duration: 0.3 }}>
+                  <div className="mp-social-link">
+                    <div className="mp-social-icon-wrapper instagram-bg">
+                      <i className="mp-social-icon instagram-icon bx bxl-instagram-alt"></i>
+                    </div>
+                    <input
+                      name="social_links.instagram"
+                      value={updatedAccount.social_links.instagram}
+                      onChange={handleInputChange}
+                      spellCheck="false"
+                      type="text"
+                      placeholder="Instagram profile URL"
+                      className="mp-social-url mp-instagram-url text-clamp"
+                    />
+                  </div>
+                </AnimationWrapper>
+                <AnimationWrapper transition={{ duration: 0.3 }}>
+                  <div className="mp-social-link">
+                    <div className="mp-social-icon-wrapper linkedin-bg">
+                      <i className="mp-social-icon linkedin-icon bx bxl-linkedin-square"></i>
+                    </div>
+                    <input
+                      name="social_links.linkedin"
+                      value={updatedAccount.social_links.linkedin}
+                      onChange={handleInputChange}
+                      spellCheck="false"
+                      type="text"
+                      placeholder="LinkedIn profile URL"
+                      className="mp-social-url mp-linkedin-url text-clamp"
+                    />
+                  </div>
+                </AnimationWrapper>
+                <AnimationWrapper transition={{ duration: 0.3 }}>
+                  <div className="mp-social-link">
+                    <div className="mp-social-icon-wrapper facebook-bg">
+                      <i className="mp-social-icon facebook-icon bx bxl-facebook-square"></i>
+                    </div>
+                    <input
+                      name="social_links.facebook"
+                      value={updatedAccount.social_links.facebook}
+                      onChange={handleInputChange}
+                      spellCheck="false"
+                      type="text"
+                      placeholder="Facebook profile URL"
+                      className="mp-social-url mp-facebook-url text-clamp"
+                    />
+                  </div>
+                </AnimationWrapper>
+                <AnimationWrapper transition={{ duration: 0.3 }}>
+                  <div className="mp-social-link">
+                    <div className="mp-social-icon-wrapper twitter-bg">
+                      <i className="mp-social-icon twitter-icon bx bxl-twitter"></i>
+                    </div>
+                    <input
+                      name="social_links.twitter"
+                      value={updatedAccount.social_links.twitter}
+                      onChange={handleInputChange}
+                      spellCheck="false"
+                      type="text"
+                      placeholder="Twitter profile URL"
+                      className="mp-social-url mp-twitter-url text-clamp"
+                    />
+                  </div>
+                </AnimationWrapper>
+              </div>
+            </section>
           </section>
-        )}
-      </section>
+        </div>
+      )}
     </main>
   );
 };

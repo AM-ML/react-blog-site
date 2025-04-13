@@ -32,6 +32,7 @@
 .bgcd-container {
   width: calc(100% - 7rem) !important;
   transition: transform 0.3s ease;
+  margin-right: 40rem;
 }
 
 .bgcd-container:hover {
@@ -45,6 +46,7 @@
   max-width: calc(100vw - 130px);
   font-family: "Domine";
   position: relative;
+  margin-right: 2rem;
 }
 
 .bgcd-title::after {
