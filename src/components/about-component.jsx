@@ -262,16 +262,16 @@ const AboutComponent = () => {
                   <span className="header">OUR PURPOSE</span>
                   <h2 className="title">Creating value that matters</h2>
                   <p className="desc-r1">
-                    For over two decades, we've been helping organizations solve
-                    their most pressing challenges. We combine deep industry
-                    expertise, advanced analytics, and innovative approaches to
-                    help our clients shape their futures.
+                    At BOFFO Consulting Group, we turn your goals into reality
+                    through smart, sustainable solutions. With expert insight
+                    and advanced tech, we cut costs, boost quality, and tailor
+                    every project to your needs.
                   </p>
                   <p className="desc-r2">
-                    Our firm is designed to operate as one—a single global
-                    partnership united by a strong set of values, including an
-                    unrelenting commitment to serving our clients with
-                    distinction and integrity.
+                    We build trust-driven partnerships through personalized
+                    consulting focused on your success. With BOFFO, you gain a
+                    dedicated ally in driving growth and shaping the built
+                    environment.
                   </p>
                   <div className="stats">
                     <div className="item">

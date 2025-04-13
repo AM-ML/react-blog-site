@@ -1,6 +1,7 @@
 import AnimationWrapper from "../common/page-animation";
 import CVI from "../assets/obj/crane.webp";
 import Service from "./boilerplate";
+import "../css/services/civil-engineering.css";
 
 const CivilEngineering = () => {
   const description =

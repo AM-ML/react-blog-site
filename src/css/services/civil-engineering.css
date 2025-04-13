@@ -1,0 +1,158 @@
+.srv-container.cve-container .srv-main {
+  margin: 0 auto !important;
+}
+
+.srv-container.cve-container .srv-content-wrapper {
+  display: flex;
+  flex-direction: row-reverse !important;
+}
+
+.srv-container.cve-container .srv-main .srv-img-c {
+  position: relative;
+  overflow: hidden;
+}
+
+.srv-container.cve-container .srv-main .srv-img-c::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.srv-container.cve-container .srv-main .srv-img-c:hover::after {
+  opacity: 1;
+}
+
+.srv-container.cve-container .srv-main .srv-text .srv-name::after {
+  background-color: #F6B100;
+}
+
+.srv-container.cve-container .srv-text-sm .srv-name::after {
+  background-color: #F6B100;
+}
+
+.srv-container.cve-container .srv-learn-more {
+  background-color: #F6B100;
+  box-shadow: 0 4px 6px rgba(231, 76, 60, 0.2);
+}
+
+.srv-container.cve-container .srv-learn-more:hover {
+  background-color: #e5a000;
+  box-shadow: 0 6px 12px rgba(231, 76, 60, 0.3);
+}
+
+.srv-container.cve-container .srv-description {
+  position: relative;
+  border-left: 4px solid #F6B100;
+  padding-left: 2rem;
+}
+
+.service-features {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-features:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.service-features h3 {
+  font-family: "Domine", serif;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.service-features h3::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background-color: currentColor;
+}
+
+.srv-container.cve-container .service-features h3::after {
+  background-color: #F6B100;
+}
+
+.srv-container.wtr-container .service-features h3::after {
+  background-color: #F6B100;
+}
+
+.service-features ul {
+  list-style: none;
+  padding: 0;
+}
+
+.service-features li {
+  padding: 0.8rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  position: relative;
+  padding-left: 1.5rem;
+  font-family: "Open Sans", sans-serif;
+}
+
+.service-features li:last-child {
+  border-bottom: none;
+}
+
+.service-features li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: currentColor;
+}
+
+.srv-container.cve-container .service-features li::before {
+  color: #F6B100;
+}
+
+.srv-container.wtr-container .service-features li::before {
+  color: #F6B100;
+}
+
+@media screen and (max-width: 820px) {
+  .srv-container.cve-container .srv-text-sm .srv-name {
+    font-size: 40px !important;
+  }
+
+  .srv-container.cve-container .srv-description {
+    border-left: none;
+    border-top: 4px solid #F6B100;
+    padding-left: 1.5rem;
+    padding-top: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .srv-container.cve-container .srv-text-sm .srv-name {
+    font-size: 28px !important;
+  }
+
+  .service-features {
+    padding: 1.5rem;
+  }
+
+  .service-features h3 {
+    font-size: 1.3rem;
+  }
+
+  .service-features li {
+    font-size: 0.95rem;
+  }
+}
+

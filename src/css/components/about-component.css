@@ -561,25 +561,28 @@ body:has(.abt-pg-container) .sdm-nvb-hidden {
 
 .mission-image {
   background-image: url("https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
-  background-color: rgba(21, 98, 108, 0.8);
+  background-color: #03404a52;
   background-blend-mode: overlay;
 }
 
 .vision-image {
   background-image: url("https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80");
   background-color: rgba(21, 98, 108, 0.8);
+  background-color: #03404a52;
   background-blend-mode: overlay;
 }
 
 .structure-image {
   background-image: url("https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
   background-color: rgba(21, 98, 108, 0.8);
+  background-color: #03404a52;
   background-blend-mode: overlay;
 }
 
 .alignment-image {
   background-image: url("https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
   background-color: rgba(21, 98, 108, 0.8);
+  background-color: #03404a52;
   background-blend-mode: overlay;
 }
 
