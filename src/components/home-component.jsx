@@ -5,6 +5,7 @@ import axios from "axios";
 import Loading from "../common/loading";
 import AnimationWrapper from "../common/page-animation";
 import cachedBlogsData from "./json/home-component-blogs-data.json";
+import headerImage from "../assets/home/header5.webp"; // Import the image directly
 
 // Lazy load the BlogCard component
 const BlogCard = lazy(() => import("../common/blogPreviewLG.jsx"));
@@ -14,9 +15,16 @@ const HomeComponent = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Preload critical images
+    const link = document.createElement("link");
+    link.rel = "preload";
+    link.as = "image";
+    link.href = headerImage;
+    document.head.appendChild(link);
+
     const loadLatestBlogs = async () => {
       try {
-        // Use cached data if available
+        // Use cached data if available to improve performance
         if (cachedBlogsData && cachedBlogsData.blogs) {
           setLatestBlogs(cachedBlogsData.blogs);
           setLoading(false);
@@ -40,14 +48,29 @@ const HomeComponent = () => {
       }
     };
 
-    loadLatestBlogs();
+    // Use requestIdleCallback for non-critical operations
+    if ("requestIdleCallback" in window) {
+      requestIdleCallback(() => loadLatestBlogs());
+    } else {
+      setTimeout(loadLatestBlogs, 100);
+    }
   }, []);
 
   return (
     <div className="hmc-container">
       <header className="hmc-header">
+        {/* Replace background image with proper <img> element for better LCP tracking */}
         <div className="layer-img">
           <div className="shadow-overlay"></div>
+          <img
+            src={headerImage}
+            alt="BOFFO Consulting Group header image"
+            loading="eager"
+            fetchpriority="high"
+            width="1920"
+            height="1080"
+            className="header-img"
+          />
         </div>
         <div className="hmc-info">
           <div className="hmc-text">
@@ -88,16 +111,7 @@ const HomeComponent = () => {
               "Expertise",
             ].map((item, i) => (
               <div key={i} className="item hmc-bg-c">
-                <div
-                  data-lov-id="src/pages/Index.tsx:123:16"
-                  data-lov-name="div"
-                  data-component-path="src/pages/Index.tsx"
-                  data-component-line="123"
-                  data-component-file="Index.tsx"
-                  data-component-name="div"
-                  data-component-content="%7B%22className%22%3A%22p-3%20bg-gray-50%20rounded-full%20w-fit%20mb-6%22%7D"
-                  class="p-3 bg-gray-50 rounded-full w-fit mb-6 item-icon"
-                >
+                <div className="p-3 bg-gray-50 rounded-full w-fit mb-6 item-icon">
                   {
                     [
                       <svg
@@ -107,17 +121,10 @@ const HomeComponent = () => {
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="lucide lucide-chart-column h-6 w-6"
-                        data-lov-id="src/pages/Index.tsx:82:22"
-                        data-lov-name="BarChart3"
-                        data-component-path="src/pages/Index.tsx"
-                        data-component-line="82"
-                        data-component-file="Index.tsx"
-                        data-component-name="BarChart3"
-                        data-component-content="%7B%22className%22%3A%22h-6%20w-6%22%7D"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="lucide lucide-chart-column h-6 w-6"
                       >
                         <path d="M3 3v16a2 2 0 0 0 2 2h16"></path>
                         <path d="M18 17V9"></path>
@@ -131,10 +138,10 @@ const HomeComponent = () => {
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="lucide lucide-lightbulb h-6 w-6"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="lucide lucide-lightbulb h-6 w-6"
                       >
                         <path d="M9 18h6"></path>
                         <path d="M10 22h4"></path>
@@ -150,16 +157,16 @@ const HomeComponent = () => {
                         <path
                           d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
                           stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                         <path
                           d="M9 12L10.6828 13.6828V13.6828C10.858 13.858 11.142 13.858 11.3172 13.6828V13.6828L15 10"
                           stroke="#323232"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>,
                       <svg
@@ -169,10 +176,10 @@ const HomeComponent = () => {
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="#000000"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="feather feather-users"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="feather feather-users"
                       >
                         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
                         <circle cx="9" cy="7" r="4" />
@@ -190,14 +197,12 @@ const HomeComponent = () => {
                       </svg>,
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink"
                         fill="#000000"
                         height="24"
                         width="24"
                         version="1.1"
                         id="_x31_"
                         viewBox="0 0 128 128"
-                        xml:space="preserve"
                       >
                         <path
                           id="_x32__26_"
@@ -225,17 +230,10 @@ const HomeComponent = () => {
                   }
                 </p>
                 <Link
-                  data-lov-id="src/pages/Index.tsx:128:16"
-                  data-lov-name="Link"
-                  data-component-path="src/pages/Index.tsx"
-                  data-component-line="128"
-                  data-component-file="Index.tsx"
-                  data-component-name="Link"
-                  data-component-content="%7B%22text%22%3A%22Learn%20more%22%2C%22className%22%3A%22inline-flex%20items-center%20text-sm%20font-medium%20text-primary%20transition-colors%22%7D"
                   className="item-link inline-flex items-center text-sm font-medium text-primary transition-colors"
                   to={
                     ["/about-us/overview", "/about-us/sustainability"][
-                      i == 4 ? 1 : 0
+                      i === 4 ? 1 : 0
                     ]
                   }
                 >
@@ -247,17 +245,10 @@ const HomeComponent = () => {
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="lucide lucide-arrow-up-right ml-1 h-4 w-4"
-                    data-lov-id="src/pages/Index.tsx:135:18"
-                    data-lov-name="ArrowUpRight"
-                    data-component-path="src/pages/Index.tsx"
-                    data-component-line="135"
-                    data-component-file="Index.tsx"
-                    data-component-name="ArrowUpRight"
-                    data-component-content="%7B%22className%22%3A%22ml-1%20h-4%20w-4%22%7D"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="lucide lucide-arrow-up-right ml-1 h-4 w-4"
                   >
                     <path d="M7 7h10v10"></path>
                     <path d="M7 17 17 7"></path>
@@ -279,24 +270,32 @@ const HomeComponent = () => {
             Explore our featured insights to help you achieve distinctive,
             lasting, and substantial performance improvements.
           </div>
-          <Suspense fallback={<div>Loading Blogs...</div>}>
-            <div className="hmc-bps">
-              {loading ? (
-                <Loading height="30vh" />
-              ) : (
-                latestBlogs.map((blog, i) => (
-                  <AnimationWrapper
-                    transition={{ duration: 1, delay: i * 0.01 }}
-                    key={blog._id}
-                  >
-                    <div className="hmc-bp-container">
+
+          {/* Defer loading of blogs section */}
+          <div className="hmc-bps">
+            {loading ? (
+              <Loading height="30vh" />
+            ) : (
+              latestBlogs.map((blog, i) => (
+                <AnimationWrapper
+                  transition={{ duration: 1, delay: i * 0.01 }}
+                  key={blog._id}
+                >
+                  <div className="hmc-bp-container">
+                    <Suspense
+                      fallback={
+                        <div className="blog-placeholder">
+                          Loading blog content...
+                        </div>
+                      }
+                    >
                       <BlogCard blog={blog} />
-                    </div>
-                  </AnimationWrapper>
-                ))
-              )}
-            </div>
-          </Suspense>
+                    </Suspense>
+                  </div>
+                </AnimationWrapper>
+              ))
+            )}
+          </div>
         </section>
       </main>
     </div>
