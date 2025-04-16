@@ -207,15 +207,6 @@ const AdminWrapper = () => {
                 : "Newsletter"}
             </span>
           </div>
-
-          <div className="admin-topbar-actions">
-            <button className="admin-action-button" aria-label="Notifications">
-              <i className="fi fi-rr-bell"></i>
-            </button>
-            <button className="admin-action-button" aria-label="Settings">
-              <i className="fi fi-rr-settings"></i>
-            </button>
-          </div>
         </div>
 
         <AnimatePresence mode="wait">

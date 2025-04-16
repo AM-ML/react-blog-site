@@ -199,11 +199,9 @@ const BlogComponent = ({ blogId }) => {
   const contentBlocks = useMemo(
     () =>
       blog.content?.[0]?.blocks?.map((block, i) => (
-        <AnimationWrapper key={i} isListItem={true} index={i}>
-          <div className="bbc-ctb-wrapper">
-            <ContentBlock block={block} />
-          </div>
-        </AnimationWrapper>
+        <div className="bbc-ctb-wrapper">
+          <ContentBlock block={block} />
+        </div>
       )) || [],
     [blog.content]
   );

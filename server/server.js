@@ -665,6 +665,8 @@ server.post("/search-blogs", async (req, res) => {
     let {
       query,
       tag,
+      tags,
+      date,
       page = 1,
       limit = 10,
       eliminate_blog,
@@ -685,6 +687,14 @@ server.post("/search-blogs", async (req, res) => {
       findQuery.tags = { $in: [tag] };
     }
 
+    if (tags && Array.isArray(tags) && tags.length) {
+      findQuery.tags = { $in: tags };
+    }
+
+    if (date) {
+      findQuery.publishedAt = { $gt: new Date(date) };
+    }
+
     if (eliminate_blog) {
       findQuery.blog_id = { $ne: eliminate_blog };
     }
@@ -696,7 +706,6 @@ server.post("/search-blogs", async (req, res) => {
     let sortCriteria = {};
     let userInterests = [];
 
-    // If userId is provided, fetch user's interests for personalized sorting
     if (userId) {
       const user = await User.findById(userId);
       if (user && user.interests) {
@@ -704,7 +713,6 @@ server.post("/search-blogs", async (req, res) => {
       }
     }
 
-    // Default sort by publish date (newest first)
     sortCriteria.publishedAt = -1;
 
     const blogs = await Blog.find(findQuery)
@@ -718,12 +726,9 @@ server.post("/search-blogs", async (req, res) => {
 
     const totalDocs = await Blog.countDocuments(findQuery);
 
-    // Reorder blogs based on user interests if available
     if (userInterests.length > 0) {
-      // Calculate relevance score for each blog based on matching tags
       const scoredBlogs = blogs.map((blog) => {
         let score = 0;
-        // Increase score for each tag that matches user interests
         blog.tags.forEach((tag) => {
           if (userInterests.includes(tag)) {
             score += 1;
@@ -732,16 +737,13 @@ server.post("/search-blogs", async (req, res) => {
         return { blog, score };
       });
 
-      // Sort by score (descending) and then by publish date
       scoredBlogs.sort((a, b) => {
         if (b.score !== a.score) {
           return b.score - a.score;
         }
-        // If scores are equal, sort by publish date
         return new Date(b.blog.publishedAt) - new Date(a.blog.publishedAt);
       });
 
-      // Extract just the blogs in the new order
       const reorderedBlogs = scoredBlogs.map((item) => item.blog);
 
       return res.status(200).json({
@@ -1456,7 +1458,7 @@ server.post("/toggle-favorite", verifyJWT, async (req, res) => {
     return res.status(200).json({
       favorited: !isFavorited,
       message: isFavorited ? "Removed from favorites" : "Added to favorites",
-      favorite_blogs: user.favorite_blogs
+      favorite_blogs: user.favorite_blogs,
     });
   } catch (err) {
     console.error("Toggle favorite error:", err);

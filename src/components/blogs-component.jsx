@@ -18,7 +18,6 @@ import ScrollRevealWrapper from "../common/ScrollRevealWrapper";
 
 // Lazy loading components
 const BlogCard = lazy(() => import("./blog-card"));
-const AnimationWrapper = lazy(() => import("../common/page-animation"));
 
 export const FilterContext = createContext({});
 
@@ -39,15 +38,17 @@ const BlogsComponent = () => {
     } else {
       setLoadingMore(true); // Loading more
     }
-    
+
     axios
       .post(import.meta.env.VITE_SERVER_DOMAIN + "/search-blogs", {
         date: uDate,
         tags: uTags,
         page,
-        userId: userAuth?.id // Send user ID to prioritize interests
+        userId: userAuth?.id, // Send user ID to prioritize interests
       })
       .then(async ({ data: { blogs: newBlogs, totalDocs } }) => {
+        console.log(uDate, uTags);
+        console.log(newBlogs);
         let paginationData = await filterPaginationData({
           create_new_array: doCreate,
           current_data: blogs,
@@ -57,7 +58,7 @@ const BlogsComponent = () => {
         });
         setBlogs(paginationData);
         setOriginalBlogs(paginationData);
-        
+
         // Clear appropriate loading state
         if (page === 1) {
           if (trendings) setLoading(false);
@@ -156,11 +157,13 @@ const BlogsComponent = () => {
                     </div>
                   ) : blogs.results.length ? (
                     <>
-                      <Suspense fallback={
-                        <div className="w-100 d-flex justify-content-center">
-                          <Loading height="40vh" />
-                        </div>
-                      }>
+                      <Suspense
+                        fallback={
+                          <div className="w-100 d-flex justify-content-center">
+                            <Loading height="40vh" />
+                          </div>
+                        }
+                      >
                         {blogs.results.map((blog, i) => (
                           <article className="blog-card-container" key={i}>
                             <BlogCard
@@ -196,11 +199,13 @@ const BlogsComponent = () => {
                     </div>
                   ) : trendings.length ? (
                     <>
-                      <Suspense fallback={
-                        <div className="w-100 d-flex justify-content-center">
-                          <Loading height="40vh" />
-                        </div>
-                      }>
+                      <Suspense
+                        fallback={
+                          <div className="w-100 d-flex justify-content-center">
+                            <Loading height="40vh" />
+                          </div>
+                        }
+                      >
                         {trendings.map((trending, i) => {
                           if (trending.author?.personal_info?.name)
                             return (

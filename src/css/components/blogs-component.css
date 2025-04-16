@@ -33,9 +33,6 @@
   overflow-y: hidden;
 }
 
-.blog-card-container:hover {
-}
-
 /* Add these styles to better position Loading components */
 .w-100 {
   width: 100%;
