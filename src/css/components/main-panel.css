@@ -222,7 +222,7 @@
   font-weight: 500;
   font-family: "Open Sans", sans-serif;
   border: none;
-  background-color: #3d6ef9;
+  background-color: #15626c;
   color: white;
   border-radius: 8px;
   cursor: pointer;
@@ -230,7 +230,7 @@
 }
 
 .mp-submit-bc .mp-submit-btn:hover {
-  background-color: #2a5ae0;
+  background-color: #15566c;
 }
 
 .mp-save-icon {
