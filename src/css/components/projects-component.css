@@ -79,7 +79,7 @@
 
 .abp-header .abp-arrow-c {
   position: absolute;
-  bottom: 35px;
+  bottom: 95px;
   left: calc(50% - 50px);
   animation: bounce 2s infinite;
   transition: opacity 0.3s ease;

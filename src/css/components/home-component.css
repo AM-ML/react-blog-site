@@ -17,7 +17,7 @@
   position: absolute;
   z-index: 1;
   width: 64px;
-  bottom: 0;
+  bottom: 30px;
   margin: auto;
   width: 100%;
   text-align: center;
@@ -25,10 +25,13 @@
 
 .h-arrow-c .h-arrow {
   color: white;
-  font-size: 64px;
   text-align: center;
   margin: auto;
   padding-bottom: 30px !important;
+  font-size: 50px;
+  color: white;
+  transition: transform 0.3s ease;
+  stroke-width: 1.5;
 }
 
 .hmc-header .layer-img {
@@ -104,21 +107,25 @@
 }
 
 .hmc-btn {
-  font-family: "inter";
-  width: 150px;
-  padding: 10px 36px;
-  text-align: center;
-  border: 2px solid white;
-  border-radius: 5px;
-  color: white;
-  background: none;
-  text-decoration: none;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  font-family: "inter" !important;
+  width: 170px !important;
+  min-width: max-content !important;
+  padding: 15px 36px !important;
+  text-align: center !important;
+  border: 2px solid white !important;
+  border-radius: 10px !important;
+  color: white !important;
+  background: none !important;
+  text-decoration: none !important;
   transition: 0.4s all ease;
   zoom: 120%;
 }
 .hmc-btn:hover {
   color: cyan;
   border-color: cyan;
+  border-color: #15626c !important;
 }
 
 .hmc-bp-container {
@@ -229,6 +236,13 @@
   }
   .hmc-cts-desc {
     font-size: 16px;
+  }
+
+  .hmc-text .title {
+    font-size: 33px !important;
+  }
+  .hmc-text .desc {
+    font-size: 28px !important;
   }
 }
 

@@ -6,6 +6,7 @@ import Loading from "../common/loading";
 import AnimationWrapper from "../common/page-animation";
 import cachedBlogsData from "./json/home-component-blogs-data.json";
 import headerImage from "../assets/home/header5.webp"; // Import the image directly
+import { ChevronDown, ArrowRight } from "lucide-react";
 
 // Lazy load the BlogCard component
 const BlogCard = lazy(() => import("../common/blogPreviewLG.jsx"));
@@ -77,17 +78,21 @@ const HomeComponent = () => {
             <h1 className="title">BOFFO Consulting Group</h1>
             <p className="desc">"Consulting for Excellence"</p>
             <nav className="hmc-links">
-              <Link to="/contact-us" className="hmc-btn">
+              <Link to="/contact-us" className="srf-learn-more hmc-btn">
                 Join Us
+                <ArrowRight className="srf-btn-icon" size={16} />
+                <span className="srf-btn-bg"></span>
               </Link>
-              <Link to="/about-us/our-story" className="hmc-btn">
+              <Link to="/about-us/our-story" className="srf-learn-more hmc-btn">
                 Our Story
+                <ArrowRight className="srf-btn-icon" size={16} />
+                <span className="srf-btn-bg"></span>
               </Link>
             </nav>
           </div>
         </div>
         <a href="#main" className="h-arrow-c">
-          <i className="bx bx-chevron-down h-arrow"></i>
+          <ChevronDown className="h-arrow" size={72} />
         </a>
       </header>
 
