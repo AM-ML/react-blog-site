@@ -6,9 +6,12 @@ import { removeFromSession } from "./session";
 
 const DashNav = () => {
   let {
-    userAuth: { username },
+    userAuth: { username, role, is_author },
     setUserAuth,
   } = useContext(UserContext);
+
+  const isAuthor = role == "author";
+  const isAdmin = role == "admin";
 
   const handleLogOut = () => {
     removeFromSession("user");
@@ -23,15 +26,27 @@ const DashNav = () => {
       <Link className="dsn-item no-design" to="/dashboard">
         <i className="dsn-icon bx bx-grid-alt"></i>
       </Link>
-      <Link className="dsn-item no-design" to="/dashboard/writer/drafts">
-        <i className="dsn-icon bx bx-file"></i>
+      <Link className="dsn-item no-design" to="/dashboard/favorites">
+        <i className="bx bx-bookmark"></i>
       </Link>
-      <Link className="dsn-item no-design" to="/dashboard/writer/write">
-        <i className="dsn-icon bx bx-edit"></i>
-      </Link>
-      <Link className="dsn-item no-design" to={"/dashboard/author/" + username}>
-        <i className="dsn-icon bx bx-user"></i>
-      </Link>
+      {(isAuthor || isAdmin || is_author) && (
+        <Link className="dsn-item no-design" to="/dashboard/writer/drafts">
+          <i className="dsn-icon bx bx-file"></i>
+        </Link>
+      )}
+      {(isAuthor || isAdmin || is_author) && (
+        <Link
+          className="dsn-item no-design"
+          to={"/dashboard/author/" + username}
+        >
+          <i className="dsn-icon bx bx-user"></i>
+        </Link>
+      )}
+      {isAdmin && (
+        <Link className="dsn-item no-design" to="/dashboard/admin">
+          <i className="bx bx-shield"></i>
+        </Link>
+      )}
       <Link className="dsn-item no-design" to="/dashboard/settings">
         <i className="dsn-icon bx bx-cog"></i>
       </Link>

@@ -4,7 +4,6 @@ import { UserContext } from "../Router";
 import axios from "axios";
 import Preloader from "../common/preloader";
 import BlogCard from "./blog-card";
-import NoData from "../common/nodata";
 import LoadMoreBtn from "../common/load-more";
 import filterPaginationData from "../common/pagination";
 import { Toaster } from "react-hot-toast";
