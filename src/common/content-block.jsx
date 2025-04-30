@@ -21,23 +21,27 @@ const ContentBlock = ({ block }) => {
       ></div>
     );
 
-  if (type == "image")
-    return (
-      <div
-        className={
-          "ctb-element ctb-image " +
-          (data.stretched && " stretched ") +
-          (data.withBorder && " border ") +
-          (data.withBackground && " background")
-        }
-      >
-        <img src={data.file.url} alt="" />
-        <span
-          className="ctb-image-caption"
-          dangerouslySetInnerHTML={{ __html: data.caption }}
-        ></span>
-      </div>
-    );
+  if (type == "image") {
+    if (!data.file?.url) {
+      return <></>;
+    } else
+      return (
+        <div
+          className={
+            "ctb-element ctb-image " +
+            (data.stretched && " stretched ") +
+            (data.withBorder && " border ") +
+            (data.withBackground && " background")
+          }
+        >
+          <img src={data.file.url} alt="" />
+          <span
+            className="ctb-image-caption"
+            dangerouslySetInnerHTML={{ __html: data.caption }}
+          ></span>
+        </div>
+      );
+  }
   if (type == "quote")
     return (
       <div className={"ctb-element ctb-quote " + data.alignment}>
