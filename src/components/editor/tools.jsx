@@ -14,7 +14,7 @@ const uploadImgByUrl = async (url) => {
     // Validate URL (basic example)
     const isValidUrl = (string) => {
       const res = string.match(/(http|https):\/\/[^ "]+/);
-      return (res !== null);
+      return res !== null;
     };
 
     if (isValidUrl(url)) {
@@ -24,22 +24,24 @@ const uploadImgByUrl = async (url) => {
         file: { url }, // Return the URL as expected
       });
     } else {
-      reject('Invalid URL');
+      reject("Invalid URL");
     }
   });
 };
 
-
 const uploadImgByFile = async (e) => {
   const b64 = await convertToBase64(e);
-  
+
   try {
-    const response = await axios.post(`${import.meta.env.VITE_SERVER_DOMAIN}/uploadImage`, { base64: b64 });
-    
+    const response = await axios.post(
+      `${import.meta.env.VITE_SERVER_DOMAIN}/uploadImage`,
+      { base64: b64 }
+    );
+
     // Check if the response contains the expected data
     const url = response.data.url; // Change to 'url' to match the expected response format
     console.log("Image uploaded successfully:", url);
-    
+
     return {
       success: 1,
       file: { url }, // Make sure to return 'url' as expected
@@ -54,7 +56,17 @@ const uploadImgByFile = async (e) => {
 };
 
 export const tools = {
-  embed: Embed,
+  embed: {
+    class: Embed,
+    inlineToolbar: true,
+    config: {
+      services: {
+        youtube: true,
+        coub: true,
+        // Add others if needed
+      },
+    },
+  },
   image: {
     class: Image,
     config: {
