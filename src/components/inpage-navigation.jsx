@@ -2,7 +2,7 @@ import {useEffect, useRef, useState} from "react";
 import "../css/components/inpage-navigation.css";
 import FilterBy from "./filterby";
 
-const InPageNavigation = ({ blogs = [], filterFunc = ({tags, date}) => {}, routes, defaultHidden = [], defaultActiveIndex = 0, children }) => {
+const InPageNavigation = ({ blogs = [], filterFunc = ({tags, date}) => {}, routes, defaultHidden = [], defaultActiveIndex = 0, children, onTabChange = null }) => {
   const [activePageIndex, setActivePageIndex] = useState(defaultActiveIndex);
   const [isWideScreen, setIsWideScreen] = useState(window.innerWidth > 768); // State for screen size
   const hrRef = useRef(null);
@@ -15,6 +15,11 @@ const InPageNavigation = ({ blogs = [], filterFunc = ({tags, date}) => {}, route
     hrRef.current.style.left = offsetLeft + "px";
 
     setActivePageIndex(i);
+    
+    // Call onTabChange callback if provided
+    if (onTabChange && typeof onTabChange === 'function') {
+      onTabChange(routes[i]?.toLowerCase());
+    }
   }
 
   // Check screen size on mount and when resized

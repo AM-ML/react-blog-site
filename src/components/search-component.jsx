@@ -5,8 +5,7 @@ import axios from "axios";
 import BlogCard from "./blog-card.jsx";
 import Loading from "../common/loading.jsx";
 import EndOfData from "../common/end-of-data.jsx";
-import { useEffect, useState } from "react";
-import LoadMoreBtn from "../common/load-more";
+import { useEffect, useState, useRef } from "react";
 import filterPaginationData from "../common/pagination";
 import Preloader from "../common/preloader";
 import { useNavigate } from "react-router-dom";
@@ -20,7 +19,14 @@ const SearchComponent = ({ query }) => {
   const [authors, setAuthors] = useState(null);
   const [uDate, setuDate] = useState(null);
   const [uTags, setuTags] = useState([]);
+  const [randomBlogs, setRandomBlogs] = useState([]);
+  const [loadingRandomBlogs, setLoadingRandomBlogs] = useState(false);
+  const [allResultsLoaded, setAllResultsLoaded] = useState(false);
   const navigate = useNavigate();
+  
+  // Ref for intersection observer
+  const loadMoreRef = useRef(null);
+  const observerRef = useRef(null);
 
   const getLatestBlogs = (page = 1, doCreate = false, bigLoad = false) => {
     if (blogs != null) bigLoad ? setBigLoading(true) : setLoading(true);
@@ -43,92 +49,93 @@ const SearchComponent = ({ query }) => {
         setBlogs(paginationData);
         setOriginalBlogs(paginationData);
         bigLoad ? setBigLoading(false) : setLoading(false);
+        
+        // Check if we've loaded all results
+        if (paginationData.results.length >= totalDocs) {
+          setAllResultsLoaded(true);
+          // Load random blogs when search results are exhausted
+          getRandomBlogs(paginationData.results.map(blog => blog.blog_id));
+        } else {
+          setAllResultsLoaded(false);
+        }
       })
       .catch((err) => {
         bigLoad ? setBigLoading(false) : setLoading(false);
         console.log(err);
       });
   };
-
-  const handleFilter = ({ tags, date }) => {
-    if (!originalBlogs) return;
-    setuDate(new Date(date));
-    setuTags(tags.map((tag) => tag.toLowerCase()));
+  
+  const getRandomBlogs = (excludeIds = []) => {
+    // Only fetch random blogs if we've exhausted search results
+    if (!loadingRandomBlogs) {
+      setLoadingRandomBlogs(true);
+      
+      axios
+        .post(import.meta.env.VITE_SERVER_DOMAIN + "/random-blogs", {
+          excludeIds,
+          limit: 5
+        })
+        .then(({ data }) => {
+          setRandomBlogs(data.blogs || []);
+          setLoadingRandomBlogs(false);
+        })
+        .catch(err => {
+          console.error("Error fetching random blogs:", err);
+          setLoadingRandomBlogs(false);
+        });
+    }
   };
 
   const loadMore = () => {
-    setLoading(true);
-    getLatestBlogs(blogs.page + 1);
+    if (blogs?.page < Math.ceil(blogs?.totalDocs / 10)) {
+      getLatestBlogs(blogs.page + 1, false);
+    }
   };
 
-  const resetData = () => {
-    setBlogs(null);
-    setOriginalBlogs(null);
-    setAuthors(null);
+  const handleFilter = ({ tags, date }) => {
+    console.log("filter received:", tags, date);
+    setuDate(date);
+    setuTags(tags);
   };
 
+  // Set up intersection observer for infinite scrolling
   useEffect(() => {
-    resetData();
-    setBigLoading(true);
+    // Clean up old observer if it exists
+    if (observerRef.current) {
+      observerRef.current.disconnect();
+    }
 
-    // Start a timestamp to ensure minimum loading time for better UX
-    const loadingStartTime = Date.now();
-    const minimumLoadingTime = 1500; // 1.5 seconds minimum
-
-    // Track completion of both data fetches
-    let blogsLoaded = false;
-    let authorsLoaded = false;
-
-    // Function to check if we can complete loading
-    const checkLoading = () => {
-      if (blogsLoaded && authorsLoaded) {
-        const timeElapsed = Date.now() - loadingStartTime;
-        if (timeElapsed < minimumLoadingTime) {
-          setTimeout(() => {
-            setBigLoading(false);
-          }, minimumLoadingTime - timeElapsed);
-        } else {
-          setBigLoading(false);
-        }
+    // Handler for when the loading element becomes visible
+    const handleObserver = (entries) => {
+      const [entry] = entries;
+      if (entry.isIntersecting && !loading && blogs && blogs.totalDocs > blogs.results.length) {
+        loadMore();
       }
     };
 
-    // Modified data fetch functions with completion tracking
-    const fetchBlogs = () => {
-      axios
-        .post(import.meta.env.VITE_SERVER_DOMAIN + "/search-blogs", {
-          date: uDate,
-          tags: uTags,
-          page: 1,
-          query,
-        })
-        .then(async ({ data: { blogs: newBlogs, totalDocs } }) => {
-          let paginationData = await filterPaginationData({
-            create_new_array: true,
-            current_data: null,
-            new_data: newBlogs,
-            page: 1,
-            totalDocs,
-          });
-          setBlogs(paginationData);
-          setOriginalBlogs(paginationData);
-          blogsLoaded = true;
-          checkLoading();
-        })
-        .catch((err) => {
-          console.log(err);
-          blogsLoaded = true;
-          checkLoading();
-        });
-    };
+    // Create new observer
+    observerRef.current = new IntersectionObserver(handleObserver, {
+      rootMargin: '0px 0px 400px 0px', // Load more content before user reaches the end
+      threshold: 0.1,
+    });
 
-    // Start both fetches
-    fetchBlogs();
-  }, [query]);
+    // Observe the loading element if it exists
+    if (loadMoreRef.current) {
+      observerRef.current.observe(loadMoreRef.current);
+    }
+
+    // Cleanup function
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
+  }, [blogs, loading]);
 
   useEffect(() => {
     getLatestBlogs(1, true);
-  }, [uDate, uTags]);
+  }, [query, uDate, uTags]);
+
   return (
     <div className="scc-container">
       {bigLoading && <Preloader />}
@@ -167,14 +174,52 @@ const SearchComponent = ({ query }) => {
                 </>
               )}
             </div>
+
+            {/* Infinite scroll loading indicator */}
             {!loading ? (
               blogs && blogs.totalDocs > blogs.results.length ? (
-                <LoadMoreBtn onClick={loadMore} />
+                <div ref={loadMoreRef} className="w-100 d-flex justify-content-center">
+                  {/* This element is just a marker for the intersection observer */}
+                </div>
               ) : (
-                blogs && blogs.results.length > 0 && <EndOfData />
+                blogs && blogs.results.length > 0 && allResultsLoaded && (
+                  <>
+                    <EndOfData />
+                    
+                    {/* Random blogs section */}
+                    {randomBlogs.length > 0 && (
+                      <div className="random-blogs-section">
+                        <h2 className="random-blogs-title">You might also like</h2>
+                        <div className="ltbgs">
+                          {randomBlogs.map((blog, i) => (
+                            <AnimationWrapper
+                              transition={{ duration: 1, delay: i * 0.08 }}
+                              key={i}
+                            >
+                              <div className="blog-card-container">
+                                <BlogCard
+                                  blog={blog}
+                                  addBorder={i + 1 !== randomBlogs.length}
+                                />
+                              </div>
+                            </AnimationWrapper>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    
+                    {loadingRandomBlogs && (
+                      <div className="w-100 d-flex justify-content-center">
+                        <Loading height="20vh" />
+                      </div>
+                    )}
+                  </>
+                )
               )
             ) : (
-              <Loading height="40vh" />
+              <div className="w-100 d-flex justify-content-center">
+                <Loading height="40vh" />
+              </div>
             )}
           </div>
         </InPageNavigation>

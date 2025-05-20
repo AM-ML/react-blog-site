@@ -530,7 +530,7 @@ server.post("/get-blog", async (req, res) => {
       .select(
         "title description content banner activity publishedAt blog_id tags"
       );
-
+      
     if (!blog) {
       return res.status(404).json({ error: "Blog not found" });
     }
@@ -538,19 +538,19 @@ server.post("/get-blog", async (req, res) => {
     if (blog.draft && !draft) {
       return res.status(500).json({ error: "you cannot access draft blogs" });
     }
-
+    
     // If viewing (not editing) and incrementVal is positive, record the view
     if (mode === "view" && incrementVal > 0) {
       // Update traditional total_reads counter for backward compatibility
       blog.activity.total_reads = (blog.activity.total_reads || 0) + 1;
       await blog.save();
-
+      
       // Record view using our new tracking system (async, don't await)
-      recordView(blog._id).catch((err) => {
+      recordView(blog._id).catch(err => {
         console.error("Failed to record view:", err);
         // Don't fail the request if view recording fails
       });
-
+      
       // Update user's total reads count
       User.findOneAndUpdate(
         { "personal_info.username": blog.author.username },
@@ -695,10 +695,34 @@ server.post("/search-blogs", async (req, res) => {
     let findQuery = { draft: false };
 
     if (query) {
-      findQuery.$or = [
+      // Enhanced search algorithm using text score and multiple fields
+      // Split query into words for better matching
+      const searchTerms = query.split(/\s+/).filter(term => term.length > 1);
+      
+      // Create an array of conditions for better matching
+      const searchConditions = [];
+      
+      // Basic text matching for title, tags, and description
+      searchConditions.push(
         { title: { $regex: query, $options: "i" } },
-        { tags: { $regex: query, $options: "i" } },
-      ];
+        { tags: { $in: searchTerms.map(term => new RegExp(term, 'i')) } },
+        { description: { $regex: query, $options: "i" } }
+      );
+      
+      // Match individual words across multiple fields for better results
+      if (searchTerms.length > 1) {
+        searchTerms.forEach(term => {
+          if (term.length > 2) { // Only use terms with at least 3 characters
+            searchConditions.push(
+              { title: { $regex: term, $options: "i" } },
+              { tags: { $regex: term, $options: "i" } },
+              { description: { $regex: term, $options: "i" } }
+            );
+          }
+        });
+      }
+      
+      findQuery.$or = searchConditions;
     }
 
     if (tag) {
@@ -731,20 +755,71 @@ server.post("/search-blogs", async (req, res) => {
       }
     }
 
+    // Default sort is by publish date (newest first)
     sortCriteria.publishedAt = -1;
 
-    const blogs = await Blog.find(findQuery)
-      .populate(
-        "author",
-        "personal_info.name personal_info.username personal_info.profile_img"
-      )
-      .sort(sortCriteria)
-      .skip((page - 1) * limit)
-      .limit(limit);
+    // If we're doing a text search, we'll add a text index search for more accurate sorting
+    let blogs;
+    
+    if (query) {
+      // Add text score field to results for better sorting
+      blogs = await Blog.find(findQuery)
+        .populate(
+          "author",
+          "personal_info.name personal_info.username personal_info.profile_img"
+        )
+        .sort(sortCriteria)
+        .skip((page - 1) * limit)
+        .limit(limit);
+        
+      // Calculate a relevance score for each blog based on how well it matches the query
+      blogs = blogs.map(blog => {
+        let relevanceScore = 0;
+        
+        // Check how many search terms are in the title, tags, and description
+        const lowerTitle = blog.title.toLowerCase();
+        const lowerDescription = blog.description ? blog.description.toLowerCase() : '';
+        const lowerQuery = query.toLowerCase();
+        const searchTerms = lowerQuery.split(/\s+/).filter(term => term.length > 1);
+        
+        // Exact match has highest priority
+        if (lowerTitle.includes(lowerQuery)) relevanceScore += 10;
+        if (lowerDescription.includes(lowerQuery)) relevanceScore += 5;
+        
+        // Check for individual terms
+        searchTerms.forEach(term => {
+          if (term.length > 2) {
+            if (lowerTitle.includes(term)) relevanceScore += 2;
+            if (lowerDescription.includes(term)) relevanceScore += 1;
+            
+            // Check tags
+            blog.tags.forEach(tag => {
+              if (tag.toLowerCase().includes(term)) relevanceScore += 3;
+            });
+          }
+        });
+        
+        return { blog, relevanceScore };
+      });
+      
+      // Sort by relevance score
+      blogs.sort((a, b) => b.relevanceScore - a.relevanceScore);
+      blogs = blogs.map(item => item.blog);
+    } else {
+      blogs = await Blog.find(findQuery)
+        .populate(
+          "author",
+          "personal_info.name personal_info.username personal_info.profile_img"
+        )
+        .sort(sortCriteria)
+        .skip((page - 1) * limit)
+        .limit(limit);
+    }
 
     const totalDocs = await Blog.countDocuments(findQuery);
 
-    if (userInterests.length > 0) {
+    // Apply user interest scoring if applicable
+    if (userInterests.length > 0 && !query) {
       const scoredBlogs = blogs.map((blog) => {
         let score = 0;
         blog.tags.forEach((tag) => {
@@ -829,31 +904,91 @@ server.post("/search-authors", async (req, res) => {
 // Create a cache instance (in-memory caching)
 const trendingBlogsCache = new NodeCache({ stdTTL: 3600 }); // Cache for 1 hour
 
+// New endpoint for random blogs
+server.post("/random-blogs", async (req, res) => {
+  try {
+    const { excludeIds = [], limit = 5 } = req.body;
+    
+    // Create a query to find blogs that aren't in the exclude list
+    const query = { 
+      draft: false,
+      ...(excludeIds.length > 0 && { blog_id: { $nin: excludeIds } })
+    };
+    
+    // Count total available blogs matching criteria
+    const count = await Blog.countDocuments(query);
+    
+    // If no blogs available, return empty array
+    if (count === 0) {
+      return res.status(200).json({ blogs: [] });
+    }
+    
+    // Get random blogs using aggregation pipeline
+    const randomBlogs = await Blog.aggregate([
+      { $match: query },
+      { $sample: { size: Math.min(limit, count) } },
+      {
+        $lookup: {
+          from: "users",
+          localField: "author",
+          foreignField: "_id",
+          as: "authorInfo"
+        }
+      },
+      { $unwind: "$authorInfo" },
+      {
+        $project: {
+          _id: 1,
+          blog_id: 1,
+          title: 1,
+          description: 1,
+          banner: 1,
+          activity: 1,
+          tags: 1,
+          publishedAt: 1,
+          author: {
+            personal_info: {
+              name: "$authorInfo.personal_info.name",
+              username: "$authorInfo.personal_info.username",
+              profile_img: "$authorInfo.personal_info.profile_img"
+            }
+          }
+        }
+      }
+    ]);
+    
+    return res.status(200).json({ blogs: randomBlogs });
+  } catch (err) {
+    console.error("Error in random-blogs:", err);
+    return res.status(500).json({ error: "Failed to fetch random blogs" });
+  }
+});
+
 server.post("/trending-blogs", async (req, res) => {
   try {
     // Get period from request (default to "week")
     const { period = "week" } = req.body;
-
+    
     // Validate period
-    const validPeriods = ["today", "week", "month"];
-    const validPeriod = validPeriods.includes(period) ? period : "week";
-
+    const validPeriods = ['today', 'week', 'month'];
+    const validPeriod = validPeriods.includes(period) ? period : 'week';
+    
     // Try to get from cache first
     const cacheKey = `trending-blogs-${validPeriod}`;
     const cachedData = trendingBlogsCache.get(cacheKey);
-
+    
     if (cachedData) {
       return res.status(200).json({ blogs: cachedData });
     }
-
+    
     // Get trending blogs from our specialized utility
     const trendingBlogs = await getTrendingBlogs(validPeriod, 10);
-
+    
     // Cache the results (only if we have results)
     if (trendingBlogs && trendingBlogs.length > 0) {
       trendingBlogsCache.set(cacheKey, trendingBlogs);
     }
-
+    
     return res.status(200).json({ blogs: trendingBlogs || [] });
   } catch (err) {
     console.error("Error in trending-blogs:", err);

@@ -5,13 +5,14 @@ import React, {
   Suspense,
   lazy,
   useContext,
+  useRef,
+  useCallback,
 } from "react";
 import "../css/components/blogs-component.css";
 import InPageNavigation from "./inpage-navigation";
 import axios from "axios";
 import Preloader from "../common/preloader";
 import filterPaginationData from "../common/pagination";
-import LoadMoreBtn from "../common/load-more";
 import Loading from "../common/loading";
 import { UserContext } from "../Router";
 import ScrollRevealWrapper from "../common/ScrollRevealWrapper";
@@ -34,6 +35,11 @@ const BlogsComponent = () => {
   const [uDate, setuDate] = useState(null);
   const [uTags, setuTags] = useState([]);
   const [trendingLoading, setTrendingLoading] = useState(false);
+  const [activeTab, setActiveTab] = useState("home");
+  
+  // Ref for intersection observer
+  const loadMoreRef = useRef(null);
+  const observerRef = useRef(null);
 
   const getLatestBlogs = (page = 1, doCreate = false) => {
     if (page === 1) {
@@ -106,47 +112,78 @@ const BlogsComponent = () => {
       });
   };
 
-  useEffect(() => {
-    getLatestBlogs();
-    getTrendingBlogs();
-  }, []);
+  const loadMore = () => {
+    if (blogs.page < Math.ceil(blogs.totalDocs / 10)) {
+      getLatestBlogs(blogs.page + 1);
+    }
+  };
 
-  useEffect(() => {
-    getLatestBlogs(1, true);
-  }, [uDate, uTags]);
+  const handleFilter = ({ tag = null, tags = [], date = null, doGet = false, origin = "reset" }) => {
+    console.log(tag, tags, date, "handlefilter");
+    if (origin == "tag" && !tags.length && !tag) return;
+    console.log("filtering");
+    // If a tag is provided, add it to the tags array
+    if (tag) tags = [...tags, tag];
 
-  // Handle trending period change
+    setOriginalBlogs(null);
+    setuTags(tags);
+    setuDate(date);
+  };
+
   const handleTrendingPeriodChange = (period) => {
     setTrendingPeriod(period);
     getTrendingBlogs(period);
   };
 
-  const loadMore = () => {
-    setLoadingMore(true); // Only set loadingMore, not main loading
-    getLatestBlogs(blogs.page + 1);
-  };
+  useEffect(() => {
+    getLatestBlogs(1, true);
+    getTrendingBlogs();
+  }, []);
 
-  const handleFilter = ({ tags, date }) => {
-    if (!originalBlogs || !originalTrendings) return;
+  useEffect(() => {
+    if (uDate || uTags.length) {
+      getLatestBlogs(1, true);
+    }
+  }, [uDate, uTags]);
 
-    setuDate(new Date(date));
-    setuTags(tags.map((tag) => tag.toLowerCase()));
+  // Set up intersection observer for infinite scrolling
+  useEffect(() => {
+    // Clean up old observer if it exists
+    if (observerRef.current) {
+      observerRef.current.disconnect();
+    }
 
-    let filteredTrendings = originalTrendings;
+    // Handler for when the loading element becomes visible
+    const handleObserver = (entries) => {
+      const [entry] = entries;
+      if (entry.isIntersecting && !loadingMore && activeTab === 'home') {
+        if (blogs && blogs.totalDocs > blogs.results.length) {
+          loadMore();
+        }
+      }
+    };
 
-    if (date)
-      filteredTrendings = filteredTrendings.filter((blog) => {
-        const blogDate = new Date(blog.publishedAt);
-        return blogDate > new Date(date);
-      });
-    if (tags.length)
-      filteredTrendings = filteredTrendings.filter((blog) =>
-        tags
-          .map((tag) => tag.toLowerCase())
-          .some((tag) => blog.tags.map((t) => t.toLowerCase()).includes(tag))
-      );
+    // Create new observer
+    observerRef.current = new IntersectionObserver(handleObserver, {
+      rootMargin: '0px 0px 400px 0px', // Load more content before user reaches the end
+      threshold: 0.1,
+    });
 
-    setTrendings(filteredTrendings);
+    // Observe the loading element if it exists
+    if (loadMoreRef.current) {
+      observerRef.current.observe(loadMoreRef.current);
+    }
+
+    // Cleanup function
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
+  }, [blogs, loadingMore, activeTab]);
+
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
   };
 
   return (
@@ -168,6 +205,7 @@ const BlogsComponent = () => {
             blogs={originalBlogs}
             filterFunc={handleFilter}
             routes={["home", "trending"]}
+            onTabChange={handleTabChange}
           >
             <ScrollRevealWrapper animation="fade">
               <div className="ltbgs-container">
@@ -201,12 +239,8 @@ const BlogsComponent = () => {
                   )}
                 </div>
                 {blogs && blogs.totalDocs > blogs.results.length && (
-                  <div className="w-100 d-flex justify-content-center">
-                    {!loadingMore ? (
-                      <LoadMoreBtn onClick={loadMore} />
-                    ) : (
-                      <Loading height="40vh" />
-                    )}
+                  <div ref={loadMoreRef} className="w-100 d-flex justify-content-center">
+                    {loadingMore && <Loading height="40vh" />}
                   </div>
                 )}
               </div>
@@ -237,25 +271,25 @@ const BlogsComponent = () => {
                           </div>
                         }
                       >
-                        {trendings.map((trending, i) => {
-                          if (trending.author?.personal_info?.name)
-                            return (
-                              <article className="blog-card-container" key={i}>
-                                <BlogCard blog={trending} index={i} />
-                              </article>
-                            );
-                        })}
+                        {trendings.map((blog, i) => (
+                          <article className="blog-card-container" key={i}>
+                            <BlogCard
+                              blog={blog}
+                              addBorder={i + 1 !== trendings.length}
+                              index={i}
+                            />
+                          </article>
+                        ))}
                       </Suspense>
                     </>
                   ) : (
-                    <p className="scc-no-data">No Trending Blogs Found.</p>
+                    <p className="scc-no-data">No Blogs Found.</p>
                   )}
                 </div>
               </div>
             </ScrollRevealWrapper>
           </InPageNavigation>
         </section>
-        <section className="bc-filters"></section>
       </main>
     </FilterContext.Provider>
   );
