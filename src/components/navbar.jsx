@@ -7,11 +7,13 @@ import { DropdownContent, AboutDropdown } from "./navbar-dropdown";
 import Footer from "./footer";
 import SideMenu from "./sidemenu";
 import NewsletterSubscribe from "./newsletter-subscribe";
+import { useNavigation } from "../common/NavigationContext";
 
 const Navbar = () => {
   const {
     userAuth: { access_token, profile_img },
   } = useContext(UserContext);
+  const { startNavigation } = useNavigation();
 
   const searchModalCloseBtn = useRef(null);
   const [search, setSearch] = useState("");
@@ -24,15 +26,23 @@ const Navbar = () => {
 
   const handleSearch = useCallback(() => {
     if (search.trim()) {
+      startNavigation(`/search/${search}`);
       navigate(`/search/${search}`);
       searchModalCloseBtn.current?.click();
     }
-  }, [search, navigate]);
+  }, [search, navigate, startNavigation]);
 
   const handleSearchKeyDown = useCallback(
     (e) => e.key === "Enter" && handleSearch(),
     [handleSearch]
   );
+
+  // Custom navigation handler for links
+  const handleNavigation = useCallback((path) => {
+    startNavigation(path);
+    navigate(path);
+    setAppearSide(false);
+  }, [navigate, startNavigation]);
 
   return (
     <AnimationWrapper key="navbar" transition={{ duration: 0.0 }}>
@@ -80,13 +90,13 @@ const Navbar = () => {
             >
               <i className="navbar-sdm-btn fa-solid fa-bars"></i>
             </div>
-            <Link
+            <span
               className="navbar-brand"
-              to="/"
-              onClick={() => setAppearSide(false)}
+              role="button"
+              onClick={() => handleNavigation("/")}
             >
               <span className="text-logo text-serif text-bolder">BOFFO</span>
-            </Link>
+            </span>
 
             <div
               className="pb-3 pt-3"
@@ -102,7 +112,7 @@ const Navbar = () => {
                   >
                     Industries <i className="bx bx-chevron-down"></i>
                   </Link>
-                  <DropdownContent />
+                  <DropdownContent onNavigate={handleNavigation} />
                 </li>
                 <li className="nav-item pe-4 dp">
                   <Link
@@ -112,25 +122,25 @@ const Navbar = () => {
                   >
                     About Us <i className="bx bx-chevron-down bx-md"></i>
                   </Link>
-                  <AboutDropdown />
+                  <AboutDropdown onNavigate={handleNavigation} />
                 </li>
                 <li className="nav-item pe-4">
-                  <Link
+                  <span
                     className="nav-link active text-sans text-bold text-lg"
-                    style={{ alignItems: "center", display: "flex" }}
-                    to="/blogs"
+                    style={{ alignItems: "center", display: "flex", cursor: "pointer" }}
+                    onClick={() => handleNavigation("/blogs")}
                   >
                     Blogs
-                  </Link>
+                  </span>
                 </li>
                 <li className="nav-item pe-4">
-                  <Link
+                  <span
                     className="nav-link active text-sans text-bold text-lg"
-                    style={{ alignItems: "center", display: "flex" }}
-                    to="/contact-us"
+                    style={{ alignItems: "center", display: "flex", cursor: "pointer" }}
+                    onClick={() => handleNavigation("/contact-us")}
                   >
                     Contact Us
-                  </Link>
+                  </span>
                 </li>
 
                 {/* Profile / Search */}
@@ -145,28 +155,29 @@ const Navbar = () => {
 
                   <div className="nb-end-profile-ic">
                     {access_token ? (
-                      <Link
-                        to="/dashboard"
-                        onClick={() => setAppearSide(false)}
+                      <span
+                        role="button"
+                        onClick={() => handleNavigation("/dashboard")}
                       >
                         <img
                           className="nb-end-profile"
                           src={profile_img}
                           width={40}
+                          alt="Profile"
                         />
-                      </Link>
+                      </span>
                     ) : (
                       <div
                         className="btn-group navbar-special-btn"
                         role="group"
                       >
-                        <Link
-                          to="/signin"
-                          onClick={() => setAppearSide(false)}
+                        <span
+                          role="button"
+                          onClick={() => handleNavigation("/signin")}
                           className="signin-btn btn btn-dark px-3 py-2 ms-0"
                         >
                           Sign In
-                        </Link>
+                        </span>
                       </div>
                     )}
                   </div>
@@ -183,13 +194,13 @@ const Navbar = () => {
         style={{ minHeight: "100vh", overflowY: "overlay" }}
       >
         {appearSide && (
-          <SideMenu appearSide={appearSide} setAppearSide={setAppearSide} />
+          <SideMenu appearSide={appearSide} setAppearSide={setAppearSide} onNavigate={handleNavigation} />
         )}
         <Outlet />
         <NewsletterSubscribe />
       </div>
 
-      <Footer />
+      <Footer handleNavigation={handleNavigation} />
     </AnimationWrapper>
   );
 };

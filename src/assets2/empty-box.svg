@@ -1,0 +1,64 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .box-shadow {
+      filter: drop-shadow(0px 10px 15px rgba(0, 0, 0, 0.1));
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .float {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes lid-open {
+      0% { transform: rotateX(0deg); transform-origin: bottom; }
+      30% { transform: rotateX(-20deg); transform-origin: bottom; }
+      60% { transform: rotateX(-10deg); transform-origin: bottom; }
+      100% { transform: rotateX(-15deg); transform-origin: bottom; }
+    }
+
+    .lid {
+      animation: lid-open 3s ease-in-out forwards;
+      transform-origin: bottom;
+    }
+
+    @keyframes sparkle {
+      0%, 100% { opacity: 0; }
+      50% { opacity: 1; }
+    }
+
+    .sparkle {
+      animation: sparkle 2s ease-in-out infinite;
+    }
+
+    .sparkle1 { animation-delay: 0s; }
+    .sparkle2 { animation-delay: 0.4s; }
+    .sparkle3 { animation-delay: 0.8s; }
+  </style>
+
+  <g class="float box-shadow">
+    <!-- Box bottom -->
+    <rect x="40" y="100" width="120" height="70" rx="5" fill="#15626c" />
+
+    <!-- Box inside -->
+    <rect x="45" y="100" width="110" height="65" rx="3" fill="#f0f0f0" />
+
+    <!-- Box lid -->
+    <g class="lid">
+      <path d="M35 100L100 70L165 100H35Z" fill="#15626c" />
+      <path d="M40 100L100 75L160 100H40Z" fill="#1a7a86" />
+    </g>
+
+    <!-- Sparkles -->
+    <circle class="sparkle sparkle1" cx="70" cy="60" r="3" fill="#ffffff" />
+    <circle class="sparkle sparkle2" cx="130" cy="50" r="4" fill="#ffffff" />
+    <circle class="sparkle sparkle3" cx="100" cy="30" r="3" fill="#ffffff" />
+
+    <!-- Question mark -->
+    <text x="100" y="140" font-family="Arial" font-size="40" font-weight="bold" fill="#15626c" text-anchor="middle">?</text>
+  </g>
+</svg>
+

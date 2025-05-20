@@ -4,12 +4,15 @@ import Router from "./Router.jsx";
 import { BrowserRouter } from "react-router-dom";
 import "./css/animations.css";
 import { initScrollReveal } from "./common/scrollReveal.js";
+import LegalModals from "./components/LegalModals.jsx";
 
 // Initialize the app
 ReactDOM.createRoot(document.getElementById("root")).render(
   // <React.StrictMode>
   <BrowserRouter>
-    <Router />
+    <LegalModals>
+      <Router />
+    </LegalModals>
   </BrowserRouter>
   // </React.StrictMode>,
 );

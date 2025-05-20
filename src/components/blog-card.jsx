@@ -37,55 +37,48 @@ const BlogCard = ({ blog, addBorder = true, onDelete, index = 0 }) => {
   const handleDelete = (e) => {
     e.preventDefault();
     e.stopPropagation();
-
-    if (
-      !window.confirm(
-        "Are you sure you want to delete this blog? This action cannot be undone."
-      )
-    ) {
-      return;
-    }
-
-    setDeleteStatus("deleting");
-
-    const config = {
-      headers: {
-        Authorization: `Bearer ${userAuth.access_token}`,
-      },
-    };
-
-    axios
-      .post(
-        import.meta.env.VITE_SERVER_DOMAIN + "/delete-blog",
-        { blog_id },
-        config
-      )
+    
+    if (deleteStatus !== "idle") return;
+    
+    // Confirm deletion
+    if (window.confirm("Are you sure you want to delete this blog?")) {
+      setDeleteStatus("deleting");
+      
+      // Call the delete API
+      axios.delete(`${import.meta.env.VITE_SERVER_DOMAIN}/delete-blog`, {
+        data: { blog_id },
+        headers: {
+          "Authorization": `Bearer ${userAuth.access_token}`
+        }
+      })
       .then(() => {
         setDeleteStatus("success");
-        // Add fade-out animation
-        setIsVisible(false);
-        // Wait for animation to complete before calling onDelete
+        // Fade out animation
         setTimeout(() => {
-          toast.success("Blog deleted successfully!");
-          // Call the onDelete callback if provided
-          if (typeof onDelete === "function") {
-            onDelete(blog_id);
-          }
-        }, 300);
+          setIsVisible(false);
+          // After fade-out, trigger the parent's onDelete if provided
+          setTimeout(() => {
+            if (onDelete) onDelete(blog_id);
+          }, 300);
+        }, 500);
+        
+        toast.success("Blog deleted successfully");
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(err => {
+        console.error("Delete failed:", err);
         setDeleteStatus("error");
-        toast.error("Error deleting blog. Please try again later.");
-        // Reset delete status after 2 seconds
-        setTimeout(() => {
-          setDeleteStatus("idle");
-        }, 2000);
+        toast.error("Failed to delete the blog. Please try again.");
+        // Reset after some time
+        setTimeout(() => setDeleteStatus("idle"), 3000);
       });
+    }
   };
 
-  // Calculate delay based on index for staggered animation
-  const delay = Math.min(index * 100, 500);
+  // Calculate animation delay based on index
+  const delay = {
+    duration: 0.5,
+    delay: 0.1 + (index * 0.1)
+  };
 
   return (
     <ScrollRevealWrapper animation="fade" delay={delay}>
@@ -111,20 +104,7 @@ const BlogCard = ({ blog, addBorder = true, onDelete, index = 0 }) => {
         <Link to={blogLink} className="bgcd-container-container">
           <div className="bgcd-container me-2">
             <div className="bgcd-header">
-              <img
-                src={profile_img}
-                width={30}
-                alt=""
-                className="bgcd-author-image"
-              />
-              <Link
-                to={"/author/" + username}
-                className="bgcd-author-name text-clamp"
-                onClick={(e) => e.stopPropagation()}
-              >
-                {TitleCase(name)}
-              </Link>
-              <p className="bgcd-header-date">@ {formatDate(publishedAt)}</p>
+              <p className="bgcd-published-date">Published {formatDate(publishedAt)}</p>
               {draft && <span className="bgcd-draft-badge">Draft</span>}
             </div>
             <h1 className="bgcd-title line-clamp-3">{TitleCase(title, false)}</h1>

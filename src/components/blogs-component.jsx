@@ -15,6 +15,7 @@ import LoadMoreBtn from "../common/load-more";
 import Loading from "../common/loading";
 import { UserContext } from "../Router";
 import ScrollRevealWrapper from "../common/ScrollRevealWrapper";
+import TrendingTimeFilter from "./trending-time-filter";
 
 // Lazy loading components
 const BlogCard = lazy(() => import("./blog-card"));
@@ -29,8 +30,10 @@ const BlogsComponent = () => {
   const [trendings, setTrendings] = useState(null);
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false); // Separate state for "load more"
+  const [trendingPeriod, setTrendingPeriod] = useState("week"); // Default trending period is "week"
   const [uDate, setuDate] = useState(null);
   const [uTags, setuTags] = useState([]);
+  const [trendingLoading, setTrendingLoading] = useState(false);
 
   const getLatestBlogs = (page = 1, doCreate = false) => {
     if (page === 1) {
@@ -76,17 +79,29 @@ const BlogsComponent = () => {
       });
   };
 
-  const getTrendingBlogs = () => {
-    setLoading(true);
+  const getTrendingBlogs = (period = trendingPeriod) => {
+    setTrendingLoading(true);
+    if (!trendings && !blogs) {
+      setLoading(true);
+    }
+    
     axios
-      .post(import.meta.env.VITE_SERVER_DOMAIN + "/trending-blogs")
+      .post(import.meta.env.VITE_SERVER_DOMAIN + "/trending-blogs", {
+        period: period // Send the time period to the backend
+      })
       .then((data) => {
         setTrendings(data.data.blogs);
         setOriginalTrendings(data.data.blogs);
-        if (blogs) setLoading(false);
+        setTrendingLoading(false);
+        if (!blogs) {
+          setLoading(false);
+        }
       })
       .catch((err) => {
-        if (blogs) setLoading(false);
+        setTrendingLoading(false);
+        if (!blogs) {
+          setLoading(false);
+        }
         console.log(err);
       });
   };
@@ -99,6 +114,12 @@ const BlogsComponent = () => {
   useEffect(() => {
     getLatestBlogs(1, true);
   }, [uDate, uTags]);
+
+  // Handle trending period change
+  const handleTrendingPeriodChange = (period) => {
+    setTrendingPeriod(period);
+    getTrendingBlogs(period);
+  };
 
   const loadMore = () => {
     setLoadingMore(true); // Only set loadingMore, not main loading
@@ -192,8 +213,18 @@ const BlogsComponent = () => {
             </ScrollRevealWrapper>
             <ScrollRevealWrapper animation="fade">
               <div className="ltbgs-container">
+                {/* Add the trending time filter */}
+                <TrendingTimeFilter 
+                  onSelectPeriod={handleTrendingPeriodChange} 
+                  initialPeriod={trendingPeriod}
+                />
+                
                 <div className="ltbgs">
-                  {!trendings ? (
+                  {trendingLoading ? (
+                    <div className="w-100 d-flex justify-content-center">
+                      <Loading height="40vh" />
+                    </div>
+                  ) : !trendings ? (
                     <div className="w-100 d-flex justify-content-center">
                       <Loading height="40vh" />
                     </div>
@@ -217,7 +248,7 @@ const BlogsComponent = () => {
                       </Suspense>
                     </>
                   ) : (
-                    <p className="scc-no-data">No Blogs Found.</p>
+                    <p className="scc-no-data">No Trending Blogs Found.</p>
                   )}
                 </div>
               </div>

@@ -12,6 +12,8 @@ import Editor from "./pages/editor";
 import WriterWrapper from "./components/writer-wrapper";
 import Preloader from "./common/preloader";
 import Author from "./pages/author";
+import { NavigationProvider } from "./common/NavigationContext";
+import TransitionLoader from "./common/TransitionLoader";
 import Settings from "./pages/settings";
 import Blogs from "./pages/blogs";
 import Blog from "./pages/blog";
@@ -62,97 +64,109 @@ const Router = () => {
 
   return (
     <UserContext.Provider value={{ userAuth, setUserAuth }}>
-      <ScrollToTop />
-      <Routes>
-        <Route path="/" element={<Navbar />}>
-          <Route element={<Home />} index />
-          <Route path="signin" element={<AuthForm type="sign-in" />} />
-          <Route path="signup" element={<AuthForm type="sign-up" />} />
-          <Route path="loading-page" element={<Preloader loading={true} />} />
-          <Route path="author/:username" element={<Author />} />
-          <Route path="blogs" element={<Blogs />} />
-          <Route path="blog/:id" element={<Blog />} />
-          <Route path="contact-us" element={<ContactUs />} />
-          <Route path="search/:query" element={<Search />} />
-          <Route path="search/null" element={<Redirect route="/blogs" />} />
-          <Route path="search/" element={<Redirect route="/blogs" />} />
-          <Route path="unsubscribe" element={<UnsubscribePage />} />
-          <Route path="test" element={<Test />} />
-          <Route
-            path="services/civil-engineering"
-            element={<CivilEngineering />}
-          />
-          <Route
-            path="services/electrical-engineering"
-            element={<ElectricalEngineering />}
-          />
-          <Route path="about-us/overview" element={<AboutUs />} />
-          <Route path="about-us/our-story" element={<AboutStory />} />
-          <Route
-            path="about-us/sustainability"
-            element={<AboutSustainability />}
-          />
-          <Route path="about-us/projects" element={<AboutProjects />} />
-
-          <Route path="services/architecture" element={<Architecture />} />
-          <Route path="services/interior-design" element={<InteriorDesign />} />
-          <Route path="services/solar-systems" element={<SolarSystems />} />
-          <Route path="services/water-systems" element={<WaterSystems />} />
-          <Route path="services/water-pumps" element={<WaterPumps />} />
-          <Route
-            path="services/project-management"
-            element={<ProjectManagement />}
-          />
-          <Route path="services/networking" element={<Networking />} />
-          <Route path="services/networking-and-IT" element={<Networking />} />
-          <Route
-            path="services/innovative-solutions"
-            element={<Innovation />}
-          />
-          <Route
-            path="services/feasibility-study"
-            element={<FeasibilityStudy />}
-          />
-          <Route
-            path="services/financial-analysis"
-            element={<FinancialAnalysis />}
-          />
-          <Route
-            path="services/financial-analysis-and-risk-management"
-            element={<FinancialAnalysis />}
-          />
-          <Route path="services/programming" element={<Programming />} />
-          <Route path="services/business-plans" element={<BusinessPlans />} />
-          <Route
-            path="services/business-plans-and-investment-opportunities"
-            element={<BusinessPlans />}
-          />
-          <Route
-            path="services/sustainability-management"
-            element={<Sustainability />}
-          />
-          <Route path="*" element={<NotFound />} />
-        </Route>
-        <Route path="/dashboard" element={<ProfileSidebar />}>
-          <Route element={<Dashboard />} index />
-          <Route path="/dashboard/writer" element={<WriterWrapper />}>
-            <Route path="/dashboard/writer/write" element={<Editor />} />
+      <NavigationProvider>
+        <TransitionLoader />
+        <ScrollToTop />
+        <Routes>
+          <Route path="/" element={<Navbar />}>
+            <Route element={<Home />} index />
+            <Route path="signin" element={<AuthForm type="sign-in" />} />
+            <Route path="signup" element={<AuthForm type="sign-up" />} />
+            <Route path="loading-page" element={<Preloader loading={true} />} />
+            <Route path="author/:username" element={<Author />} />
+            <Route path="blogs" element={<Blogs />} />
+            <Route path="blog/:id" element={<Blog />} />
+            <Route path="contact-us" element={<ContactUs />} />
+            <Route path="search/:query" element={<Search />} />
+            <Route path="search/null" element={<Redirect route="/blogs" />} />
+            <Route path="search/" element={<Redirect route="/blogs" />} />
+            <Route path="unsubscribe" element={<UnsubscribePage />} />
+            <Route path="test" element={<Test />} />
             <Route
-              path="/dashboard/writer/write/:blog_id"
-              element={<Editor />}
+              path="services/civil-engineering"
+              element={<CivilEngineering />}
             />
-            <Route path="/dashboard/writer/drafts" element={<DraftsPanel />} />
+            <Route
+              path="services/electrical-engineering"
+              element={<ElectricalEngineering />}
+            />
+            <Route path="about-us/overview" element={<AboutUs />} />
+            <Route path="about-us/our-story" element={<AboutStory />} />
+            <Route
+              path="about-us/sustainability"
+              element={<AboutSustainability />}
+            />
+            <Route path="about-us/projects" element={<AboutProjects />} />
+
+            <Route path="services/architecture" element={<Architecture />} />
+            <Route
+              path="services/interior-design"
+              element={<InteriorDesign />}
+            />
+            <Route path="services/solar-systems" element={<SolarSystems />} />
+            <Route path="services/water-systems" element={<WaterSystems />} />
+            <Route path="services/water-pumps" element={<WaterPumps />} />
+            <Route
+              path="services/project-management"
+              element={<ProjectManagement />}
+            />
+            <Route path="services/networking" element={<Networking />} />
+            <Route path="services/networking-and-IT" element={<Networking />} />
+            <Route
+              path="services/innovative-solutions"
+              element={<Innovation />}
+            />
+            <Route
+              path="services/feasibility-study"
+              element={<FeasibilityStudy />}
+            />
+            <Route
+              path="services/financial-analysis"
+              element={<FinancialAnalysis />}
+            />
+            <Route
+              path="services/financial-analysis-and-risk-management"
+              element={<FinancialAnalysis />}
+            />
+            <Route path="services/programming" element={<Programming />} />
+            <Route path="services/business-plans" element={<BusinessPlans />} />
+            <Route
+              path="services/business-plans-and-investment-opportunities"
+              element={<BusinessPlans />}
+            />
+            <Route
+              path="services/sustainability-management"
+              element={<Sustainability />}
+            />
+            <Route path="*" element={<NotFound />} />
           </Route>
-          <Route path="/dashboard/author/:username" element={<Author />} />
-          <Route path="/dashboard/settings" element={<Settings />} />
-          <Route path="/dashboard/favorites" element={<FavoriteBlogs />} />
-          <Route path="/dashboard/admin" element={<AdminWrapper />}>
-            <Route index element={<AdminPanel />} />
-            <Route path="/dashboard/admin/users" element={<AdminUsers />} />
-            <Route path="/dashboard/admin/newsletter" element={<AdminNewsletter />} />
+          <Route path="/dashboard" element={<ProfileSidebar />}>
+            <Route element={<Dashboard />} index />
+            <Route path="/dashboard/writer" element={<WriterWrapper />}>
+              <Route path="/dashboard/writer/write" element={<Editor />} />
+              <Route
+                path="/dashboard/writer/write/:blog_id"
+                element={<Editor />}
+              />
+              <Route
+                path="/dashboard/writer/drafts"
+                element={<DraftsPanel />}
+              />
+            </Route>
+            <Route path="/dashboard/author/:username" element={<Author />} />
+            <Route path="/dashboard/settings" element={<Settings />} />
+            <Route path="/dashboard/favorites" element={<FavoriteBlogs />} />
+            <Route path="/dashboard/admin" element={<AdminWrapper />}>
+              <Route index element={<AdminPanel />} />
+              <Route path="/dashboard/admin/users" element={<AdminUsers />} />
+              <Route
+                path="/dashboard/admin/newsletter"
+                element={<AdminNewsletter />}
+              />
+            </Route>
           </Route>
-        </Route>
-      </Routes>
+        </Routes>
+      </NavigationProvider>
     </UserContext.Provider>
   );
 };

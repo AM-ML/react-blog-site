@@ -1,8 +1,24 @@
 import logo from "../assets/footer/new4.webp";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../css/components/footer.css";
+import { useLegalModals } from "./LegalModals";
+import { useNavigation } from "../common/NavigationContext";
 
-const Footer = () => {
+const Footer = ({ handleNavigation }) => {
+  const { openPrivacyModal, openTermsModal } = useLegalModals();
+  const { startNavigation } = useNavigation();
+  const navigate = useNavigate();
+
+  // If handleNavigation is not provided (e.g., when used outside the Navbar), create a local version
+  const navigateTo = (path) => {
+    if (handleNavigation) {
+      handleNavigation(path);
+    } else {
+      startNavigation(path);
+      navigate(path);
+    }
+  };
+
   return (
     <div className="ftr-container">
       <footer className="ftr">
@@ -21,10 +37,14 @@ const Footer = () => {
         <div className="ftr-content">
           <div className="footer-content-column">
             <div className="footer-logo">
-              <Link className="footer-logo-link" to="/">
+              <span
+                className="footer-logo-link"
+                role="button"
+                onClick={() => navigateTo("/")}
+              >
                 <span className="hidden-link-text">LOGO</span>
                 <img src={logo} alt="BOFFO LOGO" width="128px" height="168px" />
-              </Link>
+              </span>
             </div>
             <div className="footer-call-to-action">
               <h2 className="footer-call-to-action-title">Call us:</h2>
@@ -59,12 +79,6 @@ const Footer = () => {
             <div className="footer-menu">
               <h2 className="footer-menu-name"> Social Links </h2>
               <ul id="menu-get-started" className="footer-menu-list">
-                <li className="x menu-item menu-item-type-post_type menu-item-object-product">
-                  <a href="#">
-                    <i className="bx bxl-twitter me-1"></i>
-                    Twitter
-                  </a>
-                </li>
                 <li className="li menu-item menu-item-type-post_type menu-item-object-product">
                   <a href="https://www.linkedin.com/company/boffo-consulting-group">
                     <i className="bx bxl-linkedin me-1"></i>
@@ -89,10 +103,28 @@ const Footer = () => {
               <h2 className="footer-menu-name"> Company</h2>
               <ul id="menu-company" className="footer-menu-list">
                 <li className="menu-item menu-item-type-post_type menu-item-object-page">
-                  <Link to="/about-us/overview">About Us</Link>
+                  <span
+                    role="button"
+                    onClick={() => navigateTo("/about-us/overview")}
+                  >
+                    About Us
+                  </span>
                 </li>
                 <li className="menu-item menu-item-type-post_type menu-item-object-page">
-                  <Link to="/about-us/our-story">Our Story</Link>
+                  <span
+                    role="button"
+                    onClick={() => navigateTo("/about-us/our-story")}
+                  >
+                    Our Story
+                  </span>
+                </li>
+                <li className="menu-item menu-item-type-post_type menu-item-object-page">
+                  <span
+                    role="button"
+                    onClick={() => navigateTo("/about-us/sustainability")}
+                  >
+                    Sustainability
+                  </span>
                 </li>
               </ul>
             </div>
@@ -102,13 +134,22 @@ const Footer = () => {
               <h2 className="footer-menu-name"> Features</h2>
               <ul id="menu-company" className="footer-menu-list">
                 <li className="menu-item menu-item-type-custom menu-item-object-custom">
-                  <Link to="/blogs">Blogs</Link>
+                  <span role="button" onClick={() => navigateTo("/blogs")}>
+                    Blogs
+                  </span>
                 </li>
                 <li className="menu-item menu-item-type-post_type menu-item-object-page">
-                  <Link to="/contact-us">Contact Us</Link>
+                  <span
+                    role="button"
+                    onClick={() => navigateTo("/about-us/projects")}
+                  >
+                    Projects
+                  </span>
                 </li>
                 <li className="menu-item menu-item-type-post_type menu-item-object-page">
-                  <Link to="/about-us/projects">Projects</Link>
+                  <span role="button" onClick={() => navigateTo("/contact-us")}>
+                    Contact Us
+                  </span>
                 </li>
               </ul>
             </div>
@@ -116,12 +157,17 @@ const Footer = () => {
               <h2 className="footer-menu-name"> Legal</h2>
               <ul id="menu-company" className="footer-menu-list">
                 <li className="menu-item menu-item-type-custom menu-item-object-custom">
-                  <a target="_blank" rel="noopener noreferrer" href="#">
+                  <button
+                    onClick={openPrivacyModal}
+                    className="footer-legal-btn"
+                  >
                     Privacy
-                  </a>
+                  </button>
                 </li>
                 <li className="menu-item menu-item-type-post_type menu-item-object-page">
-                  <a href="#">Terms of Service</a>
+                  <button onClick={openTermsModal} className="footer-legal-btn">
+                    Terms of Service
+                  </button>
                 </li>
               </ul>
             </div>

@@ -1,5 +1,5 @@
 import "../css/components/main-panel.css";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../Router";
 import cloud_img from "../assets/upload_to_cloud_white.webp";
 import { TitleCase } from "../common/string";
@@ -19,14 +19,20 @@ const MainPanel = () => {
     social_links,
     google_auth,
     is_author,
+    role,
   } = userAuth;
 
   const [backupImg, setBackupImg] = useState(profile_img);
   const [updatedAccount, setUpdatedAccount] = useState({
     name: TitleCase(name),
     email: email,
+    bio: userAuth.fullUser?.personal_info?.bio || "",
     social_links: { ...social_links },
   });
+  const [bioCharCount, setBioCharCount] = useState(
+    userAuth.fullUser?.personal_info?.bio?.length || 0
+  );
+  const maxBioChars = 200;
 
   const config = {
     headers: {
@@ -39,7 +45,8 @@ const MainPanel = () => {
     let loadId = toast.loading("Updating Account...");
 
     const updatedInfo = { ...info };
-    if (userAuth.isGoogleAccount) {
+    // Only delete email if it's a Google account
+    if (google_auth) {
       delete updatedInfo.email;
     }
 
@@ -50,7 +57,9 @@ const MainPanel = () => {
           id,
           personal_info: {
             name: updatedInfo.name,
+            email: updatedInfo.email, // Include email field in the request
             profile_img: updatedInfo.profile_img || profile_img,
+            bio: updatedInfo.bio
           },
           social_links: updatedInfo.social_links,
         },
@@ -118,6 +127,14 @@ const MainPanel = () => {
           [key]: value,
         },
       }));
+    } else if (name === "bio") {
+      if (value.length <= maxBioChars) {
+        setUpdatedAccount((prev) => ({
+          ...prev,
+          [name]: value,
+        }));
+        setBioCharCount(value.length);
+      }
     } else {
       setUpdatedAccount((prev) => ({
         ...prev,
@@ -134,6 +151,9 @@ const MainPanel = () => {
     toast.error("Error Occurred While Uploading Profile Image");
     setUserAuth({ ...userAuth, profile_img: backupImg });
   };
+
+  // Check if user is author or has admin/owner role
+  const isAuthorOrAdmin = is_author || role === 'admin' || role === 'owner';
 
   return (
     <main className="mp-container">
@@ -215,6 +235,37 @@ const MainPanel = () => {
           </article>
         </section>
       </div>
+      
+      {/* Biography Editor - only shown for authors, admins, and owners */}
+      {isAuthorOrAdmin && (
+        <div className="mp-card">
+          <section className="mp-info-container">
+            <section className="mp-info-ic mp-bio-ic">
+              <h2 className="mp-bio-title mp-info-title">Author Biography</h2>
+              <p className="mp-bio-description">
+                Your biography will be displayed on your author page and blog posts.
+              </p>
+              
+              <div className="mp-bio-textarea-container">
+                <textarea
+                  name="bio"
+                  value={updatedAccount.bio}
+                  onChange={handleInputChange}
+                  placeholder="Write a short bio about yourself (200 characters max)"
+                  maxLength={maxBioChars}
+                  className="mp-bio-textarea"
+                  spellCheck="false"
+                />
+                <div className="mp-bio-char-count">
+                  <span className={bioCharCount > maxBioChars * 0.9 ? "mp-bio-char-count-warning" : ""}>
+                    {bioCharCount}/{maxBioChars}
+                  </span>
+                </div>
+              </div>
+            </section>
+          </section>
+        </div>
+      )}
 
       {is_author && (
         <div className="mp-card">

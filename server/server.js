@@ -17,6 +17,9 @@ import compression from "compression";
 
 import { v2 as cloudinary } from "cloudinary";
 
+// Importing view tracker
+import { recordView, getTrendingBlogs } from "./utils/viewTracker.js";
+
 const serviceAccount = {
   type: process.env.FIREBASE_TYPE,
   project_id: process.env.FIREBASE_PROJ_ID,
@@ -123,8 +126,6 @@ server.use(cors(corsOptions));
 mongoose
   .connect(process.env.DB_LOCATION, {
     autoIndex: true,
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
     serverSelectionTimeoutMS: 50000,
   })
   .then(() => console.log("Connected to MongoDB"))
@@ -511,43 +512,60 @@ server.post("/get-author", async (req, res) => {
   }
 });
 
-server.post("/get-blog", (req, res) => {
-  const {
-    blog_id,
-    draft = false,
-    mode = "view",
-    incrementVal = mode != "edit" ? 1 : 0,
-  } = req.body;
+server.post("/get-blog", async (req, res) => {
+  try {
+    const {
+      blog_id,
+      draft = false,
+      mode = "view",
+      incrementVal = mode != "edit" ? 1 : 0,
+    } = req.body;
 
-  Blog.findOneAndUpdate(
-    { blog_id },
-    { $inc: { "activity.total_reads": incrementVal } }
-  )
-    .populate(
-      "author",
-      "personal_info.name personal_info.username personal_info.profile_img"
-    )
-    .select(
-      "title description content banner activity publishedAt blog_id tags"
-    )
-    .then((blog) => {
+    // Find the blog first without updating reads
+    const blog = await Blog.findOne({ blog_id })
+      .populate(
+        "author",
+        "personal_info.name personal_info.username personal_info.profile_img"
+      )
+      .select(
+        "title description content banner activity publishedAt blog_id tags"
+      );
+
+    if (!blog) {
+      return res.status(404).json({ error: "Blog not found" });
+    }
+
+    if (blog.draft && !draft) {
+      return res.status(500).json({ error: "you cannot access draft blogs" });
+    }
+
+    // If viewing (not editing) and incrementVal is positive, record the view
+    if (mode === "view" && incrementVal > 0) {
+      // Update traditional total_reads counter for backward compatibility
+      blog.activity.total_reads = (blog.activity.total_reads || 0) + 1;
+      await blog.save();
+
+      // Record view using our new tracking system (async, don't await)
+      recordView(blog._id).catch((err) => {
+        console.error("Failed to record view:", err);
+        // Don't fail the request if view recording fails
+      });
+
+      // Update user's total reads count
       User.findOneAndUpdate(
         { "personal_info.username": blog.author.username },
         { $inc: { "account_info.total_reads": incrementVal } }
       ).catch((err) => {
-        return res.status(500).json({ error: err.message });
+        console.error("Failed to update author read count:", err);
+        // Don't fail the request if updating author stats fails
       });
+    }
 
-      if (blog.draft && !draft) {
-        return res.status(500).json({ error: "you cannot access draft blogs" });
-      }
-
-      return res.status(200).json({ blog });
-    })
-    .catch((err) => {
-      console.log("error 500: /get-blog");
-      return res.status(500).json({ error: err.message });
-    });
+    return res.status(200).json({ blog });
+  } catch (err) {
+    console.error("Error in /get-blog:", err);
+    return res.status(500).json({ error: "Failed to retrieve blog" });
+  }
 });
 
 server.post("/make-author", async (req, res) => {
@@ -813,20 +831,34 @@ const trendingBlogsCache = new NodeCache({ stdTTL: 3600 }); // Cache for 1 hour
 
 server.post("/trending-blogs", async (req, res) => {
   try {
-    const blogs = await Blog.find({ draft: false })
-      .populate(
-        "author",
-        "personal_info.profile_img personal_info.username personal_info.name -_id"
-      )
-      .sort({ "activity.total_reads": -1 })
-      .limit(10)
-      .select(
-        "blog_id title description banner activity tags publishedAt -_id"
-      );
+    // Get period from request (default to "week")
+    const { period = "week" } = req.body;
 
-    return res.status(200).json({ blogs });
+    // Validate period
+    const validPeriods = ["today", "week", "month"];
+    const validPeriod = validPeriods.includes(period) ? period : "week";
+
+    // Try to get from cache first
+    const cacheKey = `trending-blogs-${validPeriod}`;
+    const cachedData = trendingBlogsCache.get(cacheKey);
+
+    if (cachedData) {
+      return res.status(200).json({ blogs: cachedData });
+    }
+
+    // Get trending blogs from our specialized utility
+    const trendingBlogs = await getTrendingBlogs(validPeriod, 10);
+
+    // Cache the results (only if we have results)
+    if (trendingBlogs && trendingBlogs.length > 0) {
+      trendingBlogsCache.set(cacheKey, trendingBlogs);
+    }
+
+    return res.status(200).json({ blogs: trendingBlogs || [] });
   } catch (err) {
-    return res.status(500).json({ error: err.message });
+    console.error("Error in trending-blogs:", err);
+    // Return a more generic error message to the client
+    return res.status(500).json({ error: "Failed to fetch trending blogs" });
   }
 });
 

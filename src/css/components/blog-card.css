@@ -65,13 +65,14 @@
 }
 
 .bgcd-header {
-  width:100%;
-  display:flex;
-  flex-wrap:nowrap;
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
   flex-direction: row;
-  align-items:center;
+  align-items: center;
   height: max-content;
   margin-bottom: 1em;
+  justify-content: space-between;
 }
 
 .bgcd-author-image{
@@ -110,15 +111,16 @@
   width: 100%;
 }
 
-.bgcd-header-date {
-  margin-left: 12px;
-  color: #444;
-  min-width: fit-content;
+.bgcd-published-date {
+  color: #555;
+  font-size: 0.85rem;
+  font-weight: 400;
+  font-style: italic;
   transition: color 0.3s ease;
 }
 
-.bgcd-container-container:hover .bgcd-header-date {
-  color: #333;
+.bgcd-container-container:hover .bgcd-published-date {
+  color: #15626c;
 }
 
 .bgcd-description {
