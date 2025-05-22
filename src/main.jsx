@@ -6,21 +6,26 @@ import "./css/animations.css";
 import { initScrollReveal } from "./common/scrollReveal.js";
 import LegalModals from "./components/LegalModals.jsx";
 
-// Initialize the app
+// Initialize the app with improved performance
 ReactDOM.createRoot(document.getElementById("root")).render(
-  // <React.StrictMode>
-  <BrowserRouter>
-    <LegalModals>
-      <Router />
-    </LegalModals>
-  </BrowserRouter>
-  // </React.StrictMode>,
+  <React.StrictMode>
+    <BrowserRouter>
+      <LegalModals>
+        <Router />
+      </LegalModals>
+    </BrowserRouter>
+  </React.StrictMode>
 );
 
-// Initialize global scroll reveal animations after the app has loaded
-document.addEventListener("DOMContentLoaded", () => {
-  // Wait a bit to ensure all elements are rendered
-  setTimeout(() => {
+// Use efficient approach to initialize scroll reveal animations
+if ('requestIdleCallback' in window) {
+  // Use requestIdleCallback to avoid blocking the main thread during initial load
+  window.requestIdleCallback(() => {
     initScrollReveal();
-  }, 100);
-});
+  }, { timeout: 2000 }); // 2s timeout as fallback
+} else {
+  // Fallback for browsers that don't support requestIdleCallback
+  window.addEventListener('load', () => {
+    setTimeout(initScrollReveal, 100);
+  });
+}

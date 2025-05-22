@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef, useCallback } from "react";
+import React, { useState, useContext, useRef, useCallback, memo } from "react";
 import "../css/components/navbar.css";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { UserContext } from "../Router";
@@ -65,6 +65,7 @@ const Navbar = () => {
                     placeholder="Search..."
                     onKeyDown={handleSearchKeyDown}
                     onChange={(e) => setSearch(e.target.value)}
+                    aria-label="Search"
                     autoFocus
                   />
                 </div>
@@ -87,13 +88,19 @@ const Navbar = () => {
               className="navbar-sdm-btn-container"
               onClick={toggleSideMenu}
               role="button"
+              tabIndex="0"
+              aria-label="Toggle side menu"
+              onKeyPress={(e) => e.key === 'Enter' && toggleSideMenu()}
             >
               <i className="navbar-sdm-btn fa-solid fa-bars"></i>
             </div>
             <span
               className="navbar-brand"
               role="button"
+              tabIndex="0"
               onClick={() => handleNavigation("/")}
+              onKeyPress={(e) => e.key === 'Enter' && handleNavigation("/")}
+              aria-label="Go to homepage"
             >
               <span className="text-logo text-serif text-bolder">BOFFO</span>
             </span>
@@ -109,6 +116,8 @@ const Navbar = () => {
                     role="button"
                     className="dp-btn nav-link active text-sans text-bold text-lg"
                     style={{ alignItems: "center", display: "flex" }}
+                    aria-expanded="false"
+                    aria-haspopup="true"
                   >
                     Industries <i className="bx bx-chevron-down"></i>
                   </Link>
@@ -119,6 +128,8 @@ const Navbar = () => {
                     role="button"
                     className="dp-btn nav-link active text-sans text-bold text-lg"
                     style={{ alignItems: "center", display: "flex" }}
+                    aria-expanded="false"
+                    aria-haspopup="true"
                   >
                     About Us <i className="bx bx-chevron-down bx-md"></i>
                   </Link>
@@ -129,6 +140,10 @@ const Navbar = () => {
                     className="nav-link active text-sans text-bold text-lg"
                     style={{ alignItems: "center", display: "flex", cursor: "pointer" }}
                     onClick={() => handleNavigation("/blogs")}
+                    onKeyPress={(e) => e.key === 'Enter' && handleNavigation("/blogs")}
+                    tabIndex="0"
+                    role="button"
+                    aria-label="Navigate to blogs"
                   >
                     Blogs
                   </span>
@@ -138,6 +153,10 @@ const Navbar = () => {
                     className="nav-link active text-sans text-bold text-lg"
                     style={{ alignItems: "center", display: "flex", cursor: "pointer" }}
                     onClick={() => handleNavigation("/contact-us")}
+                    onKeyPress={(e) => e.key === 'Enter' && handleNavigation("/contact-us")}
+                    tabIndex="0"
+                    role="button"
+                    aria-label="Navigate to contact us"
                   >
                     Contact Us
                   </span>
@@ -147,23 +166,31 @@ const Navbar = () => {
                 <li className="nav-item nb-end-md ms-auto">
                   <i
                     role="button"
+                    tabIndex="0"
                     onClick={() => setAppearSide(false)}
+                    onKeyPress={(e) => e.key === 'Enter' && setAppearSide(false)}
                     data-bs-toggle="modal"
                     data-bs-target="#NavbarSearchModal"
                     className="bx bx-search bx-md"
+                    aria-label="Open search"
                   ></i>
 
                   <div className="nb-end-profile-ic">
                     {access_token ? (
                       <span
                         role="button"
+                        tabIndex="0"
                         onClick={() => handleNavigation("/dashboard")}
+                        onKeyPress={(e) => e.key === 'Enter' && handleNavigation("/dashboard")}
+                        aria-label="Navigate to dashboard"
                       >
                         <img
                           className="nb-end-profile"
                           src={profile_img}
                           width={40}
+                          height={40}
                           alt="Profile"
+                          loading="lazy"
                         />
                       </span>
                     ) : (
@@ -173,8 +200,11 @@ const Navbar = () => {
                       >
                         <span
                           role="button"
+                          tabIndex="0"
                           onClick={() => handleNavigation("/signin")}
+                          onKeyPress={(e) => e.key === 'Enter' && handleNavigation("/signin")}
                           className="signin-btn btn btn-dark px-3 py-2 ms-0"
+                          aria-label="Sign in"
                         >
                           Sign In
                         </span>
@@ -205,4 +235,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default memo(Navbar);

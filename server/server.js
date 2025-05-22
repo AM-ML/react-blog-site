@@ -20,6 +20,13 @@ import { v2 as cloudinary } from "cloudinary";
 // Importing view tracker
 import { recordView, getTrendingBlogs } from "./utils/viewTracker.js";
 
+// Create server-side cache with configurable TTL
+const serverCache = new NodeCache({ 
+  stdTTL: 300, // 5 minutes default TTL
+  checkperiod: 120, // Check for expired keys every 2 minutes
+  useClones: false // For better performance
+});
+
 const serviceAccount = {
   type: process.env.FIREBASE_TYPE,
   project_id: process.env.FIREBASE_PROJ_ID,
@@ -41,6 +48,7 @@ import { Newsletter, Subscriber } from "./Schema/Newsletter.js";
 const server = express();
 const port = 3000;
 
+// Initialize transporter with connection pooling
 const transporter = nodemailer.createTransport({
   host: "mail.boffoconsulting.net",
   port: 465, // From your email settings (SMTP Port)
@@ -49,6 +57,9 @@ const transporter = nodemailer.createTransport({
     user: "alireda.programming@boffoconsulting.net",
     pass: "admin@power", // Use your real email password
   },
+  pool: true, // Use pooled connections
+  maxConnections: 5, // Maximum connections in pool
+  maxMessages: 100 // Maximum messages per connection
 });
 
 // Verify transporter connection
@@ -75,8 +86,32 @@ admin.initializeApp({
 const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const passwordRegex = /^(?=.*\d)(?=.*[a-z]).{6,20}$/;
 
+// Enable compression for all responses
+server.use(compression({ 
+  level: 6, // Balanced compression level
+  threshold: 0, // Compress all responses
+  filter: (req, res) => {
+    // Don't compress responses with this header
+    if (req.headers['x-no-compression']) {
+      return false;
+    }
+    // Compress everything else
+    return compression.filter(req, res);
+  }
+}));
+
 // Security middleware
-server.use(helmet()); // Set security HTTP headers
+server.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+      styleSrc: ["'self'", "'unsafe-inline'", "https:"],
+      imgSrc: ["'self'", "data:", "https:"],
+      connectSrc: ["'self'", "https:"],
+    }
+  }
+})); // Set security HTTP headers
 server.use(xss()); // Sanitize inputs against XSS
 server.use(mongoSanitize()); // Sanitize against NoSQL query injection
 server.use(express.json({ limit: "25mb" }));
@@ -94,6 +129,38 @@ const authLimiter = rateLimit({
 server.use("/signup", authLimiter);
 server.use("/signin", authLimiter);
 server.use("/google-auth", authLimiter);
+
+// Cache middleware - for API responses
+const cacheMiddleware = (duration) => {
+  return (req, res, next) => {
+    // Skip cache for authenticated requests or non-GET methods
+    if (req.headers.authorization || req.method !== 'GET') {
+      return next();
+    }
+    
+    const key = `__express__${req.originalUrl || req.url}`;
+    const cachedResponse = serverCache.get(key);
+    
+    if (cachedResponse) {
+      res.send(cachedResponse);
+      return;
+    }
+    
+    // Store the original send function
+    const originalSend = res.send;
+    
+    // Override the send function
+    res.send = function(body) {
+      // Cache the response
+      serverCache.set(key, body, duration);
+      
+      // Call the original send function
+      originalSend.call(this, body);
+    };
+    
+    next();
+  };
+};
 
 server.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -122,11 +189,16 @@ const corsOptions = {
 
 server.use(cors(corsOptions));
 
-// Connect to MongoDB with improved error handling
+// Connect to MongoDB with improved error handling and optimized settings
 mongoose
   .connect(process.env.DB_LOCATION, {
     autoIndex: true,
     serverSelectionTimeoutMS: 50000,
+    socketTimeoutMS: 45000,
+    connectTimeoutMS: 30000,
+    // Performance optimizations
+    maxPoolSize: 10, // Maintain up to 10 socket connections
+    useUnifiedTopology: true
   })
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => {
@@ -194,22 +266,20 @@ const verifyJWT = async (req, res, next) => {
       }
 
       try {
-        const user = await User.findById(payload.id);
+        const user = await User.findById(payload.id).lean(); // Use lean() for better performance
 
         if (!user) {
           return res.status(403).json({ error: "User not found" });
         }
 
-        req.user = user._id;
+        req.user = user;
         next();
-      } catch (dbErr) {
-        console.error("Database error in verifyJWT:", dbErr);
-        return res.status(500).json({ error: "Internal server error" });
+      } catch (findError) {
+        return res.status(500).json({ error: "Database error when finding user" });
       }
     });
   } catch (error) {
-    console.error("JWT verification error:", error);
-    return res.status(500).json({ error: "Internal server error" });
+    return res.status(500).json({ error: "Authentication error" });
   }
 };
 

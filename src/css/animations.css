@@ -1,11 +1,15 @@
+/* Performance optimizations added to improve animations */
+/* Using hardware-accelerated properties with will-change for smoother animations */
+
 /* Base transition for all interactive elements */
 .smooth-transition {
   transition: all 0.3s ease-in-out;
 }
 
-/* Hover animations */
+/* Hover animations with hardware acceleration */
 .hover-scale {
   transition: transform 0.2s ease-in-out;
+  will-change: transform;
 }
 
 .hover-scale:hover {
@@ -14,6 +18,7 @@
 
 .hover-lift {
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  will-change: transform, box-shadow;
 }
 
 .hover-lift:hover {
@@ -21,11 +26,12 @@
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Scroll reveal animations - faster transitions */
+/* Scroll reveal animations - optimized for performance */
 .reveal {
   opacity: 0;
   transform: translateY(20px); /* Reduced from 30px */
-  transition: all 0.5s ease; /* Reduced from 0.8s */
+  transition: opacity 0.5s ease, transform 0.5s ease; /* Separate properties for better performance */
+  will-change: opacity, transform;
 }
 
 .reveal.active {
@@ -36,13 +42,15 @@
 .reveal-left {
   opacity: 0;
   transform: translateX(-30px); /* Reduced from -50px */
-  transition: all 0.5s ease; /* Reduced from 0.8s */
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  will-change: opacity, transform;
 }
 
 .reveal-right {
   opacity: 0;
   transform: translateX(30px); /* Reduced from 50px */
-  transition: all 0.5s ease; /* Reduced from 0.8s */
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  will-change: opacity, transform;
 }
 
 .reveal-left.active,
@@ -54,7 +62,8 @@
 .reveal-scale {
   opacity: 0;
   transform: scale(0.95); /* Changed from 0.9 for less dramatic scale */
-  transition: all 0.5s ease; /* Reduced from 0.8s */
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  will-change: opacity, transform;
 }
 
 .reveal-scale.active {
@@ -69,7 +78,7 @@
 .delay-400 { transition-delay: 0.2s; } /* Reduced from 0.4s */
 .delay-500 { transition-delay: 0.25s; } /* Reduced from 0.5s */
 
-/* Fade and slide animations */
+/* Optimized keyframe animations */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -86,18 +95,25 @@
   }
 }
 
+/* Add compositing hints for better performance */
 .fade-in {
   animation: fadeIn 0.3s ease-in-out; /* Reduced from 0.5s */
+  will-change: opacity;
+  backface-visibility: hidden; /* Improves GPU rendering */
 }
 
 .slide-in {
   animation: slideIn 0.3s ease-in-out; /* Reduced from 0.5s */
+  will-change: transform, opacity;
+  backface-visibility: hidden;
 }
 
-/* Staggered animations for lists - reduced delays */
+/* Staggered animations for lists - optimized and reduced delays */
 .stagger-list > * {
   opacity: 0;
   animation: slideIn 0.3s ease-in-out forwards; /* Reduced from 0.5s */
+  will-change: transform, opacity;
+  backface-visibility: hidden;
 }
 
 .stagger-list > *:nth-child(1) { animation-delay: 0.05s; } /* Reduced from 0.1s */
@@ -105,4 +121,14 @@
 .stagger-list > *:nth-child(3) { animation-delay: 0.15s; } /* Reduced from 0.3s */
 .stagger-list > *:nth-child(4) { animation-delay: 0.2s; } /* Reduced from 0.4s */
 .stagger-list > *:nth-child(5) { animation-delay: 0.25s; } /* Reduced from 0.5s */
-.stagger-list > *:nth-child(n+6) { animation-delay: 0.3s; } /* Reduced from 0.6s */ 
+.stagger-list > *:nth-child(n+6) { animation-delay: 0.3s; } /* Reduced from 0.6s */
+
+/* Reduce layout thrashing by using transform for animations instead of properties that trigger layout */
+.reveal, .reveal-left, .reveal-right, .reveal-scale, .slide-in, .stagger-list > * {
+  transform-style: preserve-3d; /* Helps with rendering performance */
+}
+
+/* Remove will-change when animation completes to free up resources */
+.reveal.active, .reveal-left.active, .reveal-right.active, .reveal-scale.active {
+  will-change: auto;
+} 
