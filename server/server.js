@@ -1725,7 +1725,7 @@ server.post("/get-user-data", verifyJWT, async (req, res) => {
     // Find user and select only necessary fields
     const user = await User.findById(id)
       .select(
-        "personal_info.name personal_info.email personal_info.profile_img personal_info.username social_links favorite_blogs isAuthor role google_auth"
+        "personal_info.name personal_info.email personal_info.profile_img personal_info.username personal_info.bio social_links favorite_blogs isAuthor role google_auth"
       )
       .lean(); // Use lean() for better performance
 
@@ -1740,6 +1740,7 @@ server.post("/get-user-data", verifyJWT, async (req, res) => {
       email: user.personal_info.email,
       profile_img: user.personal_info.profile_img,
       username: user.personal_info.username,
+      bio: user.personal_info.bio,
       social_links: user.social_links,
       favorite_blogs: user.favorite_blogs || [],
       is_author: user.isAuthor,

@@ -36,7 +36,7 @@ const BlogsComponent = () => {
   const [uTags, setuTags] = useState([]);
   const [trendingLoading, setTrendingLoading] = useState(false);
   const [activeTab, setActiveTab] = useState("home");
-  
+
   // Ref for intersection observer
   const loadMoreRef = useRef(null);
   const observerRef = useRef(null);
@@ -56,8 +56,6 @@ const BlogsComponent = () => {
         userId: userAuth?.id, // Send user ID to prioritize interests
       })
       .then(async ({ data: { blogs: newBlogs, totalDocs } }) => {
-        console.log(uDate, uTags);
-        console.log(newBlogs);
         let paginationData = await filterPaginationData({
           create_new_array: doCreate,
           current_data: blogs,
@@ -90,10 +88,10 @@ const BlogsComponent = () => {
     if (!trendings && !blogs) {
       setLoading(true);
     }
-    
+
     axios
       .post(import.meta.env.VITE_SERVER_DOMAIN + "/trending-blogs", {
-        period: period // Send the time period to the backend
+        period: period, // Send the time period to the backend
       })
       .then((data) => {
         setTrendings(data.data.blogs);
@@ -118,10 +116,14 @@ const BlogsComponent = () => {
     }
   };
 
-  const handleFilter = ({ tag = null, tags = [], date = null, doGet = false, origin = "reset" }) => {
-    console.log(tag, tags, date, "handlefilter");
+  const handleFilter = ({
+    tag = null,
+    tags = [],
+    date = null,
+    doGet = false,
+    origin = "reset",
+  }) => {
     if (origin == "tag" && !tags.length && !tag) return;
-    console.log("filtering");
     // If a tag is provided, add it to the tags array
     if (tag) tags = [...tags, tag];
 
@@ -156,7 +158,7 @@ const BlogsComponent = () => {
     // Handler for when the loading element becomes visible
     const handleObserver = (entries) => {
       const [entry] = entries;
-      if (entry.isIntersecting && !loadingMore && activeTab === 'home') {
+      if (entry.isIntersecting && !loadingMore && activeTab === "home") {
         if (blogs && blogs.totalDocs > blogs.results.length) {
           loadMore();
         }
@@ -165,7 +167,7 @@ const BlogsComponent = () => {
 
     // Create new observer
     observerRef.current = new IntersectionObserver(handleObserver, {
-      rootMargin: '0px 0px 400px 0px', // Load more content before user reaches the end
+      rootMargin: "0px 0px 400px 0px", // Load more content before user reaches the end
       threshold: 0.1,
     });
 
@@ -239,7 +241,10 @@ const BlogsComponent = () => {
                   )}
                 </div>
                 {blogs && blogs.totalDocs > blogs.results.length && (
-                  <div ref={loadMoreRef} className="w-100 d-flex justify-content-center">
+                  <div
+                    ref={loadMoreRef}
+                    className="w-100 d-flex justify-content-center"
+                  >
                     {loadingMore && <Loading height="40vh" />}
                   </div>
                 )}
@@ -248,11 +253,11 @@ const BlogsComponent = () => {
             <ScrollRevealWrapper animation="fade">
               <div className="ltbgs-container">
                 {/* Add the trending time filter */}
-                <TrendingTimeFilter 
-                  onSelectPeriod={handleTrendingPeriodChange} 
+                <TrendingTimeFilter
+                  onSelectPeriod={handleTrendingPeriodChange}
                   initialPeriod={trendingPeriod}
                 />
-                
+
                 <div className="ltbgs">
                   {trendingLoading ? (
                     <div className="w-100 d-flex justify-content-center">

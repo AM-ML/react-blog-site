@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import "../../css/components/editor/navbar.css";
 import { EditorContext } from "../../pages/editor";
 import defaultBanner from "../../assets/blog_banner.webp";
@@ -9,9 +9,6 @@ import { useParams } from "react-router-dom";
 
 const EditorNavBar = () => {
   const { blog_id } = useParams();
-  useEffect(() => {
-    console.log(blog_id);
-  }, []);
   let {
     blog,
     blog: { title, banner, content, description, tags },
@@ -74,8 +71,6 @@ const EditorNavBar = () => {
             description,
             draft: true,
           };
-
-          console.log({ ...blogObj, blog_id });
 
           await axios
             .post(

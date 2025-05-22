@@ -46,7 +46,6 @@ const Editor = () => {
       .then(({ data: { blog } }) => {
         setBlog(blog);
         setLoading(false);
-        console.log(blog);
       })
       .catch((err) => {
         setBlog(null);

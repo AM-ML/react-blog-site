@@ -23,7 +23,7 @@ const SearchComponent = ({ query }) => {
   const [loadingRandomBlogs, setLoadingRandomBlogs] = useState(false);
   const [allResultsLoaded, setAllResultsLoaded] = useState(false);
   const navigate = useNavigate();
-  
+
   // Ref for intersection observer
   const loadMoreRef = useRef(null);
   const observerRef = useRef(null);
@@ -49,12 +49,12 @@ const SearchComponent = ({ query }) => {
         setBlogs(paginationData);
         setOriginalBlogs(paginationData);
         bigLoad ? setBigLoading(false) : setLoading(false);
-        
+
         // Check if we've loaded all results
         if (paginationData.results.length >= totalDocs) {
           setAllResultsLoaded(true);
           // Load random blogs when search results are exhausted
-          getRandomBlogs(paginationData.results.map(blog => blog.blog_id));
+          getRandomBlogs(paginationData.results.map((blog) => blog.blog_id));
         } else {
           setAllResultsLoaded(false);
         }
@@ -64,22 +64,22 @@ const SearchComponent = ({ query }) => {
         console.log(err);
       });
   };
-  
+
   const getRandomBlogs = (excludeIds = []) => {
     // Only fetch random blogs if we've exhausted search results
     if (!loadingRandomBlogs) {
       setLoadingRandomBlogs(true);
-      
+
       axios
         .post(import.meta.env.VITE_SERVER_DOMAIN + "/random-blogs", {
           excludeIds,
-          limit: 5
+          limit: 5,
         })
         .then(({ data }) => {
           setRandomBlogs(data.blogs || []);
           setLoadingRandomBlogs(false);
         })
-        .catch(err => {
+        .catch((err) => {
           console.error("Error fetching random blogs:", err);
           setLoadingRandomBlogs(false);
         });
@@ -93,7 +93,6 @@ const SearchComponent = ({ query }) => {
   };
 
   const handleFilter = ({ tags, date }) => {
-    console.log("filter received:", tags, date);
     setuDate(date);
     setuTags(tags);
   };
@@ -108,14 +107,19 @@ const SearchComponent = ({ query }) => {
     // Handler for when the loading element becomes visible
     const handleObserver = (entries) => {
       const [entry] = entries;
-      if (entry.isIntersecting && !loading && blogs && blogs.totalDocs > blogs.results.length) {
+      if (
+        entry.isIntersecting &&
+        !loading &&
+        blogs &&
+        blogs.totalDocs > blogs.results.length
+      ) {
         loadMore();
       }
     };
 
     // Create new observer
     observerRef.current = new IntersectionObserver(handleObserver, {
-      rootMargin: '0px 0px 400px 0px', // Load more content before user reaches the end
+      rootMargin: "0px 0px 400px 0px", // Load more content before user reaches the end
       threshold: 0.1,
     });
 
@@ -178,18 +182,25 @@ const SearchComponent = ({ query }) => {
             {/* Infinite scroll loading indicator */}
             {!loading ? (
               blogs && blogs.totalDocs > blogs.results.length ? (
-                <div ref={loadMoreRef} className="w-100 d-flex justify-content-center">
+                <div
+                  ref={loadMoreRef}
+                  className="w-100 d-flex justify-content-center"
+                >
                   {/* This element is just a marker for the intersection observer */}
                 </div>
               ) : (
-                blogs && blogs.results.length > 0 && allResultsLoaded && (
+                blogs &&
+                blogs.results.length > 0 &&
+                allResultsLoaded && (
                   <>
                     <EndOfData />
-                    
+
                     {/* Random blogs section */}
                     {randomBlogs.length > 0 && (
                       <div className="random-blogs-section">
-                        <h2 className="random-blogs-title">You might also like</h2>
+                        <h2 className="random-blogs-title">
+                          You might also like
+                        </h2>
                         <div className="ltbgs">
                           {randomBlogs.map((blog, i) => (
                             <AnimationWrapper
@@ -207,7 +218,7 @@ const SearchComponent = ({ query }) => {
                         </div>
                       </div>
                     )}
-                    
+
                     {loadingRandomBlogs && (
                       <div className="w-100 d-flex justify-content-center">
                         <Loading height="20vh" />
@@ -229,4 +240,3 @@ const SearchComponent = ({ query }) => {
 };
 
 export default SearchComponent;
-

@@ -20,19 +20,34 @@ const MainPanel = () => {
     google_auth,
     is_author,
     role,
+    bio,
   } = userAuth;
 
   const [backupImg, setBackupImg] = useState(profile_img);
   const [updatedAccount, setUpdatedAccount] = useState({
     name: TitleCase(name),
     email: email,
-    bio: userAuth.fullUser?.personal_info?.bio || "",
+    bio: bio || userAuth.fullUser?.personal_info?.bio || "",
     social_links: { ...social_links },
   });
   const [bioCharCount, setBioCharCount] = useState(
-    userAuth.fullUser?.personal_info?.bio?.length || 0
+    (bio || userAuth.fullUser?.personal_info?.bio || "").length
   );
   const maxBioChars = 200;
+
+  // Update local state when user data changes from background synchronization
+  useEffect(() => {
+    setUpdatedAccount(prev => ({
+      ...prev,
+      name: TitleCase(name),
+      email: email,
+      bio: bio || userAuth.fullUser?.personal_info?.bio || prev.bio,
+      social_links: { ...social_links },
+    }));
+    
+    setBioCharCount((bio || userAuth.fullUser?.personal_info?.bio || "").length);
+    setBackupImg(profile_img);
+  }, [name, email, bio, social_links, userAuth.fullUser?.personal_info?.bio, profile_img]);
 
   const config = {
     headers: {
