@@ -50,17 +50,19 @@
 .abt-header-text .abt-title {
   font-weight: 900;
   font-family: "Domine";
-  font-size: 4.325rem;
-  text-align: center;
+  font-size: 3rem;
+  text-align: left;
   letter-spacing: 0.02vw;
   animation: slideIn 1s ease-out;
+  max-width: 65rem;
+  margin-left: auto; margin-right: auto;
 }
 
 .abt-header-text .abt-title .highlight {
   display: inline;
   text-decoration: none;
   font-family: "Domine";
-  color: #5ac7af;
+  color: #4cf9af;
   position: relative;
   padding: 0 8px;
   border-radius: 4px;
@@ -74,7 +76,7 @@
   height: 3px;
   bottom: 0;
   left: 0;
-  background-color: #5ac7af;
+  background-color: #4cf9af;
   transition: width 0.5s ease;
 }
 
@@ -94,9 +96,11 @@
   animation: slideIn 1.2s ease-out;
   animation-delay: 0.3s;
   opacity: 0;
-  margin-top: 40px;
+  margin-top: 20px;
   animation-fill-mode: forwards;
-  max-width: 800px;
+  max-width: 60rem;
+  text-align:justify;
+  padding-right: 5rem;
   line-height: 1.6;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
@@ -708,6 +712,7 @@
   will-change: opacity, transform;
   animation: 0.7s ease-out 0s 1 normal forwards running fadeIn;
   order: 2;
+  height: 80%;
   font-family: "inter", sans-serif;
 }
 

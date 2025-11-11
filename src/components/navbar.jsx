@@ -6,8 +6,8 @@ import AnimationWrapper from "../common/page-animation";
 import { DropdownContent, AboutDropdown } from "./navbar-dropdown";
 import Footer from "./footer";
 import SideMenu from "./sidemenu";
-import NewsletterSubscribe from "./newsletter-subscribe";
 import { useNavigation } from "../common/NavigationContext";
+import NewsletterSubscribe from "./newsletter-subscribe";
 
 const Navbar = () => {
   const {
@@ -38,11 +38,14 @@ const Navbar = () => {
   );
 
   // Custom navigation handler for links
-  const handleNavigation = useCallback((path) => {
-    startNavigation(path);
-    navigate(path);
-    setAppearSide(false);
-  }, [navigate, startNavigation]);
+  const handleNavigation = useCallback(
+    (path) => {
+      startNavigation(path);
+      navigate(path);
+      setAppearSide(false);
+    },
+    [navigate, startNavigation]
+  );
 
   return (
     <AnimationWrapper key="navbar" transition={{ duration: 0.0 }}>
@@ -90,7 +93,7 @@ const Navbar = () => {
               role="button"
               tabIndex="0"
               aria-label="Toggle side menu"
-              onKeyPress={(e) => e.key === 'Enter' && toggleSideMenu()}
+              onKeyPress={(e) => e.key === "Enter" && toggleSideMenu()}
             >
               <i className="navbar-sdm-btn fa-solid fa-bars"></i>
             </div>
@@ -99,7 +102,7 @@ const Navbar = () => {
               role="button"
               tabIndex="0"
               onClick={() => handleNavigation("/")}
-              onKeyPress={(e) => e.key === 'Enter' && handleNavigation("/")}
+              onKeyPress={(e) => e.key === "Enter" && handleNavigation("/")}
               aria-label="Go to homepage"
             >
               <span className="text-logo text-serif text-bolder">BOFFO</span>
@@ -138,9 +141,15 @@ const Navbar = () => {
                 <li className="nav-item pe-4">
                   <span
                     className="nav-link active text-sans text-bold text-lg"
-                    style={{ alignItems: "center", display: "flex", cursor: "pointer" }}
+                    style={{
+                      alignItems: "center",
+                      display: "flex",
+                      cursor: "pointer",
+                    }}
                     onClick={() => handleNavigation("/blogs")}
-                    onKeyPress={(e) => e.key === 'Enter' && handleNavigation("/blogs")}
+                    onKeyPress={(e) =>
+                      e.key === "Enter" && handleNavigation("/blogs")
+                    }
                     tabIndex="0"
                     role="button"
                     aria-label="Navigate to blogs"
@@ -151,9 +160,15 @@ const Navbar = () => {
                 <li className="nav-item pe-4">
                   <span
                     className="nav-link active text-sans text-bold text-lg"
-                    style={{ alignItems: "center", display: "flex", cursor: "pointer" }}
+                    style={{
+                      alignItems: "center",
+                      display: "flex",
+                      cursor: "pointer",
+                    }}
                     onClick={() => handleNavigation("/contact-us")}
-                    onKeyPress={(e) => e.key === 'Enter' && handleNavigation("/contact-us")}
+                    onKeyPress={(e) =>
+                      e.key === "Enter" && handleNavigation("/contact-us")
+                    }
                     tabIndex="0"
                     role="button"
                     aria-label="Navigate to contact us"
@@ -168,7 +183,9 @@ const Navbar = () => {
                     role="button"
                     tabIndex="0"
                     onClick={() => setAppearSide(false)}
-                    onKeyPress={(e) => e.key === 'Enter' && setAppearSide(false)}
+                    onKeyPress={(e) =>
+                      e.key === "Enter" && setAppearSide(false)
+                    }
                     data-bs-toggle="modal"
                     data-bs-target="#NavbarSearchModal"
                     className="bx bx-search bx-md"
@@ -181,7 +198,9 @@ const Navbar = () => {
                         role="button"
                         tabIndex="0"
                         onClick={() => handleNavigation("/dashboard")}
-                        onKeyPress={(e) => e.key === 'Enter' && handleNavigation("/dashboard")}
+                        onKeyPress={(e) =>
+                          e.key === "Enter" && handleNavigation("/dashboard")
+                        }
                         aria-label="Navigate to dashboard"
                       >
                         <img
@@ -202,7 +221,9 @@ const Navbar = () => {
                           role="button"
                           tabIndex="0"
                           onClick={() => handleNavigation("/signin")}
-                          onKeyPress={(e) => e.key === 'Enter' && handleNavigation("/signin")}
+                          onKeyPress={(e) =>
+                            e.key === "Enter" && handleNavigation("/signin")
+                          }
                           className="signin-btn btn btn-dark px-3 py-2 ms-0"
                           aria-label="Sign in"
                         >
@@ -224,10 +245,13 @@ const Navbar = () => {
         style={{ minHeight: "100vh", overflowY: "overlay" }}
       >
         {appearSide && (
-          <SideMenu appearSide={appearSide} setAppearSide={setAppearSide} onNavigate={handleNavigation} />
+          <SideMenu
+            appearSide={appearSide}
+            setAppearSide={setAppearSide}
+            onNavigate={handleNavigation}
+          />
         )}
         <Outlet />
-        <NewsletterSubscribe />
       </div>
 
       <Footer handleNavigation={handleNavigation} />

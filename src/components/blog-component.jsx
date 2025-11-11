@@ -230,7 +230,7 @@ const BlogComponent = ({ blogId }) => {
           </div>
 
           <div className="bbc-fb">
-            <div className="bbc-author">
+            <div className="bbc-author d-none">
               <img
                 src={profile_img}
                 alt=""
@@ -248,7 +248,7 @@ const BlogComponent = ({ blogId }) => {
               </div>
             </div>
 
-            <div className="bbc-fb-end mt-5">
+            <div className="bbc-fb-end mt-5 ms-auto">
               <i
                 role="button"
                 onClick={toggleFavorite}

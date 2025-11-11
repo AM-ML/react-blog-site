@@ -106,7 +106,9 @@ const AboutComponent = () => {
 
         <div className="abt-header-text">
           <h1 className="abt-title">
-            A <span className="highlight">Passion</span> for Problem Solving.
+            Empowering Growth Through{" "}
+            <span className="highlight">Expertise</span> and{" "}
+            <span className="highlight">Vision.</span>
           </h1>
 
           <p className="abt-desc">
@@ -175,7 +177,7 @@ const AboutComponent = () => {
               className="impact-text-container"
             >
               <motion.h2 variants={fadeInUp} className="impact-title">
-                Our Global Impact
+                Global Impact
               </motion.h2>
               <motion.p variants={fadeInUp} className="impact-description">
                 BOFFO Consulting has successfully completed projects across
@@ -219,8 +221,8 @@ const AboutComponent = () => {
           className="abt-stat-container py-0"
         >
           <div className="wrapper">
-            <div className="container">
-              <motion.div variants={slideInLeft} className="text">
+            <div className="container ">
+              <motion.div variants={slideInLeft} className="text items-center">
                 <span className="header">OUR PURPOSE</span>
                 <h2 className="title">Creating value that matters</h2>
                 <p className="desc-r1">
@@ -235,20 +237,6 @@ const AboutComponent = () => {
                   dedicated ally in driving growth and shaping the built
                   environment.
                 </p>
-                <motion.div variants={staggerContainer} className="stats">
-                  <motion.div variants={scaleIn} className="item">
-                    <div className="stat-number">16+</div>
-                    <p className="desc">Projects worldwide</p>
-                  </motion.div>
-                  <motion.div variants={scaleIn} className="item">
-                    <div className="stat-number">15+</div>
-                    <p className="desc">Employees & experience</p>
-                  </motion.div>
-                  <motion.div variants={scaleIn} className="item">
-                    <div className="stat-number">6+</div>
-                    <p className="desc">Countries with presence</p>
-                  </motion.div>
-                </motion.div>
               </motion.div>
               <motion.div variants={slideInRight} className="img-c">
                 <div className="wrapper">
@@ -272,7 +260,7 @@ const AboutComponent = () => {
           className="enhanced-cards-section"
         >
           <motion.div variants={fadeInUp} className="section-header">
-            <h2 className="section-title">Our Foundation</h2>
+            <h2 className="section-title">Foundation</h2>
           </motion.div>
 
           <div className="cards-grid mt-5">
@@ -286,7 +274,7 @@ const AboutComponent = () => {
                 <div className="card-icon-container">
                   <Target className="card-icon m-0" />
                 </div>
-                <h3 className="card-title">Our Mission</h3>
+                <h3 className="card-title">Mission</h3>
                 <p className="card-description">
                   To provide innovative, sustainable, and efficient construction
                   and management solutions that exceed client expectations and
@@ -310,7 +298,7 @@ const AboutComponent = () => {
                 <div className="card-icon-container">
                   <Eye className="card-icon m-0" />
                 </div>
-                <h3 className="card-title">Our Vision</h3>
+                <h3 className="card-title">Vision</h3>
                 <p className="card-description">
                   To be a leading consulting firm recognized for our expertise,
                   integrity, and commitment to delivering exceptional results
@@ -336,7 +324,7 @@ const AboutComponent = () => {
           className="org-structure-section-white"
         >
           <motion.div variants={fadeInUp} className="section-header">
-            <h2 className="section-title">Organizational Excellence</h2>
+            <h2 className="section-title">Organization</h2>
           </motion.div>
 
           <div className="org-cards-grid">
